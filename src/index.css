@@ -21,6 +21,16 @@
   --animate-fade-in: fadeIn 0.6s ease-out forwards;
   --animate-fade-in-up: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-float: float 4s ease-in-out infinite;
+  --animate-morph-slow-1: morph1 18s ease-in-out infinite;
+  --animate-morph-slow-2: morph2 20s ease-in-out infinite;
+  --animate-morph-slow-3: morph3 22s ease-in-out infinite;
+  --animate-morph-fast-1: morph1 6s ease-in-out infinite;
+  --animate-morph-fast-2: morph2 7s ease-in-out infinite;
+  --animate-morph-fast-3: morph3 8s ease-in-out infinite;
+  --animate-pulse-slow: pulseSlow 8s ease-in-out infinite;
+  --animate-bobbing-1: bobbing1 10s ease-in-out infinite;
+  --animate-bobbing-2: bobbing2 12s ease-in-out infinite;
+  --animate-bobbing-3: bobbing3 14s ease-in-out infinite;
 
   @keyframes fadeIn {
     0% { opacity: 0; }
@@ -34,12 +44,42 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
+  @keyframes bobbing1 {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-10px) scale(1.02); }
+  }
+  @keyframes bobbing2 {
+    0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+    50% { transform: translateY(8px) scale(0.98) rotate(3deg); }
+  }
+  @keyframes bobbing3 {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-6px) scale(1.03); }
+  }
+  @keyframes morph1 {
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  }
+  @keyframes morph2 {
+    0%, 100% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%; }
+    50% { border-radius: 70% 30% 60% 40% / 40% 50% 60% 50%; }
+  }
+  @keyframes morph3 {
+    0%, 100% { border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%; }
+    50% { border-radius: 60% 40% 70% 30% / 50% 70% 30% 70%; }
+  }
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 0.35; transform: scale(1); }
+    50% { opacity: 0.65; transform: scale(1.1); }
+  }
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply antialiased overflow-x-hidden text-primary-dark font-sans bg-lightBg;
-    scroll-behavior: smooth;
   }
 
   /* Custom styled scrollbars */
@@ -98,6 +138,14 @@
     box-shadow: 0 0 50px rgba(184, 150, 53, 0.12);
   }
 
+  .glow-jetema {
+    box-shadow: 0 0 50px rgba(76, 90, 157, 0.12);
+  }
+
+  .glow-emerald {
+    box-shadow: 0 0 50px rgba(16, 185, 129, 0.12);
+  }
+
   /* Custom scroll list slider */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -115,5 +163,68 @@
 
   .reveal-visible {
     @apply opacity-100 translate-y-0 pointer-events-auto;
+  }
+
+  /* Liquid Glass Responsive Variable System */
+  .liquid-glass-size {
+    width: var(--bubble-size);
+    height: var(--bubble-size);
+  }
+
+  .liquid-glass-content {
+    padding: calc(var(--bubble-size) * 0.08);
+  }
+
+  .liquid-glass-logo {
+    height: calc(var(--bubble-size) * 0.24);
+    margin-bottom: calc(var(--bubble-size) * 0.03);
+  }
+
+  .liquid-glass-title {
+    font-size: clamp(14px, calc(var(--bubble-size) * 0.08), 34px);
+    line-height: 1.15;
+    margin-top: calc(var(--bubble-size) * 0.02);
+    margin-bottom: calc(var(--bubble-size) * 0.01);
+  }
+
+  .liquid-glass-tagline {
+    font-size: clamp(9px, calc(var(--bubble-size) * 0.038), 15px);
+    letter-spacing: 0.08em;
+    margin-bottom: calc(var(--bubble-size) * 0.035);
+  }
+
+  .liquid-glass-desc {
+    font-size: clamp(11px, calc(var(--bubble-size) * 0.046), 17px);
+    line-height: 1.4;
+    max-width: 86%;
+  }
+
+  .liquid-glass-secondary-bubble {
+    width: calc(var(--bubble-size) * 0.18);
+    height: calc(var(--bubble-size) * 0.18);
+  }
+
+  .liquid-glass-badge {
+    font-size: clamp(10px, 1.3vh, 15px);
+    padding: clamp(6px, 0.9vh, 12px) clamp(16px, 1.8vw, 24px);
+  }
+
+  .liquid-glass-footer-text {
+    font-size: clamp(11px, 1.4vh, 15px);
+    padding: clamp(6px, 0.9vh, 12px) clamp(16px, 2vw, 28px);
+  }
+}
+
+/* Base values in global root namespace */
+:root {
+  /* Mobile and tablet layout (vertical stack of 3 rows) */
+  --bubble-size: clamp(160px, min(75vw, 22vh), 260px);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    /* Desktop layout (horizontal grid of 3 columns) */
+    /* Capped at 510px to fit standard max-width columns */
+    --bubble-size: clamp(250px, min(29vw, 68vh), 510px);
   }
 }

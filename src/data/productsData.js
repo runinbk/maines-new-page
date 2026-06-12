@@ -58,13 +58,13 @@ export const brandsData = {
     heroBg: "/assets/marcas/jetema-hero.jpg",
     aboutBg: "/assets/marcas/jetema-institucional.jpg",
     ctaBg: "/assets/marcas/jetema-cta.jpg",
-    accentColor: "text-cyan-400",
-    accentBg: "bg-cyan-500",
-    accentHover: "hover:bg-cyan-600",
-    accentFocusRing: "focus:ring-cyan-400/50",
-    themeGradient: "from-cyan-500 to-indigo-600",
-    themeBorder: "border-cyan-500/20",
-    glowClass: "glow-blue",
+    accentColor: "text-[#4C5A9D]",
+    accentBg: "bg-[#4C5A9D]",
+    accentHover: "hover:bg-[#3b467a]",
+    accentFocusRing: "focus:ring-[#4C5A9D]/50",
+    themeGradient: "from-[#4C5A9D] to-[#5AA2D0]",
+    themeBorder: "border-[#4C5A9D]/20",
+    glowClass: "glow-jetema",
     categories: [
       { id: "all", label: { es: "Todos", en: "All" } },
       { id: "toxins", label: { es: "Toxinas", en: "Toxins" } },
@@ -212,21 +212,21 @@ export const brandsData = {
     tagline: "Cosmética Avanzada para el Cuidado y Mesoterapia Científica",
     description: "Fórmulas de mesoterapia transdérmica premium enfocadas en la regeneración celular activa, el rejuvenecimiento y tratamientos corporales eficaces.",
     bgImage: "/assets/marcas/card-dermclar.webp",
-    heroBg: "/assets/marcas/dermclar-hero.jpg",
-    aboutBg: "/assets/marcas/dermclar-institucional.jpg",
-    ctaBg: "/assets/marcas/dermclar-cta.jpg",
-    accentColor: "text-violet-400",
-    accentBg: "bg-violet-500",
-    accentHover: "hover:bg-violet-600",
-    accentFocusRing: "focus:ring-violet-400/50",
-    themeGradient: "from-violet-500 to-indigo-700",
-    themeBorder: "border-violet-500/20",
-    glowClass: "glow-gold", // Aesthetic gold/yellow glow for dermclar/skincare
+    heroBg: "/assets/marcas/dermclar/dermclar-hero.jpeg",
+    aboutBg: "/assets/marcas/dermclar/dermclar-infomarca.jpeg",
+    ctaBg: "/assets/marcas/dermclar/dermclar-cta.jpeg",
+    accentColor: "text-[#0ea5e9]",
+    accentBg: "bg-[#0ea5e9]",
+    accentHover: "hover:bg-[#0284c7]",
+    accentFocusRing: "focus:ring-[#0ea5e9]/50",
+    themeGradient: "from-[#0ea5e9] to-[#0d9488]",
+    themeBorder: "border-[#0ea5e9]/20",
+    glowClass: "glow-blue",
     categories: [
       { id: "all", label: { es: "Todos", en: "All" } },
-      { id: "facial", label: { es: "Tratamientos Faciales", en: "Facial Care" } },
-      { id: "corporal", label: { es: "Tratamientos Corporales", en: "Body Care" } },
-      { id: "capilar", label: { es: "Tratamientos Capilares", en: "Hair Care" } }
+      { id: "Cocktails Line", label: { es: "Cocktails Line", en: "Cocktails Line" } },
+      { id: "Professional Solutions Line", label: { es: "Professional Solutions Line", en: "Professional Solutions Line" } },
+      { id: "Línea Flebológica", label: { es: "Línea Flebológica", en: "Phlebological Line" } }
     ],
     about: {
       pretitle: "RESPALDO OFICIAL",
@@ -255,75 +255,191 @@ export const brandsData = {
     },
     products: [
       {
-        id: "dermclar-face-regen",
-        name: "Dermclar Face",
-        category: "facial",
-        categoryLabel: { es: "Antienvejecimiento Facial", en: "Facial Anti-aging" },
-        descriptor: "Rejuvenating Cocktail",
-        coverImage: "/assets/info/dermclar-face.webp",
+        id: "derm-whitening",
+        brand: "dermclar",
+        category: "Cocktails Line",
+        name: "Whitening Dermclar",
+        presentation: "5 viales x 5ml",
+        description: "Tratamiento profesional formulado con nanotecnología y biotecnología. Combinación de principios activos que ayuda a reducir la pigmentación persistente y prevenir nuevas manchas.",
+        activeIngredients: "Complejo biotecnológico despigmentante",
+        applicationZones: ["Rostro", "Cuello", "Escote", "Manos"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Whitening+Dermclar",
         gallery: [
-          "/assets/info/dermclar-face.webp"
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Whitening+Dermclar"
         ],
         certBadge: "AGEMED Approved",
-        composition: "Combinación sinérgica de Ácido Hialurónico no reticulado, DMAE, Vitaminas, Coenzimas y Silicio Orgánico.",
-        downloadUrl: "#",
-        specifications: [
-          { label: "Active Ingredients", value: "DMAE, Hyaluronic Acid, Organic Silicon" },
-          { label: "Presentation", value: "Box of 5 vials x 10 mL" },
-          { label: "Application Method", value: "Microneedling, Transdermal Electroporation" },
-          { label: "Storage", value: "15-25°C (Keep away from light)" },
-          { label: "Shelf Life", value: "36 months" }
-        ],
-        clinicalInsights: [
-          { title: "Application Technique", label: "Microneedling Protocol", type: "video" },
-          { title: "Patient Results", label: "Double Blind Study", type: "cases" }
-        ]
+        composition: "Tratamiento profesional formulado con nanotecnología y biotecnología. Combinación de principios activos que ayuda a reducir la pigmentación persistente y prevenir nuevas manchas.",
+        downloadUrl: "#"
       },
       {
-        id: "dermclar-hair-stim",
-        name: "Dermclar Hair",
-        category: "capilar",
-        categoryLabel: { es: "Bioestimulación Capilar", en: "Capillary Bio-stimulation" },
-        descriptor: "Hair Revitalizing Cocktail",
-        coverImage: "/assets/info/dermclar-hair.webp",
+        id: "derm-firm",
+        brand: "dermclar",
+        category: "Cocktails Line",
+        name: "Dermclar Firm",
+        presentation: "5 viales x 10ml",
+        description: "Reafirmante tisular avanzado. Mejora visiblemente la tonicidad, elasticidad y calidad de las fibras de la piel. Ideal para tratamientos de flacidez severa.",
+        activeIngredients: "Silicio Orgánico, DMAE, Centella Asiática",
+        applicationZones: ["Abdomen", "Glúteos", "Brazos", "Piernas"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Firm",
         gallery: [
-          "/assets/info/dermclar-hair.webp"
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Firm"
         ],
-        certBadge: "CE Certified",
-        composition: "Fórmula activa a base de Pantenol, Biotina, Minoxidil-like peptides y Aminoácidos esenciales para detener la caída y estimular el folículo.",
-        downloadUrl: "#",
-        specifications: [
-          { label: "Active Ingredients", value: "Biotin, D-Panthenol, Cooper Peptides" },
-          { label: "Presentation", value: "Vials 5 mL" },
-          { label: "Treatment Protocol", value: "1 session every 15 days (6 sessions)" },
-          { label: "Storage", value: "Cool dry place" }
-        ],
-        clinicalInsights: [
-          { title: "Hair Growth Evaluation", label: "Trichological Outcome", type: "cases" }
-        ]
+        certBadge: "AGEMED Approved",
+        composition: "Reafirmante tisular avanzado. Mejora visiblemente la tonicidad, elasticidad y calidad de las fibras de la piel. Ideal para tratamientos de flacidez severa.",
+        downloadUrl: "#"
       },
       {
-        id: "dermclar-celu-control",
+        id: "derm-obes",
+        brand: "dermclar",
+        category: "Cocktails Line",
+        name: "Dermclar Obes",
+        presentation: "5 viales x 10ml",
+        description: "Solución lipolítica potente diseñada para el tratamiento de adiposidades localizadas y moldeamiento corporal.",
+        activeIngredients: "Fosfatidilcolina, L-Carnitina, Cafeína",
+        applicationZones: ["Abdomen", "Cintura", "Flancos"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Obes",
+        gallery: [
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Obes"
+        ],
+        certBadge: "AGEMED Approved",
+        composition: "Solución lipolítica potente diseñada para el tratamiento de adiposidades localizadas y moldeamiento corporal.",
+        downloadUrl: "#"
+      },
+      {
+        id: "derm-celu",
+        brand: "dermclar",
+        category: "Cocktails Line",
         name: "Dermclar Celu",
-        category: "corporal",
-        categoryLabel: { es: "Tratamiento Anticelulítico", en: "Cellulite & Firming Treatment" },
-        descriptor: "Lipolytic & Firming Complex",
-        coverImage: "/assets/info/dermclar-celu.webp",
+        presentation: "5 viales x 10ml",
+        description: "Solución diseñada para disminuir el tamaño de los nódulos grasos, mejorando visiblemente el aspecto de la piel de naranja.",
+        activeIngredients: "Extractos reductores y drenantes",
+        applicationZones: ["Glúteos", "Piernas", "Abdomen"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Celu",
         gallery: [
-          "/assets/info/dermclar-celu.webp"
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Celu"
         ],
         certBadge: "AGEMED Approved",
-        composition: "Extracto de Alcachofa, Cafeína, L-Carnitina y Centella Asiática en proporciones óptimas para reducir adiposidades y reafirmar la matriz celular.",
-        downloadUrl: "#",
-        specifications: [
-          { label: "Active Ingredients", value: "Caffeine, L-Carnitine, Artichoke Extract" },
-          { label: "Presentation", value: "Box of 10 ampoules x 5 mL" },
-          { label: "Indication", value: "Localized fat and edematous cellulite" },
-          { label: "Storage", value: "Room temperature (max 25°C)" }
+        composition: "Solución diseñada para disminuir el tamaño de los nódulos grasos, mejorando visiblemente el aspecto de la piel de naranja.",
+        downloadUrl: "#"
+      },
+      {
+        id: "derm-lcarnitina",
+        brand: "dermclar",
+        category: "Professional Solutions Line",
+        name: "Sol. Est. L-Carnitina",
+        presentation: "10 ampollas x 5ml",
+        description: "Lipolítico esencial. Facilita la oxidación de las grasas para la obtención de energía, disminuyendo el grosor del panículo adiposo.",
+        activeIngredients: "L-Carnitina",
+        applicationZones: ["Abdomen", "Piernas", "Glúteos"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=L-Carnitina",
+        gallery: [
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=L-Carnitina"
         ],
-        clinicalInsights: [
-          { title: "Lipolytic Mechanism", label: "Mechanism of Action", type: "dossier" }
-        ]
+        certBadge: "AGEMED Approved",
+        composition: "Lipolítico esencial. Facilita la oxidación de las grasas para la obtención de energía, disminuyendo el grosor del panículo adiposo.",
+        downloadUrl: "#"
+      },
+      {
+        id: "derm-centella",
+        brand: "dermclar",
+        category: "Professional Solutions Line",
+        name: "Sol. Est. Centella Asiática",
+        presentation: "10 ampollas x 5ml",
+        description: "Reafirmante Tisular. Mejora el tono de la piel y la calidad de las fibras. Ideal para tratamientos de estrías, flacidez y celulitis.",
+        activeIngredients: "Extracto de Centella Asiática",
+        applicationZones: ["Piernas", "Glúteos", "Abdomen"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Centella+Asiatica",
+        gallery: [
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Centella+Asiatica"
+        ],
+        certBadge: "AGEMED Approved",
+        composition: "Reafirmante Tisular. Mejora el tono de la piel y la calidad de las fibras. Ideal para tratamientos de estrías, flacidez y celulitis.",
+        downloadUrl: "#"
+      },
+      {
+        id: "derm-silicio",
+        brand: "dermclar",
+        category: "Professional Solutions Line",
+        name: "Sol. Est. Silicio Orgánico",
+        presentation: "10 ampollas x 5ml",
+        description: "Optimizador estructural. Mejora la capacidad de biosíntesis de proteínas. Ideal en tratamientos de grasa corporal, reducción y revitalización.",
+        activeIngredients: "Silicio Orgánico",
+        applicationZones: ["Rostro", "Cuello", "Cuerpo"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Silicio+Organico",
+        gallery: [
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Silicio+Organico"
+        ],
+        certBadge: "AGEMED Approved",
+        composition: "Optimizador estructural. Mejora la capacidad de biosíntesis de proteínas. Ideal en tratamientos de grasa corporal, reducción y revitalización.",
+        downloadUrl: "#"
+      },
+      {
+        id: "derm-vitc",
+        brand: "dermclar",
+        category: "Professional Solutions Line",
+        name: "Sol. Est. Vitamina C 20%",
+        presentation: "5 viales x 10ml",
+        description: "Antioxidante. Mejora la calidad funcional de la vitalidad celular. Aumenta la luminosidad de la piel, ayudando a reducir la flacidez cutánea.",
+        activeIngredients: "Ascorbato de Sodio",
+        applicationZones: ["Rostro", "Cuello", "Escote", "Manos"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Vitamina+C+20%25",
+        gallery: [
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Vitamina+C+20%25"
+        ],
+        certBadge: "AGEMED Approved",
+        composition: "Antioxidante. Mejora la calidad funcional de la vitalidad celular. Aumenta la luminosidad de la piel, ayudando a reducir la flacidez cutánea.",
+        downloadUrl: "#"
+      },
+      {
+        id: "derm-fosfatidilcolina",
+        brand: "dermclar",
+        category: "Professional Solutions Line",
+        name: "Sol. Est. Fosfatidilcolina",
+        presentation: "20 ampollas x 5ml",
+        description: "Lipolítico y adipocitolítico. Aumenta la permeabilidad de la membrana del adipocito facilitando la eliminación de los triglicéridos.",
+        activeIngredients: "Fosfatidilcolina",
+        applicationZones: ["Abdomen", "Flancos", "Papada"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Fosfatidilcolina",
+        gallery: [
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Fosfatidilcolina"
+        ],
+        certBadge: "AGEMED Approved",
+        composition: "Lipolítico y adipocitolítico. Aumenta la permeabilidad de la membrana del adipocito facilitando la eliminación de los triglicéridos.",
+        downloadUrl: "#"
+      },
+      {
+        id: "derm-cafeina",
+        brand: "dermclar",
+        category: "Professional Solutions Line",
+        name: "Sol. Est. de Cafeína",
+        presentation: "10 ampollas x 2ml",
+        description: "Estimulante metabólico local. Favorece la movilización de grasas acumuladas y mejora la microcirculación.",
+        activeIngredients: "Cafeína",
+        applicationZones: ["Abdomen", "Piernas", "Glúteos"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Cafeina",
+        gallery: [
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Cafeina"
+        ],
+        certBadge: "AGEMED Approved",
+        composition: "Estimulante metabólico local. Favorece la movilización de grasas acumuladas y mejora la microcirculación.",
+        downloadUrl: "#"
+      },
+      {
+        id: "derm-nol",
+        brand: "dermclar",
+        category: "Línea Flebológica",
+        name: "Dermclar-nol 3%",
+        presentation: "10 ampollas x 2ml",
+        description: "Solución especializada para mejorar la apariencia de la piel fatigada de las piernas. Ideal para telangiectasias y varículas pequeñas.",
+        activeIngredients: "Polidocanol 3%",
+        applicationZones: ["Piernas"],
+        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar-nol",
+        gallery: [
+          "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar-nol"
+        ],
+        certBadge: "AGEMED Approved",
+        composition: "Solución especializada para mejorar la apariencia de la piel fatigada de las piernas. Ideal para telangiectasias y varículas pequeñas.",
+        downloadUrl: "#"
       }
     ]
   },
@@ -334,21 +450,25 @@ export const brandsData = {
     tagline: "Nutrición Natural y Suplementación Científica de Vanguardia",
     description: "Vitaminas, minerales y suplementos nutricionales de formulación norteamericana avanzada. Respaldo biológico para la longevidad y vitalidad.",
     bgImage: "/assets/marcas/card-xtralife.webp",
-    heroBg: "/assets/marcas/xtralife-hero.jpg",
-    aboutBg: "/assets/marcas/xtralife-institucional.jpg",
-    ctaBg: "/assets/marcas/xtralife-cta.jpg",
-    accentColor: "text-emerald-400",
+    heroBg: "/assets/marcas/xtralife/xtralife-hero.jpeg",
+    aboutBg: "/assets/marcas/xtralife/xtralife-infomarca.jpeg",
+    ctaBg: "/assets/marcas/xtralife/xtralife-cta.jpeg",
+    accentColor: "text-emerald-500",
     accentBg: "bg-emerald-500",
     accentHover: "hover:bg-emerald-600",
     accentFocusRing: "focus:ring-emerald-400/50",
     themeGradient: "from-emerald-500 to-teal-700",
     themeBorder: "border-emerald-500/20",
-    glowClass: "glow-blue",
+    glowClass: "glow-emerald",
     categories: [
       { id: "all", label: { es: "Todos", en: "All" } },
-      { id: "immunity", label: { es: "Inmunidad y Antioxidantes", en: "Immunity & Antioxidants" } },
-      { id: "wellness", label: { es: "Bienestar General", en: "Daily Wellness" } },
-      { id: "bones", label: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" } }
+      { id: "cardiovascular", label: { es: "Bienestar Cardiovascular y General", en: "Cardiovascular & General Wellness" } },
+      { id: "energy", label: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" } },
+      { id: "immunity", label: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" } },
+      { id: "bones", label: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" } },
+      { id: "nervous", label: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" } },
+      { id: "specific", label: { es: "Salud Específica y Control", en: "Specific Health & Control" } },
+      { id: "nutricosmetics", label: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" } }
     ],
     about: {
       pretitle: "DISTRIBUCIÓN AUTORIZADA",
@@ -377,51 +497,514 @@ export const brandsData = {
     },
     products: [
       {
-        id: "xtralife-vit-c-1000",
-        name: "Vitamin C 1000mg with Rose Hips",
-        category: "immunity",
-        categoryLabel: { es: "Refuerzo Inmunológico", en: "Immune Booster" },
-        descriptor: "Antioxidant & Collagen Catalyst",
-        coverImage: "/assets/info/xtralife-vitc.webp",
-        gallery: [
-          "/assets/info/xtralife-vitc.webp"
-        ],
-        certBadge: "AGEMED Approved",
-        composition: "Cada tableta contiene 1000 mg de Ácido Ascórbico potenciado con Rose Hips (rosa mosqueta) para mejorar la absorción biodisponible.",
-        downloadUrl: "#",
-        specifications: [
-          { label: "Active Ingredients", value: "Vitamin C 1000 mg, Rose Hips 20 mg" },
-          { label: "Presentation", value: "Bottle of 100 tablets" },
-          { label: "Origin", value: "Made in USA" },
-          { label: "Dosage", value: "Take 1 tablet daily, preferably with a meal" },
-          { label: "Storage", value: "Keep tightly closed in a cool, dry place" }
-        ],
-        clinicalInsights: [
-          { title: "Immune Absorption Study", label: "Rose Hips Bioavailability", type: "dossier" }
-        ]
+        id: "xtralife-omega-3",
+        brand: "xtralife",
+        category: "cardiovascular",
+        categoryLabel: { es: "Bienestar Cardiovascular y General", en: "Cardiovascular & General Wellness" },
+        name: "Omega 3",
+        descriptor: "Essential Fatty Acids / Ácidos Grasos Esenciales",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100/200 cápsulas blandas", en: "100/200 softgels" },
+        dosage: { es: "1 cápsula diaria", en: "1 softgel daily" },
+        description: {
+          es: "Reduce presión arterial y colesterol. Protector del sistema nervioso y mejora salud mental.",
+          en: "Reduces blood pressure and cholesterol. Protects the nervous system and improves mental health."
+        }
       },
       {
-        id: "xtralife-collagen-joint",
-        name: "Collagen Joint Care",
+        id: "xtralife-omega-3-6-9",
+        brand: "xtralife",
+        category: "cardiovascular",
+        categoryLabel: { es: "Bienestar Cardiovascular y General", en: "Cardiovascular & General Wellness" },
+        name: "Omega 3-6-9",
+        descriptor: "Balanced Omegas / Omegas Balanceados",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "90 cápsulas blandas", en: "90 softgels" },
+        dosage: { es: "1 cápsula diaria", en: "1 softgel daily" },
+        description: {
+          es: "Disminuye colesterol/triglicéridos, reduce inflamación celular y fortalece huesos.",
+          en: "Lowers cholesterol/triglycerides, reduces cellular inflammation, and strengthens bones."
+        }
+      },
+      {
+        id: "xtralife-perlas-ajo",
+        brand: "xtralife",
+        category: "cardiovascular",
+        categoryLabel: { es: "Bienestar Cardiovascular y General", en: "Cardiovascular & General Wellness" },
+        name: "Perlas de Ajo",
+        descriptor: "Garlic Oil Extract / Extracto de Aceite de Ajo",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas blandas", en: "100 softgels" },
+        dosage: { es: "1 cápsula diaria", en: "1 softgel daily" },
+        description: {
+          es: "Antibiótico natural, reduce presión arterial y colesterol, mejora circulación.",
+          en: "Natural antibiotic, reduces blood pressure and cholesterol, and improves circulation."
+        }
+      },
+      {
+        id: "xtralife-hgh-releasing",
+        brand: "xtralife",
+        category: "energy",
+        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        name: "HGH Releasing",
+        descriptor: "Growth Hormone Support / Soporte de Hormona de Crecimiento",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "120 cápsulas", en: "120 capsules" },
+        dosage: { es: "1 a 2 cápsulas antes de dormir", en: "1 to 2 capsules before sleeping" },
+        description: {
+          es: "Estimulante natural de hormona de crecimiento, favorece masa muscular y reduce fatiga.",
+          en: "Natural growth hormone stimulator, promotes muscle mass and reduces fatigue."
+        }
+      },
+      {
+        id: "xtralife-xtra-vigor-male",
+        brand: "xtralife",
+        category: "energy",
+        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        name: "Xtra Vigor Male",
+        descriptor: "Male Performance Complex / Complejo de Rendimiento Masculino",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 comprimidos", en: "100 tablets" },
+        dosage: { es: "2 comprimidos diarios", en: "2 tablets daily" },
+        description: {
+          es: "Mejora rendimiento masculino, reduce cansancio/estrés. Con Jalea Real y Polen.",
+          en: "Improves male performance, reduces fatigue/stress. With Royal Jelly and Pollen."
+        }
+      },
+      {
+        id: "xtralife-xtra-vigor-female",
+        brand: "xtralife",
+        category: "energy",
+        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        name: "Xtra Vigor Female",
+        descriptor: "Female Performance Complex / Complejo de Rendimiento Femenino",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 comprimidos", en: "100 tablets" },
+        dosage: { es: "2 comprimidos diarios", en: "2 tablets daily" },
+        description: {
+          es: "Mejora rendimiento femenino, reduce cansancio, ayuda a piel/uñas/cabello.",
+          en: "Improves female performance, reduces fatigue, benefits skin/nails/hair."
+        }
+      },
+      {
+        id: "xtralife-shilajit",
+        brand: "xtralife",
+        category: "energy",
+        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        name: "Shilajit",
+        descriptor: "Himalayan Shilajit Extract / Extracto de Shilajit del Himalaya",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Aumenta energía celular, mejora función cerebral y combate envejecimiento.",
+          en: "Increases cellular energy, improves brain function, and combats aging."
+        }
+      },
+      {
+        id: "xtralife-nad-red-wine",
+        brand: "xtralife",
+        category: "energy",
+        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        name: "NAD + Red Wine",
+        descriptor: "Cellular Anti-Aging / Antienvejecimiento Celular",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Retrasa el envejecimiento, aumenta energía celular y protege contra daño oxidativo.",
+          en: "Delays aging, increases cellular energy, and protects against oxidative damage."
+        }
+      },
+      {
+        id: "xtralife-l-arginina",
+        brand: "xtralife",
+        category: "energy",
+        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        name: "L-Arginina",
+        descriptor: "Amino Acid Flow Support / Aminoácido de Soporte Circulatorio",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "1 a 2 cápsulas diarias", en: "1 to 2 capsules daily" },
+        description: {
+          es: "Estimula hormona de crecimiento, ayuda en masa muscular y flujo sanguíneo.",
+          en: "Stimulates growth hormone, aids in muscle mass and blood flow."
+        }
+      },
+      {
+        id: "xtralife-vitamina-c-1000",
+        brand: "xtralife",
+        category: "immunity",
+        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        name: "Vitamina C 1000 mg",
+        descriptor: "Immune Shield / Escudo Inmunológico",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas", en: "100 capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Incrementa absorción de hierro, disminuye síntomas alérgicos/resfríos.",
+          en: "Increases iron absorption, decreases allergic/cold symptoms."
+        }
+      },
+      {
+        id: "xtralife-vitamina-d3",
+        brand: "xtralife",
+        category: "immunity",
+        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        name: "Vitamina D3",
+        descriptor: "Bone & Immune Support / Soporte Óseo e Inmune",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas blandas", en: "100 softgels" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Contribuye al crecimiento óseo, posee propiedades inmunitarias y evita envejecimiento.",
+          en: "Contributes to bone growth, possesses immune properties, and prevents aging."
+        }
+      },
+      {
+        id: "xtralife-vitamina-a",
+        brand: "xtralife",
+        category: "immunity",
+        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        name: "Vitamina A",
+        descriptor: "Retinol Vision Support / Soporte de Visión Retinol",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas blandas", en: "100 softgels" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Imprescindible para función de la retina, visión nocturna y movilización de hierro.",
+          en: "Essential for retinal function, night vision, and iron mobilization."
+        }
+      },
+      {
+        id: "xtralife-zinc-50",
+        brand: "xtralife",
+        category: "immunity",
+        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        name: "Zinc 50 mg",
+        descriptor: "Mineral Defense & Skin / Defensa Mineral y Cutánea",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas", en: "100 capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Equilibra sistema inmune, regula grasa en la piel (acné) y acelera cicatrización.",
+          en: "Balances the immune system, regulates skin sebum (acne), and accelerates healing."
+        }
+      },
+      {
+        id: "xtralife-echinacea",
+        brand: "xtralife",
+        category: "immunity",
+        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        name: "Echinacea",
+        descriptor: "Natural Immune Booster / Refuerzo Inmune Natural",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas", en: "100 capsules" },
+        dosage: { es: "3 cápsulas diarias", en: "3 capsules daily" },
+        description: {
+          es: "Apoyo natural al sistema inmunológico, ayuda en infecciones respiratorias.",
+          en: "Natural support for the immune system, helps with respiratory infections."
+        }
+      },
+      {
+        id: "xtralife-balanced-b",
+        brand: "xtralife",
+        category: "immunity",
+        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        name: "Balanced B",
+        descriptor: "Vitamin B Complex / Complejo de Vitaminas B",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 comprimidos", en: "100 tablets" },
+        dosage: { es: "1 comprimido al día", en: "1 tablet daily" },
+        description: {
+          es: "Complejo de vitaminas B para glóbulos rojos, sistema digestivo y nervioso.",
+          en: "B-vitamin complex for red blood cells, digestive system, and nervous system."
+        }
+      },
+      {
+        id: "xtralife-colostrum-3-factor",
+        brand: "xtralife",
+        category: "immunity",
+        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        name: "Colostrum 3 Factor",
+        descriptor: "Bioactive Immunoglobulins / Inmunoglobulinas Bioactivas",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Favorece regeneración de células/tejidos y fortalece sistema inmunológico.",
+          en: "Promotes cell/tissue regeneration and strengthens the immune system."
+        }
+      },
+      {
+        id: "xtralife-k2-d3-calcio",
+        brand: "xtralife",
         category: "bones",
-        categoryLabel: { es: "Cuidado Articular", en: "Joint Care Supplement" },
-        descriptor: "Hydrolyzed Collagen complex",
-        coverImage: "/assets/info/xtralife-collagen.webp",
-        gallery: [
-          "/assets/info/xtralife-collagen.webp"
-        ],
-        certBadge: "FDA Inspected Facility",
-        composition: "Péptidos de Colágeno Hidrolizado tipo I y II enriquecido con Condroitina, Glucosamina y MSM para la elasticidad de cartílagos.",
-        downloadUrl: "#",
-        specifications: [
-          { label: "Active Ingredients", value: "Hydrolyzed Collagen, Glucosamine, Chondroitin, MSM" },
-          { label: "Presentation", value: "Bottle of 120 capsules" },
-          { label: "Dose Recommendation", value: "2 capsules twice a day with water" },
-          { label: "Free of", value: "Gluten, Soy, Sugar, Artificial Flavors" }
-        ],
-        clinicalInsights: [
-          { title: "Joint Mobility Outcomes", label: "MSM Synergy Report", type: "cases" }
-        ]
+        categoryLabel: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" },
+        name: "K2 + D3 + Calcio",
+        descriptor: "Bone Mineralization / Mineralización Ósea",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Vitamina K2 asegura que el calcio llegue a huesos, apoyando salud cardiovascular.",
+          en: "Vitamin K2 ensures calcium reaches bones, supporting cardiovascular health."
+        }
+      },
+      {
+        id: "xtralife-cal-mag-zinc",
+        brand: "xtralife",
+        category: "bones",
+        categoryLabel: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" },
+        name: "Cal-Mag-Zinc + Vitamina D",
+        descriptor: "Bone Density Complex / Complejo de Densidad Ósea",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 tabletas", en: "100 tablets" },
+        dosage: { es: "1 a 2 tabletas diarias", en: "1 to 2 tablets daily" },
+        description: {
+          es: "Combinación para máxima absorción de calcio, previene osteoporosis y mejora inmunidad.",
+          en: "Combination for maximum calcium absorption, prevents osteoporosis, and improves immunity."
+        }
+      },
+      {
+        id: "xtralife-cartilago-tiburon",
+        brand: "xtralife",
+        category: "bones",
+        categoryLabel: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" },
+        name: "Cartílago de Tiburón",
+        descriptor: "Shark Cartilage / Cartílago de Tiburón",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas", en: "100 capsules" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Proteínas, calcio y fósforo para proteger articulaciones, tendones y ligamentos.",
+          en: "Proteins, calcium, and phosphorus to protect joints, tendons, and ligaments."
+        }
+      },
+      {
+        id: "xtralife-5-htp-melatonina",
+        brand: "xtralife",
+        category: "nervous",
+        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        name: "5-HTP + Melatonina",
+        descriptor: "Sleep & Mood Regulator / Regulador de Ánimo y Sueño",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "30 cápsulas", en: "30 capsules" },
+        dosage: { es: "1 cápsula diaria antes de acostarse", en: "1 capsule daily before bedtime" },
+        description: {
+          es: "Aumenta serotonina, mejora síntomas de ansiedad/estrés y calidad del sueño.",
+          en: "Increases serotonin, improves anxiety/stress symptoms, and sleep quality."
+        }
+      },
+      {
+        id: "xtralife-melatonina-10",
+        brand: "xtralife",
+        category: "nervous",
+        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        name: "Melatonina 10 MG",
+        descriptor: "High Potency Antioxidant Sleep / Sueño Antioxidante de Alta Potencia",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "1 cápsula diaria de noche", en: "1 capsule daily at night" },
+        description: {
+          es: "Mejora la calidad del sueño y tiene efecto antioxidante.",
+          en: "Improves sleep quality and has an antioxidant effect."
+        }
+      },
+      {
+        id: "xtralife-citrato-magnesio",
+        brand: "xtralife",
+        category: "nervous",
+        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        name: "Citrato de Magnesio",
+        descriptor: "Magnesium Citrate / Citrato de Magnesio",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas", en: "100 capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Reduce estrés, evita contracturas musculares/calambres y regula glucosa.",
+          en: "Reduces stress, prevents muscle cramps/spasms, and regulates glucose."
+        }
+      },
+      {
+        id: "xtralife-resveratrol",
+        brand: "xtralife",
+        category: "nervous",
+        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        name: "Resveratrol",
+        descriptor: "Natural Antioxidant / Antioxidante Natural",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Antioxidante y antiinflamatorio, previene envejecimiento y protege el corazón.",
+          en: "Antioxidant and anti-inflammatory, prevents aging, and protects the heart."
+        }
+      },
+      {
+        id: "xtralife-ginkgo-biloba",
+        brand: "xtralife",
+        category: "nervous",
+        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        name: "Ginkgo Biloba",
+        descriptor: "Mental Focus & Circulation / Concentración Mental y Circulación",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "120 cápsulas", en: "120 capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Mejora circulación cerebral, ayuda con problemas de memoria, concentración y ansiedad.",
+          en: "Improves brain circulation, helps with memory, concentration, and anxiety issues."
+        }
+      },
+      {
+        id: "xtralife-cerebrin",
+        brand: "xtralife",
+        category: "nervous",
+        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        name: "Cerebrin",
+        descriptor: "Brain Neuro-Nutrient / Neuro-Nutriente Cerebral",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "120 cápsulas", en: "120 capsules" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Neuro-nutriente completo para promover circulación cerebral y mejorar memoria.",
+          en: "Complete neuro-nutrient to promote brain circulation and improve memory."
+        }
+      },
+      {
+        id: "xtralife-glicinato-magnesio",
+        brand: "xtralife",
+        category: "nervous",
+        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        name: "Glicinato de Magnesio",
+        descriptor: "Magnesium Glycinate / Glicinato de Magnesio",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "90 cápsulas", en: "90 capsules" },
+        dosage: { es: "3 cápsulas diarias", en: "3 capsules daily" },
+        description: {
+          es: "Reduce ansiedad, mejora el sueño, migrañas y fatiga.",
+          en: "Reduces anxiety, improves sleep, migraines, and fatigue."
+        }
+      },
+      {
+        id: "xtralife-prostatin",
+        brand: "xtralife",
+        category: "specific",
+        categoryLabel: { es: "Salud Específica y Control", en: "Specific Health & Control" },
+        name: "Prostatin",
+        descriptor: "Prostate Care Complex / Complejo de Cuidado Prostático",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Ayuda a mantener salud prostática, alivia inflamación y actúa como diurético.",
+          en: "Helps maintain prostate health, relieves inflammation, and acts as a diuretic."
+        }
+      },
+      {
+        id: "xtralife-citrato-potasio",
+        brand: "xtralife",
+        category: "specific",
+        categoryLabel: { es: "Salud Específica y Control", en: "Specific Health & Control" },
+        name: "Citrato de Potasio",
+        descriptor: "Kidney & Metabolic Support / Soporte Renal y Metabólico",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "90 cápsulas", en: "90 capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Diurético, favorece eliminación de cálculos renales y desechos metabólicos.",
+          en: "Diuretic, promotes elimination of kidney stones and metabolic waste."
+        }
+      },
+      {
+        id: "xtralife-isoflavonas-soya",
+        brand: "xtralife",
+        category: "specific",
+        categoryLabel: { es: "Salud Específica y Control", en: "Specific Health & Control" },
+        name: "Isoflavonas de Soya",
+        descriptor: "Menopause Balance / Equilibrio de Menopausia",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "60 cápsulas", en: "60 capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Ayudan a controlar efectos de la menopausia y reducen riesgo de osteoporosis.",
+          en: "Help manage menopause effects and reduce the risk of osteoporosis."
+        }
+      },
+      {
+        id: "xtralife-aceite-primula",
+        brand: "xtralife",
+        category: "specific",
+        categoryLabel: { es: "Salud Específica y Control", en: "Specific Health & Control" },
+        name: "Aceite de Prímula",
+        descriptor: "Evening Primrose Oil / Aceite de Onagra",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas blandas", en: "100 softgels" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Equilibrio hormonal (SPM, SOP) y afectaciones de la piel (acné, psoriasis).",
+          en: "Hormonal balance (PMS, PCOS) and skin conditions (acne, psoriasis)."
+        }
+      },
+      {
+        id: "xtralife-colageno-plus",
+        brand: "xtralife",
+        category: "nutricosmetics",
+        categoryLabel: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" },
+        name: "Colágeno Plus + Vitamina C",
+        descriptor: "Hydrolyzed Collagen complex / Complejo de Colágeno Hidrolizado",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "120 cápsulas", en: "120 capsules" },
+        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        description: {
+          es: "Da fuerza y flexibilidad a huesos, piel, articulaciones, cabello y uñas.",
+          en: "Provides strength and flexibility to bones, skin, joints, hair, and nails."
+        }
+      },
+      {
+        id: "xtralife-vitamina-e",
+        brand: "xtralife",
+        category: "nutricosmetics",
+        categoryLabel: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" },
+        name: "Vitamina E",
+        descriptor: "Antioxidant Defense / Defensa Antioxidante",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 cápsulas", en: "100 capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Principalmente antioxidante vital para defensas y destrucción de células dañadas.",
+          en: "Mainly vital antioxidant for defenses and destruction of damaged cells."
+        }
+      },
+      {
+        id: "xtralife-biotina-10000",
+        brand: "xtralife",
+        category: "nutricosmetics",
+        categoryLabel: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" },
+        name: "Biotina 10,000 MCG",
+        descriptor: "Maximum Strength Biotin / Biotina de Máxima Potencia",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "100 tabletas", en: "100 tablets" },
+        dosage: { es: "1 tableta diaria", en: "1 tablet daily" },
+        description: {
+          es: "Previene caída de cabello, da volumen y alivia dolores musculares/dermatitis.",
+          en: "Prevents hair loss, provides volume, and relieves muscle pain/dermatitis."
+        }
+      },
+      {
+        id: "xtralife-locion-aloe",
+        brand: "xtralife",
+        category: "nutricosmetics",
+        categoryLabel: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" },
+        name: "Loción Aloe Vera + Vitamina E",
+        descriptor: "Applicable Aloe Skin Complex / Complejo de Aloe Aplicable",
+        certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
+        presentation: { es: "90 cápsulas aplicables", en: "90 applicable capsules" },
+        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        description: {
+          es: "Suaviza la piel, previene arrugas y fortalece crecimiento del cabello.",
+          en: "Softens skin, prevents wrinkles, and strengthens hair growth."
+        }
       }
     ]
   }

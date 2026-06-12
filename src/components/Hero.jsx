@@ -13,56 +13,7 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Smooth snapping down to next section on minor scroll down from the top
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    let isTransitioning = false;
 
-    const handleScrollSnap = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Auto-snap down to brand ecosystem on minor downward scroll from very top
-      if (currentScrollY > lastScrollY && currentScrollY > 10 && currentScrollY < 120 && !isTransitioning) {
-        const target = document.getElementById('ecosystem');
-        if (target) {
-          isTransitioning = true;
-          
-          // Ultra-premium custom smooth scroll (1100ms duration, ease-out-cubic curve)
-          const start = window.scrollY;
-          const targetY = target.getBoundingClientRect().top + window.scrollY;
-          const change = targetY - start;
-          const duration = 1100; // Luxuriously gentle velocity
-          let startTime = null;
-
-          const animateScroll = (currentTime) => {
-            if (!startTime) startTime = currentTime;
-            const progress = currentTime - startTime;
-            const t = Math.min(progress / duration, 1);
-            
-            // Easing function: easeOutCubic
-            const ease = 1 - Math.pow(1 - t, 3);
-            
-            window.scrollTo(0, start + change * ease);
-
-            if (progress < duration) {
-              requestAnimationFrame(animateScroll);
-            }
-          };
-
-          requestAnimationFrame(animateScroll);
-          
-          setTimeout(() => {
-            isTransitioning = false;
-          }, 1300);
-        }
-      }
-      
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScrollSnap, { passive: true });
-    return () => window.removeEventListener('scroll', handleScrollSnap);
-  }, []);
 
   return (
     <section className="relative min-h-[100dvh] pt-24 pb-8 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 px-8 sm:px-12 lg:px-20">

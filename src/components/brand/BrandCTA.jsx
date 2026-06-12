@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Building, GraduationCap, CheckCircle, AlertCircle, FileDown } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle, AlertCircle, X, Send, Beaker } from 'lucide-react';
 
 /**
  * BrandCTA Component
@@ -9,16 +9,21 @@ import { Mail, Phone, MapPin, Building, GraduationCap, CheckCircle, AlertCircle,
  */
 const BrandCTA = ({ brand, language }) => {
   const isEs = language === 'es';
-  const ctaData = brand.cta;
+  const brandId = brand.id;
 
-  // Local state isolated preventing parent rendering
+  // Contact details
+  const contactPhone = brandId === 'jetema' ? '+591 77099888' : '+591 77099888';
+  const cleanPhoneForWa = contactPhone.replace(/\+/g, '').replace(/\s/g, '');
+  const locationText = isEs 
+    ? 'Calle San Ramón Nro. 3270 - Santa Cruz, Bolivia' 
+    : 'San Ramon St. No. 3270 - Santa Cruz, Bolivia';
+
+  // Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formState, setFormState] = useState({
     fullName: '',
     email: '',
     phone: '',
-    clinicName: '',
-    specialty: '',
-    city: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,7 +39,7 @@ const BrandCTA = ({ brand, language }) => {
     setIsSubmitting(true);
     setStatus('idle');
 
-    // Simulate clinical contact pipeline submission
+    // Simulate sending email pipeline
     setTimeout(() => {
       setIsSubmitting(false);
       setStatus('success');
@@ -42,110 +47,202 @@ const BrandCTA = ({ brand, language }) => {
         fullName: '',
         email: '',
         phone: '',
-        clinicName: '',
-        specialty: '',
-        city: '',
         message: ''
       });
-    }, 1500);
+    }, 1200);
+  };
+
+  const closeFormModal = () => {
+    setIsModalOpen(false);
+    // Reset status back to idle after animation delay
+    setTimeout(() => setStatus('idle'), 300);
   };
 
   return (
-    <section id="cta-section" className="py-20 lg:py-28 px-6 sm:px-12 xl:px-20 bg-slate-950 w-full relative overflow-hidden text-left">
-      {/* Background Image with custom overlay */}
-      {brand.ctaBg && (
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={brand.ctaBg} 
-            alt="" 
-            className="w-full h-full object-cover opacity-15 pointer-events-none select-none blur-[1px]" 
-          />
-          <div className="absolute inset-0 bg-slate-950/85 mix-blend-multiply pointer-events-none" />
-        </div>
-      )}
+    <section id="cta-section" className="py-20 lg:py-28 px-6 sm:px-12 xl:px-20 bg-white w-full text-left relative overflow-hidden border-t border-slate-200/40">
       
-      {/* Dynamic tech-grid ambient overlay */}
-      <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none" />
-      
-      {/* Glow aura */}
-      <div className={`absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full blur-[140px] opacity-[0.04] pointer-events-none ${brand.glowClass}`} />
+      {/* Decorative background visual blob */}
+      <div className={`absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-slate-500/5 blur-[120px] pointer-events-none`} />
 
       <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
         
-        {/* Left Column (5/12): Dynamic lead narrative and assets */}
-        <div className="lg:col-span-5 flex flex-col items-start text-left">
+        {/* Left Column (7/12): Title, Copy, Info and Buttons */}
+        <div className="lg:col-span-7 flex flex-col items-start text-left space-y-8 animate-fade-in-up">
           
-          <h2 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-white font-display tracking-tight leading-[1.15] mb-6">
-            {ctaData.title}
+          {/* Main Title with brand gradient highlighted words */}
+          <h2 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-[#0D1F3B] font-display tracking-tight leading-[1.15] max-w-2xl">
+            {brandId === 'jetema' ? (
+              <>
+                ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Jetema</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>práctica profesional</span>?
+              </>
+            ) : brandId === 'dermclar' ? (
+              <>
+                ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Dermclar</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>clínica médica</span>?
+              </>
+            ) : (
+              <>
+                ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Xtralife</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>farmacia</span>?
+              </>
+            )}
           </h2>
           
-          <p className="text-sm sm:text-base text-slate-300 font-medium leading-relaxed mb-8">
-            {ctaData.subtitle}
-          </p>
+          {/* Left-bordered description */}
+          <div className="pl-4 border-l-[3.5px] text-slate-500 font-semibold text-sm sm:text-base leading-relaxed max-w-xl" style={{ borderLeftColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+            {isEs 
+              ? 'Contacte directamente con un asesor comercial de Maines SRL para recibir atención personalizada sobre precios de distribuidor, capacitaciones clínicas y protocolos certificados.'
+              : 'Contact a commercial advisor from Maines SRL directly to receive personalized support regarding distributor pricing, clinical training, and certified protocols.'}
+          </div>
 
-          {/* Quick contact direct values */}
-          <div className="flex flex-col gap-4 text-slate-400 text-xs sm:text-sm font-semibold mb-8">
+          {/* Contact Details Info Row */}
+          <div className="flex flex-col sm:flex-row gap-6 text-slate-600 text-xs sm:text-sm font-bold w-full max-w-xl">
             <div className="flex items-center gap-3">
-              <Phone className={`w-4 h-4 ${brand.accentColor}`} />
-              <span>(+591) 3-3400835 — {isEs ? 'Atención Médica' : 'Medical Care'}</span>
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-100 shrink-0">
+                <Phone className="w-4 h-4 text-slate-400" style={{ color: brandId === 'jetema' ? '#4C5A9D' : undefined }} />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">{isEs ? 'Teléfono' : 'Phone'}</span>
+                <span className="text-slate-800 font-extrabold block mt-0.5">{contactPhone}</span>
+              </div>
             </div>
+            
             <div className="flex items-center gap-3">
-              <Mail className={`w-4 h-4 ${brand.accentColor}`} />
-              <span>mainesbolivia@gmail.com</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <MapPin className={`w-4 h-4 ${brand.accentColor}`} />
-              <span>Calle San Ramón #3270, Barrio Hamacas, Santa Cruz, Bolivia</span>
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-100 shrink-0">
+                <MapPin className="w-4 h-4 text-slate-400" style={{ color: brandId === 'jetema' ? '#4C5A9D' : undefined }} />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">{isEs ? 'Dirección' : 'Office'}</span>
+                <span className="text-slate-800 font-extrabold block mt-0.5" title={locationText}>{locationText}</span>
+              </div>
             </div>
           </div>
 
-          {/* Download Portfolio quick button */}
-          <a
-            href={brand.products[0]?.downloadUrl || "#"}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-extrabold border border-white/10 bg-white/5 hover:bg-white/10 text-white backdrop-blur-md transition-all duration-300 transform hover:scale-105 active:scale-95"
-          >
-            <FileDown className="w-4 h-4 text-slate-300" />
-            <span>{isEs ? 'Descargar Fichas Técnicas' : 'Download Spec Sheets'}</span>
-          </a>
+          {/* Action Buttons Row */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 w-full sm:w-auto">
+            
+            {/* WhatsApp CTA */}
+            <a
+              href={`https://wa.me/${cleanPhoneForWa}?text=Hola%20Maines%20SRL,%20deseo%20incorporar%20el%20portafolio%20de%20${brand.name}%20en%20mi%20práctica%20profesional.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-extrabold text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto"
+              style={{ backgroundColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+            >
+              <span>{isEs ? 'Contactar por WhatsApp' : 'Contact via WhatsApp'}</span>
+              <Send className="w-3.5 h-3.5" />
+            </a>
+
+            {/* Email Inquiry Trigger */}
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-extrabold text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto"
+            >
+              <Mail className="w-3.5 h-3.5 text-slate-400" />
+              <span>{isEs ? 'Enviar Correo' : 'Send Email Inquiry'}</span>
+            </button>
+
+          </div>
 
         </div>
 
-        {/* Right Column (7/12): Clean B2B Portal Registration Form */}
-        <div className="lg:col-span-7 w-full">
-          <div className="bg-slate-900/40 border border-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 xl:p-10 shadow-2xl relative">
+        {/* Right Column (5/12): Molecule Image Card with Floating Badge */}
+        <div className="lg:col-span-5 w-full flex items-center justify-center relative mt-10 lg:mt-0">
+          <div className="relative w-full max-w-[400px] aspect-square rounded-[30px] overflow-hidden border border-slate-200/60 shadow-xl bg-white flex flex-col justify-end p-4 group">
             
+            {/* Background Molecular Image Placeholder */}
+            <img 
+              src={
+                brandId === 'jetema' 
+                  ? 'https://placehold.co/600x600/F8FAF9/4C5A9D?text=Jetema+Molecule' 
+                  : brandId === 'dermclar' 
+                    ? 'https://placehold.co/600x600/FAF8FF/8B5CF6?text=Dermclar+Aesthetic'
+                    : 'https://placehold.co/600x600/F5FCFA/10B981?text=Xtralife+Science'
+              } 
+              alt="Scientific biotechnology" 
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent pointer-events-none" />
+
+            {/* Bottom Floating Card Badge */}
+            <div className="relative z-10 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-slate-100 flex items-center gap-3.5 max-w-[260px] self-start transition-all duration-300 hover:scale-[1.02]">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: brandId === 'jetema' ? '#4C5A9D/10' : `var(--color-${brand.accentBg.replace('bg-', '')})/10`, color: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+                <Beaker className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[8px] font-extrabold uppercase tracking-wider text-slate-400 block">
+                  {isEs ? 'Investigación Activa' : 'Active Research'}
+                </span>
+                <span className="text-[11px] font-extrabold text-[#0D1F3B] block mt-0.5 leading-tight">
+                  Phase III / Clinical Trials Active
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      {/* Modal / Formulario Emergente Portal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          {/* Backdrop blur overlay */}
+          <div 
+            onClick={closeFormModal}
+            className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-all duration-300 cursor-pointer"
+          />
+
+          {/* Modal Container */}
+          <div className="bg-white border border-slate-200 rounded-[28px] w-full max-w-lg shadow-2xl p-6 sm:p-8 relative z-10 text-left animate-fade-in">
+            {/* Close Button */}
+            <button
+              onClick={closeFormModal}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors focus:outline-none cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
             {status === 'success' ? (
-              <div className="flex flex-col items-center justify-center text-center py-16 gap-4 animate-fade-in">
-                <div className={`w-14 h-14 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20`}>
-                  <CheckCircle className="w-8 h-8 text-emerald-400" />
+              <div className="flex flex-col items-center justify-center text-center py-10 gap-4">
+                <div className="w-14 h-14 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                  <CheckCircle className="w-8 h-8 text-emerald-500" />
                 </div>
-                <h3 className="text-xl font-extrabold text-white tracking-tight">
-                  {isEs ? 'Formulario Recibido' : 'Form Submitted'}
+                <h3 className="text-lg font-extrabold text-[#0D1F3B] tracking-tight">
+                  {isEs ? '¡Consulta Enviada!' : 'Inquiry Sent Successfully!'}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-400 max-w-sm font-semibold leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-400 font-semibold leading-relaxed max-w-xs">
                   {isEs 
-                    ? 'Gracias por su interés. Un asesor comercial especializado de Maines SRL se contactará a la brevedad para canalizar su solicitud.' 
-                    : 'Thank you for your interest. A dedicated commercial advisor from Maines SRL will reach out shortly.'}
+                    ? 'Su mensaje ha sido enviado exitosamente. Un asesor comercial de Maines SRL se contactará a la brevedad.' 
+                    : 'Your inquiry has been logged. A Maines SRL advisor will reach out shortly.'}
                 </p>
                 <button
-                  onClick={() => setStatus('idle')}
-                  className="text-xs font-bold underline text-slate-400 hover:text-white mt-4"
+                  onClick={closeFormModal}
+                  className="px-6 py-2.5 rounded-full text-xs font-extrabold text-white transition-all duration-300 transform hover:scale-105 cursor-pointer mt-4"
+                  style={{ backgroundColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}
                 >
-                  {isEs ? 'Enviar otra solicitud' : 'Submit another request'}
+                  {isEs ? 'Entendido' : 'Close'}
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleFormSubmit} className="flex flex-col gap-5 text-left">
-                
+              <form onSubmit={handleFormSubmit} className="space-y-5">
+                <div className="space-y-1.5 pr-8">
+                  <h3 className="text-lg font-extrabold text-[#0D1F3B] font-display tracking-tight leading-tight">
+                    {isEs ? 'Enviar Consulta por Correo' : 'Send Email Inquiry'}
+                  </h3>
+                  <p className="text-xs text-slate-400 font-semibold leading-relaxed">
+                    {isEs 
+                      ? 'Rellene los datos corporativos para solicitar catálogos de precios y fichas regulatorias.' 
+                      : 'Fill in corporate details to request commercial catalogs and regulatory records.'}
+                  </p>
+                </div>
+
                 {status === 'error' && (
-                  <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-2xl flex items-center gap-3 text-red-400 text-xs sm:text-sm font-medium animate-fade-in">
-                    <AlertCircle className="w-5 h-5 shrink-0" />
-                    <span>{isEs ? 'Hubo un error. Por favor intente nuevamente.' : 'An error occurred. Please try again.'}</span>
+                  <div className="bg-red-500/10 border border-red-500/20 p-3.5 rounded-xl flex items-center gap-2 text-red-500 text-xs font-medium">
+                    <AlertCircle className="w-4.5 h-4.5 shrink-0" />
+                    <span>{isEs ? 'Ocurrió un error. Intente nuevamente.' : 'An error occurred. Please try again.'}</span>
                   </div>
                 )}
 
-                {/* Form fields layout */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-4">
                   
                   {/* Full Name */}
                   <div className="flex flex-col gap-1.5">
@@ -159,37 +256,34 @@ const BrandCTA = ({ brand, language }) => {
                       value={formState.fullName}
                       onChange={handleInputChange}
                       placeholder={isEs ? "Dr. / Dra. Nombre Apellido" : "Dr. John Doe"}
-                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-white/10 bg-slate-950/60 text-white placeholder-slate-500 focus:outline-none focus:border-slate-400 transition-colors font-medium"
+                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-all font-medium"
                     />
                   </div>
 
-                  {/* Email */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
-                      {isEs ? 'Correo Electrónico' : 'Email Address'} *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formState.email}
-                      onChange={handleInputChange}
-                      placeholder="ejemplo@correo.com"
-                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-white/10 bg-slate-950/60 text-white placeholder-slate-500 focus:outline-none focus:border-slate-400 transition-colors font-medium"
-                    />
-                  </div>
+                  {/* Email & Phone grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    
+                    {/* Email */}
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
+                        {isEs ? 'Correo Electrónico' : 'Email'} *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formState.email}
+                        onChange={handleInputChange}
+                        placeholder="ejemplo@correo.com"
+                        className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-all font-medium"
+                      />
+                    </div>
 
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  
-                  {/* Phone */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
-                      {isEs ? 'Teléfono / Celular' : 'Phone Number'} *
-                    </label>
-                    <div className="relative w-full">
-                      <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    {/* Phone */}
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
+                        {isEs ? 'Teléfono / Celular' : 'Phone'} *
+                      </label>
                       <input
                         type="tel"
                         name="phone"
@@ -197,95 +291,37 @@ const BrandCTA = ({ brand, language }) => {
                         value={formState.phone}
                         onChange={handleInputChange}
                         placeholder="+591 70000000"
-                        className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-white/10 bg-slate-950/60 text-white placeholder-slate-500 focus:outline-none focus:border-slate-400 transition-colors font-medium"
+                        className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-all font-medium"
                       />
                     </div>
+
                   </div>
 
-                  {/* Clinic Name */}
+                  {/* Message */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
-                      {isEs ? 'Clínica / Consultorio' : 'Clinic / Practice Name'}
+                      {isEs ? 'Mensaje / Consulta' : 'Message'} *
                     </label>
-                    <div className="relative w-full">
-                      <Building className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                      <input
-                        type="text"
-                        name="clinicName"
-                        value={formState.clinicName}
-                        onChange={handleInputChange}
-                        placeholder={isEs ? "Clínica de Estética..." : "Aesthetic Center..."}
-                        className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-white/10 bg-slate-950/60 text-white placeholder-slate-500 focus:outline-none focus:border-slate-400 transition-colors font-medium"
-                      />
-                    </div>
+                    <textarea
+                      name="message"
+                      required
+                      rows="4"
+                      value={formState.message}
+                      onChange={handleInputChange}
+                      placeholder={isEs ? "Deseo recibir cotización sobre el portafolio..." : "I would like to request product portfolio pricing..."}
+                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-all font-medium resize-none"
+                    />
                   </div>
 
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  
-                  {/* Specialty */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
-                      {isEs ? 'Especialidad Médica' : 'Medical Specialty'} *
-                    </label>
-                    <div className="relative w-full">
-                      <GraduationCap className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                      <input
-                        type="text"
-                        name="specialty"
-                        required
-                        value={formState.specialty}
-                        onChange={handleInputChange}
-                        placeholder={isEs ? "Dermatólogo, Cirujano, etc." : "Dermatologist, Surgeon..."}
-                        className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-white/10 bg-slate-950/60 text-white placeholder-slate-500 focus:outline-none focus:border-slate-400 transition-colors font-medium"
-                      />
-                    </div>
-                  </div>
-
-                  {/* City */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
-                      {isEs ? 'Ciudad' : 'City'} *
-                    </label>
-                    <div className="relative w-full">
-                      <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                      <input
-                        type="text"
-                        name="city"
-                        required
-                        value={formState.city}
-                        onChange={handleInputChange}
-                        placeholder={isEs ? "Santa Cruz, La Paz, etc." : "Santa Cruz, La Paz..."}
-                        className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-white/10 bg-slate-950/60 text-white placeholder-slate-500 focus:outline-none focus:border-slate-400 transition-colors font-medium"
-                      />
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* Message */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
-                    {isEs ? 'Consulta / Mensaje' : 'Message'}
-                  </label>
-                  <textarea
-                    name="message"
-                    rows="3"
-                    value={formState.message}
-                    onChange={handleInputChange}
-                    placeholder={isEs ? "Deseo recibir cotización y protocolos..." : "I would like to receive product pricing..."}
-                    className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-white/10 bg-slate-950/60 text-white placeholder-slate-500 focus:outline-none focus:border-slate-400 transition-colors font-medium resize-none"
-                  />
-                </div>
-
-                {/* Submit button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-3.5 rounded-full text-xs sm:text-sm font-extrabold text-white shadow-lg transition-all duration-300 transform hover:scale-[1.01] active:scale-99 focus:outline-none mt-2 flex items-center justify-center gap-2 cursor-pointer ${brand.accentBg} ${brand.accentHover}`}
+                  className="w-full py-3.5 rounded-xl text-xs sm:text-sm font-extrabold text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.01] active:scale-99 focus:outline-none flex items-center justify-center gap-2 cursor-pointer mt-2 disabled:opacity-50"
+                  style={{ backgroundColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}
                 >
-                  <span>{isSubmitting ? (isEs ? 'Enviando...' : 'Sending...') : (isEs ? 'Enviar Formulario' : 'Submit Form')}</span>
+                  <span>{isSubmitting ? (isEs ? 'Enviando...' : 'Sending...') : (isEs ? 'Enviar Mensaje' : 'Send Message')}</span>
                 </button>
 
               </form>
@@ -293,8 +329,8 @@ const BrandCTA = ({ brand, language }) => {
 
           </div>
         </div>
+      )}
 
-      </div>
     </section>
   );
 };

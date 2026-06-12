@@ -1,173 +1,617 @@
-import { useState, useMemo } from 'react';
-import ProductCard from './ProductCard';
-import { Search, SlidersHorizontal, PackageOpen } from 'lucide-react';
+import { useState, useMemo, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Search, 
+  Send, 
+  FileText, 
+  CheckCircle2, 
+  Play, 
+  BookOpen, 
+  FileSpreadsheet, 
+  ChevronRight, 
+  Maximize2, 
+  X, 
+  ChevronLeft 
+} from 'lucide-react';
+import jetemaProducts from '../../data/jetemaProducts.json';
+
+// Import custom application zone icons
+import zonaRostro from '../../../assets/iconos/zonas/zona-rostro.png';
+import zonaCuello from '../../../assets/iconos/zonas/zona-cuello.png';
+import zonaEscote from '../../../assets/iconos/zonas/zona-escote.png';
+import zonaAbdomen from '../../../assets/iconos/zonas/zona-abdomen.png';
+import zonaGluteos from '../../../assets/iconos/zonas/zona-gluteos.png';
+import zonaPiernas from '../../../assets/iconos/zonas/zona-piernas.png';
+import zonaBrazos from '../../../assets/iconos/zonas/zona-brazos.png';
+import zonaManos from '../../../assets/iconos/zonas/zona-manos.png';
+import zonaCintura from '../../../assets/iconos/zonas/zona-cintura.png';
+import zonaFlancos from '../../../assets/iconos/zonas/zona-flancos.png';
+import zonaPapada from '../../../assets/iconos/zonas/zona-papada.png';
+import zonaCuerpo from '../../../assets/iconos/zonas/zona-cuerpo.png';
+
+const zoneIcons = {
+  "Rostro": zonaRostro,
+  "Cuello": zonaCuello,
+  "Escote": zonaEscote,
+  "Abdomen": zonaAbdomen,
+  "Glúteos": zonaGluteos,
+  "Piernas": zonaPiernas,
+  "Brazos": zonaBrazos,
+  "Manos": zonaManos,
+  "Cintura": zonaCintura,
+  "Flancos": zonaFlancos,
+  "Papada": zonaPapada,
+  "Cuerpo": zonaCuerpo
+};
+
+const getZoneIcon = (zoneName) => {
+  if (!zoneName) return null;
+  return zoneIcons[zoneName] || zoneIcons[zoneName.trim()] || null;
+};
+
+// Pure CSS Glitch Hover Effect Styles
+const glitchStyles = `
+  .glitch-container {
+    position: relative;
+    overflow: hidden;
+  }
+  .glitch-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  .glitch-container:hover .glitch-img {
+    transform: scale(1.02);
+  }
+  .glitch-clone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .glitch-container:hover .glitch-clone {
+    opacity: 0.65;
+  }
+  .glitch-clone-1 {
+    animation: glitch-anim-1 1s infinite linear alternate-reverse;
+    filter: drop-shadow(2px 0 0 rgba(255, 0, 0, 0.4)) hue-rotate(90deg);
+  }
+  .glitch-clone-2 {
+    animation: glitch-anim-2 1.4s infinite linear alternate-reverse;
+    filter: drop-shadow(-2px 0 0 rgba(0, 255, 255, 0.4)) hue-rotate(270deg);
+  }
+
+  @keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 60% 0); transform: translate(-3px, -2px); }
+    10% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 1px); }
+    20% { clip-path: inset(40% 0 40% 0); transform: translate(-1px, 3px); }
+    30% { clip-path: inset(80% 0 5% 0); transform: translate(3px, -2px); }
+    40% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, -1px); }
+    50% { clip-path: inset(50% 0 30% 0); transform: translate(1px, 2px); }
+    60% { clip-path: inset(30% 0 50% 0); transform: translate(-3px, 1px); }
+    70% { clip-path: inset(70% 0 15% 0); transform: translate(2px, -3px); }
+    80% { clip-path: inset(90% 0 2% 0); transform: translate(-1px, -1px); }
+    90% { clip-path: inset(5% 0 90% 0); transform: translate(3px, 2px); }
+    100% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, -2px); }
+  }
+
+  @keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 70% 0); transform: translate(2px, 2px); }
+    10% { clip-path: inset(50% 0 20% 0); transform: translate(-2px, -1px); }
+    20% { clip-path: inset(30% 0 50% 0); transform: translate(3px, -2px); }
+    30% { clip-path: inset(70% 0 10% 0); transform: translate(-1px, 3px); }
+    40% { clip-path: inset(5% 0 85% 0); transform: translate(2px, -1px); }
+    50% { clip-path: inset(80% 0 5% 0); transform: translate(-3px, 2px); }
+    60% { clip-path: inset(40% 0 45% 0); transform: translate(1px, -3px); }
+    70% { clip-path: inset(15% 0 75% 0); transform: translate(-2px, 1px); }
+    80% { clip-path: inset(65% 0 25% 0); transform: translate(3px, -1px); }
+    90% { clip-path: inset(85% 0 3% 0); transform: translate(-1px, -2px); }
+    100% { clip-path: inset(10% 0 70% 0); transform: translate(2px, 2px); }
+  }
+`;
+
+// Helper to resolve placehold.co images based on brand properties
+const getPlaceholdImg = (text, brandId, width = 600, height = 600) => {
+  const cleanText = encodeURIComponent(text);
+  const colors = {
+    jetema: { bg: 'EAF0F6', fg: '4C5A9D' },
+    dermclar: { bg: 'F5F3FF', fg: '8B5CF6' },
+    xtralife: { bg: 'ECFDF5', fg: '10B981' }
+  };
+  const theme = colors[brandId] || { bg: 'F1F5F9', fg: '0F172A' };
+  return `https://placehold.co/${width}x${height}/${theme.bg}/${theme.fg}?text=${cleanText}`;
+};
 
 /**
  * ProductCatalog Component
  * @param {Object} props
- * @param {import('../../data/productsData').BrandConfig} props.brand - Active brand config
+ * @param {Object} props.brand - Parent brand config
  * @param {string} props.language - Active language ('es' | 'en')
  */
 const ProductCatalog = ({ brand, language }) => {
   const isEs = language === 'es';
+  const brandId = brand.id;
 
-  // State management for searching & filtering (lightweight inputs)
+  // 1. Data Normalization & Flattening Engine
+  const normalizedProducts = useMemo(() => {
+    if (brandId === 'jetema') {
+      const list = [];
+      jetemaProducts.forEach(prod => {
+        if (prod.id === 'eptq' && prod.variants) {
+          prod.variants.forEach(variant => {
+            const variantName = `e.p.t.q.® ${variant.density}`;
+            list.push({
+              id: `eptq-${variant.density.toLowerCase()}`,
+              parentId: prod.id,
+              name: variantName,
+              displayName: `e.p.t.q. ${variant.density}`,
+              subtitle: isEs ? "Relleno Dérmico de Ácido Hialurónico" : "Hyaluronic Acid Dermal Filler",
+              descriptor: isEs ? `Ácido Hialurónico - ${variant.density === 'S100' ? 'Baja' : variant.density === 'S300' ? 'Media' : 'Alta'} Densidad` : `Hyaluronic Acid Filler - ${variant.density === 'S100' ? 'Low' : variant.density === 'S300' ? 'Medium' : 'High'} Density`,
+              category: 'fillers', // map "rellenos" to "fillers"
+              categoryLabel: { es: "Rellenos Dérmicos", en: "Dermal Fillers" },
+              tags: [
+                ...(prod.tags || []).filter(t => !t.includes('CE')),
+                variant.density,
+                "Lidocaína 0.3%"
+              ],
+              slogan: prod.slogan,
+              description: variant.description,
+              composition: prod.description,
+              coverImage: getPlaceholdImg(`e.p.t.q. ${variant.density}`, 'jetema', 600, 600),
+              gallery: [
+                getPlaceholdImg(`e.p.t.q. ${variant.density} View 1`, 'jetema', 600, 600),
+                getPlaceholdImg(`e.p.t.q. ${variant.density} View 2`, 'jetema', 600, 600)
+              ],
+              certBadge: "CE Certified",
+              specifications: prod.specifications.map(s => {
+                if (s.label.includes('Ingredient') || s.label.includes('Ingrediente')) {
+                  return { label: s.label, value: s.value };
+                }
+                if (s.label.includes('Residuo') || s.label.includes('BDDE')) {
+                  return { label: s.label, value: s.value };
+                }
+                if (s.label.includes('Endotoxinas') || s.label.includes('Endotoxin')) {
+                  return { label: s.label, value: s.value };
+                }
+                if (s.label.includes('Base') || s.label.includes('Estructural')) {
+                  return { label: s.label, value: s.value };
+                }
+                return s;
+              }).concat([
+                { label: isEs ? "Densidad y Reología" : "Density & Rheology", value: variant.density }
+              ]),
+              technicalSpecs: prod.specifications,
+              applicationAreas: variant.areas,
+              clinicalInsights: [
+                { title: variant.density === 'S100' ? (isEs ? "Perfilamiento de Labios" : "Lips Profiling") : variant.density === 'S300' ? (isEs ? "Técnica de Aumento" : "Augmentation Technique") : (isEs ? "Proyección Estructural" : "Structural Projection"), label: isEs ? "Video de Aplicación" : "Application Video", type: "video" },
+                { title: isEs ? "Resultados Clínicos" : "Patient Results", label: isEs ? "Caso Clínico" : "Case Study", type: "cases" },
+                { title: isEs ? "Dosier de Seguridad ZEEP" : "ZEEP Purity Dossier", label: isEs ? "Ficha Técnica" : "Safety Dossier", type: "dossier" }
+              ]
+            });
+          });
+        } else {
+          // toxta or exolution
+          const categoryMapped = prod.category === 'toxinas' ? 'toxins' : prod.category === 'skinboosters' ? 'skinboosters' : prod.category;
+          list.push({
+            id: prod.id,
+            name: prod.name,
+            displayName: prod.name.replace('®', ''),
+            subtitle: prod.subtitle,
+            descriptor: prod.subtitle,
+            category: categoryMapped,
+            categoryLabel: prod.category === 'toxinas' ? { es: "Toxina Botulínica", en: "Botulinum Toxin" } : { es: "Skinboosters & Exosomas", en: "Skinboosters & Exosomes" },
+            tags: prod.tags || [],
+            slogan: prod.slogan,
+            description: prod.description,
+            composition: prod.description,
+            coverImage: getPlaceholdImg(prod.name.split(' ')[0], 'jetema', 600, 600),
+            gallery: [
+              getPlaceholdImg(`${prod.name.split(' ')[0]} Vial`, 'jetema', 600, 600),
+              getPlaceholdImg(`${prod.name.split(' ')[0]} Packaging`, 'jetema', 600, 600)
+            ],
+            certBadge: prod.id === 'toxta' ? 'FDA Approved' : 'CE Certified / 100% Vegan',
+            specifications: prod.specifications || [],
+            technicalSpecs: (prod.specifications && prod.specifications.length > 0) ? prod.specifications : null,
+            applicationAreas: prod.applicationAreas || [],
+            clinicalInsights: prod.id === 'toxta' ? [
+              { title: isEs ? "Técnica de Aplicación" : "Application Technique", label: isEs ? "Video Tutorial" : "Video Tutorial", type: "video" },
+              { title: isEs ? "Resultados Clínicos" : "Patient Clinical Outcomes", label: isEs ? "Casos Médicos" : "Case Study", type: "cases" },
+              { title: isEs ? "Análisis de Inmunogenicidad" : "Immunogenicity Report", label: isEs ? "Dosier Científico" : "Scientific Dossier", type: "dossier" }
+            ] : [
+              { title: isEs ? "Protocolo Regenerativo" : "Regenerative Protocol", label: isEs ? "Guía Clínica" : "Clinical Guide", type: "video" },
+              { title: isEs ? "Evidencia Antinflamatoria" : "Anti-inflammatory Action", label: isEs ? "Estudio Científico" : "Efficacy Study", type: "cases" },
+              { title: isEs ? "Tecnología Penta-Exo" : "Penta-Exo Cellular Science", label: isEs ? "Ficha Técnica" : "Safety Dossier", type: "dossier" }
+            ]
+          });
+        }
+      });
+      return list;
+    } else {
+      // Dermclar & Xtralife
+      const rawProducts = brand.products || [];
+      const resolveTranslation = (val) => {
+        if (!val) return '';
+        if (typeof val === 'object') {
+          return val[isEs ? 'es' : 'en'] || val['es'] || '';
+        }
+        return val;
+      };
+
+      return rawProducts.map(prod => {
+        const catLabel = prod.categoryLabel?.[isEs ? 'es' : 'en'] || prod.category;
+        const mainImage = prod.coverImage || prod.image || getPlaceholdImg(prod.name, brandId, 600, 600);
+        const descResolved = resolveTranslation(prod.description) || resolveTranslation(prod.composition);
+        const presResolved = resolveTranslation(prod.presentation);
+        const doseResolved = resolveTranslation(prod.dosage);
+
+        return {
+          id: prod.id,
+          name: prod.name,
+          displayName: prod.name,
+          subtitle: prod.descriptor,
+          descriptor: catLabel,
+          category: prod.category,
+          categoryLabel: prod.categoryLabel || { es: catLabel, en: catLabel },
+          tags: prod.tags || (brandId === 'xtralife' ? (presResolved ? [presResolved, doseResolved] : []) : prod.applicationZones) || (prod.category === 'facial' ? ["DMAE", "Ácido Hialurónico", "Firmeza"] : prod.category === 'capilar' ? ["Biotina", "Pantenol", "Anticaída"] : prod.category === 'immunity' ? ["Refuerzo Inmune", "Vitamina C", "Antioxidante"] : ["Colágeno", "Articulaciones", "MSM"]),
+          slogan: prod.slogan || (brandId === 'xtralife' ? (isEs ? "Nutrición premium para tu salud diaria." : "Premium nutrition for your daily health.") : (isEs ? "Fórmula científica de máxima eficacia biológica." : "Scientific formula with maximum biological efficacy.")),
+          description: descResolved,
+          composition: descResolved,
+          coverImage: mainImage,
+          gallery: prod.gallery || [mainImage],
+          certBadge: prod.certBadge || (brandId === 'xtralife' ? "MADE IN USA • GMP" : "AGEMED Approved"),
+          specifications: prod.specifications || [],
+          technicalSpecs: (prod.specifications && prod.specifications.length > 0) ? prod.specifications : null,
+          activeIngredients: prod.activeIngredients || null,
+          applicationZones: prod.applicationZones || null,
+          presentation: presResolved || null,
+          dosage: doseResolved || null,
+          applicationAreas: prod.applicationZones || prod.applicationAreas || (prod.specifications && prod.specifications.find(s => s.label.includes('Method') || s.label.includes('Protocol') || s.label.includes('Recommendation') || s.label.includes('Indication'))?.value.split(', ')) || [isEs ? "Aplicación Clínica Transdérmica" : "Clinical Transdermal Application"],
+          clinicalInsights: prod.clinicalInsights || [
+            { title: isEs ? "Ficha Técnica Nutricional" : "Nutritional Fact Sheet", label: isEs ? "Ver Info" : "View Info", type: "dossier" }
+          ]
+        };
+      });
+    }
+  }, [brandId, isEs, brand]);
+
+  // 2. State Management for Filters & Selection
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  
-  // Set initial product as the first item in the brand's array
-  const [selectedProductId, setSelectedProductId] = useState(
-    brand.products && brand.products.length > 0 ? brand.products[0].id : ''
-  );
+  const [selectedProductId, setSelectedProductId] = useState('');
+  const [showMobileList, setShowMobileList] = useState(false);
 
+  const specsTableRef = useRef(null);
+  const [lightboxImage, setLightboxImage] = useState(null);
+  const [sampleRequested, setSampleRequested] = useState(false);
+  const [licenseNumber, setLicenseNumber] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Filter products cleanly using useMemo to optimize performance
+  // Filter products reactively
   const filteredProducts = useMemo(() => {
-    if (!brand.products) return [];
-    
-    return brand.products.filter((product) => {
-      // 1. Category check
+    return normalizedProducts.filter((product) => {
       const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
-      
-      // 2. Search check (case insensitive name, scientific descriptor, composition)
       const query = searchQuery.toLowerCase().trim();
       const matchesSearch = 
         query === '' ||
         product.name.toLowerCase().includes(query) ||
         product.descriptor.toLowerCase().includes(query) ||
-        product.composition.toLowerCase().includes(query);
+        product.description.toLowerCase().includes(query) ||
+        product.tags.some(tag => tag.toLowerCase().includes(query));
         
       return matchesCategory && matchesSearch;
     });
-  }, [brand.products, selectedCategory, searchQuery]);
+  }, [normalizedProducts, selectedCategory, searchQuery]);
 
-  // Find active selected product object
-  const activeProduct = useMemo(() => {
-    if (!brand.products) return null;
-    let found = brand.products.find((p) => p.id === selectedProductId);
-    // Fallback in case filtered out or missing
-    if (!found && filteredProducts.length > 0) {
-      return filteredProducts[0];
+  // Set default selected product on mount or category change
+  const [prevFilteredProducts, setPrevFilteredProducts] = useState(filteredProducts);
+  if (filteredProducts !== prevFilteredProducts) {
+    setPrevFilteredProducts(filteredProducts);
+    if (filteredProducts.length > 0) {
+      const isStillFiltered = filteredProducts.some(p => p.id === selectedProductId);
+      if (!isStillFiltered) {
+        setSelectedProductId(filteredProducts[0].id);
+      }
+    } else {
+      setSelectedProductId('');
     }
-    return found;
-  }, [brand.products, selectedProductId, filteredProducts]);
+  }
+
+  // Get active selected product details
+  const activeProduct = useMemo(() => {
+    return normalizedProducts.find(p => p.id === selectedProductId) || null;
+  }, [normalizedProducts, selectedProductId]);
+
+  // Gallery active index state
+  const [activeGalleryIdx, setActiveGalleryIdx] = useState(0);
+  const [prevSelectedProductId, setPrevSelectedProductId] = useState(selectedProductId);
+
+  if (selectedProductId !== prevSelectedProductId) {
+    setPrevSelectedProductId(selectedProductId);
+    setActiveGalleryIdx(0);
+    setSampleRequested(false);
+    setLicenseNumber('');
+  }
+
+  const activeImage = useMemo(() => {
+    if (!activeProduct) return "";
+    return activeProduct.gallery[activeGalleryIdx] || activeProduct.coverImage;
+  }, [activeProduct, activeGalleryIdx]);
+
+  const handlePrevGallery = () => {
+    if (!activeProduct) return;
+    setActiveGalleryIdx(prev => (prev === 0 ? activeProduct.gallery.length - 1 : prev - 1));
+  };
+
+  const handleNextGallery = () => {
+    if (!activeProduct) return;
+    setActiveGalleryIdx(prev => (prev === activeProduct.gallery.length - 1 ? 0 : prev + 1));
+  };
+
+  // Scroll to specifications table
+  const scrollToSpecs = () => {
+    if (specsTableRef.current) {
+      specsTableRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Submit sample request B2B form
+  const handleSampleRequest = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSampleRequested(true);
+    }, 900);
+  };
+  const getInsightIcon = (type) => {
+    switch (type) {
+      case 'video': return <Play className="w-4.5 h-4.5 text-white/95" />;
+      case 'cases': return <BookOpen className="w-4.5 h-4.5 text-white/95" />;
+      default: return <FileSpreadsheet className="w-4.5 h-4.5 text-white/95" />;
+    }
+  };
 
   return (
-    <section id="catalog-section" className="py-20 lg:py-28 px-6 sm:px-12 xl:px-20 bg-lightBg w-full border-t border-slate-200/50">
+    <section id="catalog-section" className="py-20 lg:py-24 px-4 sm:px-12 xl:px-20 bg-[#F2F5F6] w-full border-t border-slate-200/50">
+      <style>{glitchStyles}</style>
       <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] mx-auto flex flex-col gap-10">
         
-        {/* Catalog Section Header */}
-        <div className="text-left">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-primary-dark font-display tracking-tight mb-2">
-            {isEs ? 'Catálogo' : 'Catalog'}
-          </h2>
-          <div className={`w-12 h-1.5 rounded-full bg-gradient-to-r ${brand.themeGradient}`} />
-        </div>
-
-        {/* Dynamic Split Layout: Sidebar list (Left 4/12) - Detailed Card View (Right 8/12) */}
+        {/* Main 12-Column Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Left Column (4/12): List & Filter Engine Panel */}
-          <div className="lg:col-span-4 flex flex-col gap-5 h-full">
+          {/* LEFT COLUMN: Sidebar (3/12 width on desktop) */}
+          <div className="lg:col-span-3 flex flex-col gap-4 lg:gap-6 text-left">
             
-            {/* Search Input Card */}
-            <div className="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm flex flex-col gap-4 text-left">
-              {/* Search Bar Wrapper */}
-              <div className="relative w-full">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={isEs ? "Buscar producto..." : "Search product..."}
-                  className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:bg-white focus:border-slate-300 transition-colors font-medium"
-                />
-              </div>
+            {/* Sidebar Title */}
+            <div className="space-y-1 sm:space-y-1.5">
+              <h2 className={`text-2xl sm:text-3xl font-extrabold font-display tracking-tight leading-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
+                {isEs ? 'Catálogo' : 'Catalog'}
+              </h2>
+              <div className="w-10 h-1.5 rounded-full hidden lg:block" style={{ backgroundColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }} />
+            </div>
 
-              {/* Dynamic Categories Filtering Scroll Panel */}
-              <div className="flex flex-col gap-2">
-                <span className="text-[10px] font-extrabold tracking-widest text-slate-400 uppercase flex items-center gap-1.5">
-                  <SlidersHorizontal className="w-3.5 h-3.5" />
-                  <span>{isEs ? 'Filtrar Categoría' : 'Filter Category'}</span>
-                </span>
-                
-                <div className="flex flex-wrap gap-1.5 mt-1">
-                  {brand.categories.map((cat) => {
-                    const isSelected = selectedCategory === cat.id;
-                    const catLabel = isEs ? cat.label.es : cat.label.en;
-                    
-                    return (
-                      <button
-                        key={cat.id}
-                        onClick={() => setSelectedCategory(cat.id)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-extrabold uppercase tracking-wide transition-all duration-300 focus:outline-none ${
-                          isSelected
-                            ? `text-white ${brand.accentBg} shadow-sm shadow-cyan-500/10`
-                            : 'bg-slate-50 text-slate-400 hover:bg-slate-100 hover:text-slate-500'
-                        }`}
-                        style={{
-                          backgroundColor: isSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined
-                        }}
-                      >
-                        {catLabel}
-                      </button>
-                    );
-                  })}
-                </div>
+            {/* Interactive Search Bar */}
+            <div className="relative w-full">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={isEs ? "Buscar producto..." : "Search product..."}
+                className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-1 transition-all font-medium text-slate-700 shadow-sm"
+                style={{ '--tw-ring-color': `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+              />
+            </div>
+
+            {/* Horizontal Category Filtering Chips - Desktop Only */}
+            <div className="hidden lg:block space-y-2.5">
+              <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                {isEs ? 'Filtrar por Categoría' : 'Filter by Category'}
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {brand.categories.map((cat) => {
+                  const isSelected = selectedCategory === cat.id;
+                  const catLabel = isEs ? cat.label.es : cat.label.en;
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => setSelectedCategory(cat.id)}
+                      className={`px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide transition-all duration-300 focus:outline-none cursor-pointer ${
+                        isSelected
+                          ? 'text-white shadow-sm'
+                          : 'bg-white text-slate-400 border border-slate-200/50 hover:bg-slate-50 hover:text-slate-600'
+                      }`}
+                      style={{
+                        backgroundColor: isSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined,
+                        borderColor: isSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined
+                      }}
+                    >
+                      {catLabel}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Scrollable Products list container */}
-            <div className="bg-white rounded-2xl border border-slate-100 p-3 shadow-sm flex-grow min-h-[300px] lg:min-h-[450px] max-h-[500px] lg:max-h-[600px] overflow-y-auto no-scrollbar flex flex-col gap-2">
-              {filteredProducts.length > 0 ? (
-                filteredProducts.map((prod) => {
-                  const isSelected = activeProduct && activeProduct.id === prod.id;
-                  
+            {/* Product Selector Header - Mobile Only */}
+            <div className="lg:hidden flex items-center justify-between gap-2 pt-1 border-t border-slate-200/40">
+              <span className="text-[9px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase">
+                {isEs ? 'Seleccionar Producto' : 'Select Product'}
+              </span>
+              <button
+                onClick={() => setShowMobileList(!showMobileList)}
+                className="text-[10px] font-bold flex items-center gap-1 py-1 px-2.5 rounded-lg border border-slate-200 bg-white shadow-xs focus:outline-none cursor-pointer text-slate-500 hover:text-slate-700"
+                style={{ color: showMobileList ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined }}
+              >
+                {showMobileList ? (
+                  <>
+                    <span>{isEs ? 'Ver Carrusel' : 'Show Slider'}</span>
+                    <ChevronLeft className="w-3.5 h-3.5 rotate-90" />
+                  </>
+                ) : (
+                  <>
+                    <span>{isEs ? 'Ver Lista' : 'Show List'}</span>
+                    <ChevronRight className="w-3.5 h-3.5 rotate-90" />
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Horizontal Scroll Swiper - Mobile Only */}
+            {!showMobileList && (
+              <div className="lg:hidden flex flex-row overflow-x-auto gap-3 pb-2.5 no-scrollbar scroll-smooth w-full">
+                {filteredProducts.map((prod) => {
+                  const isSelected = selectedProductId === prod.id;
+                  const brandColor = `var(--color-${brand.accentBg.replace('bg-', '')})`;
                   return (
                     <button
                       key={prod.id}
                       onClick={() => setSelectedProductId(prod.id)}
-                      className={`w-full p-3 rounded-xl border flex items-center gap-4 text-left transition-all duration-300 focus:outline-none ${
-                        isSelected
-                          ? `bg-slate-50/80 border-slate-200`
-                          : 'bg-white border-transparent hover:bg-slate-50/30'
+                      className={`flex items-center gap-2.5 p-2 px-3 rounded-xl border bg-white shrink-0 w-[185px] text-left transition-all duration-300 focus:outline-none cursor-pointer ${
+                        isSelected ? 'shadow-md scale-99 border-slate-200/60 bg-slate-50/20' : 'border-slate-200/40 hover:bg-slate-50/30'
                       }`}
                       style={{
-                        borderLeftColor: isSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined,
-                        borderLeftWidth: isSelected ? '4px' : undefined
+                        borderLeftWidth: isSelected ? '3.5px' : '1px',
+                        borderLeftColor: isSelected ? brandColor : undefined
                       }}
                     >
-                      {/* Left side compact thumbnail */}
-                      <div className="w-12 h-12 rounded-lg bg-slate-50 border border-slate-100 overflow-hidden flex items-center justify-center p-1.5 shrink-0">
-                        <img 
-                          src={prod.coverImage} 
-                          alt={prod.name} 
-                          className="max-w-full max-h-full object-contain filter drop-shadow-sm" 
-                        />
+                      <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-200/30 flex items-center justify-center p-0.5 shrink-0">
+                        <img src={prod.coverImage} alt={prod.name} className="max-w-full max-h-full object-contain filter drop-shadow-xs" />
                       </div>
-                      
-                      {/* Content block */}
                       <div className="min-w-0 flex-grow">
-                        <h4 className="text-xs sm:text-sm font-extrabold text-primary-dark truncate tracking-tight">
-                          {prod.name}
+                        <h4 className="text-[11px] font-extrabold text-[#0D1F3B] truncate leading-tight">
+                          {prod.displayName}
                         </h4>
-                        <p className="text-[10px] text-slate-400 truncate uppercase mt-0.5 font-semibold">
-                          {prod.descriptor}
+                        <p className="text-[8px] font-extrabold text-slate-400 truncate uppercase mt-0.5">
+                          {prod.descriptor.split(' - ')[1] || prod.descriptor.split(' / ')[1] || prod.descriptor}
                         </p>
                       </div>
                     </button>
                   );
+                })}
+                {filteredProducts.length === 0 && (
+                  <div className="text-slate-400 text-xs font-semibold py-4 w-full text-center">
+                    {isEs ? 'Sin productos coincidentes' : 'No matching products'}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Expanded Vertical Selection Drawer - Mobile Only */}
+            <AnimatePresence>
+              {showMobileList && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="lg:hidden overflow-hidden flex flex-col gap-1.5 max-h-[300px] overflow-y-auto no-scrollbar border-b border-slate-200/55 pb-4"
+                >
+                  {filteredProducts.map((prod) => {
+                    const isSelected = selectedProductId === prod.id;
+                    const brandColor = `var(--color-${brand.accentBg.replace('bg-', '')})`;
+                    return (
+                      <button
+                        key={prod.id}
+                        onClick={() => {
+                          setSelectedProductId(prod.id);
+                          setShowMobileList(false);
+                        }}
+                        className={`w-full p-2.5 rounded-xl border flex items-center gap-3 text-left transition-all duration-300 focus:outline-none cursor-pointer ${
+                          isSelected ? 'bg-slate-50/50 shadow-sm border-slate-200/60' : 'bg-white/40 border-transparent hover:bg-slate-50/30'
+                        }`}
+                        style={{
+                          borderLeftWidth: isSelected ? '3.5px' : '1px',
+                          borderLeftColor: isSelected ? brandColor : undefined
+                        }}
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-white border border-slate-100 flex items-center justify-center p-1 shrink-0">
+                          <img src={prod.coverImage} alt={prod.name} className="max-w-full max-h-full object-contain" />
+                        </div>
+                        <div className="min-w-0 flex-grow">
+                          <h4 className="text-[12px] font-extrabold text-[#0D1F3B] truncate leading-tight">
+                            {prod.displayName}
+                          </h4>
+                          <p className="text-[9px] font-bold text-slate-400 truncate uppercase mt-0.5">
+                            {prod.descriptor}
+                          </p>
+                        </div>
+                        <ChevronRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
+                      </button>
+                    );
+                  })}
+                  {filteredProducts.length === 0 && (
+                    <div className="text-slate-400 text-xs font-semibold py-4 w-full text-center">
+                      {isEs ? 'Sin productos coincidentes' : 'No matching products'}
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Scrollable Sidebar Product List - Desktop Only */}
+            <div className="hidden lg:flex flex-col gap-2 max-h-[500px] lg:max-h-[620px] overflow-y-auto no-scrollbar pr-1">
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((prod) => {
+                  const isSelected = selectedProductId === prod.id;
+                  const brandColor = `var(--color-${brand.accentBg.replace('bg-', '')})`;
+                  return (
+                    <button
+                      key={prod.id}
+                      onClick={() => setSelectedProductId(prod.id)}
+                      className={`w-full p-3.5 rounded-2xl border flex items-center gap-3.5 text-left transition-all duration-300 focus:outline-none cursor-pointer group/item ${
+                        isSelected
+                          ? 'bg-white border-slate-200/60 shadow-md scale-101'
+                          : 'bg-white/40 border-transparent hover:bg-white/70'
+                      }`}
+                      style={{
+                        borderLeftWidth: isSelected ? '4px' : '1px',
+                        borderLeftColor: isSelected ? brandColor : undefined
+                      }}
+                    >
+                      {/* Left Thumbnail Box */}
+                      <div className="w-12 h-12 rounded-xl bg-white border border-slate-200/50 overflow-hidden flex items-center justify-center p-1 shrink-0 shadow-sm">
+                        <img 
+                          src={prod.coverImage} 
+                          alt={prod.name} 
+                          className="max-w-full max-h-full object-contain filter drop-shadow-sm transition-transform duration-300 group-hover/item:scale-105" 
+                        />
+                      </div>
+                      
+                      {/* Name & Desc Block */}
+                      <div className="min-w-0 flex-grow">
+                        <h4 className="text-xs sm:text-[13px] font-extrabold text-primary-dark truncate tracking-tight group-hover/item:text-primary-light transition-colors">
+                          {prod.displayName}
+                        </h4>
+                        <p className="text-[10px] text-slate-400 font-semibold truncate uppercase tracking-wide mt-0.5">
+                          {prod.descriptor}
+                        </p>
+                      </div>
+
+                      {/* Right Chevron */}
+                      <ChevronRight 
+                        className={`w-3.5 h-3.5 shrink-0 transition-transform duration-300 ${
+                          isSelected ? 'translate-x-0.5 text-primary-light' : 'text-slate-300 group-hover/item:text-slate-400'
+                        }`}
+                        style={{ color: isSelected ? brandColor : undefined }}
+                      />
+                    </button>
+                  );
                 })
               ) : (
-                <div className="flex flex-col items-center justify-center h-full py-16 text-center text-slate-400 gap-3">
-                  <PackageOpen className="w-10 h-10 text-slate-300 stroke-[1.5]" />
-                  <h5 className="text-xs font-bold uppercase tracking-wider">
-                    {isEs ? 'Sin Productos' : 'No Products Found'}
+                <div className="bg-white/50 border border-dashed border-slate-200 rounded-3xl p-8 text-center text-slate-400 flex flex-col items-center justify-center gap-2">
+                  <span className="text-xl">📦</span>
+                  <h5 className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
+                    {isEs ? 'Sin Productos' : 'No Products'}
                   </h5>
-                  <p className="text-[11px] font-semibold max-w-[200px] leading-relaxed text-slate-400/80">
-                    {isEs 
-                      ? 'No hay productos que coincidan con la búsqueda o filtro seleccionado.' 
-                      : 'No products match the selected criteria.'}
+                  <p className="text-[10px] font-semibold text-slate-400/80 leading-relaxed max-w-[160px]">
+                    {isEs ? 'Ajuste los filtros o el buscador.' : 'Adjust search terms or category chips.'}
                   </p>
                 </div>
               )}
@@ -175,32 +619,444 @@ const ProductCatalog = ({ brand, language }) => {
 
           </div>
 
-          {/* Right Column (8/12): Isolated Detail Product Display */}
-          <div className="lg:col-span-8 h-full">
-            {activeProduct ? (
-              <ProductCard 
-                product={activeProduct} 
-                brand={brand} 
-                language={language} 
-              />
-            ) : (
-              <div className="w-full h-full bg-white rounded-3xl border border-slate-100 flex flex-col items-center justify-center p-12 text-center text-slate-400 gap-3 min-h-[400px]">
-                <PackageOpen className="w-12 h-12 text-slate-200 stroke-[1.2]" />
-                <h4 className="text-sm font-bold uppercase tracking-wider">
-                  {isEs ? 'Seleccionar Producto' : 'Select a Product'}
-                </h4>
-                <p className="text-xs text-slate-400 max-w-xs font-semibold leading-relaxed">
-                  {isEs 
-                    ? 'Por favor elija un producto de la lista lateral para visualizar sus especificaciones y dosificaciones científicas.' 
-                    : 'Please select a product from the list to view detailed composition parameters.'}
-                </p>
-              </div>
-            )}
+          {/* RIGHT COLUMN: Detail View (9/12 width on desktop) */}
+          <div className="lg:col-span-9 h-full">
+            <AnimatePresence mode="wait">
+              {activeProduct ? (
+                <motion.div
+                  key={activeProduct.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.35 }}
+                  className="w-full bg-white rounded-[32px] border border-slate-200/50 shadow-sm p-6 sm:p-8 md:p-10 flex flex-col gap-10"
+                >
+                  {/* 1. Header Banner */}
+                  <div className={`relative w-full rounded-2xl overflow-hidden bg-gradient-to-r ${brand.themeGradient} p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-md`}>
+                    {/* Abstract dots overlay */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)] pointer-events-none" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+                    
+                    {/* Banner Info */}
+                    <div className="relative z-10 text-left space-y-2">
+                      <span className="inline-block px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest bg-white/20 border border-white/35 text-white backdrop-blur-md">
+                        {activeProduct.certBadge}
+                      </span>
+                      <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white font-display tracking-tight leading-none drop-shadow-sm">
+                        {activeProduct.name}
+                      </h2>
+                    </div>
+
+                    {/* Banner CTA Button */}
+                    <div className="relative z-10 shrink-0">
+                      <a
+                        href={`https://wa.me/59133400835?text=Hola%20Maines%20SRL,%20deseo%20información%20sobre%20el%20producto%20${encodeURIComponent(activeProduct.name)}%20de%20la%20marca%20${brand.name}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-extrabold bg-[#0d1f3b] text-white hover:bg-[#1a365d] active:scale-95 transition-all shadow-md cursor-pointer"
+                      >
+                        <span>{isEs ? 'Ordenar Ahora' : 'Order Now'}</span>
+                        <Send className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* 2. Main Showcase Split */}
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                    
+                    {/* Showcase Left: Glitch Image Box & Mini Gallery */}
+                    <div className="md:col-span-5 flex flex-col gap-4">
+                      {/* Glitch Showcase Container */}
+                      <div 
+                        onClick={() => setLightboxImage(activeImage)}
+                        className="glitch-container aspect-square w-full rounded-2xl bg-slate-50 border border-slate-200/50 p-6 flex items-center justify-center cursor-zoom-in relative group/image shadow-sm"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-tr from-slate-100/50 via-transparent to-white/50 opacity-40 pointer-events-none" />
+                        
+                        {/* 3 Glitch Layers */}
+                        <img src={activeImage} alt={activeProduct.name} className="glitch-img" />
+                        <img src={activeImage} alt="Glitch 1" className="glitch-clone glitch-clone-1" />
+                        <img src={activeImage} alt="Glitch 2" className="glitch-clone glitch-clone-2" />
+
+                        {/* Interactive Gallery Navigation inside main image */}
+                        {activeProduct.gallery.length > 1 && (
+                          <>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); handlePrevGallery(); }}
+                              className="absolute left-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200/50 flex items-center justify-center text-primary-dark hover:scale-105 active:scale-95 opacity-0 group-hover/image:opacity-100 transition-all shadow-sm focus:outline-none cursor-pointer"
+                            >
+                              <ChevronLeft className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); handleNextGallery(); }}
+                              className="absolute right-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200/50 flex items-center justify-center text-primary-dark hover:scale-105 active:scale-95 opacity-0 group-hover/image:opacity-100 transition-all shadow-sm focus:outline-none cursor-pointer"
+                            >
+                              <ChevronRight className="w-4 h-4" />
+                            </button>
+                          </>
+                        )}
+
+                        {/* Zoom button */}
+                        <div className="absolute right-3 bottom-3 p-2 rounded-xl bg-white/90 border border-slate-100 text-slate-500 opacity-0 group-hover/image:opacity-100 transition-opacity shadow-sm pointer-events-none">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </div>
+
+                        {/* Cert badge in corner */}
+                        <span className="absolute left-3 bottom-3 px-2 py-0.5 bg-slate-900/50 text-[8px] font-extrabold text-white uppercase tracking-wider rounded-md backdrop-blur-xs">
+                          {activeProduct.certBadge}
+                        </span>
+                      </div>
+
+                      {/* Mini thumbnails selection list */}
+                      {activeProduct.gallery.length > 1 && (
+                        <div className="flex flex-wrap gap-2 items-center justify-start overflow-x-auto no-scrollbar">
+                          {activeProduct.gallery.map((img, idx) => {
+                            const isThumbSelected = idx === activeGalleryIdx;
+                            return (
+                              <button
+                                key={idx}
+                                onClick={() => setActiveGalleryIdx(idx)}
+                                className="w-12 h-12 rounded-xl border-2 bg-white flex items-center justify-center p-1.5 overflow-hidden transition-all duration-300 focus:outline-none cursor-pointer"
+                                style={{
+                                  borderColor: isThumbSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : '#e2e8f0'
+                                }}
+                              >
+                                <img src={img} alt={`Thumb ${idx + 1}`} className="max-w-full max-h-full object-contain" />
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Showcase Right: Specs Description */}
+                    <div className="md:col-span-7 flex flex-col text-left justify-between h-full gap-6">
+                      <div className="space-y-4">
+                        {/* Upper category and attributes tags */}
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          <span className="text-[10px] font-extrabold uppercase tracking-widest" style={{ color: `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+                            {activeProduct.categoryLabel?.[isEs ? 'es' : 'en'] || activeProduct.category}
+                          </span>
+                          <span className="text-[9px] font-bold text-slate-300 select-none">•</span>
+                          {activeProduct.tags.slice(0, 2).map((tag, i) => (
+                            <span key={i} className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Product Title */}
+                        <h3 className={`text-2xl sm:text-3xl font-extrabold font-display tracking-tight leading-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
+                          {activeProduct.displayName}
+                        </h3>
+
+                        {/* Slogan with accent left border */}
+                        {activeProduct.slogan && (
+                          <div className="py-1 px-4 border-l-2 bg-slate-50/50 rounded-r-xl" style={{ borderLeftColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+                            <p className="text-xs font-bold text-slate-500 italic leading-relaxed">
+                              "{activeProduct.slogan}"
+                            </p>
+                          </div>
+                        )}
+
+                        {/* Product detailed description */}
+                        <p className="text-sm text-slate-500 leading-relaxed font-medium">
+                          {activeProduct.description}
+                        </p>
+                        {activeProduct.activeIngredients && (
+                          <div className="pt-2 space-y-1">
+                            <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                              {isEs ? 'Principios Activos' : 'Active Ingredients'}
+                            </span>
+                            <p className="text-xs sm:text-sm text-slate-700 font-bold">
+                              {activeProduct.activeIngredients}
+                            </p>
+                          </div>
+                        )}
+
+                        {/* Zonas de Aplicación Renderizado Condicional */}
+                        {activeProduct.applicationZones && (
+                          <div className="pt-2 space-y-1.5">
+                            <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                              {isEs ? 'Zonas de Aplicación' : 'Application Zones'}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {activeProduct.applicationZones.map((zone, idx) => {
+                                const icon = getZoneIcon(zone);
+                                return (
+                                  <span 
+                                    key={idx} 
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold border transition-colors duration-200 cursor-default shadow-xs"
+                                    style={{
+                                      backgroundColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.08)`,
+                                      borderColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.25)`,
+                                      color: brandId === 'jetema' ? '#4C5A9D' : '#0ea5e9'
+                                    }}
+                                  >
+                                    {icon && (
+                                      <img 
+                                        src={icon} 
+                                        alt="" 
+                                        className="w-3.5 h-3.5 object-contain shrink-0 filter brightness-100" 
+                                      />
+                                    )}
+                                    <span>{zone}</span>
+                                  </span>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Suplementación Info for Xtralife */}
+                        {brandId === 'xtralife' && (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                            {activeProduct.presentation && (
+                              <div className="bg-emerald-50/50 border border-emerald-100/60 rounded-2xl p-4 flex flex-col justify-between">
+                                <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block mb-1">
+                                  {isEs ? 'Presentación' : 'Presentation'}
+                                </span>
+                                <p className="text-sm text-emerald-800 font-extrabold">
+                                  {activeProduct.presentation}
+                                </p>
+                              </div>
+                            )}
+                            {activeProduct.dosage && (
+                              <div className="bg-teal-50/50 border border-teal-100/60 rounded-2xl p-4 flex flex-col justify-between">
+                                <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block mb-1">
+                                  {isEs ? 'Dosis Recomendada' : 'Recommended Dosage'}
+                                </span>
+                                <p className="text-sm text-teal-800 font-extrabold">
+                                  {activeProduct.dosage}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Detail CTA Buttons row */}
+                      <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
+                        {activeProduct.technicalSpecs && (
+                          <button
+                            onClick={scrollToSpecs}
+                            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-extrabold text-white shadow-sm transition-all hover:scale-103 active:scale-97 cursor-pointer"
+                            style={{ backgroundColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+                          >
+                            <FileText className="w-3.5 h-3.5" />
+                            <span>{isEs ? 'Especificaciones' : 'Specifications'}</span>
+                          </button>
+                        )}
+                        
+                        <a
+                          href={`#cta-section`}
+                          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-extrabold text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 hover:text-slate-800 transition-all hover:scale-103 active:scale-97 cursor-pointer"
+                        >
+                          <span>{isEs ? 'Solicitar Muestra' : 'Request Sample'}</span>
+                        </a>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* 3. Technical Specifications Table */}
+                  {activeProduct.technicalSpecs && (
+                    <div ref={specsTableRef} className="border-t border-slate-100 pt-8 text-left space-y-4">
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 rounded-lg text-white" style={{ backgroundColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+                          <FileText className="w-4 h-4" />
+                        </div>
+                        <h4 className={`text-lg sm:text-xl font-extrabold font-display tracking-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
+                          {isEs ? 'Especificaciones Técnicas' : 'Technical Specifications'}
+                        </h4>
+                      </div>
+
+                      <div className="w-full overflow-hidden border border-slate-200/60 rounded-2xl shadow-sm">
+                        <table className="w-full text-xs sm:text-sm border-collapse">
+                          <thead>
+                            <tr className="bg-slate-50 border-b border-slate-100 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                              <th className="px-5 py-3 text-left w-1/3 font-bold">{isEs ? 'PARÁMETRO' : 'PARAMETER'}</th>
+                              <th className="px-5 py-3 text-left font-bold">{isEs ? 'ESPECIFICACIÓN' : 'SPECIFICATION'}</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-100 text-slate-600 font-medium">
+                            {activeProduct.specifications.map((spec, idx) => (
+                              <tr key={idx} className="hover:bg-slate-50/40 transition-colors duration-150">
+                                <td className="px-5 py-3 font-semibold text-primary-dark">{spec.label}</td>
+                                <td className="px-5 py-3">{spec.value}</td>
+                              </tr>
+                            ))}
+                            {activeProduct.applicationAreas.length > 0 && (
+                              <tr className="hover:bg-slate-50/40 transition-colors duration-150">
+                                <td className="px-5 py-3 font-semibold text-primary-dark">{isEs ? 'Áreas de Aplicación' : 'Application Areas'}</td>
+                                <td className="px-5 py-3">
+                                  <ul className="list-disc list-inside space-y-0.5">
+                                    {activeProduct.applicationAreas.map((area, i) => (
+                                      <li key={i}>{area}</li>
+                                    ))}
+                                  </ul>
+                                </td>
+                              </tr>
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 4. Interactive Sample Request inline panel */}
+                  <div className="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200/50 text-left space-y-3.5">
+                    <h5 className="text-sm font-extrabold text-primary-dark flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                      <span>{brandId === 'xtralife' ? (isEs ? 'Canal de Distribución Autorizado' : 'Authorized Distribution Channel') : (isEs ? 'Canal de Trazabilidad Médica' : 'Medical Traceability Channel')}</span>
+                    </h5>
+                    
+                    {sampleRequested ? (
+                      <div className="flex flex-col items-center justify-center text-center py-4 gap-2">
+                        <CheckCircle2 className="w-8 h-8 text-emerald-500 animate-bounce" />
+                        <h6 className="text-xs font-bold text-primary-dark">{isEs ? '¡Solicitud Registrada!' : 'Request Registered!'}</h6>
+                        <p className="text-[11px] text-slate-400 font-semibold max-w-xs leading-relaxed">
+                          {isEs 
+                            ? (brandId === 'xtralife' 
+                              ? 'Un asesor comercial de Maines SRL se pondrá en contacto para gestionar el envío de muestras y catálogos.' 
+                              : 'Un asesor de Maines SRL revisará su registro médico para autorizar el envío de muestras físicas.')
+                            : (brandId === 'xtralife'
+                              ? 'A Maines SRL advisor will contact you to manage sample and catalog shipments.'
+                              : 'An executive will review your medical credentials to authorize physical sample shipments.')}
+                        </p>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleSampleRequest} className="flex flex-col gap-3.5">
+                        <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                          {brandId === 'xtralife'
+                            ? (isEs 
+                              ? 'La distribución de muestras comerciales y catálogos de suplementos está dirigida a farmacias, consultorios y distribuidores autorizados en Bolivia.'
+                              : 'Supplement sample distribution and catalogs are directed to pharmacies, certified practices, and authorized retailers in Bolivia.')
+                            : (isEs 
+                              ? 'El suministro de muestras clínicas está restringido estrictamente a profesionales de la salud con matrícula profesional válida en Bolivia.' 
+                              : 'Sample distribution is restricted to certified healthcare practitioners with active license registration in Bolivia.')}
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          <input 
+                            type="text" 
+                            required
+                            value={licenseNumber}
+                            onChange={(e) => setLicenseNumber(e.target.value)}
+                            placeholder={isEs ? "Nº de Matrícula Profesional o Clínica" : "Healthcare License / Clinic ID"} 
+                            className="flex-grow px-4 py-2.5 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-1 transition-all"
+                            style={{ '--tw-ring-color': `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+                          />
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="px-5 py-2.5 text-xs font-extrabold text-white rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 focus:outline-none disabled:opacity-50 cursor-pointer"
+                            style={{ backgroundColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+                          >
+                            {isSubmitting ? (
+                              <span>...</span>
+                            ) : (
+                              <>
+                                <span>{isEs ? 'Solicitar Muestra' : 'Request Sample'}</span>
+                                <FileText className="w-3.5 h-3.5" />
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </form>
+                    )}
+                  </div>
+
+                  {/* 5. Clinical Insights Video Grid */}
+                  {activeProduct.clinicalInsights && activeProduct.clinicalInsights.length > 0 && (
+                    <div className="border-t border-slate-100 pt-8 text-left space-y-4">
+                      <div>
+                        <h4 className={`text-lg sm:text-xl font-extrabold font-display tracking-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
+                          {isEs ? 'Clinical Insights' : 'Clinical Insights'}
+                        </h4>
+                        <p className="text-xs text-slate-400 font-semibold mt-1">
+                          {isEs ? 'Explore videos de capacitación y dosieres científicos del producto.' : 'Explore training videos and scientific product dossiers.'}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {activeProduct.clinicalInsights.map((insight, idx) => (
+                          <div 
+                            key={idx}
+                            className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-slate-900 border border-slate-800 flex flex-col justify-end p-4 group/insight cursor-pointer"
+                          >
+                            {/* Dark gradient mask */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-0 opacity-80 group-hover/insight:opacity-90 transition-opacity duration-300" />
+                            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:12px_12px] pointer-events-none" />
+
+                            {/* Floating icon */}
+                            <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/10 group-hover/insight:bg-white/20 border border-white/10 flex items-center justify-center transition-all duration-300 scale-95 group-hover/insight:scale-100">
+                              {getInsightIcon(insight.type)}
+                            </div>
+
+                            {/* Info */}
+                            <div className="relative z-10 text-left">
+                              <span className="text-[8px] font-extrabold uppercase tracking-widest" style={{ color: `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+                                {insight.label}
+                              </span>
+                              <h5 className="text-[13px] font-bold text-white tracking-tight mt-0.5 group-hover/insight:text-white/95">
+                                {insight.title}
+                              </h5>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                </motion.div>
+              ) : (
+                <div className="w-full h-full min-h-[400px] bg-white rounded-[32px] border border-slate-200/50 flex flex-col items-center justify-center p-10 text-center gap-3">
+                  <span className="text-3xl text-slate-300">📦</span>
+                  <h4 className="text-sm font-extrabold uppercase tracking-wider text-slate-600">
+                    {isEs ? 'Seleccione un Producto' : 'Select a Product'}
+                  </h4>
+                  <p className="text-xs text-slate-400 font-semibold max-w-xs leading-relaxed">
+                    {isEs 
+                      ? 'Por favor elija un dispositivo o fórmula del catálogo de la izquierda para visualizar sus especificaciones y credenciales.' 
+                      : 'Please select a product from the list to view detailed composition parameters.'}
+                  </p>
+                </div>
+              )}
+            </AnimatePresence>
           </div>
 
         </div>
 
       </div>
+
+      {/* Lightbox / Zoom Modal */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxImage(null)}
+            className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl max-h-[85vh] bg-white rounded-2xl overflow-hidden p-1.5 shadow-2xl flex items-center justify-center cursor-default"
+            >
+              <img src={lightboxImage} alt="Large product view" className="max-w-full max-h-[80vh] object-contain rounded-xl" />
+              <button
+                onClick={() => setLightboxImage(null)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/75 hover:scale-105 transition-all focus:outline-none cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

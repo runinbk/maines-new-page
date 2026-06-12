@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BrandPortal from './components/BrandPortal';
 import AboutSection from './components/AboutSection';
-import SocialWall from './components/SocialWall';
 import CTAContact from './components/CTAContact';
 import Footer from './components/Footer';
 import BrandLayout from './components/brand/BrandLayout';
@@ -15,12 +14,60 @@ function AppContent() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      setCurrentHash(window.location.hash);
-      // Fast scroll to top on routing changes
-      window.scrollTo(0, 0);
+      const newHash = window.location.hash;
+      const prevHash = currentHash;
+      setCurrentHash(newHash);
+
+      const isBrandPage = newHash.startsWith('#/brand/');
+      const wasBrandPage = prevHash.startsWith('#/brand/');
+
+      if (isBrandPage || (wasBrandPage && !isBrandPage)) {
+        // Fast scroll to top only when transitioning between page layouts (home vs brand pages)
+        window.scrollTo(0, 0);
+        
+        // If returning to home and targeting a specific section, scroll to it smoothly after mount
+        if (wasBrandPage && !isBrandPage && newHash && newHash !== '#') {
+          setTimeout(() => {
+            const targetId = newHash.substring(1);
+            const element = document.getElementById(targetId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 150);
+        }
+      } else {
+        // Smooth scroll for local section anchors on the home page
+        if (newHash && newHash !== '#') {
+          const targetId = newHash.substring(1);
+          const element = document.getElementById(targetId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else if (newHash === '#' || newHash === '') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+      }
     };
+
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [currentHash]);
+
+  // Handle initial mount smooth scroll if a hash exists in the URL
+  useEffect(() => {
+    const initialHash = window.location.hash;
+    if (initialHash && initialHash !== '#' && !initialHash.startsWith('#/brand/')) {
+      setTimeout(() => {
+        const targetId = initialHash.substring(1);
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+    }
   }, []);
 
   // Simple, robust client-side hash router
@@ -59,9 +106,6 @@ function AppContent() {
 
         {/* Asymmetrical Trayectory About Us */}
         <AboutSection />
-
-        {/* Carousel Instagram Reels Wall */}
-        <SocialWall />
 
         {/* Interactive DNA Contact CTA */}
         <CTAContact />

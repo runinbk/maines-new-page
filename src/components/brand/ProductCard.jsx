@@ -2,6 +2,40 @@ import { useState } from 'react';
 import ProductGallery from './ProductGallery';
 import { Send, FileText, CheckCircle2, Play, BookOpen, FileSpreadsheet } from 'lucide-react';
 
+// Import custom application zone icons
+import zonaRostro from '../../../assets/iconos/zonas/zona-rostro.png';
+import zonaCuello from '../../../assets/iconos/zonas/zona-cuello.png';
+import zonaEscote from '../../../assets/iconos/zonas/zona-escote.png';
+import zonaAbdomen from '../../../assets/iconos/zonas/zona-abdomen.png';
+import zonaGluteos from '../../../assets/iconos/zonas/zona-gluteos.png';
+import zonaPiernas from '../../../assets/iconos/zonas/zona-piernas.png';
+import zonaBrazos from '../../../assets/iconos/zonas/zona-brazos.png';
+import zonaManos from '../../../assets/iconos/zonas/zona-manos.png';
+import zonaCintura from '../../../assets/iconos/zonas/zona-cintura.png';
+import zonaFlancos from '../../../assets/iconos/zonas/zona-flancos.png';
+import zonaPapada from '../../../assets/iconos/zonas/zona-papada.png';
+import zonaCuerpo from '../../../assets/iconos/zonas/zona-cuerpo.png';
+
+const zoneIcons = {
+  "Rostro": zonaRostro,
+  "Cuello": zonaCuello,
+  "Escote": zonaEscote,
+  "Abdomen": zonaAbdomen,
+  "Glúteos": zonaGluteos,
+  "Piernas": zonaPiernas,
+  "Brazos": zonaBrazos,
+  "Manos": zonaManos,
+  "Cintura": zonaCintura,
+  "Flancos": zonaFlancos,
+  "Papada": zonaPapada,
+  "Cuerpo": zonaCuerpo
+};
+
+const getZoneIcon = (zoneName) => {
+  if (!zoneName) return null;
+  return zoneIcons[zoneName] || zoneIcons[zoneName.trim()] || null;
+};
+
 /**
  * ProductCard Component
  * @param {Object} props
@@ -13,7 +47,15 @@ const ProductCard = ({ product, brand, language }) => {
   const isEs = language === 'es';
   
   // Isolated states preventing parent re-renders
-  const [activeTab, setActiveTab] = useState('specs'); // 'specs' | 'composition'
+  const hasSpecs = product.technicalSpecs || (product.specifications && product.specifications.length > 0);
+  const [prevProductId, setPrevProductId] = useState(product.id);
+  const [activeTab, setActiveTab] = useState(hasSpecs ? 'specs' : 'sample');
+  
+  if (product.id !== prevProductId) {
+    setPrevProductId(product.id);
+    setActiveTab(hasSpecs ? 'specs' : 'sample');
+  }
+
   const [showSampleSuccess, setShowSampleSuccess] = useState(false);
   const [isSubmittingSample, setIsSubmittingSample] = useState(false);
 
@@ -100,43 +142,91 @@ const ProductCard = ({ product, brand, language }) => {
             <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
               {product.composition}
             </p>
+
+            {/* Principios Activos Renderizado Condicional */}
+            {product.activeIngredients && (
+              <div className="mt-2 space-y-1">
+                <span className="text-xs font-extrabold tracking-widest text-slate-400 uppercase block">
+                  {isEs ? 'Principios Activos' : 'Active Ingredients'}
+                </span>
+                <p className="text-sm sm:text-base text-slate-700 font-bold">
+                  {product.activeIngredients}
+                </p>
+              </div>
+            )}
+
+            {/* Zonas de Aplicación Renderizado Condicional */}
+            {product.applicationZones && (
+              <div className="mt-2 space-y-1.5">
+                <span className="text-xs font-extrabold tracking-widest text-slate-400 uppercase block">
+                  {isEs ? 'Zonas de Aplicación' : 'Application Zones'}
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {product.applicationZones.map((zone, idx) => {
+                    const icon = getZoneIcon(zone);
+                    return (
+                      <span 
+                        key={idx} 
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border transition-colors duration-200 cursor-default shadow-xs"
+                        style={{
+                          backgroundColor: `rgba(${brand.id === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.08)`,
+                          borderColor: `rgba(${brand.id === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.2)`,
+                          color: brand.id === 'jetema' ? '#4C5A9D' : '#0ea5e9'
+                        }}
+                      >
+                        {icon && (
+                          <img 
+                            src={icon} 
+                            alt="" 
+                            className="w-3.5 h-3.5 object-contain shrink-0 filter brightness-100" 
+                          />
+                        )}
+                        <span>{zone}</span>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Interactive tabs controller for dynamic info block */}
-          <div className="flex items-center gap-3 border-b border-slate-100 pb-0.5 mt-4">
-            <button
-              onClick={() => setActiveTab('specs')}
-              className={`px-4 py-2 border-b-2 text-xs font-extrabold uppercase tracking-wider transition-all duration-200 focus:outline-none ${
-                activeTab === 'specs'
-                  ? `border-cyan-500 text-primary-dark`
-                  : 'border-transparent text-slate-400 hover:text-slate-500'
-              }`}
-              style={{
-                borderColor: activeTab === 'specs' ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined
-              }}
-            >
-              {isEs ? 'Especificaciones' : 'Specifications'}
-            </button>
-            
-            <button
-              onClick={() => setActiveTab('sample')}
-              className={`px-4 py-2 border-b-2 text-xs font-extrabold uppercase tracking-wider transition-all duration-200 focus:outline-none ${
-                activeTab === 'sample'
-                  ? `border-cyan-500 text-primary-dark`
-                  : 'border-transparent text-slate-400 hover:text-slate-500'
-              }`}
-              style={{
-                borderColor: activeTab === 'sample' ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined
-              }}
-            >
-              {isEs ? 'Muestra Médica' : 'Request Sample'}
-            </button>
-          </div>
+          {hasSpecs && (
+            <div className="flex items-center gap-3 border-b border-slate-100 pb-0.5 mt-4">
+              <button
+                onClick={() => setActiveTab('specs')}
+                className={`px-4 py-2 border-b-2 text-xs font-extrabold uppercase tracking-wider transition-all duration-200 focus:outline-none ${
+                  activeTab === 'specs'
+                    ? `border-cyan-500 text-primary-dark`
+                    : 'border-transparent text-slate-400 hover:text-slate-500'
+                }`}
+                style={{
+                  borderColor: activeTab === 'specs' ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined
+                }}
+              >
+                {isEs ? 'Especificaciones' : 'Specifications'}
+              </button>
+              
+              <button
+                onClick={() => setActiveTab('sample')}
+                className={`px-4 py-2 border-b-2 text-xs font-extrabold uppercase tracking-wider transition-all duration-200 focus:outline-none ${
+                  activeTab === 'sample'
+                    ? `border-cyan-500 text-primary-dark`
+                    : 'border-transparent text-slate-400 hover:text-slate-500'
+                }`}
+                style={{
+                  borderColor: activeTab === 'sample' ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined
+                }}
+              >
+                {isEs ? 'Muestra Médica' : 'Request Sample'}
+              </button>
+            </div>
+          )}
 
           {/* Dynamic Tab Panel Container */}
           <div className="w-full min-h-[160px] flex items-center justify-stretch">
             
-            {activeTab === 'specs' && (
+            {activeTab === 'specs' && hasSpecs && (
               <div className="w-full overflow-hidden border border-slate-100 rounded-2xl animate-fade-in text-left">
                 <table className="w-full text-xs sm:text-sm font-medium">
                   <thead>
@@ -146,7 +236,7 @@ const ProductCard = ({ product, brand, language }) => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 text-slate-600">
-                    {product.specifications.map((spec, idx) => (
+                    {(product.specifications || []).map((spec, idx) => (
                       <tr key={idx} className="hover:bg-slate-50/50 transition-colors duration-150">
                         <td className="px-4 py-2.5 font-semibold text-primary-dark">{spec.label}</td>
                         <td className="px-4 py-2.5">{spec.value}</td>

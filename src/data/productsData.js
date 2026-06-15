@@ -103,11 +103,20 @@ export const brandsData = {
         category: "toxins",
         categoryLabel: { es: "Toxina Botulínica", en: "Botulinum Toxin" },
         descriptor: "Clostridium Botulinum Toxin Type A",
-        coverImage: "/assets/info/toxta-product.webp",
+        coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta-portada.webp",
         gallery: [
-          "/assets/info/toxta-product.webp",
-          "/assets/info/toxta-cap.webp",
-          "/assets/info/toxta-vial.webp"
+          {
+            image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta1.webp",
+            video: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta1.webm"
+          },
+          {
+            image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta2.webp",
+            video: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta2.webm"
+          },
+          {
+            image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta3.webp",
+            video: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta3.webm"
+          }
         ],
         certBadge: "FDA Approved",
         composition: "Complejo de toxina Clostridium botulinum tipo A purificada (100 unidades), estabilizada con Albúmina Humana y Cloruro de Sodio.",

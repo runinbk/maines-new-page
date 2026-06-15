@@ -8,12 +8,20 @@
     "slogan": "Pureza absoluta del 99.8% para un efecto rápido, consistente y de mínima inmunogenicidad.",
     "description": "TOXTA® es una toxina botulínica de Tipo A premium desarrollada por JETEMA, elaborada a partir de una cepa original procedente de un prestigioso Instituto Nacional Europeo. Su avanzado proceso de manufactura patentado asegura un producto de una pureza molecular sin precedentes (99.8%), minimizando drásticamente el riesgo de resistencia o inmunogenicidad en tratamientos a largo plazo. Con menos cantidad produce un efecto más rápido y consistente gracias a su alta actividad biológica. Cuenta con Registro Sanitario vigente en Bolivia.",
     "assets": {
-      "coverImage": "/assets/marcas/jetema/toxta-cover.jpg",
-      "hoverGlitchVideo": "/assets/marcas/jetema/toxta-glitch.mp4",
-      "galleryImages": [
-        "/assets/marcas/jetema/toxta-vial.jpg",
-        "/assets/marcas/jetema/toxta-box.jpg",
-        "/assets/marcas/jetema/toxta-areas.jpg"
+      "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta-portada.webp",
+      "gallery": [
+        {
+          "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta1.webp",
+          "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta1.webm"
+        },
+        {
+          "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta2.webp",
+          "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta2.webm"
+        },
+        {
+          "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta3.webp",
+          "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta3.webm"
+        }
       ]
     },
     "specifications": [

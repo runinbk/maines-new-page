@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { Menu, X, Globe, ArrowRight } from 'lucide-react';
+import { handleNavClick, handleHomeClick } from '../utils/navigation';
 
 const Navbar = () => {
   const { language, toggleLanguage, t } = useLanguage();
@@ -49,7 +50,11 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group focus:outline-none">
+          <a 
+            href="#" 
+            onClick={handleHomeClick}
+            className="flex items-center gap-2 group focus:outline-none"
+          >
             <img 
               src="/assets/logo-maines.svg" 
               alt="Maines Logo" 
@@ -64,6 +69,13 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => {
+                  if (link.href === '#') {
+                    handleHomeClick(e);
+                  } else {
+                    handleNavClick(e, link.href.substring(1));
+                  }
+                }}
                 className="text-sm 2xl:text-base font-medium text-primary-dark/80 hover:text-accent transition-colors duration-200 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.name}
@@ -86,6 +98,7 @@ const Navbar = () => {
             {/* CTA Button */}
             <a 
               href="#contact"
+              onClick={(e) => handleNavClick(e, 'contact')}
               className="inline-flex items-center gap-1 px-5 py-2 2xl:px-7 2xl:py-3 rounded-full text-xs 2xl:text-sm font-bold text-white bg-gradient-to-r from-accent to-[#0284c7] hover:from-accent-light hover:to-accent shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 transform hover:scale-105 active:scale-95 group"
             >
               <span>{t('nav.cta')}</span>
@@ -145,7 +158,14 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    if (link.href === '#') {
+                      handleHomeClick(e);
+                    } else {
+                      handleNavClick(e, link.href.substring(1));
+                    }
+                  }}
                   className="text-base font-semibold text-primary-dark/85 hover:text-accent transition-colors duration-200 py-2 border-b border-slate-100"
                 >
                   {link.name}
@@ -157,7 +177,10 @@ const Navbar = () => {
           <div className="flex flex-col gap-3">
             <a 
               href="#contact"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                setIsOpen(false);
+                handleNavClick(e, 'contact');
+              }}
               className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full text-sm font-bold text-white bg-gradient-to-r from-accent to-[#0284c7] hover:from-accent-light hover:to-accent shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 transform hover:scale-[1.02] active:scale-95"
             >
               <span>{t('nav.cta')}</span>

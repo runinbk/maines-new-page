@@ -7,54 +7,61 @@ import AboutSection from './components/AboutSection';
 import CTAContact from './components/CTAContact';
 import Footer from './components/Footer';
 import BrandLayout from './components/brand/BrandLayout';
+import { navigateHome } from './utils/navigation';
 
 function AppContent() {
   const { language, toggleLanguage } = useLanguage();
-  const [currentHash, setCurrentHash] = useState(window.location.hash);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const newHash = window.location.hash;
-      const prevHash = currentHash;
-      setCurrentHash(newHash);
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
 
-      const isBrandPage = newHash.startsWith('#/brand/');
-      const wasBrandPage = prevHash.startsWith('#/brand/');
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
 
-      if (isBrandPage || (wasBrandPage && !isBrandPage)) {
-        // Fast scroll to top only when transitioning between page layouts (home vs brand pages)
-        window.scrollTo(0, 0);
-        
-        // If returning to home and targeting a specific section, scroll to it smoothly after mount
-        if (wasBrandPage && !isBrandPage && newHash && newHash !== '#') {
+  // Helper to extract active brand from the path segments (handles subdirectories)
+  const getActiveBrandId = () => {
+    const segments = currentPath.split('/').filter(Boolean);
+    if (segments.length === 0) return null;
+    const last = segments[segments.length - 1];
+    if (['jetema', 'dermclar', 'xtralife'].includes(last)) {
+      return last;
+    }
+    return null;
+  };
+
+  const activeBrandId = getActiveBrandId();
+
+  useEffect(() => {
+    if (activeBrandId) {
+      // Fast scroll to top when on a brand layout
+      window.scrollTo(0, 0);
+    } else {
+      // Check if we came from a subpage or clicked a menu item with a scroll target
+      const state = window.history.state;
+      if (state && state.scrollToSection) {
+        const targetId = state.scrollToSection;
+        if (targetId === 'top') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
           setTimeout(() => {
-            const targetId = newHash.substring(1);
             const element = document.getElementById(targetId);
             if (element) {
               element.scrollIntoView({ behavior: 'smooth' });
             }
           }, 150);
         }
-      } else {
-        // Smooth scroll for local section anchors on the home page
-        if (newHash && newHash !== '#') {
-          const targetId = newHash.substring(1);
-          const element = document.getElementById(targetId);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        } else if (newHash === '#' || newHash === '') {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        }
+        // Clear history state to avoid scrolling again on page refresh
+        window.history.replaceState({}, '', window.location.pathname);
       }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [currentHash]);
+    }
+  }, [currentPath, activeBrandId]);
 
   // Handle initial mount smooth scroll if a hash exists in the URL
   useEffect(() => {
@@ -70,22 +77,12 @@ function AppContent() {
     }
   }, []);
 
-  // Simple, robust client-side hash router
-  const getActiveBrandId = () => {
-    if (currentHash === '#/brand/jetema') return 'jetema';
-    if (currentHash === '#/brand/dermclar') return 'dermclar';
-    if (currentHash === '#/brand/xtralife') return 'xtralife';
-    return null;
-  };
-
-  const activeBrandId = getActiveBrandId();
-
   if (activeBrandId) {
     return (
       <BrandLayout
         brandId={activeBrandId}
         language={language}
-        onBackToHome={() => { window.location.hash = ''; }}
+        onBackToHome={() => navigateHome()}
         onToggleLanguage={toggleLanguage}
       />
     );

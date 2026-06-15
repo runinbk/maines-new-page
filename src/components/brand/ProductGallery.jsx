@@ -22,6 +22,7 @@ const ProductGallery = ({ images, productName, brand }) => {
   }
 
   const currentImage = images[activeIndex];
+  const imageUrl = typeof currentImage === 'object' ? currentImage.image : currentImage;
 
   const handlePrev = (e) => {
     e.stopPropagation();
@@ -36,16 +37,16 @@ const ProductGallery = ({ images, productName, brand }) => {
   return (
     <div className="w-full flex flex-col gap-3 group/gallery">
       {/* Primary Display Container */}
-      <div className="relative w-full aspect-[4/3] sm:aspect-square bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden flex items-center justify-center p-6 shadow-sm transition-all duration-300">
+      <div className="relative w-full aspect-[4/3] sm:aspect-square bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden flex items-center justify-center p-0 shadow-sm transition-all duration-300">
         
         {/* Underlay brand color aura */}
         <div className="absolute inset-0 bg-gradient-to-tr from-slate-100 via-transparent to-white opacity-40 pointer-events-none" />
         
         {/* Main Image */}
         <img
-          src={currentImage}
+          src={imageUrl}
           alt={`${productName} View ${activeIndex + 1}`}
-          className="max-w-full max-h-full object-contain filter drop-shadow-sm transition-all duration-500"
+          className="w-full h-full object-cover filter drop-shadow-sm transition-all duration-500"
           loading="lazy"
         />
 
@@ -96,7 +97,7 @@ const ProductGallery = ({ images, productName, brand }) => {
               }}
             >
               <img
-                src={img}
+                src={typeof img === 'object' ? img.image : img}
                 alt={`${productName} thumbnail ${idx + 1}`}
                 className="max-w-full max-h-full object-contain"
               />
@@ -130,7 +131,7 @@ const ProductGallery = ({ images, productName, brand }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={currentImage}
+              src={imageUrl}
               alt={`${productName} Lightbox`}
               className="max-w-full max-h-[75vh] object-contain rounded-lg filter drop-shadow-2xl"
             />

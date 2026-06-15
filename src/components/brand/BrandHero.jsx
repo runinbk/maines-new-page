@@ -285,6 +285,10 @@ const BrandHero = ({ brand, language }) => {
             
             <a
               href="#about-section"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-extrabold transition-all duration-300 border border-white/15 bg-white/5 hover:bg-white/10 text-white backdrop-blur-md transform hover:scale-105 active:scale-95"
             >
               <ShieldCheck className="w-4 h-4 text-slate-400" />

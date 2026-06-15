@@ -4,6 +4,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { 
   MapPin, Phone, Mail, ArrowUp, Globe 
 } from 'lucide-react';
+import { handleNavClick, handleHomeClick, navigateToBrand } from '../utils/navigation';
 
 const InstagramIcon = (props) => (
   <svg 
@@ -73,7 +74,7 @@ const Footer = () => {
           
           {/* Col 1: Brand Info */}
           <div className="md:col-span-5 text-left space-y-4">
-            <a href="#" className="inline-block">
+            <a href="#" onClick={handleHomeClick} className="inline-block">
               {/* White overlay filter for brand svg inside dark backgrounds */}
               <img 
                 src="/assets/logo-maines.svg" 
@@ -114,22 +115,38 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm font-semibold">
               <li>
-                <a href="#about" className="hover:text-white transition-colors duration-200">
+                <a 
+                  href="#about" 
+                  onClick={(e) => handleNavClick(e, 'about')}
+                  className="hover:text-white transition-colors duration-200"
+                >
                   {t('nav.about')}
                 </a>
               </li>
               <li>
-                <a href="#ecosystem" className="hover:text-white transition-colors duration-200">
+                <a 
+                  href="/jetema" 
+                  onClick={(e) => { e.preventDefault(); navigateToBrand('jetema'); }}
+                  className="hover:text-white transition-colors duration-200"
+                >
                   Jetema
                 </a>
               </li>
               <li>
-                <a href="#ecosystem" className="hover:text-white transition-colors duration-200">
+                <a 
+                  href="/dermclar" 
+                  onClick={(e) => { e.preventDefault(); navigateToBrand('dermclar'); }}
+                  className="hover:text-white transition-colors duration-200"
+                >
                   Dermclar
                 </a>
               </li>
               <li>
-                <a href="#ecosystem" className="hover:text-white transition-colors duration-200">
+                <a 
+                  href="/xtralife" 
+                  onClick={(e) => { e.preventDefault(); navigateToBrand('xtralife'); }}
+                  className="hover:text-white transition-colors duration-200"
+                >
                   Xtralife
                 </a>
               </li>
@@ -171,10 +188,10 @@ const Footer = () => {
 
           {/* Compliance Sub-links */}
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <a href="#" className="hover:text-slate-300 transition-colors duration-200">{t('footer.privacy')}</a>
-            <a href="#" className="hover:text-slate-300 transition-colors duration-200">{t('footer.terms')}</a>
-            <a href="#" className="hover:text-slate-300 transition-colors duration-200">{t('footer.cookies')}</a>
-            <a href="#" className="hover:text-slate-300 transition-colors duration-200">{t('footer.support')}</a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-slate-300 transition-colors duration-200">{t('footer.privacy')}</a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-slate-300 transition-colors duration-200">{t('footer.terms')}</a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-slate-300 transition-colors duration-200">{t('footer.cookies')}</a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-slate-300 transition-colors duration-200">{t('footer.support')}</a>
           </div>
 
           {/* Return to Top button */}

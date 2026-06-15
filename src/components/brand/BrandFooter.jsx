@@ -1,4 +1,5 @@
 import { ArrowUp, Globe } from 'lucide-react';
+import { navigateToBrand, getBasePath } from '../../utils/navigation';
 
 // Custom lightweight SVG Icons to prevent ESM build mismatches
 const InstagramIcon = ({ className }) => (
@@ -48,6 +49,14 @@ const BrandFooter = ({ brand, language, onBackToHome }) => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleScrollTo = (e, id) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   // Define brand-specific gradient backgrounds for the footer
@@ -135,13 +144,25 @@ const BrandFooter = ({ brand, language, onBackToHome }) => {
                 {isEs ? 'Explorar' : 'Explore'}
               </h5>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-white/70">
-                <a href="#catalog-section" className="hover:text-white transition-colors duration-200">
+                <a 
+                  href="#catalog-section" 
+                  onClick={(e) => handleScrollTo(e, 'catalog-section')}
+                  className="hover:text-white transition-colors duration-200"
+                >
                   {isEs ? 'Catálogo de Productos' : 'Product Catalog'}
                 </a>
-                <a href="#about-section" className="hover:text-white transition-colors duration-200">
+                <a 
+                  href="#about-section" 
+                  onClick={(e) => handleScrollTo(e, 'about-section')}
+                  className="hover:text-white transition-colors duration-200"
+                >
                   {isEs ? 'Respaldo Institucional' : 'Institutional Support'}
                 </a>
-                <a href="#cta-section" className="hover:text-white transition-colors duration-200">
+                <a 
+                  href="#cta-section" 
+                  onClick={(e) => handleScrollTo(e, 'cta-section')}
+                  className="hover:text-white transition-colors duration-200"
+                >
                   {isEs ? 'Contacto Comercial' : 'Commercial Inquiry'}
                 </a>
               </div>
@@ -173,19 +194,22 @@ const BrandFooter = ({ brand, language, onBackToHome }) => {
               </h5>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-white/70">
                 <a 
-                  href="#/brand/jetema" 
+                  href={`${getBasePath().replace(/\/$/, '')}/jetema`} 
+                  onClick={(e) => { e.preventDefault(); navigateToBrand('jetema'); }}
                   className={`hover:text-white transition-colors duration-200 ${brandId === 'jetema' ? 'text-white font-bold' : ''}`}
                 >
                   Jetema
                 </a>
                 <a 
-                  href="#/brand/dermclar" 
+                  href={`${getBasePath().replace(/\/$/, '')}/dermclar`} 
+                  onClick={(e) => { e.preventDefault(); navigateToBrand('dermclar'); }}
                   className={`hover:text-white transition-colors duration-200 ${brandId === 'dermclar' ? 'text-white font-bold' : ''}`}
                 >
                   Dermclar
                 </a>
                 <a 
-                  href="#/brand/xtralife" 
+                  href={`${getBasePath().replace(/\/$/, '')}/xtralife`} 
+                  onClick={(e) => { e.preventDefault(); navigateToBrand('xtralife'); }}
                   className={`hover:text-white transition-colors duration-200 ${brandId === 'xtralife' ? 'text-white font-bold' : ''}`}
                 >
                   Xtralife

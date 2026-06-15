@@ -68,7 +68,10 @@ export const translations = {
       metric3Val: "$2,400,000 USD",
       metric3Lbl: "Volumen de Ventas Real 2022",
       metric4Val: "$3,100,000 USD",
-      metric4Lbl: "Volumen de Ventas Real 2023"
+      metric4Lbl: "Volumen de Ventas Real 2023",
+      metricsDescription: "Desde el año 2020, Maines SRL ha experimentado una consolidación financiera y comercial sin precedentes, liderando la distribución de productos de medicina estética integral en Bolivia.",
+      metricsKpiTitle: "Crecimiento Acumulado",
+      metricsKpiDesc: "Incremento continuo del volumen de ventas certificado en el mercado nacional."
     },
     social: {
       pretitle: "ÚLTIMOS AVANCES",
@@ -186,7 +189,10 @@ export const translations = {
       metric3Val: "$2,400,000 USD",
       metric3Lbl: "Actual Sales Volume 2022",
       metric4Val: "$3,100,000 USD",
-      metric4Lbl: "Actual Sales Volume 2023"
+      metric4Lbl: "Actual Sales Volume 2023",
+      metricsDescription: "Since 2020, Maines SRL has experienced unprecedented financial and commercial consolidation, leading the distribution of comprehensive aesthetic medicine products in Bolivia.",
+      metricsKpiTitle: "Accumulated Growth",
+      metricsKpiDesc: "Continuous increase in certified sales volume in the national market."
     },
     social: {
       pretitle: "LATEST ADVANCES",

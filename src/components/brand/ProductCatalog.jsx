@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
@@ -59,7 +59,7 @@ const glitchStyles = `
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     transition: transform 0.3s ease;
   }
   .glitch-container:hover .glitch-img {
@@ -71,7 +71,7 @@ const glitchStyles = `
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     opacity: 0;
     pointer-events: none;
   }
@@ -210,8 +210,8 @@ const ProductCatalog = ({ brand, language }) => {
             slogan: prod.slogan,
             description: prod.description,
             composition: prod.description,
-            coverImage: getPlaceholdImg(prod.name.split(' ')[0], 'jetema', 600, 600),
-            gallery: [
+            coverImage: prod.assets?.coverImage || getPlaceholdImg(prod.name.split(' ')[0], 'jetema', 600, 600),
+            gallery: prod.assets?.gallery || prod.assets?.galleryImages || [
               getPlaceholdImg(`${prod.name.split(' ')[0]} Vial`, 'jetema', 600, 600),
               getPlaceholdImg(`${prod.name.split(' ')[0]} Packaging`, 'jetema', 600, 600)
             ],
@@ -330,18 +330,52 @@ const ProductCatalog = ({ brand, language }) => {
   // Gallery active index state
   const [activeGalleryIdx, setActiveGalleryIdx] = useState(0);
   const [prevSelectedProductId, setPrevSelectedProductId] = useState(selectedProductId);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const videoRef = useRef(null);
 
   if (selectedProductId !== prevSelectedProductId) {
     setPrevSelectedProductId(selectedProductId);
     setActiveGalleryIdx(0);
     setSampleRequested(false);
     setLicenseNumber('');
+    setIsHovered(false);
   }
 
   const activeImage = useMemo(() => {
     if (!activeProduct) return "";
-    return activeProduct.gallery[activeGalleryIdx] || activeProduct.coverImage;
+    const item = activeProduct.gallery[activeGalleryIdx] || activeProduct.coverImage;
+    return typeof item === 'object' ? item.image : item;
   }, [activeProduct, activeGalleryIdx]);
+
+  const activeVideo = useMemo(() => {
+    if (!activeProduct) return null;
+    const item = activeProduct.gallery[activeGalleryIdx];
+    return (item && typeof item === 'object') ? item.video : null;
+  }, [activeProduct, activeGalleryIdx]);
+
+  // Infinite carousel automatic scrolling (only active when not hovered)
+  useEffect(() => {
+    if (!activeProduct || !activeProduct.gallery || activeProduct.gallery.length <= 1 || isHovered) return;
+
+    const timer = setInterval(() => {
+      setActiveGalleryIdx(prev => (prev === activeProduct.gallery.length - 1 ? 0 : prev + 1));
+    }, 3500); // 3.5 seconds cycle
+
+    return () => clearInterval(timer);
+  }, [activeProduct, isHovered]);
+
+  // Video hover playback engine
+  useEffect(() => {
+    if (isHovered && videoRef.current) {
+      videoRef.current.play().catch(err => {
+        console.warn("Video playback was interrupted or blocked:", err);
+      });
+    } else if (!isHovered && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [isHovered, activeVideo]);
 
   const handlePrevGallery = () => {
     if (!activeProduct) return;
@@ -376,6 +410,8 @@ const ProductCatalog = ({ brand, language }) => {
       default: return <FileSpreadsheet className="w-4.5 h-4.5 text-white/95" />;
     }
   };
+
+  const hasCover = activeProduct && activeProduct.coverImage && !activeProduct.coverImage.startsWith('https://placehold.co/');
 
   return (
     <section id="catalog-section" className="py-20 lg:py-24 px-4 sm:px-12 xl:px-20 bg-[#F2F5F6] w-full border-t border-slate-200/50">
@@ -629,20 +665,29 @@ const ProductCatalog = ({ brand, language }) => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.35 }}
-                  className="w-full bg-white rounded-[32px] border border-slate-200/50 shadow-sm p-6 sm:p-8 md:p-10 flex flex-col gap-10"
+                  className="w-full bg-white rounded-[32px] border border-slate-200/50 shadow-sm flex flex-col gap-0 overflow-hidden"
                 >
                   {/* 1. Header Banner */}
-                  <div className={`relative w-full rounded-2xl overflow-hidden bg-gradient-to-r ${brand.themeGradient} p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-md`}>
-                    {/* Abstract dots overlay */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)] pointer-events-none" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+                  <div 
+                    className={`relative w-full rounded-t-[32px] rounded-b-none overflow-hidden py-10 sm:py-16 px-8 sm:px-12 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-md bg-cover bg-center ${!hasCover ? `bg-gradient-to-r ${brand.themeGradient}` : ''}`}
+                    style={hasCover ? {
+                      backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(248, 250, 252, 0.45)), url(${activeProduct.coverImage})`
+                    } : {}}
+                  >
+                    {/* Abstract dots overlay (only for fallback gradients) */}
+                    {!hasCover && (
+                      <>
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)] pointer-events-none" />
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+                      </>
+                    )}
                     
                     {/* Banner Info */}
                     <div className="relative z-10 text-left space-y-2">
-                      <span className="inline-block px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest bg-white/20 border border-white/35 text-white backdrop-blur-md">
+                      <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest ${hasCover ? 'bg-[#4C5A9D]/10 border border-[#4C5A9D]/20 text-[#4C5A9D]' : 'bg-white/20 border border-white/35 text-white backdrop-blur-md'}`}>
                         {activeProduct.certBadge}
                       </span>
-                      <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white font-display tracking-tight leading-none drop-shadow-sm">
+                      <h2 className={`text-xl sm:text-2xl md:text-3xl font-extrabold font-display tracking-tight leading-none ${hasCover ? 'text-[#0d1f3b] drop-shadow-2xs' : 'text-white drop-shadow-sm'}`}>
                         {activeProduct.name}
                       </h2>
                     </div>
@@ -661,6 +706,9 @@ const ProductCatalog = ({ brand, language }) => {
                     </div>
                   </div>
 
+                  {/* Details Padded Content Wrapper */}
+                  <div className="p-6 sm:p-8 md:p-10 flex flex-col gap-10">
+
                   {/* 2. Main Showcase Split */}
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
                     
@@ -669,7 +717,9 @@ const ProductCatalog = ({ brand, language }) => {
                       {/* Glitch Showcase Container */}
                       <div 
                         onClick={() => setLightboxImage(activeImage)}
-                        className="glitch-container aspect-square w-full rounded-2xl bg-slate-50 border border-slate-200/50 p-6 flex items-center justify-center cursor-zoom-in relative group/image shadow-sm"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                        className="glitch-container aspect-square w-full rounded-2xl bg-slate-50 border border-slate-200/50 p-0 flex items-center justify-center cursor-zoom-in relative group/image shadow-sm overflow-hidden"
                       >
                         <div className="absolute inset-0 bg-gradient-to-tr from-slate-100/50 via-transparent to-white/50 opacity-40 pointer-events-none" />
                         
@@ -678,18 +728,32 @@ const ProductCatalog = ({ brand, language }) => {
                         <img src={activeImage} alt="Glitch 1" className="glitch-clone glitch-clone-1" />
                         <img src={activeImage} alt="Glitch 2" className="glitch-clone glitch-clone-2" />
 
+                        {/* Silent Looping Video on Hover */}
+                        {activeVideo && (
+                          <video
+                            ref={videoRef}
+                            src={activeVideo}
+                            loop
+                            muted
+                            playsInline
+                            preload="auto"
+                            className="absolute inset-0 w-full h-full object-cover bg-white rounded-2xl transition-opacity duration-300 pointer-events-none"
+                            style={{ opacity: isHovered ? 1 : 0, zIndex: isHovered ? 20 : 0 }}
+                          />
+                        )}
+
                         {/* Interactive Gallery Navigation inside main image */}
                         {activeProduct.gallery.length > 1 && (
                           <>
                             <button
                               onClick={(e) => { e.stopPropagation(); handlePrevGallery(); }}
-                              className="absolute left-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200/50 flex items-center justify-center text-primary-dark hover:scale-105 active:scale-95 opacity-0 group-hover/image:opacity-100 transition-all shadow-sm focus:outline-none cursor-pointer"
+                              className="absolute left-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200/50 flex items-center justify-center text-primary-dark hover:scale-105 active:scale-95 opacity-0 group-hover/image:opacity-100 transition-all shadow-sm focus:outline-none cursor-pointer z-[25]"
                             >
                               <ChevronLeft className="w-4 h-4" />
                             </button>
                             <button
                               onClick={(e) => { e.stopPropagation(); handleNextGallery(); }}
-                              className="absolute right-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200/50 flex items-center justify-center text-primary-dark hover:scale-105 active:scale-95 opacity-0 group-hover/image:opacity-100 transition-all shadow-sm focus:outline-none cursor-pointer"
+                              className="absolute right-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200/50 flex items-center justify-center text-primary-dark hover:scale-105 active:scale-95 opacity-0 group-hover/image:opacity-100 transition-all shadow-sm focus:outline-none cursor-pointer z-[25]"
                             >
                               <ChevronRight className="w-4 h-4" />
                             </button>
@@ -697,14 +761,26 @@ const ProductCatalog = ({ brand, language }) => {
                         )}
 
                         {/* Zoom button */}
-                        <div className="absolute right-3 bottom-3 p-2 rounded-xl bg-white/90 border border-slate-100 text-slate-500 opacity-0 group-hover/image:opacity-100 transition-opacity shadow-sm pointer-events-none">
+                        <div className="absolute right-3 bottom-3 p-2 rounded-xl bg-white/90 border border-slate-100 text-slate-500 opacity-0 group-hover/image:opacity-100 transition-opacity shadow-sm pointer-events-none z-[25]">
                           <Maximize2 className="w-3.5 h-3.5" />
                         </div>
 
                         {/* Cert badge in corner */}
-                        <span className="absolute left-3 bottom-3 px-2 py-0.5 bg-slate-900/50 text-[8px] font-extrabold text-white uppercase tracking-wider rounded-md backdrop-blur-xs">
+                        <span className="absolute left-3 bottom-3 px-2 py-0.5 bg-slate-900/50 text-[8px] font-extrabold text-white uppercase tracking-wider rounded-md backdrop-blur-xs z-[25]">
                           {activeProduct.certBadge}
                         </span>
+                      </div>
+
+                      {/* Hidden progressive video preloader pipeline */}
+                      <div className="hidden">
+                        {activeProduct.gallery.map((item, idx) => {
+                          if (item && typeof item === 'object' && item.video) {
+                            return (
+                              <video key={idx} src={item.video} preload="auto" muted />
+                            );
+                          }
+                          return null;
+                        })}
                       </div>
 
                       {/* Mini thumbnails selection list */}
@@ -712,6 +788,7 @@ const ProductCatalog = ({ brand, language }) => {
                         <div className="flex flex-wrap gap-2 items-center justify-start overflow-x-auto no-scrollbar">
                           {activeProduct.gallery.map((img, idx) => {
                             const isThumbSelected = idx === activeGalleryIdx;
+                            const thumbSrc = typeof img === 'object' ? img.image : img;
                             return (
                               <button
                                 key={idx}
@@ -721,7 +798,7 @@ const ProductCatalog = ({ brand, language }) => {
                                   borderColor: isThumbSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : '#e2e8f0'
                                 }}
                               >
-                                <img src={img} alt={`Thumb ${idx + 1}`} className="max-w-full max-h-full object-contain" />
+                                <img src={thumbSrc} alt={`Thumb ${idx + 1}`} className="max-w-full max-h-full object-contain" />
                               </button>
                             );
                           })}
@@ -849,7 +926,11 @@ const ProductCatalog = ({ brand, language }) => {
                         )}
                         
                         <a
-                          href={`#cta-section`}
+                          href="#cta-section"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById('cta-section')?.scrollIntoView({ behavior: 'smooth' });
+                          }}
                           className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-extrabold text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 hover:text-slate-800 transition-all hover:scale-103 active:scale-97 cursor-pointer"
                         >
                           <span>{isEs ? 'Solicitar Muestra' : 'Request Sample'}</span>
@@ -1008,6 +1089,7 @@ const ProductCatalog = ({ brand, language }) => {
                     </div>
                   )}
 
+                  </div>
                 </motion.div>
               ) : (
                 <div className="w-full h-full min-h-[400px] bg-white rounded-[32px] border border-slate-200/50 flex flex-col items-center justify-center p-10 text-center gap-3">

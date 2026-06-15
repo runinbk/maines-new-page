@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
-import { navigateToBrand, getBasePath } from '../utils/navigation';
+import { handleLinkClick, getBasePath } from '../utils/navigation';
 
 const BrandCard = ({ brand, index }) => {
   const handleCardClick = (e) => {
-    e.preventDefault();
-    navigateToBrand(brand.key);
+    handleLinkClick(e, brand.key, 'top');
   };
 
   // Card-specific rotation directions on portal-hover:

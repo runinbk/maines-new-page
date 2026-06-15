@@ -5,11 +5,6 @@ import {
   ShieldCheck, Award, Zap, HeartHandshake, Compass, Eye, Calendar, ArrowRight
 } from 'lucide-react';
 
-// Import premium visual assets for pillars
-import pillarGarantia from '../../assets/info/pillar_garantia.png';
-import pillarExperiencia from '../../assets/info/pillar_experiencia.png';
-import pillarProximidad from '../../assets/info/pillar_proximidad.png';
-import pillarAsesoramiento from '../../assets/info/pillar_asesoramiento.png';
 
 // Animated Counter Component using IntersectionObserver
 const CountingNumber = ({ value, duration = 2000, className }) => {
@@ -302,7 +297,7 @@ const AboutSection = () => {
             >
               {/* Background Image with Zoom */}
               <img 
-                src={pillarGarantia} 
+                src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar1.webp" 
                 alt={t('about.pillar1Title')} 
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
               />
@@ -335,7 +330,7 @@ const AboutSection = () => {
             >
               {/* Background Image with Zoom */}
               <img 
-                src={pillarExperiencia} 
+                src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar2.webp" 
                 alt={t('about.pillar2Title')} 
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
               />
@@ -368,7 +363,7 @@ const AboutSection = () => {
             >
               {/* Background Image with Zoom */}
               <img 
-                src={pillarProximidad} 
+                src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar3.webp" 
                 alt={t('about.pillar3Title')} 
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
               />
@@ -401,7 +396,7 @@ const AboutSection = () => {
             >
               {/* Background Image with Zoom */}
               <img 
-                src={pillarAsesoramiento} 
+                src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar4.webp" 
                 alt={t('about.pillar4Title')} 
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
               />

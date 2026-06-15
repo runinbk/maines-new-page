@@ -7,7 +7,7 @@ import AboutSection from './components/AboutSection';
 import CTAContact from './components/CTAContact';
 import Footer from './components/Footer';
 import BrandLayout from './components/brand/BrandLayout';
-import { navigateHome } from './utils/navigation';
+import { navigateHome, parseCurrentRoute, replaceURLForSection } from './utils/navigation';
 
 function AppContent() {
   const { language, toggleLanguage } = useLanguage();
@@ -22,48 +22,92 @@ function AppContent() {
     return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
-  // Helper to extract active brand from the path segments (handles subdirectories)
-  const getActiveBrandId = () => {
-    const segments = currentPath.split('/').filter(Boolean);
-    if (segments.length === 0) return null;
-    const last = segments[segments.length - 1];
-    if (['jetema', 'dermclar', 'xtralife'].includes(last)) {
-      return last;
-    }
-    return null;
-  };
+  const routeInfo = parseCurrentRoute();
+  const activeBrandId = routeInfo.brandId;
 
-  const activeBrandId = getActiveBrandId();
-
+  // Initial and Transition Viewport Scrolling
   useEffect(() => {
     if (activeBrandId) {
-      // Fast scroll to top when on a brand layout
+      // Fast scroll to top when rendering a brand subpage
       window.scrollTo(0, 0);
     } else {
-      // Check if we came from a subpage or clicked a menu item with a scroll target
+      // Smooth scroll to home page sections
       const state = window.history.state;
+      const targetId = (state && state.scrollToSection) || routeInfo.sectionId;
+
+      if (targetId && targetId !== 'top') {
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 150);
+      } else if (targetId === 'top') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      // Clear scroll target state from history
       if (state && state.scrollToSection) {
-        const targetId = state.scrollToSection;
-        if (targetId === 'top') {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        } else {
-          setTimeout(() => {
-            const element = document.getElementById(targetId);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }, 150);
-        }
-        // Clear history state to avoid scrolling again on page refresh
         window.history.replaceState({}, '', window.location.pathname);
       }
     }
   }, [currentPath, activeBrandId]);
 
-  // Handle initial mount smooth scroll if a hash exists in the URL
+  // Homepage Scroll-Spy URL Updater
+  useEffect(() => {
+    if (activeBrandId) return;
+
+    // Wait slightly for DOM elements to render completely
+    const timer = setTimeout(() => {
+      const sections = [
+        { id: 'hero', pathKey: 'top' },
+        { id: 'ecosystem', pathKey: 'ecosystem' },
+        { id: 'about', pathKey: 'about' },
+        { id: 'contact', pathKey: 'contact' }
+      ];
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '-50% 0px -50% 0px', // Active when section occupies center line of viewport
+        threshold: 0
+      };
+
+      const handleIntersect = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const match = sections.find(s => s.id === id);
+            if (match) {
+              replaceURLForSection(null, match.pathKey);
+            }
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+      sections.forEach(s => {
+        const el = document.getElementById(s.id);
+        if (el) {
+          observer.observe(el);
+        }
+      });
+
+      return () => {
+        sections.forEach(s => {
+          const el = document.getElementById(s.id);
+          if (el) observer.unobserve(el);
+        });
+      };
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [activeBrandId]);
+
+  // Legacy initial hash load fallback
   useEffect(() => {
     const initialHash = window.location.hash;
     if (initialHash && initialHash !== '#' && !initialHash.startsWith('#/brand/')) {

@@ -3,6 +3,7 @@ import { Network, ShieldCheck, ArrowDown } from 'lucide-react';
 import jetemaHeroBg from '../../../assets/jetema/hero.webp';
 import dermclarHeroBg from '../../../assets/marcas/dermclar/dermclar-hero.jpeg';
 import xtralifeHeroBg from '../../../assets/marcas/xtralife/xtralife-hero.jpeg';
+import { handleLinkClick, getBasePath } from '../../utils/navigation';
 
 /**
  * BrandHero Component
@@ -19,12 +20,6 @@ const BrandHero = ({ brand, language }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const scrollToCatalog = () => {
-    const catalogSection = document.getElementById('catalog-section');
-    if (catalogSection) {
-      catalogSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   if (brand.id === 'jetema' || brand.id === 'dermclar' || brand.id === 'xtralife') {
     const isJetema = brand.id === 'jetema';
@@ -95,7 +90,7 @@ const BrandHero = ({ brand, language }) => {
         : 'drop-shadow(0 15px 20px rgba(16, 185, 129, 0.15)) drop-shadow(0 6px 10px rgba(13, 31, 59, 0.08))';
 
     return (
-      <section className="relative min-h-[100dvh] pt-20 pb-4 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 px-4 xs:px-6 sm:px-12 lg:px-20">
+      <section id="brand-hero-section" className="relative min-h-[100dvh] pt-20 pb-4 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 px-4 xs:px-6 sm:px-12 lg:px-20">
         {/* Background Image with overlay for legibility */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-95" 
@@ -174,7 +169,7 @@ const BrandHero = ({ brand, language }) => {
                 }`}
               >
                 <button 
-                  onClick={scrollToCatalog}
+                  onClick={(e) => handleLinkClick(e, brand.id, 'catalog-section')}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 2xl:px-10 2xl:py-4.5 rounded-full text-xs sm:text-sm 2xl:text-base font-bold text-white transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer shadow-lg"
                   style={{
                     backgroundColor: primaryColorHex,
@@ -211,7 +206,7 @@ const BrandHero = ({ brand, language }) => {
 
         {/* Downward Scroll indicator */}
         <button 
-          onClick={scrollToCatalog}
+          onClick={(e) => handleLinkClick(e, brand.id, 'catalog-section')}
           aria-label="Scroll to catalog"
           className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 transition-colors duration-300 focus:outline-none"
         >
@@ -276,7 +271,7 @@ const BrandHero = ({ brand, language }) => {
           {/* Interactive B2B Buttons */}
           <div className="flex flex-wrap items-center gap-4">
             <button
-              onClick={scrollToCatalog}
+              onClick={(e) => handleLinkClick(e, brand.id, 'catalog-section')}
               className={`inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-extrabold transition-all duration-300 shadow-md text-white ${brand.accentBg} ${brand.accentHover} transform hover:scale-105 active:scale-95`}
             >
               <Network className="w-4 h-4" />
@@ -284,11 +279,8 @@ const BrandHero = ({ brand, language }) => {
             </button>
             
             <a
-              href="#about-section"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              href={`${getBasePath().replace(/\/$/, '')}/${brand.id}/empresa`}
+              onClick={(e) => handleLinkClick(e, brand.id, 'about-section')}
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-extrabold transition-all duration-300 border border-white/15 bg-white/5 hover:bg-white/10 text-white backdrop-blur-md transform hover:scale-105 active:scale-95"
             >
               <ShieldCheck className="w-4 h-4 text-slate-400" />
@@ -321,7 +313,7 @@ const BrandHero = ({ brand, language }) => {
 
       {/* Downward Scroll indicator */}
       <button 
-        onClick={scrollToCatalog}
+        onClick={(e) => handleLinkClick(e, brand.id, 'catalog-section')}
         aria-label="Scroll to catalog"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-white/50 hover:text-white transition-colors duration-300 focus:outline-none"
       >

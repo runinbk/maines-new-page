@@ -13,6 +13,7 @@ import {
   X, 
   ChevronLeft 
 } from 'lucide-react';
+import { handleLinkClick, getBasePath } from '../../utils/navigation';
 import jetemaProducts from '../../data/jetemaProducts.json';
 
 // Import custom application zone icons
@@ -926,11 +927,8 @@ const ProductCatalog = ({ brand, language }) => {
                         )}
                         
                         <a
-                          href="#cta-section"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            document.getElementById('cta-section')?.scrollIntoView({ behavior: 'smooth' });
-                          }}
+                          href={`${getBasePath().replace(/\/$/, '')}/${brand.id}/contacto`}
+                          onClick={(e) => handleLinkClick(e, brand.id, 'cta-section')}
                           className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-extrabold text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 hover:text-slate-800 transition-all hover:scale-103 active:scale-97 cursor-pointer"
                         >
                           <span>{isEs ? 'Solicitar Muestra' : 'Request Sample'}</span>

@@ -6,6 +6,7 @@ import BrandAbout from './BrandAbout';
 import BrandCTA from './BrandCTA';
 import BrandFooter from './BrandFooter';
 import { Globe, ArrowLeft, Send } from 'lucide-react';
+import { handleLinkClick, replaceURLForSection, parseCurrentRoute } from '../../utils/navigation';
 
 /**
  * BrandLayout Master Component
@@ -38,8 +39,19 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
+  // Initial load scroll resolving for subpage sections (e.g. direct load of /jetema/catalogo)
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const route = parseCurrentRoute();
+    if (route.sectionId && route.sectionId !== 'top') {
+      setTimeout(() => {
+        const target = document.getElementById(route.sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [brandId]);
 
   useEffect(() => {
@@ -63,6 +75,74 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Brand Subpage Scroll-Spy URL Updater
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const sections = [
+        { id: 'catalog-section', pathKey: 'catalog-section' },
+        { id: 'about-section', pathKey: 'about-section' },
+        { id: 'cta-section', pathKey: 'cta-section' }
+      ];
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '-50% 0px -50% 0px', // Active when section occupies center line of viewport
+        threshold: 0
+      };
+
+      const handleIntersect = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const match = sections.find(s => s.id === id);
+            if (match) {
+              replaceURLForSection(brandId, match.pathKey);
+            }
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+      sections.forEach(s => {
+        const el = document.getElementById(s.id);
+        if (el) {
+          observer.observe(el);
+        }
+      });
+
+      // Observe BrandHero element to reset URL back to `/brandname` when at the top
+      const heroEl = document.getElementById('brand-hero-section');
+      const handleTopIntersect = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            replaceURLForSection(brandId, 'top');
+          }
+        });
+      };
+
+      const topObserver = new IntersectionObserver(handleTopIntersect, {
+        root: null,
+        rootMargin: '0px 0px -80% 0px',
+        threshold: 0
+      });
+
+      if (heroEl) {
+        topObserver.observe(heroEl);
+      }
+
+      return () => {
+        sections.forEach(s => {
+          const el = document.getElementById(s.id);
+          if (el) observer.unobserve(el);
+        });
+        if (heroEl) topObserver.unobserve(heroEl);
+      };
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [brandId]);
+
   if (!brand) {
     return (
       <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white gap-4">
@@ -76,14 +156,6 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
       </div>
     );
   }
-
-  // Smooth scroll helper for sub-navigation anchors
-  const handleScrollTo = (id) => {
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <div className="relative min-h-screen bg-lightBg w-full flex flex-col justify-between overflow-x-hidden text-primary-dark">
@@ -115,7 +187,7 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
 
               {/* Dynamic Brand Logo */}
               <div 
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={(e) => handleLinkClick(e, brandId, 'top')}
                 className="flex items-center gap-1.5 group cursor-pointer"
               >
                 <img 
@@ -129,19 +201,19 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
             {/* Center: Anchor Links specific to subpage */}
             <nav className="hidden md:flex items-center gap-8 2xl:gap-12">
               <button
-                onClick={() => handleScrollTo('catalog-section')}
+                onClick={(e) => handleLinkClick(e, brandId, 'catalog-section')}
                 className={`text-sm 2xl:text-base font-medium text-primary-dark/80 transition-colors duration-200 relative py-1 focus:outline-none cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full ${hoverClass}`}
               >
                 {isEs ? "Productos" : "Products"}
               </button>
               <button
-                onClick={() => handleScrollTo('about-section')}
+                onClick={(e) => handleLinkClick(e, brandId, 'about-section')}
                 className={`text-sm 2xl:text-base font-medium text-primary-dark/80 transition-colors duration-200 relative py-1 focus:outline-none cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full ${hoverClass}`}
               >
                 {isEs ? "Empresa" : "Company"}
               </button>
               <button
-                onClick={() => handleScrollTo('cta-section')}
+                onClick={(e) => handleLinkClick(e, brandId, 'cta-section')}
                 className={`text-sm 2xl:text-base font-medium text-primary-dark/80 transition-colors duration-200 relative py-1 focus:outline-none cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full ${hoverClass}`}
               >
                 {isEs ? "Contacto" : "Contact"}
@@ -160,7 +232,7 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
               </button>
 
               <button
-                onClick={() => handleScrollTo('cta-section')}
+                onClick={(e) => handleLinkClick(e, brandId, 'cta-section')}
                 className={`inline-flex items-center gap-1 px-3 py-1.5 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-extrabold text-white shadow-md transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer ${brand.accentBg} ${brand.accentHover}`}
               >
                 <span>{isEs ? "Contactar" : "Contact Us"}</span>

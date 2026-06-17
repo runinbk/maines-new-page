@@ -11,7 +11,8 @@ import {
   ChevronRight, 
   Maximize2, 
   X, 
-  ChevronLeft 
+  ChevronLeft,
+  ShieldCheck 
 } from 'lucide-react';
 import { handleLinkClick, getBasePath } from '../../utils/navigation';
 import jetemaProducts from '../../data/jetemaProducts.json';
@@ -241,6 +242,8 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
             specifications: prod.specifications || [],
             technicalSpecs: (prod.specifications && prod.specifications.length > 0) ? prod.specifications : null,
             applicationAreas: prod.applicationAreas || [],
+            regulatory: prod.regulatory || null,
+            clinicalBenefits: prod.clinicalBenefits || null,
             clinicalInsights: prod.id === 'toxta' ? [
               { title: isEs ? "Técnica de Aplicación" : "Application Technique", label: isEs ? "Video Tutorial" : "Video Tutorial", type: "video" },
               { title: isEs ? "Resultados Clínicos" : "Patient Clinical Outcomes", label: isEs ? "Casos Médicos" : "Case Study", type: "cases" },
@@ -847,6 +850,21 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                           ))}
                         </div>
 
+                        {/* Interactive Sanitary Registry Button */}
+                        {activeProduct.regulatory?.hasRegistroSanitario && (
+                          <div className="pt-0.5">
+                            <a
+                              href={activeProduct.regulatory.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#edf2f7] hover:bg-[#e2e8f0] text-[#2d3748] border border-[#cbd5e0] transition-all duration-200 cursor-pointer shadow-xs w-fit"
+                            >
+                              <ShieldCheck className="w-4 h-4" style={{ color: resolveBrandColor(brand.accentBg) }} />
+                              <span>{isEs ? "Ver Registro Sanitario Oficial" : "View Official Sanitary Registry"}</span>
+                            </a>
+                          </div>
+                        )}
+
                         {/* Product Title */}
                         <h3 className={`text-2xl sm:text-3xl font-extrabold font-display tracking-tight leading-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
                           {activeProduct.displayName}
@@ -865,6 +883,32 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                         <p className="text-sm text-slate-500 leading-relaxed font-medium">
                           {activeProduct.description}
                         </p>
+
+                        {/* Clinical Benefits checklist */}
+                        {activeProduct.clinicalBenefits && activeProduct.clinicalBenefits.length > 0 && (
+                          <div className="pt-3 space-y-3">
+                            <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                              {isEs ? 'Beneficios Clínicos' : 'Clinical Benefits'}
+                            </span>
+                            <ul className="space-y-2.5">
+                              {activeProduct.clinicalBenefits.map((benefit, idx) => (
+                                <li key={idx} className="flex items-start gap-2.5">
+                                  <div className="shrink-0 mt-0.5" style={{ color: resolveBrandColor(brand.accentBg) }}>
+                                    <CheckCircle2 className="w-4 h-4" />
+                                  </div>
+                                  <div className="space-y-0.5 text-left">
+                                    <h4 className="text-xs sm:text-sm font-extrabold text-slate-800 leading-tight">
+                                      {benefit.title}
+                                    </h4>
+                                    <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                                      {benefit.detail}
+                                    </p>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                         {activeProduct.activeIngredients && (
                           <div className="pt-2 space-y-1">
                             <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">

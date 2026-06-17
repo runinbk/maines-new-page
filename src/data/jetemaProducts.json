@@ -2,11 +2,11 @@
   {
     "id": "toxta",
     "name": "TOXTA® Botulinum Toxin Type A",
-    "subtitle": "100 UNITS / Complejo de Toxina Purificada",
+    "subtitle": "100 UNITS / Complejo de Toxina Purificada Premium",
     "category": "toxinas",
-    "tags": ["Alta Pureza 99.8%", "Cepa Original Europea", "Certificación cGMP", "Efecto Rápido"],
-    "slogan": "Pureza absoluta del 99.8% para un efecto rápido, consistente y de mínima inmunogenicidad.",
-    "description": "TOXTA® es una toxina botulínica de Tipo A premium desarrollada por JETEMA, elaborada a partir de una cepa original procedente de un prestigioso Instituto Nacional Europeo. Su avanzado proceso de manufactura patentado asegura un producto de una pureza molecular sin precedentes (99.8%), minimizando drásticamente el riesgo de resistencia o inmunogenicidad en tratamientos a largo plazo. Con menos cantidad produce un efecto más rápido y consistente gracias a su alta actividad biológica. Cuenta con Registro Sanitario vigente en Bolivia.",
+    "tags": ["Pureza Molecular 99.8%", "Cepa Europea Certificada", "Cumplimiento cGMP", "Efecto de Acción Rápido"],
+    "slogan": "Máxima pureza molecular para resultados consistentes, seguros y de mínima respuesta inmunogénica.",
+    "description": "TOXTA® es una toxina botulínica de Tipo A premium de origen coreano, desarrollada bajo patentes avanzadas a partir de una cepa original aislada en un prestigioso Instituto Nacional de Europa. Su riguroso proceso de purificación logra un nivel de pureza molecular del 99.8%, reduciendo al mínimo las proteínas accesorias residuales y mitigando el riesgo de resistencia terapéutica a largo plazo. Su alta actividad biológica permite alcanzar un efecto tensor y clínico rápido y uniforme, ideal tanto para la atenuación de arrugas dinámicas faciales como para tratamientos que involucren grupos musculares mayores que requieren alta precisión.",
     "assets": {
       "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta-portada.webp",
       "gallery": [
@@ -24,15 +24,25 @@
         }
       ]
     },
+    "regulatory": {
+      "hasRegistroSanitario": true,
+      "link": "https://drive.google.com/file/d/13AOE0QDTP91s--5YjsSI3b0rYuXHCXFh/view",
+      "label": "Ver Registro Sanitario Oficial Bolivia"
+    },
     "specifications": [
       { "label": "Ingrediente Activo", "value": "Toxina Botulínica Tipo A (Clostridium botulinum)" },
-      { "label": "Concentración / Vial", "value": "100 Unidades (UI)" },
-      { "label": "Grado de Pureza", "value": "99.8% (Verificada por cromatografía)" },
-      { "label": "Procedencia de la Cepa", "value": "Instituto Nacional Europeo (Cepa importada)" },
-      { "label": "Estándar de Manufactura", "value": "Cumplimiento estricto con directrices cGMP de la FDA" },
-      { "label": "Estatus Regulatorio", "value": "Registro Sanitario vigente en el Estado Plurinacional de Bolivia" }
+      { "label": "Presentación Comercial", "value": "Vial de 100 Unidades (UI) - Polvo liofilizado al vacío" },
+      { "label": "Grado de Pureza", "value": "99.8% (Verificación por cromatografía líquida de alta resolución)" },
+      { "label": "Origen de la Cepa", "value": "Instituto Nacional Europeo (Cepa legalmente licenciada)" },
+      { "label": "Control de Calidad", "value": "Cumplimiento estricto de directrices internacionales cGMP (FDA compliant level)" },
+      { "label": "Garantía en Bolivia", "value": "Importación autorizada con Trazabilidad Térmica por Maines SRL" }
     ],
-    "applicationAreas": ["Líneas de la frente (Músculo frontal)", "Arrugas perioculares (Patas de gallo)", "Líneas glabelares (Entrecejo)", "Hipertrofia de maseteros (Definición mandibular y altas dosis)"]
+    "clinicalBenefits": [
+      { "title": "Menor Cantidad, Mayor Eficiencia", "detail": "Debido a su alta potencia y actividad biológica pura, ofrece resultados más estables consumiendo menos unidades métricas por punto de inyección." },
+      { "title": "Inmunogenicidad Mitigada", "detail": "La ausencia casi total de proteínas inactivas previene que el cuerpo del paciente genere resistencia al producto en tratamientos continuos." },
+      { "title": "Dispersión Controlada", "detail": "Su excelente estabilidad estructural garantiza que el producto actúe con exactitud en el músculo diana, evitando la difusión a zonas no deseadas." }
+    ],
+    "applicationAreas": ["Líneas glabelares severas (Arrugas del entrecejo / Músculos corrugador y procerus)", "Arrugas perioculares dinámicas (Patas de gallo)", "Líneas frontales transversales (Músculo frontal)", "Tratamiento de hipertrofia de maseteros y modelado del contorno mandibular"]
   },
   {
     "id": "exolution",

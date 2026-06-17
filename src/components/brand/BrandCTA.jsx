@@ -64,10 +64,10 @@ const BrandCTA = ({ brand, language }) => {
       {/* Decorative background visual blob */}
       <div className={`absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-slate-500/5 blur-[120px] pointer-events-none`} />
 
-      <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+      <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
         
-        {/* Left Column (7/12): Title, Copy, Info and Buttons */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left space-y-8 animate-fade-in-up">
+        {/* Left Column: Title, Copy, Info and Buttons */}
+        <div className="w-full flex flex-col items-start text-left space-y-8 animate-fade-in-up">
           
           {/* Main Title with brand gradient highlighted words */}
           <h2 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-[#0D1F3B] font-display tracking-tight leading-[1.15] max-w-2xl">
@@ -144,40 +144,19 @@ const BrandCTA = ({ brand, language }) => {
 
         </div>
 
-        {/* Right Column (5/12): Molecule Image Card with Floating Badge */}
-        <div className="lg:col-span-5 w-full flex items-center justify-center relative mt-10 lg:mt-0">
-          <div className="relative w-full max-w-[400px] aspect-square rounded-[30px] overflow-hidden border border-slate-200/60 shadow-xl bg-white flex flex-col justify-end p-4 group">
-            
-            {/* Background Molecular Image Placeholder */}
-            <img 
-              src={
-                brandId === 'jetema' 
-                  ? 'https://placehold.co/600x600/F8FAF9/4C5A9D?text=Jetema+Molecule' 
-                  : brandId === 'dermclar' 
-                    ? 'https://placehold.co/600x600/FAF8FF/8B5CF6?text=Dermclar+Aesthetic'
-                    : 'https://placehold.co/600x600/F5FCFA/10B981?text=Xtralife+Science'
-              } 
-              alt="Scientific biotechnology" 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent pointer-events-none" />
-
-            {/* Bottom Floating Card Badge */}
-            <div className="relative z-10 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-slate-100 flex items-center gap-3.5 max-w-[260px] self-start transition-all duration-300 hover:scale-[1.02]">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: brandId === 'jetema' ? '#4C5A9D/10' : `var(--color-${brand.accentBg.replace('bg-', '')})/10`, color: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
-                <Beaker className="w-4.5 h-4.5" />
-              </div>
-              <div className="min-w-0">
-                <span className="text-[8px] font-extrabold uppercase tracking-wider text-slate-400 block">
-                  {isEs ? 'Investigación Activa' : 'Active Research'}
-                </span>
-                <span className="text-[11px] font-extrabold text-[#0D1F3B] block mt-0.5 leading-tight">
-                  Phase III / Clinical Trials Active
-                </span>
-              </div>
-            </div>
-
-          </div>
+        {/* Right Column: CTA Image directly rendered without square card or floating badge */}
+        <div className="w-full flex items-center justify-center mt-10 lg:mt-0">
+          <img 
+            src={
+              brandId === 'jetema' 
+                ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/jetema-cta.webp' 
+                : (brandId === 'dermclar' 
+                  ? 'https://placehold.co/600x600/FAF8FF/8B5CF6?text=Dermclar+Aesthetic'
+                  : 'https://placehold.co/600x600/F5FCFA/10B981?text=Xtralife+Science')
+            } 
+            alt="Biotechnology showcase" 
+            className="w-full max-w-[480px] h-auto object-contain rounded-[24px] shadow-2xl border border-slate-100/60"
+          />
         </div>
 
       </div>

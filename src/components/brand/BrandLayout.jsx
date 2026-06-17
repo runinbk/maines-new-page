@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { brandsData } from '../../data/productsData';
 import BrandHero from './BrandHero';
 import ProductCatalog from './ProductCatalog';
@@ -39,7 +39,34 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
-  // Initial load scroll resolving for subpage sections (e.g. direct load of /jetema/catalogo)
+  // Initialize selected product state from URL if present
+  const initialRoute = parseCurrentRoute();
+  const [selectedProductId, setSelectedProductId] = useState(initialRoute.productId || '');
+
+  // Keep a ref of selectedProductId to avoid recreation of IntersectionObserver
+  const selectedProductRef = useRef(selectedProductId);
+  useEffect(() => {
+    selectedProductRef.current = selectedProductId;
+  }, [selectedProductId]);
+
+  // Synchronize state if URL changes externally (e.g. browser back/forward buttons)
+  useEffect(() => {
+    const handlePopState = () => {
+      const route = parseCurrentRoute();
+      if (route.brandId === brandId) {
+        setSelectedProductId(route.productId || '');
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [brandId]);
+
+  const handleSelectProduct = (prodId) => {
+    setSelectedProductId(prodId);
+    replaceURLForSection(brandId, 'catalog-section', prodId);
+  };
+
+  // Initial load scroll resolving for subpage sections (e.g. direct load of /jetema/catalogo/toxta-100u)
   useEffect(() => {
     const route = parseCurrentRoute();
     if (route.sectionId && route.sectionId !== 'top') {
@@ -96,7 +123,8 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
             const id = entry.target.id;
             const match = sections.find(s => s.id === id);
             if (match) {
-              replaceURLForSection(brandId, match.pathKey);
+              const prodId = match.pathKey === 'catalog-section' ? selectedProductRef.current : null;
+              replaceURLForSection(brandId, match.pathKey, prodId);
             }
           }
         });
@@ -250,7 +278,13 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
         <BrandHero brand={brand} language={language} />
 
         {/* Dynamic Split Sidebar Catalog grid */}
-        <ProductCatalog key={brand.id} brand={brand} language={language} />
+        <ProductCatalog 
+          key={brand.id} 
+          brand={brand} 
+          language={language} 
+          selectedProductId={selectedProductId}
+          onSelectProduct={handleSelectProduct}
+        />
 
         {/* Corporate distributor/logistics background */}
         <BrandAbout brand={brand} language={language} onBackToHome={onBackToHome} />

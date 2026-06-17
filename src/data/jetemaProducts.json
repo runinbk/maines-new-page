@@ -43,11 +43,20 @@
     "slogan": "La potencia biológica de 5 complejos de exosomas vegetales combinada con 61 ingredientes activos en una fórmula integral 2 en 1.",
     "description": "EXO'LUTION® representa la cúspide de la terapia celular tópica y mesoterápica de origen 100% vegano. Al mejorar el entorno de la piel, activa sus funciones metabólicas cansadas por estímulos externos, lo que conduce a una mejor retención de humedad, regeneración acelerada y máxima elasticidad. Actúa como un potente mensajero molecular gracias a sus nanovesículas extracelulares que regulan las funciones fisiológicas profundas para el rejuvenecimiento y control antiinflamatorio del tejido cutáneo.",
     "assets": {
-      "coverImage": "/assets/marcas/jetema/exolution-cover.jpg",
-      "hoverGlitchVideo": "/assets/marcas/jetema/exolution-glitch.mp4",
-      "galleryImages": [
-        "/assets/marcas/jetema/exolution-vials.jpg",
-        "/assets/marcas/jetema/exolution-vegan.jpg"
+      "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/exolution/exolution-portada.webp",
+      "gallery": [
+        {
+          "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/exolution/exolution1.webp",
+          "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/exolution/exolution1.webm"
+        },
+        {
+          "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/exolution/exolution2.webp",
+          "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/exolution/exolution2.webm"
+        },
+        {
+          "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/exolution/exolution3.webp",
+          "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/exolution/exolution3.webm"
+        }
       ]
     },
     "specifications": [
@@ -87,17 +96,44 @@
       {
         "density": "S100",
         "description": "Densidad Baja. Viscosidad y elasticidad fluidas para correcciones superficiales y líneas finas con Lidocaína al 0.3%.",
-        "areas": ["Frente (líneas superficiales)", "Surco lagrimal (Ojeras)", "Zona Periorbital (Patas de gallo)", "Perfilamiento e hidratación delicada de labios"]
+        "areas": ["Frente (líneas superficiales)", "Surco lagrimal (Ojeras)", "Zona Periorbital (Patas de gallo)", "Perfilamiento e hidratación delicada de labios"],
+        "assets": {
+          "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100-portada.webp",
+          "gallery": [
+            {
+              "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100.webp",
+              "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100.webm"
+            }
+          ]
+        }
       },
       {
         "density": "S300",
         "description": "Densidad Media. El estándar equilibrado de uso general con excelente capacidad de soporte y retención de forma con Lidocaína al 0.3%.",
-        "areas": ["Aumento y volumen estructural de labios", "Entrecejo y soporte en mejillas", "Surcos nasogenianos (Líneas de la sonrisa)", "Depresiones moderadas de la frente"]
+        "areas": ["Aumento y volumen estructural de labios", "Entrecejo y soporte en mejillas", "Surcos nasogenianos (Líneas de la sonrisa)", "Depresiones moderadas de la frente"],
+        "assets": {
+          "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300-portada.webp",
+          "gallery": [
+            {
+              "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300.webp",
+              "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300.webm"
+            }
+          ]
+        }
       },
       {
         "density": "S500",
         "description": "Densidad Alta. Consistencia más gruesa (Thickest) diseñada para la reconstrucción estructural profunda y proyección tridimensional.",
-        "areas": ["Mentón (Genioplastia no quirúrgica)", "Pómulo (Soporte malar)", "Puente Nasal (Rinomodelación avanzada)", "Marcación y definición del ángulo mandibular"]
+        "areas": ["Mentón (Genioplastia no quirúrgica)", "Pómulo (Soporte malar)", "Puente Nasal (Rinomodelación avanzada)", "Marcación y definición del ángulo mandibular"],
+        "assets": {
+          "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500-portada.webp",
+          "gallery": [
+            {
+              "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500.webp",
+              "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500.webm"
+            }
+          ]
+        }
       }
     ]
   }

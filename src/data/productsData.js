@@ -96,6 +96,49 @@ export const brandsData = {
       primaryBtn: "Contactar Asesor",
       secondaryBtn: "Descargar Portafolio"
     },
+    videos: [
+      {
+        title: "Técnica de Aplicación - TOXTA®",
+        url: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta1.webm",
+        thumbnail: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta1.webp"
+      },
+      {
+        title: "Resultados Clínicos - TOXTA®",
+        url: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta2.webm",
+        thumbnail: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta2.webp"
+      },
+      {
+        title: "Análisis de Inmunogenicidad - TOXTA®",
+        url: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta3.webm",
+        thumbnail: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/toxta/toxta3.webp"
+      }
+    ],
+    social: {
+      instagram: {
+        handle: "@jetemaboliviaoficial",
+        url: "https://www.instagram.com/jetemaboliviaoficial/"
+      },
+      tiktok: {
+        handle: "@jetema.bo",
+        url: "https://www.tiktok.com/@jetema.bo"
+      },
+      facebook: {
+        handle: "@jetemaboliviaoficial",
+        url: "https://www.facebook.com/jetemaboliviaoficial"
+      },
+      videos: [
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/1.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/2.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/3.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/4.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/5.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/6.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/7.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/8.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/9.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/10.webm"
+      ]
+    },
     products: [
       {
         id: "jetema-toxta-100u",

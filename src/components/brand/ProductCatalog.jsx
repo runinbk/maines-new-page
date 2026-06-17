@@ -129,13 +129,34 @@ const getPlaceholdImg = (text, brandId, width = 600, height = 600) => {
   return `https://placehold.co/${width}x${height}/${theme.bg}/${theme.fg}?text=${cleanText}`;
 };
 
+// Helper to resolve Tailwind hex background color classes to hex/CSS values for inline styles
+const resolveBrandColor = (accentBg) => {
+  if (!accentBg) return '#1a365d';
+  if (accentBg.startsWith('bg-[#') && accentBg.endsWith(']')) {
+    return accentBg.slice(4, -1); // returns '#4C5A9D'
+  }
+  if (accentBg === 'bg-emerald-500') return '#10b981';
+  return '#1a365d';
+};
+
+// Helper to get the first gallery image (non-cover) as the product list thumbnail
+const getProductThumbnail = (prod) => {
+  if (prod && prod.gallery && prod.gallery.length > 0) {
+    const item = prod.gallery[0];
+    return typeof item === 'object' ? item.image : item;
+  }
+  return prod.coverImage;
+};
+
 /**
  * ProductCatalog Component
  * @param {Object} props
  * @param {Object} props.brand - Parent brand config
  * @param {string} props.language - Active language ('es' | 'en')
+ * @param {string} props.selectedProductId - The currently active selected product
+ * @param {function} props.onSelectProduct - Callback when a new product is selected
  */
-const ProductCatalog = ({ brand, language }) => {
+const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct }) => {
   const isEs = language === 'es';
   const brandId = brand.id;
 
@@ -164,8 +185,8 @@ const ProductCatalog = ({ brand, language }) => {
               slogan: prod.slogan,
               description: variant.description,
               composition: prod.description,
-              coverImage: getPlaceholdImg(`e.p.t.q. ${variant.density}`, 'jetema', 600, 600),
-              gallery: [
+              coverImage: variant.assets?.coverImage || getPlaceholdImg(`e.p.t.q. ${variant.density}`, 'jetema', 600, 600),
+              gallery: variant.assets?.gallery || [
                 getPlaceholdImg(`e.p.t.q. ${variant.density} View 1`, 'jetema', 600, 600),
                 getPlaceholdImg(`e.p.t.q. ${variant.density} View 2`, 'jetema', 600, 600)
               ],
@@ -232,6 +253,7 @@ const ProductCatalog = ({ brand, language }) => {
           });
         }
       });
+      console.log("Normalized Products for Jetema:", list);
       return list;
     } else {
       // Dermclar & Xtralife
@@ -284,7 +306,7 @@ const ProductCatalog = ({ brand, language }) => {
   // 2. State Management for Filters & Selection
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedProductId, setSelectedProductId] = useState('');
+  // selectedProductId and onSelectProduct are managed by the parent BrandLayout component to align with clean URL paths
   const [showMobileList, setShowMobileList] = useState(false);
 
   const specsTableRef = useRef(null);
@@ -316,10 +338,10 @@ const ProductCatalog = ({ brand, language }) => {
     if (filteredProducts.length > 0) {
       const isStillFiltered = filteredProducts.some(p => p.id === selectedProductId);
       if (!isStillFiltered) {
-        setSelectedProductId(filteredProducts[0].id);
+        onSelectProduct(filteredProducts[0].id);
       }
     } else {
-      setSelectedProductId('');
+      onSelectProduct('');
     }
   }
 
@@ -430,7 +452,7 @@ const ProductCatalog = ({ brand, language }) => {
               <h2 className={`text-2xl sm:text-3xl font-extrabold font-display tracking-tight leading-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
                 {isEs ? 'Catálogo' : 'Catalog'}
               </h2>
-              <div className="w-10 h-1.5 rounded-full hidden lg:block" style={{ backgroundColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }} />
+              <div className="w-10 h-1.5 rounded-full hidden lg:block" style={{ backgroundColor: resolveBrandColor(brand.accentBg) }} />
             </div>
 
             {/* Interactive Search Bar */}
@@ -442,7 +464,7 @@ const ProductCatalog = ({ brand, language }) => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={isEs ? "Buscar producto..." : "Search product..."}
                 className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-1 transition-all font-medium text-slate-700 shadow-sm"
-                style={{ '--tw-ring-color': `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+                style={{ '--tw-ring-color': resolveBrandColor(brand.accentBg) }}
               />
             </div>
 
@@ -465,8 +487,8 @@ const ProductCatalog = ({ brand, language }) => {
                           : 'bg-white text-slate-400 border border-slate-200/50 hover:bg-slate-50 hover:text-slate-600'
                       }`}
                       style={{
-                        backgroundColor: isSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined,
-                        borderColor: isSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined
+                        backgroundColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined,
+                        borderColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined
                       }}
                     >
                       {catLabel}
@@ -484,7 +506,7 @@ const ProductCatalog = ({ brand, language }) => {
               <button
                 onClick={() => setShowMobileList(!showMobileList)}
                 className="text-[10px] font-bold flex items-center gap-1 py-1 px-2.5 rounded-lg border border-slate-200 bg-white shadow-xs focus:outline-none cursor-pointer text-slate-500 hover:text-slate-700"
-                style={{ color: showMobileList ? `var(--color-${brand.accentBg.replace('bg-', '')})` : undefined }}
+                style={{ color: showMobileList ? resolveBrandColor(brand.accentBg) : undefined }}
               >
                 {showMobileList ? (
                   <>
@@ -505,11 +527,11 @@ const ProductCatalog = ({ brand, language }) => {
               <div className="lg:hidden flex flex-row overflow-x-auto gap-3 pb-2.5 no-scrollbar scroll-smooth w-full">
                 {filteredProducts.map((prod) => {
                   const isSelected = selectedProductId === prod.id;
-                  const brandColor = `var(--color-${brand.accentBg.replace('bg-', '')})`;
+                  const brandColor = resolveBrandColor(brand.accentBg);
                   return (
                     <button
                       key={prod.id}
-                      onClick={() => setSelectedProductId(prod.id)}
+                      onClick={() => onSelectProduct(prod.id)}
                       className={`flex items-center gap-2.5 p-2 px-3 rounded-xl border bg-white shrink-0 w-[185px] text-left transition-all duration-300 focus:outline-none cursor-pointer ${
                         isSelected ? 'shadow-md scale-99 border-slate-200/60 bg-slate-50/20' : 'border-slate-200/40 hover:bg-slate-50/30'
                       }`}
@@ -519,7 +541,7 @@ const ProductCatalog = ({ brand, language }) => {
                       }}
                     >
                       <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-200/30 flex items-center justify-center p-0.5 shrink-0">
-                        <img src={prod.coverImage} alt={prod.name} className="max-w-full max-h-full object-contain filter drop-shadow-xs" />
+                        <img src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain filter drop-shadow-xs" />
                       </div>
                       <div className="min-w-0 flex-grow">
                         <h4 className="text-[11px] font-extrabold text-[#0D1F3B] truncate leading-tight">
@@ -552,12 +574,12 @@ const ProductCatalog = ({ brand, language }) => {
                 >
                   {filteredProducts.map((prod) => {
                     const isSelected = selectedProductId === prod.id;
-                    const brandColor = `var(--color-${brand.accentBg.replace('bg-', '')})`;
+                    const brandColor = resolveBrandColor(brand.accentBg);
                     return (
                       <button
                         key={prod.id}
                         onClick={() => {
-                          setSelectedProductId(prod.id);
+                          onSelectProduct(prod.id);
                           setShowMobileList(false);
                         }}
                         className={`w-full p-2.5 rounded-xl border flex items-center gap-3 text-left transition-all duration-300 focus:outline-none cursor-pointer ${
@@ -569,7 +591,7 @@ const ProductCatalog = ({ brand, language }) => {
                         }}
                       >
                         <div className="w-10 h-10 rounded-lg bg-white border border-slate-100 flex items-center justify-center p-1 shrink-0">
-                          <img src={prod.coverImage} alt={prod.name} className="max-w-full max-h-full object-contain" />
+                          <img src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain" />
                         </div>
                         <div className="min-w-0 flex-grow">
                           <h4 className="text-[12px] font-extrabold text-[#0D1F3B] truncate leading-tight">
@@ -597,11 +619,11 @@ const ProductCatalog = ({ brand, language }) => {
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((prod) => {
                   const isSelected = selectedProductId === prod.id;
-                  const brandColor = `var(--color-${brand.accentBg.replace('bg-', '')})`;
+                  const brandColor = resolveBrandColor(brand.accentBg);
                   return (
                     <button
                       key={prod.id}
-                      onClick={() => setSelectedProductId(prod.id)}
+                      onClick={() => onSelectProduct(prod.id)}
                       className={`w-full p-3.5 rounded-2xl border flex items-center gap-3.5 text-left transition-all duration-300 focus:outline-none cursor-pointer group/item ${
                         isSelected
                           ? 'bg-white border-slate-200/60 shadow-md scale-101'
@@ -615,7 +637,7 @@ const ProductCatalog = ({ brand, language }) => {
                       {/* Left Thumbnail Box */}
                       <div className="w-12 h-12 rounded-xl bg-white border border-slate-200/50 overflow-hidden flex items-center justify-center p-1 shrink-0 shadow-sm">
                         <img 
-                          src={prod.coverImage} 
+                          src={getProductThumbnail(prod)} 
                           alt={prod.name} 
                           className="max-w-full max-h-full object-contain filter drop-shadow-sm transition-transform duration-300 group-hover/item:scale-105" 
                         />
@@ -688,9 +710,11 @@ const ProductCatalog = ({ brand, language }) => {
                       <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest ${hasCover ? 'bg-[#4C5A9D]/10 border border-[#4C5A9D]/20 text-[#4C5A9D]' : 'bg-white/20 border border-white/35 text-white backdrop-blur-md'}`}>
                         {activeProduct.certBadge}
                       </span>
-                      <h2 className={`text-xl sm:text-2xl md:text-3xl font-extrabold font-display tracking-tight leading-none ${hasCover ? 'text-[#0d1f3b] drop-shadow-2xs' : 'text-white drop-shadow-sm'}`}>
-                        {activeProduct.name}
-                      </h2>
+                      {!hasCover && (
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold font-display tracking-tight leading-none text-white drop-shadow-sm">
+                          {activeProduct.name}
+                        </h2>
+                      )}
                     </div>
 
                     {/* Banner CTA Button */}
@@ -796,7 +820,7 @@ const ProductCatalog = ({ brand, language }) => {
                                 onClick={() => setActiveGalleryIdx(idx)}
                                 className="w-12 h-12 rounded-xl border-2 bg-white flex items-center justify-center p-1.5 overflow-hidden transition-all duration-300 focus:outline-none cursor-pointer"
                                 style={{
-                                  borderColor: isThumbSelected ? `var(--color-${brand.accentBg.replace('bg-', '')})` : '#e2e8f0'
+                                  borderColor: isThumbSelected ? resolveBrandColor(brand.accentBg) : '#e2e8f0'
                                 }}
                               >
                                 <img src={thumbSrc} alt={`Thumb ${idx + 1}`} className="max-w-full max-h-full object-contain" />
@@ -812,7 +836,7 @@ const ProductCatalog = ({ brand, language }) => {
                       <div className="space-y-4">
                         {/* Upper category and attributes tags */}
                         <div className="flex flex-wrap items-center gap-1.5">
-                          <span className="text-[10px] font-extrabold uppercase tracking-widest" style={{ color: `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+                          <span className="text-[10px] font-extrabold uppercase tracking-widest" style={{ color: resolveBrandColor(brand.accentBg) }}>
                             {activeProduct.categoryLabel?.[isEs ? 'es' : 'en'] || activeProduct.category}
                           </span>
                           <span className="text-[9px] font-bold text-slate-300 select-none">•</span>
@@ -830,7 +854,7 @@ const ProductCatalog = ({ brand, language }) => {
 
                         {/* Slogan with accent left border */}
                         {activeProduct.slogan && (
-                          <div className="py-1 px-4 border-l-2 bg-slate-50/50 rounded-r-xl" style={{ borderLeftColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+                          <div className="py-1 px-4 border-l-2 bg-slate-50/50 rounded-r-xl" style={{ borderLeftColor: resolveBrandColor(brand.accentBg) }}>
                             <p className="text-xs font-bold text-slate-500 italic leading-relaxed">
                               "{activeProduct.slogan}"
                             </p>
@@ -912,28 +936,6 @@ const ProductCatalog = ({ brand, language }) => {
                           </div>
                         )}
                       </div>
-
-                      {/* Detail CTA Buttons row */}
-                      <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
-                        {activeProduct.technicalSpecs && (
-                          <button
-                            onClick={scrollToSpecs}
-                            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-extrabold text-white shadow-sm transition-all hover:scale-103 active:scale-97 cursor-pointer"
-                            style={{ backgroundColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }}
-                          >
-                            <FileText className="w-3.5 h-3.5" />
-                            <span>{isEs ? 'Especificaciones' : 'Specifications'}</span>
-                          </button>
-                        )}
-                        
-                        <a
-                          href={`${getBasePath().replace(/\/$/, '')}/${brand.id}/contacto`}
-                          onClick={(e) => handleLinkClick(e, brand.id, 'cta-section')}
-                          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-extrabold text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 hover:text-slate-800 transition-all hover:scale-103 active:scale-97 cursor-pointer"
-                        >
-                          <span>{isEs ? 'Solicitar Muestra' : 'Request Sample'}</span>
-                        </a>
-                      </div>
                     </div>
 
                   </div>
@@ -942,7 +944,7 @@ const ProductCatalog = ({ brand, language }) => {
                   {activeProduct.technicalSpecs && (
                     <div ref={specsTableRef} className="border-t border-slate-100 pt-8 text-left space-y-4">
                       <div className="flex items-center gap-2">
-                        <div className="p-1.5 rounded-lg text-white" style={{ backgroundColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
+                        <div className="p-1.5 rounded-lg text-white" style={{ backgroundColor: resolveBrandColor(brand.accentBg) }}>
                           <FileText className="w-4 h-4" />
                         </div>
                         <h4 className={`text-lg sm:text-xl font-extrabold font-display tracking-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
@@ -979,110 +981,6 @@ const ProductCatalog = ({ brand, language }) => {
                             )}
                           </tbody>
                         </table>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* 4. Interactive Sample Request inline panel */}
-                  <div className="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200/50 text-left space-y-3.5">
-                    <h5 className="text-sm font-extrabold text-primary-dark flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                      <span>{brandId === 'xtralife' ? (isEs ? 'Canal de Distribución Autorizado' : 'Authorized Distribution Channel') : (isEs ? 'Canal de Trazabilidad Médica' : 'Medical Traceability Channel')}</span>
-                    </h5>
-                    
-                    {sampleRequested ? (
-                      <div className="flex flex-col items-center justify-center text-center py-4 gap-2">
-                        <CheckCircle2 className="w-8 h-8 text-emerald-500 animate-bounce" />
-                        <h6 className="text-xs font-bold text-primary-dark">{isEs ? '¡Solicitud Registrada!' : 'Request Registered!'}</h6>
-                        <p className="text-[11px] text-slate-400 font-semibold max-w-xs leading-relaxed">
-                          {isEs 
-                            ? (brandId === 'xtralife' 
-                              ? 'Un asesor comercial de Maines SRL se pondrá en contacto para gestionar el envío de muestras y catálogos.' 
-                              : 'Un asesor de Maines SRL revisará su registro médico para autorizar el envío de muestras físicas.')
-                            : (brandId === 'xtralife'
-                              ? 'A Maines SRL advisor will contact you to manage sample and catalog shipments.'
-                              : 'An executive will review your medical credentials to authorize physical sample shipments.')}
-                        </p>
-                      </div>
-                    ) : (
-                      <form onSubmit={handleSampleRequest} className="flex flex-col gap-3.5">
-                        <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                          {brandId === 'xtralife'
-                            ? (isEs 
-                              ? 'La distribución de muestras comerciales y catálogos de suplementos está dirigida a farmacias, consultorios y distribuidores autorizados en Bolivia.'
-                              : 'Supplement sample distribution and catalogs are directed to pharmacies, certified practices, and authorized retailers in Bolivia.')
-                            : (isEs 
-                              ? 'El suministro de muestras clínicas está restringido estrictamente a profesionales de la salud con matrícula profesional válida en Bolivia.' 
-                              : 'Sample distribution is restricted to certified healthcare practitioners with active license registration in Bolivia.')}
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-3">
-                          <input 
-                            type="text" 
-                            required
-                            value={licenseNumber}
-                            onChange={(e) => setLicenseNumber(e.target.value)}
-                            placeholder={isEs ? "Nº de Matrícula Profesional o Clínica" : "Healthcare License / Clinic ID"} 
-                            className="flex-grow px-4 py-2.5 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-1 transition-all"
-                            style={{ '--tw-ring-color': `var(--color-${brand.accentBg.replace('bg-', '')})` }}
-                          />
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="px-5 py-2.5 text-xs font-extrabold text-white rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 focus:outline-none disabled:opacity-50 cursor-pointer"
-                            style={{ backgroundColor: `var(--color-${brand.accentBg.replace('bg-', '')})` }}
-                          >
-                            {isSubmitting ? (
-                              <span>...</span>
-                            ) : (
-                              <>
-                                <span>{isEs ? 'Solicitar Muestra' : 'Request Sample'}</span>
-                                <FileText className="w-3.5 h-3.5" />
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </form>
-                    )}
-                  </div>
-
-                  {/* 5. Clinical Insights Video Grid */}
-                  {activeProduct.clinicalInsights && activeProduct.clinicalInsights.length > 0 && (
-                    <div className="border-t border-slate-100 pt-8 text-left space-y-4">
-                      <div>
-                        <h4 className={`text-lg sm:text-xl font-extrabold font-display tracking-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
-                          {isEs ? 'Clinical Insights' : 'Clinical Insights'}
-                        </h4>
-                        <p className="text-xs text-slate-400 font-semibold mt-1">
-                          {isEs ? 'Explore videos de capacitación y dosieres científicos del producto.' : 'Explore training videos and scientific product dossiers.'}
-                        </p>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {activeProduct.clinicalInsights.map((insight, idx) => (
-                          <div 
-                            key={idx}
-                            className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-slate-900 border border-slate-800 flex flex-col justify-end p-4 group/insight cursor-pointer"
-                          >
-                            {/* Dark gradient mask */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-0 opacity-80 group-hover/insight:opacity-90 transition-opacity duration-300" />
-                            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:12px_12px] pointer-events-none" />
-
-                            {/* Floating icon */}
-                            <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/10 group-hover/insight:bg-white/20 border border-white/10 flex items-center justify-center transition-all duration-300 scale-95 group-hover/insight:scale-100">
-                              {getInsightIcon(insight.type)}
-                            </div>
-
-                            {/* Info */}
-                            <div className="relative z-10 text-left">
-                              <span className="text-[8px] font-extrabold uppercase tracking-widest" style={{ color: `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
-                                {insight.label}
-                              </span>
-                              <h5 className="text-[13px] font-bold text-white tracking-tight mt-0.5 group-hover/insight:text-white/95">
-                                {insight.title}
-                              </h5>
-                            </div>
-                          </div>
-                        ))}
                       </div>
                     </div>
                   )}

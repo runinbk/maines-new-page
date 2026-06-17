@@ -19,6 +19,34 @@ export const getBasePath = () => {
   return path.endsWith('/') ? path : path + '/';
 };
 
+export const getProductSlug = (productId, brandId) => {
+  if (!productId) return '';
+  if (brandId === 'jetema') {
+    return productId.startsWith('jetema-') ? productId.substring('jetema-'.length) : productId;
+  }
+  if (brandId === 'dermclar' && productId.startsWith('derm-')) {
+    return productId.substring('derm-'.length);
+  }
+  if (brandId === 'xtralife' && productId.startsWith('xtralife-')) {
+    return productId.substring('xtralife-'.length);
+  }
+  return productId;
+};
+
+export const getProductIdFromSlug = (slug, brandId) => {
+  if (!slug) return '';
+  if (brandId === 'jetema') {
+    return slug;
+  }
+  if (brandId === 'dermclar' && !slug.startsWith('derm-')) {
+    return `derm-${slug}`;
+  }
+  if (brandId === 'xtralife' && !slug.startsWith('xtralife-')) {
+    return `xtralife-${slug}`;
+  }
+  return slug;
+};
+
 export const navigate = (path, state = {}) => {
   window.history.pushState(state, '', path);
   window.dispatchEvent(new PopStateEvent('popstate'));
@@ -42,31 +70,40 @@ export const parseCurrentRoute = () => {
       const brandId = first;
       const subSec = segments[1] || '';
       let targetId = 'top';
-      if (subSec === 'catalogo') targetId = 'catalog-section';
+      let productId = null;
+      if (subSec === 'catalogo') {
+        targetId = 'catalog-section';
+        if (segments[2]) {
+          productId = getProductIdFromSlug(segments[2], brandId);
+        }
+      }
       else if (subSec === 'empresa') targetId = 'about-section';
       else if (subSec === 'contacto') targetId = 'cta-section';
       
-      return { isBrand: true, brandId, sectionId: targetId };
+      return { isBrand: true, brandId, sectionId: targetId, productId };
     } else {
       let targetId = 'top';
       if (first === 'ecosistema') targetId = 'ecosystem';
       else if (first === 'nosotros') targetId = 'about';
       else if (first === 'contacto') targetId = 'contact';
       
-      return { isBrand: false, brandId: null, sectionId: targetId };
+      return { isBrand: false, brandId: null, sectionId: targetId, productId: null };
     }
   }
   
-  return { isBrand: false, brandId: null, sectionId: 'top' };
+  return { isBrand: false, brandId: null, sectionId: 'top', productId: null };
 };
 
-export const getRoutePath = (brandId = null, sectionName = null) => {
+export const getRoutePath = (brandId = null, sectionName = null, productId = null) => {
   const base = getBasePath();
   const cleanBase = base.replace(/\/$/, '');
   
   if (brandId) {
     let sub = '';
-    if (sectionName === 'catalog-section') sub = '/catalogo';
+    if (sectionName === 'catalog-section') {
+      const slug = getProductSlug(productId, brandId);
+      sub = '/catalogo' + (slug ? `/${slug}` : '');
+    }
     else if (sectionName === 'about-section') sub = '/empresa';
     else if (sectionName === 'cta-section') sub = '/contacto';
     
@@ -81,8 +118,8 @@ export const getRoutePath = (brandId = null, sectionName = null) => {
   }
 };
 
-export const navigateTo = (brandId = null, sectionName = null) => {
-  const path = getRoutePath(brandId, sectionName);
+export const navigateTo = (brandId = null, sectionName = null, productId = null) => {
+  const path = getRoutePath(brandId, sectionName, productId);
   
   let targetId = 'top';
   if (brandId) {
@@ -95,18 +132,25 @@ export const navigateTo = (brandId = null, sectionName = null) => {
     else if (sectionName === 'contact') targetId = 'contact';
   }
   
-  window.history.pushState({ scrollToSection: targetId }, '', path);
+  window.history.pushState({ scrollToSection: targetId, productId }, '', path);
   window.dispatchEvent(new PopStateEvent('popstate'));
 };
 
-export const replaceURLForSection = (brandId = null, sectionName = null) => {
-  const path = getRoutePath(brandId, sectionName);
+export const replaceURLForSection = (brandId = null, sectionName = null, productId = null) => {
+  let targetProductId = productId;
+  if (brandId && sectionName === 'catalog-section' && !targetProductId) {
+    const currentRoute = parseCurrentRoute();
+    if (currentRoute.brandId === brandId && currentRoute.productId) {
+      targetProductId = currentRoute.productId;
+    }
+  }
+  const path = getRoutePath(brandId, sectionName, targetProductId);
   if (window.location.pathname !== path) {
     window.history.replaceState(window.history.state, '', path);
   }
 };
 
-export const handleLinkClick = (e, brandId = null, sectionName = null) => {
+export const handleLinkClick = (e, brandId = null, sectionName = null, productId = null) => {
   if (e) e.preventDefault();
   
   const current = parseCurrentRoute();
@@ -132,9 +176,9 @@ export const handleLinkClick = (e, brandId = null, sectionName = null) => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    replaceURLForSection(brandId, sectionName);
+    replaceURLForSection(brandId, sectionName, productId);
   } else {
-    navigateTo(brandId, sectionName);
+    navigateTo(brandId, sectionName, productId);
   }
 };
 
@@ -145,4 +189,3 @@ export const navigateHome = () => {
 export const handleNavClick = (e, sectionName) => {
   handleLinkClick(e, null, sectionName);
 };
-

@@ -311,16 +311,42 @@ export const brandsData = {
         brand: "dermclar",
         category: "Cocktails Line",
         name: "Whitening Dermclar",
-        presentation: "5 viales x 5ml",
-        description: "Tratamiento profesional formulado con nanotecnología y biotecnología. Combinación de principios activos que ayuda a reducir la pigmentación persistente y prevenir nuevas manchas.",
-        activeIngredients: "Complejo biotecnológico despigmentante",
-        applicationZones: ["Rostro", "Cuello", "Escote", "Manos"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Whitening+Dermclar",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Whitening+Dermclar"
+        presentation: "Caja de 5 viales x 5ml",
+        subtitle: "Tratamiento profesional formulado con nanotecnología y biotecnología",
+        description: "Whitening Dermclar es una solución integral y profesional de alta tecnología bioquímica que ayuda a reducir la pigmentación persistente de la piel y prevenir la aparición de nuevas manchas. Actúa tanto en la pigmentación de origen melánico como en la producida por el paso del tiempo y el estrés oxidativo. Nutre, rejuvenece y aclara la piel, recuperando su luminosidad y tersura natural.",
+        benefits: [
+          "Inhibe la síntesis de melanina por diferentes vías, incluyendo la innovadora vía neural.",
+          "Promueve un aclaramiento progresivo y disminuye la intensidad de manchas causadas por el fotodaño.",
+          "Ejerce una potente acción antioxidante, protegiendo las células de los radicales libres.",
+          "Acelera la renovación celular (acción queratolítica suave) y mejora la flexibilidad de la piel.",
+          "Ayuda a estimular la hidratación profunda y favorece la síntesis de colágeno natural."
         ],
-        certBadge: "AGEMED Approved",
-        composition: "Tratamiento profesional formulado con nanotecnología y biotecnología. Combinación de principios activos que ayuda a reducir la pigmentación persistente y prevenir nuevas manchas.",
+        activeIngredientsDetails: "Glutatión, Ácido Ascórbico (Vitamina C), Ácido Glicólico, Alfa Arbutina, Ácido Kójico y Pancratium Maritimum (Neurolight).",
+        applicationZones: [
+          "Rostro", 
+          "Cuello", 
+          "Escote", 
+          "Manos", 
+          "Brazos"
+        ],
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-portada.webp",
+          gallery: [
+            {
+              image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-1.webp"
+            },
+            {
+              image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-2.webp"
+            },
+            {
+              image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-3.webp"
+            }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        },
         downloadUrl: "#"
       },
       {

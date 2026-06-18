@@ -14,7 +14,6 @@ import {
   ChevronLeft,
   ShieldCheck 
 } from 'lucide-react';
-import { handleLinkClick, getBasePath } from '../../utils/navigation';
 import jetemaProducts from '../../data/jetemaProducts.json';
 
 // Import custom application zone icons
@@ -134,7 +133,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
             : 'CE Certified / 100% Vegan';
 
         // Map gallery
-        let gallery = [];
+        let gallery;
         if (prod.assets?.gallery) {
           gallery = prod.assets.gallery;
         } else if (prod.assets?.hoverGlitchVideo) {
@@ -217,17 +216,38 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
 
       return rawProducts.map(prod => {
         const catLabel = prod.categoryLabel?.[isEs ? 'es' : 'en'] || prod.category;
-        const mainImage = prod.coverImage || prod.image || getPlaceholdImg(prod.name, brandId, 600, 600);
+        const mainImage = prod.assets?.coverImage || prod.coverImage || prod.image || getPlaceholdImg(prod.name, brandId, 600, 600);
         const descResolved = resolveTranslation(prod.description) || resolveTranslation(prod.composition);
         const presResolved = resolveTranslation(prod.presentation);
         const doseResolved = resolveTranslation(prod.dosage);
+
+        let gallery;
+        if (prod.assets?.gallery) {
+          gallery = prod.assets.gallery.map(item => {
+            if (typeof item === 'object') {
+              return item.image || item.url || '';
+            }
+            return item;
+          }).filter(Boolean);
+        } else if (prod.gallery) {
+          gallery = prod.gallery.map(item => {
+            if (typeof item === 'object') {
+              return item.image || item.url || '';
+            }
+            return item;
+          }).filter(Boolean);
+        } else {
+          gallery = [mainImage];
+        }
+
+        const resolvedSubtitle = prod.subtitle || prod.descriptor || catLabel;
 
         return {
           id: prod.id,
           name: prod.name,
           displayName: prod.name,
-          subtitle: prod.descriptor,
-          descriptor: catLabel,
+          subtitle: resolvedSubtitle,
+          descriptor: resolvedSubtitle,
           category: prod.category,
           categoryLabel: prod.categoryLabel || { es: catLabel, en: catLabel },
           tags: prod.tags || (brandId === 'xtralife' ? (presResolved ? [presResolved, doseResolved] : []) : prod.applicationZones) || (prod.category === 'facial' ? ["DMAE", "Ácido Hialurónico", "Firmeza"] : prod.category === 'capilar' ? ["Biotina", "Pantenol", "Anticaída"] : prod.category === 'immunity' ? ["Refuerzo Inmune", "Vitamina C", "Antioxidante"] : ["Colágeno", "Articulaciones", "MSM"]),
@@ -235,7 +255,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
           description: descResolved,
           composition: descResolved,
           coverImage: mainImage,
-          gallery: prod.gallery || [mainImage],
+          gallery: gallery,
           certBadge: prod.certBadge || (brandId === 'xtralife' ? "MADE IN USA • GMP" : "AGEMED Approved"),
           specifications: prod.specifications || [],
           technicalSpecs: (prod.specifications && prod.specifications.length > 0) ? prod.specifications : null,
@@ -243,7 +263,10 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
           applicationZones: prod.applicationZones || null,
           presentation: presResolved || null,
           dosage: doseResolved || null,
-          applicationAreas: prod.applicationZones || prod.applicationAreas || (prod.specifications && prod.specifications.find(s => s.label.includes('Method') || s.label.includes('Protocol') || s.label.includes('Recommendation') || s.label.includes('Indication'))?.value.split(', ')) || [isEs ? "Aplicación Clínica Transdérmica" : "Clinical Transdermal Application"],
+          applicationAreas: prod.applicationAreas || prod.applicationZones || (prod.specifications && prod.specifications.find(s => s.label.includes('Method') || s.label.includes('Protocol') || s.label.includes('Recommendation') || s.label.includes('Indication'))?.value.split(', ')) || [isEs ? "Aplicación Clínica Transdérmica" : "Clinical Transdermal Application"],
+          regulatory: prod.regulatory || null,
+          benefits: prod.benefits || null,
+          activeIngredientsDetails: prod.activeIngredientsDetails || null,
           clinicalInsights: prod.clinicalInsights || [
             { title: isEs ? "Ficha Técnica Nutricional" : "Nutritional Fact Sheet", label: isEs ? "Ver Info" : "View Info", type: "dossier" }
           ]
@@ -260,9 +283,6 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
 
   const specsTableRef = useRef(null);
   const [lightboxImage, setLightboxImage] = useState(null);
-  const [sampleRequested, setSampleRequested] = useState(false);
-  const [licenseNumber, setLicenseNumber] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Filter products reactively
   const filteredProducts = useMemo(() => {
@@ -309,8 +329,6 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
   if (selectedProductId !== prevSelectedProductId) {
     setPrevSelectedProductId(selectedProductId);
     setActiveGalleryIdx(0);
-    setSampleRequested(false);
-    setLicenseNumber('');
     setIsHovered(false);
   }
 
@@ -359,29 +377,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
     setActiveGalleryIdx(prev => (prev === activeProduct.gallery.length - 1 ? 0 : prev + 1));
   };
 
-  // Scroll to specifications table
-  const scrollToSpecs = () => {
-    if (specsTableRef.current) {
-      specsTableRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
 
-  // Submit sample request B2B form
-  const handleSampleRequest = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSampleRequested(true);
-    }, 900);
-  };
-  const getInsightIcon = (type) => {
-    switch (type) {
-      case 'video': return <Play className="w-4.5 h-4.5 text-white/95" />;
-      case 'cases': return <BookOpen className="w-4.5 h-4.5 text-white/95" />;
-      default: return <FileSpreadsheet className="w-4.5 h-4.5 text-white/95" />;
-    }
-  };
 
   const hasCover = activeProduct && activeProduct.coverImage && !activeProduct.coverImage.startsWith('https://placehold.co/');
 
@@ -789,26 +785,46 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                           <span className="text-[10px] font-extrabold uppercase tracking-widest" style={{ color: resolveBrandColor(brand.accentBg) }}>
                             {activeProduct.categoryLabel?.[isEs ? 'es' : 'en'] || activeProduct.category}
                           </span>
-                          <span className="text-[9px] font-bold text-slate-300 select-none">•</span>
-                          {activeProduct.tags.slice(0, 2).map((tag, i) => (
-                            <span key={i} className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">
-                              {tag}
-                            </span>
-                          ))}
+                          {brandId !== 'dermclar' && activeProduct.tags && activeProduct.tags.length > 0 && (
+                            <>
+                              <span className="text-[9px] font-bold text-slate-300 select-none">•</span>
+                              {activeProduct.tags.slice(0, 2).map((tag, i) => (
+                                <span key={i} className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">
+                                  {tag}
+                                </span>
+                              ))}
+                            </>
+                          )}
                         </div>
 
                         {/* Interactive Sanitary Registry Button */}
-                        {activeProduct.regulatory?.hasRegistroSanitario && (
+                        {/* Sanitary Registry Button / Badge */}
+                        {activeProduct.regulatory && (
                           <div className="pt-0.5">
-                            <a
-                              href={activeProduct.regulatory.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#edf2f7] hover:bg-[#e2e8f0] text-[#2d3748] border border-[#cbd5e0] transition-all duration-200 cursor-pointer shadow-xs w-fit"
-                            >
-                              <ShieldCheck className="w-4 h-4" style={{ color: resolveBrandColor(brand.accentBg) }} />
-                              <span>{activeProduct.regulatory.label || (isEs ? "Ver Registro Sanitario Oficial" : "View Official Sanitary Registry")}</span>
-                            </a>
+                            {activeProduct.regulatory.isClickable !== false && activeProduct.regulatory.hasRegistroSanitario !== false ? (
+                              <a
+                                href={activeProduct.regulatory.link || '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#edf2f7] hover:bg-[#e2e8f0] text-[#2d3748] border border-[#cbd5e0] transition-all duration-200 cursor-pointer shadow-xs w-fit"
+                              >
+                                <ShieldCheck className="w-4 h-4" style={{ color: resolveBrandColor(brand.accentBg) }} />
+                                <span>{activeProduct.regulatory.label || (isEs ? "Ver Registro Sanitario Oficial" : "View Official Sanitary Registry")}</span>
+                              </a>
+                            ) : (
+                              <div
+                                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-extrabold transition-all duration-200 shadow-xs w-fit"
+                                style={{
+                                  backgroundColor: brandId === 'dermclar' ? 'rgba(14, 165, 233, 0.08)' : 'rgba(74, 85, 104, 0.08)',
+                                  borderColor: brandId === 'dermclar' ? 'rgba(14, 165, 233, 0.2)' : 'rgba(74, 85, 104, 0.2)',
+                                  borderWidth: '1px',
+                                  color: brandId === 'dermclar' ? '#0ea5e9' : '#4a5568'
+                                }}
+                              >
+                                <ShieldCheck className="w-3.5 h-3.5 sm:w-4 h-4 shrink-0" style={{ color: brandId === 'dermclar' ? '#0ea5e9' : undefined }} />
+                                <span>{activeProduct.regulatory.label}</span>
+                              </div>
+                            )}
                           </div>
                         )}
 
@@ -817,88 +833,134 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                           {activeProduct.displayName}
                         </h3>
 
-                        {/* Slogan with accent left border */}
-                        {activeProduct.slogan && (
-                          <div className="py-1 px-4 border-l-2 bg-slate-50/50 rounded-r-xl" style={{ borderLeftColor: resolveBrandColor(brand.accentBg) }}>
-                            <p className="text-xs font-bold text-slate-500 italic leading-relaxed">
-                              "{activeProduct.slogan}"
+                        {brandId === 'dermclar' ? (
+                          <div className="space-y-6 pt-2">
+                            {/* Description - Premium slate-600, leading-relaxed, modern typography */}
+                            <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-medium">
+                              {activeProduct.description}
                             </p>
-                          </div>
-                        )}
 
-                        {/* Product detailed description */}
-                        <p className="text-sm text-slate-500 leading-relaxed font-medium">
-                          {activeProduct.description}
-                        </p>
-
-                        {/* Clinical Benefits checklist */}
-                        {activeProduct.clinicalBenefits && activeProduct.clinicalBenefits.length > 0 && (
-                          <div className="pt-3 space-y-3">
-                            <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
-                              {isEs ? 'Beneficios Clínicos' : 'Clinical Benefits'}
-                            </span>
-                            <ul className="space-y-2.5">
-                              {activeProduct.clinicalBenefits.map((benefit, idx) => (
-                                <li key={idx} className="flex items-start gap-2.5">
-                                  <div className="shrink-0 mt-0.5" style={{ color: resolveBrandColor(brand.accentBg) }}>
-                                    <CheckCircle2 className="w-4 h-4" />
-                                  </div>
-                                  <div className="space-y-0.5 text-left">
-                                    <h4 className="text-xs sm:text-sm font-extrabold text-slate-800 leading-tight">
-                                      {benefit.title}
-                                    </h4>
-                                    <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                                      {benefit.detail}
-                                    </p>
-                                  </div>
-                                </li>
-                              ))}
-                            </ul>
+                            {/* Zonas de Aplicación */}
+                            {activeProduct.applicationZones && (
+                              <div className="space-y-3 pt-2">
+                                <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
+                                  {isEs ? 'Zonas de Aplicación' : 'Application Zones'}
+                                </h3>
+                                <div className="flex flex-wrap gap-2">
+                                  {activeProduct.applicationZones.map((zone, idx) => {
+                                    const icon = getZoneIcon(zone);
+                                    return (
+                                      <span 
+                                        key={idx} 
+                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold border transition-colors duration-200 cursor-default shadow-xs"
+                                        style={{
+                                          backgroundColor: 'rgba(14, 165, 233, 0.08)',
+                                          borderColor: 'rgba(14, 165, 233, 0.25)',
+                                          color: '#0ea5e9'
+                                        }}
+                                      >
+                                        {icon && (
+                                          <img 
+                                            src={icon} 
+                                            alt="" 
+                                            className="w-5 h-5 object-contain shrink-0 filter brightness-100" 
+                                          />
+                                        )}
+                                        <span>{zone}</span>
+                                      </span>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        )}
-                        {activeProduct.activeIngredients && (
-                          <div className="pt-2 space-y-1">
-                            <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
-                              {isEs ? 'Principios Activos' : 'Active Ingredients'}
-                            </span>
-                            <p className="text-xs sm:text-sm text-slate-700 font-bold">
-                              {activeProduct.activeIngredients}
+                        ) : (
+                          <>
+                            {/* Slogan with accent left border */}
+                            {activeProduct.slogan && (
+                              <div className="py-1 px-4 border-l-2 bg-slate-50/50 rounded-r-xl" style={{ borderLeftColor: resolveBrandColor(brand.accentBg) }}>
+                                <p className="text-xs font-bold text-slate-500 italic leading-relaxed">
+                                  "{activeProduct.slogan}"
+                                </p>
+                              </div>
+                            )}
+
+                            {/* Product detailed description */}
+                            <p className="text-sm text-slate-500 leading-relaxed font-medium">
+                              {activeProduct.description}
                             </p>
-                          </div>
-                        )}
 
-                        {/* Zonas de Aplicación Renderizado Condicional */}
-                        {activeProduct.applicationZones && (
-                          <div className="pt-2 space-y-1.5">
-                            <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
-                              {isEs ? 'Zonas de Aplicación' : 'Application Zones'}
-                            </span>
-                            <div className="flex flex-wrap gap-1.5">
-                              {activeProduct.applicationZones.map((zone, idx) => {
-                                const icon = getZoneIcon(zone);
-                                return (
-                                  <span 
-                                    key={idx} 
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold border transition-colors duration-200 cursor-default shadow-xs"
-                                    style={{
-                                      backgroundColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.08)`,
-                                      borderColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.25)`,
-                                      color: brandId === 'jetema' ? '#4C5A9D' : '#0ea5e9'
-                                    }}
-                                  >
-                                    {icon && (
-                                      <img 
-                                        src={icon} 
-                                        alt="" 
-                                        className="w-3.5 h-3.5 object-contain shrink-0 filter brightness-100" 
-                                      />
-                                    )}
-                                    <span>{zone}</span>
-                                  </span>
-                                );
-                              })}
-                            </div>
-                          </div>
+                            {/* Clinical Benefits checklist */}
+                            {activeProduct.clinicalBenefits && activeProduct.clinicalBenefits.length > 0 && (
+                              <div className="pt-3 space-y-3">
+                                <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                                  {isEs ? 'Beneficios Clínicos' : 'Clinical Benefits'}
+                                </span>
+                                <ul className="space-y-2.5">
+                                  {activeProduct.clinicalBenefits.map((benefit, idx) => (
+                                    <li key={idx} className="flex items-start gap-2.5">
+                                      <div className="shrink-0 mt-0.5" style={{ color: resolveBrandColor(brand.accentBg) }}>
+                                        <CheckCircle2 className="w-4 h-4" />
+                                      </div>
+                                      <div className="space-y-0.5 text-left">
+                                        <h4 className="text-xs sm:text-sm font-extrabold text-slate-800 leading-tight">
+                                          {benefit.title}
+                                        </h4>
+                                        <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                                          {benefit.detail}
+                                        </p>
+                                      </div>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {activeProduct.activeIngredients && (
+                              <div className="pt-2 space-y-1">
+                                <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                                  {isEs ? 'Principios Activos' : 'Active Ingredients'}
+                                </span>
+                                <p className="text-xs sm:text-sm text-slate-700 font-bold">
+                                  {activeProduct.activeIngredients}
+                                </p>
+                              </div>
+                            )}
+
+                            {/* Zonas de Aplicación Renderizado Condicional */}
+                            {activeProduct.applicationZones && (
+                              <div className="pt-2 space-y-1.5">
+                                <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                                  {isEs ? 'Zonas de Aplicación' : 'Application Zones'}
+                                </span>
+                                <div className="flex flex-wrap gap-1.5">
+                                  {activeProduct.applicationZones.map((zone, idx) => {
+                                    const icon = getZoneIcon(zone);
+                                    return (
+                                      <span 
+                                        key={idx} 
+                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold border transition-colors duration-200 cursor-default shadow-xs"
+                                        style={{
+                                          backgroundColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.08)`,
+                                          borderColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.25)`,
+                                          color: brandId === 'jetema' ? '#4C5A9D' : '#0ea5e9'
+                                        }}
+                                      >
+                                        {icon && (
+                                          <img 
+                                            src={icon} 
+                                            alt="" 
+                                            className="w-3.5 h-3.5 object-contain shrink-0 filter brightness-100" 
+                                          />
+                                        )}
+                                        <span>{zone}</span>
+                                      </span>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </>
                         )}
 
                         {/* Suplementación Info for Xtralife */}
@@ -931,7 +993,50 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
 
                   </div>
 
-                  {/* 3. Technical Specifications Table */}
+                  {/* 2.5. Full-Width Clinical Details for Dermclar */}
+                  {brandId === 'dermclar' && (
+                    <div className="border-t border-slate-100 pt-8 text-left space-y-8">
+                      {/* Active Ingredients Section */}
+                      {(activeProduct.activeIngredientsDetails || activeProduct.activeIngredients) && (
+                        <div className="space-y-2.5">
+                          <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
+                            {isEs ? 'Principios Activos' : 'Active Ingredients'}
+                          </h3>
+                          <p className="text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                            {activeProduct.activeIngredientsDetails || activeProduct.activeIngredients}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Benefits Section */}
+                      {((activeProduct.benefits && activeProduct.benefits.length > 0) || (activeProduct.clinicalBenefits && activeProduct.clinicalBenefits.length > 0)) && (
+                        <div className="space-y-3">
+                          <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
+                            {isEs ? 'Beneficios' : 'Benefits'}
+                          </h3>
+                          <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                            {activeProduct.benefits ? (
+                              activeProduct.benefits.map((benefit, idx) => (
+                                <li key={idx} className="flex items-start gap-2.5">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
+                                  <span>{benefit}</span>
+                                </li>
+                              ))
+                            ) : (
+                              activeProduct.clinicalBenefits.map((benefit, idx) => (
+                                <li key={idx} className="flex items-start gap-2.5">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
+                                  <span>{benefit.title}: {benefit.detail}</span>
+                                </li>
+                              ))
+                            )}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* 3. Technical Specifications Table or Grid */}
                   {activeProduct.technicalSpecs && (
                     <div ref={specsTableRef} className="border-t border-slate-100 pt-8 text-left space-y-4">
                       <div className="flex items-center gap-2">
@@ -943,36 +1048,82 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                         </h4>
                       </div>
 
-                      <div className="w-full overflow-hidden border border-slate-200/60 rounded-2xl shadow-sm">
-                        <table className="w-full text-xs sm:text-sm border-collapse">
-                          <thead>
-                            <tr className="bg-slate-50 border-b border-slate-100 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
-                              <th className="px-5 py-3 text-left w-1/3 font-bold">{isEs ? 'PARÁMETRO' : 'PARAMETER'}</th>
-                              <th className="px-5 py-3 text-left font-bold">{isEs ? 'ESPECIFICACIÓN' : 'SPECIFICATION'}</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-slate-100 text-slate-600 font-medium">
-                            {activeProduct.specifications.map((spec, idx) => (
-                              <tr key={idx} className="hover:bg-slate-50/40 transition-colors duration-150">
-                                <td className="px-5 py-3 font-semibold text-primary-dark">{spec.label}</td>
-                                <td className="px-5 py-3">{spec.value}</td>
+                      {brandId !== 'jetema' ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {activeProduct.specifications.map((spec, idx) => (
+                            <div 
+                              key={idx} 
+                              className="border rounded-2xl p-4 flex flex-col justify-between transition-all duration-200 hover:shadow-xs"
+                              style={{
+                                backgroundColor: brandId === 'dermclar' ? 'rgba(14, 165, 233, 0.03)' : 'rgba(248, 250, 252, 0.5)',
+                                borderColor: brandId === 'dermclar' ? 'rgba(14, 165, 233, 0.12)' : 'rgba(226, 232, 240, 0.6)'
+                              }}
+                            >
+                              <span 
+                                className="text-[10px] font-extrabold tracking-widest uppercase block mb-1"
+                                style={{ color: brandId === 'dermclar' ? 'rgba(14, 165, 233, 0.8)' : 'rgba(13, 31, 59, 0.4)' }}
+                              >
+                                {spec.label}
+                              </span>
+                              <p className="text-xs sm:text-sm text-slate-700 font-bold leading-relaxed">
+                                {spec.value}
+                              </p>
+                            </div>
+                          ))}
+                          {activeProduct.applicationAreas.length > 0 && (
+                            <div 
+                              className="border rounded-2xl p-4 sm:col-span-2 flex flex-col justify-between"
+                              style={{
+                                backgroundColor: brandId === 'dermclar' ? 'rgba(14, 165, 233, 0.03)' : 'rgba(248, 250, 252, 0.5)',
+                                borderColor: brandId === 'dermclar' ? 'rgba(14, 165, 233, 0.12)' : 'rgba(226, 232, 240, 0.6)'
+                              }}
+                            >
+                              <span 
+                                className="text-[10px] font-extrabold tracking-widest uppercase block mb-1.5"
+                                style={{ color: brandId === 'dermclar' ? 'rgba(14, 165, 233, 0.8)' : 'rgba(13, 31, 59, 0.4)' }}
+                              >
+                                {isEs ? 'Áreas de Aplicación' : 'Application Areas'}
+                              </span>
+                              <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-slate-600 font-semibold leading-relaxed">
+                                {activeProduct.applicationAreas.map((area, i) => (
+                                  <li key={i}>{area}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="w-full overflow-hidden border border-slate-200/60 rounded-2xl shadow-sm">
+                          <table className="w-full text-xs sm:text-sm border-collapse">
+                            <thead>
+                              <tr className="bg-slate-50 border-b border-slate-100 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                                <th className="px-5 py-3 text-left w-1/3 font-bold">{isEs ? 'PARÁMETRO' : 'PARAMETER'}</th>
+                                <th className="px-5 py-3 text-left font-bold">{isEs ? 'ESPECIFICACIÓN' : 'SPECIFICATION'}</th>
                               </tr>
-                            ))}
-                            {activeProduct.applicationAreas.length > 0 && (
-                              <tr className="hover:bg-slate-50/40 transition-colors duration-150">
-                                <td className="px-5 py-3 font-semibold text-primary-dark">{isEs ? 'Áreas de Aplicación' : 'Application Areas'}</td>
-                                <td className="px-5 py-3">
-                                  <ul className="list-disc list-inside space-y-0.5">
-                                    {activeProduct.applicationAreas.map((area, i) => (
-                                      <li key={i}>{area}</li>
-                                    ))}
-                                  </ul>
-                                </td>
-                              </tr>
-                            )}
-                          </tbody>
-                        </table>
-                      </div>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100 text-slate-600 font-medium">
+                              {activeProduct.specifications.map((spec, idx) => (
+                                <tr key={idx} className="hover:bg-slate-50/40 transition-colors duration-150">
+                                  <td className="px-5 py-3 font-semibold text-primary-dark">{spec.label}</td>
+                                  <td className="px-5 py-3">{spec.value}</td>
+                                </tr>
+                              ))}
+                              {activeProduct.applicationAreas.length > 0 && (
+                                <tr className="hover:bg-slate-50/40 transition-colors duration-150">
+                                  <td className="px-5 py-3 font-semibold text-primary-dark">{isEs ? 'Áreas de Aplicación' : 'Application Areas'}</td>
+                                  <td className="px-5 py-3">
+                                    <ul className="list-disc list-inside space-y-0.5">
+                                      {activeProduct.applicationAreas.map((area, i) => (
+                                        <li key={i}>{area}</li>
+                                      ))}
+                                    </ul>
+                                  </td>
+                                </tr>
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
                     </div>
                   )}
 

@@ -47,11 +47,11 @@
   {
     "id": "exolution",
     "name": "EXO'LUTION® Ultimate Skin Solution",
-    "subtitle": "Solución Penta-Exo AD / Skinbooster de Rejuvenecimiento Avanzado",
+    "subtitle": "Skinbooster Dual / Tecnología PENTA-EXO AD",
     "category": "skinboosters",
-    "tags": ["Tecnología Penta-Exo", "61 Ingredientes Activos", "Fórmula 100% Vegan", "Autorrenovación Cutánea"],
-    "slogan": "La potencia biológica de 5 complejos de exosomas vegetales combinada con 61 ingredientes activos en una fórmula integral 2 en 1.",
-    "description": "EXO'LUTION® representa la cúspide de la terapia celular tópica y mesoterápica de origen 100% vegano. Al mejorar el entorno de la piel, activa sus funciones metabólicas cansadas por estímulos externos, lo que conduce a una mejor retención de humedad, regeneración acelerada y máxima elasticidad. Actúa como un potente mensajero molecular gracias a sus nanovesículas extracelulares que regulan las funciones fisiológicas profundas para el rejuvenecimiento y control antiinflamatorio del tejido cutáneo.",
+    "tags": ["Fórmula Dual 2 en 1", "61 Ingredientes Activos", "5 Exosomas Vegetales", "100% Vegan"],
+    "slogan": "La sinergia biológica perfecta para la autorrenovación celular y el rejuvenecimiento dérmico profundo.",
+    "description": "EXO'LUTION® representa la vanguardia en terapia celular regenerativa. Diseñado bajo un sistema de doble vial, combina la potencia pura de 5 complejos de exosomas de origen vegetal (PENTA-EXO AD) con un rico cóctel nutricional de 61 ingredientes activos. Al mezclarse en la práctica clínica, estas nanovesículas actúan como mensajes extracelulares, penetrando la dermis para reactivar las funciones metabólicas de las pieles agotadas. Promueve una potente acción antiinflamatoria, retención extrema de humedad y una acelerada síntesis de colágeno, logrando una reestructuración visible y duradera.",
     "assets": {
       "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/exolution/exolution-portada.webp",
       "gallery": [
@@ -69,82 +69,125 @@
         }
       ]
     },
-    "specifications": [
-      { "label": "Composición Base", "value": "5 Complejos de Exosomas Vegetales + 61 Nutrientes Celulares" },
-      { "label": "Complejos de Exosomas", "value": "Cica (Centella), Salvia, Ginseng Rojo, Edelweiss y Heartleaf" },
-      { "label": "Nutrientes Activos", "value": "25 Aminoácidos, 15 Vitaminas, 8 Minerales, 2 Co-Enzimas" },
-      { "label": "Soporte Estructural", "value": "Ácido Hialurónico, Glutatión y 3 Ácidos Nucleicos" },
-      { "label": "Certificación de Origen", "value": "Certificado 100% VEGAN (Libre de componentes animales)" },
-      { "label": "Acciones Clínicas", "value": "Antiinflamatorio potente, Ultra-Hidratante, Regenerador Dérmico" }
-    ],
-    "applicationAreas": ["Tratamiento de pieles cansadas o deshidratadas", "Pérdida de elasticidad latente", "Post-procedimientos clínicos para acelerar cicatrización"]
-  },
-  {
-    "id": "eptq",
-    "name": "e.p.t.q.® Dermal Fillers",
-    "subtitle": "Línea Premium de Rellenos Dérmicos a base de Ácido Hialurónico",
-    "category": "rellenos",
-    "tags": ["HA Altamente Purificado", "Monofásico Homogéneo", "BDDE Residual < 2 ppm", "Certificación CE 2292"],
-    "slogan": "Textura monofásica altamente homogénea que respeta la anatomía y la expresión natural del rostro con una duración de 6 a 8 meses.",
-    "description": "e.p.t.q.® es una línea premium de rellenos dérmicos a base de Ácido Hialurónico reticulado de alta pureza desarrollado para tratamientos estéticos no quirúrgicos. Destaca internacionalmente por su alta seguridad: bajísimo nivel de endotoxinas (<0.1 EU/ml) y mínimos residuos químicos de reticulación (BDDE < 2ppm), lo que mitiga drásticamente el riesgo de edema o inflamación post-procedimiento. Ofrece una excelente biocompatibilidad con la piel y una jeringa optimizada para un moldeado preciso, natural y estable.",
-    "assets": {
-      "coverImage": "/assets/marcas/jetema/eptq-cover.jpg",
-      "hoverGlitchVideo": "/assets/marcas/jetema/eptq-glitch.mp4",
-      "galleryImages": [
-        "/assets/marcas/jetema/eptq-family.jpg",
-        "/assets/marcas/jetema/eptq-rheology.jpg"
-      ]
+    "regulatory": {
+      "hasRegistroSanitario": true,
+      "link": "https://drive.google.com/drive/folders/1NMqYHof87I3LUerQOp6fevjrKR3ydGM8",
+      "label": "Ver Registro Sanitario Oficial Bolivia"
     },
     "specifications": [
-      { "label": "Base Estructural", "value": "Ácido Hialurónico reticulado de origen bio-sintético (No animal)" },
-      { "label": "Nivel de Endotoxinas", "value": "Ultra-bajo (< 0.1 EU/ml) para reducir edema tardío" },
-      { "label": "Residuo de BDDE", "value": "< 2 ppm (Garantía de no-toxicidad biológica)" },
-      { "label": "Durabilidad Clínicas", "value": "Resultados estéticos visibles y estables entre 6 y 8 meses" },
-      { "label": "Garantía Regulatoria", "value": "Certificación CE 2292, aprobación KFDA y Registro Sanitario en Bolivia" }
+      { "label": "Sistema de Mezcla (2 en 1)", "value": "Vial 1 (Polvo Liofilizado) + Vial 2 (Esencia Activadora)" },
+      { "label": "Complejo Exosómico (Penta-Exo AD)", "value": "Cica, Salvia, Ginseng Rojo, Edelweiss y Heartleaf" },
+      { "label": "Nutrición Celular (61 Activos)", "value": "25 Aminóacidos, 15 Vitaminas, 8 Minerales, Ácido Hialurónico, Glutatión, Co-Enzimas y Ácidos Nucleicos" },
+      { "label": "Certificación de Origen", "value": "Certificación VEGAN (Alta biocompatibilidad)" },
+      { "label": "Indicaciones Clínicas", "value": "Regeneración dérmica, control inflamatorio y ultra-hidratación" }
     ],
-    "variants": [
-      {
-        "density": "S100",
-        "description": "Densidad Baja. Viscosidad y elasticidad fluidas para correcciones superficiales y líneas finas con Lidocaína al 0.3%.",
-        "areas": ["Frente (líneas superficiales)", "Surco lagrimal (Ojeras)", "Zona Periorbital (Patas de gallo)", "Perfilamiento e hidratación delicada de labios"],
-        "assets": {
-          "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100-portada.webp",
-          "gallery": [
-            {
-              "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100.webp",
-              "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100.webm"
-            }
-          ]
-        }
-      },
-      {
-        "density": "S300",
-        "description": "Densidad Media. El estándar equilibrado de uso general con excelente capacidad de soporte y retención de forma con Lidocaína al 0.3%.",
-        "areas": ["Aumento y volumen estructural de labios", "Entrecejo y soporte en mejillas", "Surcos nasogenianos (Líneas de la sonrisa)", "Depresiones moderadas de la frente"],
-        "assets": {
-          "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300-portada.webp",
-          "gallery": [
-            {
-              "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300.webp",
-              "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300.webm"
-            }
-          ]
-        }
-      },
-      {
-        "density": "S500",
-        "description": "Densidad Alta. Consistencia más gruesa (Thickest) diseñada para la reconstrucción estructural profunda y proyección tridimensional.",
-        "areas": ["Mentón (Genioplastia no quirúrgica)", "Pómulo (Soporte malar)", "Puente Nasal (Rinomodelación avanzada)", "Marcación y definición del ángulo mandibular"],
-        "assets": {
-          "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500-portada.webp",
-          "gallery": [
-            {
-              "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500.webp",
-              "video": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500.webm"
-            }
-          ]
-        }
-      }
+    "applicationAreas": [
+      "Rejuvenecimiento facial integral (Pieles opacas o dañadas)",
+      "Recuperación post-procedimientos agresivos (Láser, Peelings)",
+      "Tratamiento intensivo para mejorar la densidad y elasticidad",
+      "Control de afecciones inflamatorias crónicas de la piel"
+    ]
+  },
+  {
+    "id": "eptq-s100",
+    "name": "e.p.t.q.® S100 (Baja Densidad)",
+    "subtitle": "Relleno Dérmico de Ácido Hialurónico Fluido con Lidocaína al 0.3%",
+    "category": "rellenos",
+    "tags": ["Estructura Monofásica", "Endotoxinas < 0.1 EU/ml", "BDDE Residual < 2 ppm", "Presión de Extrusión Fluida"],
+    "slogan": "Fluidez reológica y purificación extrema para la corrección segura de zonas de piel delgada y tejidos delicados.",
+    "description": "e.p.t.q.® S100 es un relleno de Ácido Hialurónico reticulado de origen bio-sintético diseñado específicamente para el tratamiento de depresiones superficiales. Su bajo índice de viscosidad y estructura monofásica altamente homogénea garantizan una fuerza de inyección optimizada y una dispersión simétrica en el tejido dérmico superficial. Gracias a su avanzado proceso de purificación que mantiene las endotoxinas por debajo de 0.1 EU/ml, se mitiga radicalmente el riesgo de edemas tardíos o el Efecto Tyndall (coloración azulada), haciéndolo el estándar de oro para áreas críticas como el surco lagrimal o el rejuvenecimiento periorbital.",
+    "assets": {
+      "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100-portada.webp",
+      "hoverGlitchVideo": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100.webm",
+      "galleryImages": [
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s100/eptq-s100.webp"
+      ]
+    },
+    "regulatory": {
+      "hasRegistroSanitario": true,
+      "link": "https://drive.google.com/file/d/1b6_wuRTyomZK_aPhsajm6j-ZjzSvYd6F/view",
+      "label": "Ver Registro Sanitario Oficial Bolivia"
+    },
+    "specifications": [
+      { "label": "Concentración de AH", "value": "24 mg/ml de Ácido Hialurónico Purificado de origen no animal" },
+      { "label": "Anestésico Integrado", "value": "Lidocaína al 0.3% para un procedimiento confortable" },
+      { "label": "Pureza Molecular", "value": "Endotoxinas < 0.1 EU/ml and agentes BDDE residuales < 2 ppm" },
+      { "label": "Durabilidad Clínica", "value": "Resultados estéticos visibles y estables de 6 a 8 meses" },
+      { "label": "Unidad de Empaque", "value": "1 Jeringa prellenada de 1.1 ml + 2 Agujas estériles" }
+    ],
+    "applicationAreas": [
+      "Tratamiento avanzado del Surco Lagrimal (Ojeras complejas)",
+      "Atenuación de líneas finas periorbitales (Patas de gallo superficiales)",
+      "Corrección de líneas superficiales de la frente y entrecejo",
+      "Hidratación profunda, definición de contorno y perfilamiento delicado de labios"
+    ]
+  },
+  {
+    "id": "eptq-s300",
+    "name": "e.p.t.q.® S300 (Densidad Media)",
+    "subtitle": "Relleno Dérmico de Ácido Hialurónico Estructural con Lidocaína al 0.3%",
+    "category": "rellenos",
+    "tags": ["Red de Polímeros Reforzada", "Viscosidad Media", "BDDE Residual < 2 ppm", "Certificación CE 2292"],
+    "slogan": "El estándar reológico de uso general: Máxima retención de forma y adaptabilidad a las expresiones naturales.",
+    "description": "e.p.t.q.® S300 representa el equilibrio perfecto de la línea para dar soporte estructural y volumen en capas dérmicas medias y profundas. Su exclusiva red de polímeros entrecruzados maximiza la cohesividad del gel, otorgándole una resistencia superior ante las fuerzas de deformación mecánica del rostro sin perder elasticidad. Es un producto altamente seguro con niveles de endotoxinas controlados (<0.1 EU/ml) que garantiza resultados predecibles, una degradación enzimática uniforme y un moldeado sumamente natural en procedimientos de armonización facial e hidratación de volumen labial activo.",
+    "assets": {
+      "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300-portada.webp",
+      "hoverGlitchVideo": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300.webm",
+      "galleryImages": [
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s300/eptq-s300.webp"
+      ]
+    },
+    "regulatory": {
+      "hasRegistroSanitario": true,
+      "link": "https://drive.google.com/file/d/1b6_wuRTyomZK_aPhsajm6j-ZjzSvYd6F/view",
+      "label": "Ver Registro Sanitario Oficial Bolivia"
+    },
+    "specifications": [
+      { "label": "Concentración de AH", "value": "24 mg/ml de Ácido Hialurónico Purificado" },
+      { "label": "Componente Analgésico", "value": "Lidocaína al 0.3% integrado para confort absoluto" },
+      { "label": "Pureza Molecular", "value": "Endotoxinas < 0.1 EU/ml y residuos químicos de reticulación < 2 ppm" },
+      { "label": "Durabilidad Clínica", "value": "Resultados estéticos estables y visibles entre 8 y 12 meses" },
+      { "label": "Unidad de Empaque", "value": "1 Jeringa prellenada de 1.1 ml + 2 Agujas estériles" }
+    ],
+    "applicationAreas": [
+      "Aumento de volumen y reestructuración del cuerpo labial",
+      "Atenuación de Surcos Nasogenianos moderados a profundos (Líneas de la sonrisa)",
+      "Soporte, proyección y voluminización en Mejillas y pómulos blandos",
+      "Corrección de depresiones moderadas en la frente y líneas de marioneta"
+    ]
+  },
+  {
+    "id": "eptq-s500",
+    "name": "e.p.t.q.® S500 (Alta Densidad)",
+    "subtitle": "Relleno Dérmico Volumétrico de Alta Consistencia con Lidocaína al 0.3%",
+    "category": "rellenos",
+    "tags": ["Viscoelasticidad Superior", "Thickest Consistency", "Soporte Óseo", "BDDE Residual < 2 ppm"],
+    "slogan": "Máxima fuerza G-Prime para proyecciones tridimensionales profundas y marcación de contornos sin migración.",
+    "description": "e.p.t.q.® S500 posee la consistencia más gruesa y el índice de viscoelasticidad más robusto de toda la línea farmacéutica de JETEMA. Desarrollado específicamente para la reconstrucción volumétrica profunda y soporte óseo, su alta cohesividad impide por completo la migración del producto a zonas subyacentes, fijando el material en el plano inyectado. Es la alternativa no quirúrgica ideal para el diseño de contornos óseos, rinomodelación y genioplastia, brindando al profesional de la estética una herramienta de gran durabilidad clínica y excelente resistencia a la degradación por hialuronidasa nativa.",
+    "assets": {
+      "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500-portada.webp",
+      "hoverGlitchVideo": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500.webm",
+      "galleryImages": [
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/eptq-s500/eptq-s500.webp"
+      ]
+    },
+    "regulatory": {
+      "hasRegistroSanitario": true,
+      "link": "https://drive.google.com/file/d/1b6_wuRTyomZK_aPhsajm6j-ZjzSvYd6F/view",
+      "label": "Ver Registro Sanitario Oficial Bolivia"
+    },
+    "specifications": [
+      { "label": "Concentración de AH", "value": "24 mg/ml de Ácido Hialurónico Altamente Reticulado" },
+      { "label": "Componente Analgésico", "value": "Lidocaína al 0.3% para optimizar la experiencia clínica" },
+      { "label": "Biocompatibilidad", "value": "pH balanceado, Endotoxinas < 0.1 EU/ml y BDDE residual < 2 ppm" },
+      { "label": "Durabilidad Clínica", "value": "Resultados volumétricos estables de alta fidelidad entre 12 y 14 meses" },
+      { "label": "Unidad de Empaque", "value": "1 Jeringa prellenada de 1.1 ml + 2 Agujas estériles" }
+    ],
+    "applicationAreas": [
+      "Proyección estructural del Mentón (Genioplastia médica no quirúrgica)",
+      "Volumización y soporte estructural profundo del Pómulo (Soporte Malar)",
+      "Remodelación del Puente Nasal (Rinomodelación avanzada de alta precisión)",
+      "Marcación, definición y escultura del Ángulo Mandibular (Jawline)"
     ]
   }
 ]

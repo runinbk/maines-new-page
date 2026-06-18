@@ -14,8 +14,8 @@ const BrandCTA = ({ brand, language }) => {
   // Contact details
   const contactPhone = brandId === 'jetema' ? '+591 77099888' : '+591 77099888';
   const cleanPhoneForWa = contactPhone.replace(/\+/g, '').replace(/\s/g, '');
-  const locationText = isEs 
-    ? 'Calle San Ramón Nro. 3270 - Santa Cruz, Bolivia' 
+  const locationText = isEs
+    ? 'Calle San Ramón Nro. 3270 - Santa Cruz, Bolivia'
     : 'San Ramon St. No. 3270 - Santa Cruz, Bolivia';
 
   // Modal State
@@ -60,15 +60,15 @@ const BrandCTA = ({ brand, language }) => {
 
   return (
     <section id="cta-section" className="py-20 lg:py-28 px-6 sm:px-12 xl:px-20 bg-white w-full text-left relative overflow-hidden border-t border-slate-200/40">
-      
+
       {/* Decorative background visual blob */}
       <div className={`absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-slate-500/5 blur-[120px] pointer-events-none`} />
 
       <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
-        
+
         {/* Left Column: Title, Copy, Info and Buttons */}
         <div className="w-full flex flex-col items-start text-left space-y-8 animate-fade-in-up">
-          
+
           {/* Main Title with brand gradient highlighted words */}
           <h2 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-[#0D1F3B] font-display tracking-tight leading-[1.15] max-w-2xl">
             {brandId === 'jetema' ? (
@@ -85,10 +85,10 @@ const BrandCTA = ({ brand, language }) => {
               </>
             )}
           </h2>
-          
+
           {/* Left-bordered description */}
           <div className="pl-4 border-l-[3.5px] text-slate-500 font-semibold text-sm sm:text-base leading-relaxed max-w-xl" style={{ borderLeftColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
-            {isEs 
+            {isEs
               ? 'Contacte directamente con un asesor comercial de Maines SRL para recibir atención personalizada sobre precios de distribuidor, capacitaciones clínicas y protocolos certificados.'
               : 'Contact a commercial advisor from Maines SRL directly to receive personalized support regarding distributor pricing, clinical training, and certified protocols.'}
           </div>
@@ -104,7 +104,7 @@ const BrandCTA = ({ brand, language }) => {
                 <span className="text-slate-800 font-extrabold block mt-0.5">{contactPhone}</span>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-xl bg-slate-50 border border-slate-100 shrink-0">
                 <MapPin className="w-4 h-4 text-slate-400" style={{ color: brandId === 'jetema' ? '#4C5A9D' : undefined }} />
@@ -118,7 +118,7 @@ const BrandCTA = ({ brand, language }) => {
 
           {/* Action Buttons Row */}
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 w-full sm:w-auto">
-            
+
             {/* WhatsApp CTA */}
             <a
               href={`https://wa.me/${cleanPhoneForWa}?text=Hola%20Maines%20SRL,%20deseo%20incorporar%20el%20portafolio%20de%20${brand.name}%20en%20mi%20práctica%20profesional.`}
@@ -146,15 +146,15 @@ const BrandCTA = ({ brand, language }) => {
 
         {/* Right Column: CTA Image directly rendered without square card or floating badge */}
         <div className="w-full flex items-center justify-center mt-10 lg:mt-0">
-          <img 
+          <img
             src={
-              brandId === 'jetema' 
-                ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/jetema-cta.webp' 
-                : (brandId === 'dermclar' 
+              brandId === 'jetema'
+                ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/jetema-cta10.webp'
+                : (brandId === 'dermclar'
                   ? 'https://placehold.co/600x600/FAF8FF/8B5CF6?text=Dermclar+Aesthetic'
                   : 'https://placehold.co/600x600/F5FCFA/10B981?text=Xtralife+Science')
-            } 
-            alt="Biotechnology showcase" 
+            }
+            alt="Biotechnology showcase"
             className="w-full max-w-[480px] h-auto object-contain rounded-[24px] shadow-2xl border border-slate-100/60"
           />
         </div>
@@ -165,7 +165,7 @@ const BrandCTA = ({ brand, language }) => {
       {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop blur overlay */}
-          <div 
+          <div
             onClick={closeFormModal}
             className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-all duration-300 cursor-pointer"
           />
@@ -189,8 +189,8 @@ const BrandCTA = ({ brand, language }) => {
                   {isEs ? '¡Consulta Enviada!' : 'Inquiry Sent Successfully!'}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-400 font-semibold leading-relaxed max-w-xs">
-                  {isEs 
-                    ? 'Su mensaje ha sido enviado exitosamente. Un asesor comercial de Maines SRL se contactará a la brevedad.' 
+                  {isEs
+                    ? 'Su mensaje ha sido enviado exitosamente. Un asesor comercial de Maines SRL se contactará a la brevedad.'
                     : 'Your inquiry has been logged. A Maines SRL advisor will reach out shortly.'}
                 </p>
                 <button
@@ -208,8 +208,8 @@ const BrandCTA = ({ brand, language }) => {
                     {isEs ? 'Enviar Consulta por Correo' : 'Send Email Inquiry'}
                   </h3>
                   <p className="text-xs text-slate-400 font-semibold leading-relaxed">
-                    {isEs 
-                      ? 'Rellene los datos corporativos para solicitar catálogos de precios y fichas regulatorias.' 
+                    {isEs
+                      ? 'Rellene los datos corporativos para solicitar catálogos de precios y fichas regulatorias.'
                       : 'Fill in corporate details to request commercial catalogs and regulatory records.'}
                   </p>
                 </div>
@@ -222,7 +222,7 @@ const BrandCTA = ({ brand, language }) => {
                 )}
 
                 <div className="space-y-4">
-                  
+
                   {/* Full Name */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
@@ -241,7 +241,7 @@ const BrandCTA = ({ brand, language }) => {
 
                   {/* Email & Phone grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    
+
                     {/* Email */}
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">

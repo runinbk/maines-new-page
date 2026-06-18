@@ -51,70 +51,21 @@ const getZoneIcon = (zoneName) => {
   return zoneIcons[zoneName] || zoneIcons[zoneName.trim()] || null;
 };
 
-// Pure CSS Glitch Hover Effect Styles
-const glitchStyles = `
-  .glitch-container {
+// Clean Premium Hover Zoom Effect Styles
+const hoverStyles = `
+  .product-image-container {
     position: relative;
     overflow: hidden;
   }
-  .glitch-img {
+  .product-image {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .glitch-container:hover .glitch-img {
-    transform: scale(1.02);
-  }
-  .glitch-clone {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .glitch-container:hover .glitch-clone {
-    opacity: 0.65;
-  }
-  .glitch-clone-1 {
-    animation: glitch-anim-1 1s infinite linear alternate-reverse;
-    filter: drop-shadow(2px 0 0 rgba(255, 0, 0, 0.4)) hue-rotate(90deg);
-  }
-  .glitch-clone-2 {
-    animation: glitch-anim-2 1.4s infinite linear alternate-reverse;
-    filter: drop-shadow(-2px 0 0 rgba(0, 255, 255, 0.4)) hue-rotate(270deg);
-  }
-
-  @keyframes glitch-anim-1 {
-    0% { clip-path: inset(20% 0 60% 0); transform: translate(-3px, -2px); }
-    10% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 1px); }
-    20% { clip-path: inset(40% 0 40% 0); transform: translate(-1px, 3px); }
-    30% { clip-path: inset(80% 0 5% 0); transform: translate(3px, -2px); }
-    40% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, -1px); }
-    50% { clip-path: inset(50% 0 30% 0); transform: translate(1px, 2px); }
-    60% { clip-path: inset(30% 0 50% 0); transform: translate(-3px, 1px); }
-    70% { clip-path: inset(70% 0 15% 0); transform: translate(2px, -3px); }
-    80% { clip-path: inset(90% 0 2% 0); transform: translate(-1px, -1px); }
-    90% { clip-path: inset(5% 0 90% 0); transform: translate(3px, 2px); }
-    100% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, -2px); }
-  }
-
-  @keyframes glitch-anim-2 {
-    0% { clip-path: inset(10% 0 70% 0); transform: translate(2px, 2px); }
-    10% { clip-path: inset(50% 0 20% 0); transform: translate(-2px, -1px); }
-    20% { clip-path: inset(30% 0 50% 0); transform: translate(3px, -2px); }
-    30% { clip-path: inset(70% 0 10% 0); transform: translate(-1px, 3px); }
-    40% { clip-path: inset(5% 0 85% 0); transform: translate(2px, -1px); }
-    50% { clip-path: inset(80% 0 5% 0); transform: translate(-3px, 2px); }
-    60% { clip-path: inset(40% 0 45% 0); transform: translate(1px, -3px); }
-    70% { clip-path: inset(15% 0 75% 0); transform: translate(-2px, 1px); }
-    80% { clip-path: inset(65% 0 25% 0); transform: translate(3px, -1px); }
-    90% { clip-path: inset(85% 0 3% 0); transform: translate(-1px, -2px); }
-    100% { clip-path: inset(10% 0 70% 0); transform: translate(2px, 2px); }
+  .product-image-container:hover .product-image {
+    transform: scale(1.03);
   }
 `;
 
@@ -166,95 +117,90 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
     if (brandId === 'jetema') {
       const list = [];
       jetemaProducts.forEach(prod => {
-        if (prod.id === 'eptq' && prod.variants) {
-          prod.variants.forEach(variant => {
-            const variantName = `e.p.t.q.® ${variant.density}`;
-            list.push({
-              id: `eptq-${variant.density.toLowerCase()}`,
-              parentId: prod.id,
-              name: variantName,
-              displayName: `e.p.t.q. ${variant.density}`,
-              subtitle: isEs ? "Relleno Dérmico de Ácido Hialurónico" : "Hyaluronic Acid Dermal Filler",
-              descriptor: isEs ? `Ácido Hialurónico - ${variant.density === 'S100' ? 'Baja' : variant.density === 'S300' ? 'Media' : 'Alta'} Densidad` : `Hyaluronic Acid Filler - ${variant.density === 'S100' ? 'Low' : variant.density === 'S300' ? 'Medium' : 'High'} Density`,
-              category: 'fillers', // map "rellenos" to "fillers"
-              categoryLabel: { es: "Rellenos Dérmicos", en: "Dermal Fillers" },
-              tags: [
-                ...(prod.tags || []).filter(t => !t.includes('CE')),
-                variant.density,
-                "Lidocaína 0.3%"
-              ],
-              slogan: prod.slogan,
-              description: variant.description,
-              composition: prod.description,
-              coverImage: variant.assets?.coverImage || getPlaceholdImg(`e.p.t.q. ${variant.density}`, 'jetema', 600, 600),
-              gallery: variant.assets?.gallery || [
-                getPlaceholdImg(`e.p.t.q. ${variant.density} View 1`, 'jetema', 600, 600),
-                getPlaceholdImg(`e.p.t.q. ${variant.density} View 2`, 'jetema', 600, 600)
-              ],
-              certBadge: "CE Certified",
-              specifications: prod.specifications.map(s => {
-                if (s.label.includes('Ingredient') || s.label.includes('Ingrediente')) {
-                  return { label: s.label, value: s.value };
-                }
-                if (s.label.includes('Residuo') || s.label.includes('BDDE')) {
-                  return { label: s.label, value: s.value };
-                }
-                if (s.label.includes('Endotoxinas') || s.label.includes('Endotoxin')) {
-                  return { label: s.label, value: s.value };
-                }
-                if (s.label.includes('Base') || s.label.includes('Estructural')) {
-                  return { label: s.label, value: s.value };
-                }
-                return s;
-              }).concat([
-                { label: isEs ? "Densidad y Reología" : "Density & Rheology", value: variant.density }
-              ]),
-              technicalSpecs: prod.specifications,
-              applicationAreas: variant.areas,
-              clinicalInsights: [
-                { title: variant.density === 'S100' ? (isEs ? "Perfilamiento de Labios" : "Lips Profiling") : variant.density === 'S300' ? (isEs ? "Técnica de Aumento" : "Augmentation Technique") : (isEs ? "Proyección Estructural" : "Structural Projection"), label: isEs ? "Video de Aplicación" : "Application Video", type: "video" },
-                { title: isEs ? "Resultados Clínicos" : "Patient Results", label: isEs ? "Caso Clínico" : "Case Study", type: "cases" },
-                { title: isEs ? "Dosier de Seguridad ZEEP" : "ZEEP Purity Dossier", label: isEs ? "Ficha Técnica" : "Safety Dossier", type: "dossier" }
-              ]
-            });
-          });
+        const categoryMapped = prod.category === 'toxinas' ? 'toxins' : prod.category === 'skinboosters' ? 'skinboosters' : prod.category === 'rellenos' ? 'fillers' : prod.category;
+        const categoryLabel = prod.category === 'toxinas' 
+          ? { es: "Toxina Botulínica", en: "Botulinum Toxin" } 
+          : prod.category === 'skinboosters' 
+            ? { es: "Skinboosters & Exosomas", en: "Skinboosters & Exosomes" } 
+            : prod.category === 'rellenos'
+              ? { es: "Rellenos Dérmicos", en: "Dermal Fillers" }
+              : { es: prod.category, en: prod.category };
+
+        // Determine certBadge
+        const certBadge = prod.id === 'toxta' 
+          ? 'FDA Approved' 
+          : prod.id.startsWith('eptq') 
+            ? 'CE Certified' 
+            : 'CE Certified / 100% Vegan';
+
+        // Map gallery
+        let gallery = [];
+        if (prod.assets?.gallery) {
+          gallery = prod.assets.gallery;
+        } else if (prod.assets?.hoverGlitchVideo) {
+          // e.p.t.q. style with hover video
+          gallery = [{
+            image: prod.assets.galleryImages?.[0] || prod.assets.coverImage,
+            video: prod.assets.hoverGlitchVideo
+          }];
+        } else if (prod.assets?.galleryImages) {
+          gallery = prod.assets.galleryImages;
         } else {
-          // toxta or exolution
-          const categoryMapped = prod.category === 'toxinas' ? 'toxins' : prod.category === 'skinboosters' ? 'skinboosters' : prod.category;
-          list.push({
-            id: prod.id,
-            name: prod.name,
-            displayName: prod.name.replace('®', ''),
-            subtitle: prod.subtitle,
-            descriptor: prod.subtitle,
-            category: categoryMapped,
-            categoryLabel: prod.category === 'toxinas' ? { es: "Toxina Botulínica", en: "Botulinum Toxin" } : { es: "Skinboosters & Exosomas", en: "Skinboosters & Exosomes" },
-            tags: prod.tags || [],
-            slogan: prod.slogan,
-            description: prod.description,
-            composition: prod.description,
-            coverImage: prod.assets?.coverImage || getPlaceholdImg(prod.name.split(' ')[0], 'jetema', 600, 600),
-            gallery: prod.assets?.gallery || prod.assets?.galleryImages || [
-              getPlaceholdImg(`${prod.name.split(' ')[0]} Vial`, 'jetema', 600, 600),
-              getPlaceholdImg(`${prod.name.split(' ')[0]} Packaging`, 'jetema', 600, 600)
-            ],
-            certBadge: prod.id === 'toxta' ? 'FDA Approved' : 'CE Certified / 100% Vegan',
-            specifications: prod.specifications || [],
-            technicalSpecs: (prod.specifications && prod.specifications.length > 0) ? prod.specifications : null,
-            applicationAreas: prod.applicationAreas || [],
-            regulatory: prod.regulatory || null,
-            clinicalBenefits: prod.clinicalBenefits || null,
-            clinicalInsights: prod.id === 'toxta' ? [
-              { title: isEs ? "Técnica de Aplicación" : "Application Technique", label: isEs ? "Video Tutorial" : "Video Tutorial", type: "video" },
-              { title: isEs ? "Resultados Clínicos" : "Patient Clinical Outcomes", label: isEs ? "Casos Médicos" : "Case Study", type: "cases" },
-              { title: isEs ? "Análisis de Inmunogenicidad" : "Immunogenicity Report", label: isEs ? "Dosier Científico" : "Scientific Dossier", type: "dossier" }
-            ] : [
-              { title: isEs ? "Protocolo Regenerativo" : "Regenerative Protocol", label: isEs ? "Guía Clínica" : "Clinical Guide", type: "video" },
-              { title: isEs ? "Evidencia Antinflamatoria" : "Anti-inflammatory Action", label: isEs ? "Estudio Científico" : "Efficacy Study", type: "cases" },
-              { title: isEs ? "Tecnología Penta-Exo" : "Penta-Exo Cellular Science", label: isEs ? "Ficha Técnica" : "Safety Dossier", type: "dossier" }
-            ]
-          });
+          gallery = [
+            getPlaceholdImg(`${prod.name.split(' ')[0]} Vial`, 'jetema', 600, 600),
+            getPlaceholdImg(`${prod.name.split(' ')[0]} Packaging`, 'jetema', 600, 600)
+          ];
         }
+
+        // Map clinicalInsights
+        let clinicalInsights = [];
+        if (prod.id === 'toxta') {
+          clinicalInsights = [
+            { title: isEs ? "Técnica de Aplicación" : "Application Technique", label: isEs ? "Video Tutorial" : "Video Tutorial", type: "video" },
+            { title: isEs ? "Resultados Clínicos" : "Patient Clinical Outcomes", label: isEs ? "Casos Médicos" : "Case Study", type: "cases" },
+            { title: isEs ? "Análisis de Inmunogenicidad" : "Immunogenicity Report", label: isEs ? "Dosier Científico" : "Scientific Dossier", type: "dossier" }
+          ];
+        } else if (prod.id === 'exolution') {
+          clinicalInsights = [
+            { title: isEs ? "Protocolo Regenerativo" : "Regenerative Protocol", label: isEs ? "Guía Clínica" : "Clinical Guide", type: "video" },
+            { title: isEs ? "Evidencia Antinflamatoria" : "Anti-inflammatory Action", label: isEs ? "Estudio Científico" : "Efficacy Study", type: "cases" },
+            { title: isEs ? "Tecnología Penta-Exo" : "Penta-Exo Cellular Science", label: isEs ? "Ficha Técnica" : "Safety Dossier", type: "dossier" }
+          ];
+        } else if (prod.id.startsWith('eptq')) {
+          const densityLabel = prod.id === 'eptq-s100' 
+            ? (isEs ? "Perfilamiento de Labios" : "Lips Profiling") 
+            : prod.id === 'eptq-s300' 
+              ? (isEs ? "Técnica de Aumento" : "Augmentation Technique") 
+              : (isEs ? "Proyección Estructural" : "Structural Projection");
+          clinicalInsights = [
+            { title: densityLabel, label: isEs ? "Video de Aplicación" : "Application Video", type: "video" },
+            { title: isEs ? "Resultados Clínicos" : "Patient Results", label: isEs ? "Caso Clínico" : "Case Study", type: "cases" },
+            { title: isEs ? "Dosier de Seguridad ZEEP" : "ZEEP Purity Dossier", label: isEs ? "Ficha Técnica" : "Safety Dossier", type: "dossier" }
+          ];
+        }
+
+        list.push({
+          id: prod.id,
+          name: prod.name,
+          displayName: prod.name.replace('®', ''),
+          subtitle: prod.subtitle,
+          descriptor: prod.subtitle,
+          category: categoryMapped,
+          categoryLabel: categoryLabel,
+          tags: prod.tags || [],
+          slogan: prod.slogan,
+          description: prod.description,
+          composition: prod.description,
+          coverImage: prod.assets?.coverImage || getPlaceholdImg(prod.name.split(' ')[0], 'jetema', 600, 600),
+          gallery: gallery,
+          certBadge: certBadge,
+          specifications: prod.specifications || [],
+          technicalSpecs: (prod.specifications && prod.specifications.length > 0) ? prod.specifications : null,
+          applicationAreas: prod.applicationAreas || [],
+          regulatory: prod.regulatory || null,
+          clinicalBenefits: prod.clinicalBenefits || null,
+          clinicalInsights: clinicalInsights
+        });
       });
       console.log("Normalized Products for Jetema:", list);
       return list;
@@ -441,7 +387,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
 
   return (
     <section id="catalog-section" className="py-20 lg:py-24 px-4 sm:px-12 xl:px-20 bg-[#F2F5F6] w-full border-t border-slate-200/50">
-      <style>{glitchStyles}</style>
+      <style>{hoverStyles}</style>
       <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] mx-auto flex flex-col gap-10">
         
         {/* Main 12-Column Layout Grid */}
@@ -695,7 +641,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                 >
                   {/* 1. Header Banner */}
                   <div 
-                    className={`relative w-full rounded-t-[32px] rounded-b-none overflow-hidden py-10 sm:py-16 px-8 sm:px-12 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-md bg-cover bg-center ${!hasCover ? `bg-gradient-to-r ${brand.themeGradient}` : ''}`}
+                    className={`relative w-full rounded-t-[32px] rounded-b-none overflow-hidden pt-20 pb-4 sm:pt-28 sm:pb-6 px-4 sm:px-12 flex flex-row items-end justify-between gap-4 shadow-md bg-cover bg-center ${!hasCover ? `bg-gradient-to-r ${brand.themeGradient}` : ''}`}
                     style={hasCover ? {
                       backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(248, 250, 252, 0.45)), url(${activeProduct.coverImage})`
                     } : {}}
@@ -709,8 +655,8 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                     )}
                     
                     {/* Banner Info */}
-                    <div className="relative z-10 text-left space-y-2">
-                      <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest ${hasCover ? 'bg-[#4C5A9D]/10 border border-[#4C5A9D]/20 text-[#4C5A9D]' : 'bg-white/20 border border-white/35 text-white backdrop-blur-md'}`}>
+                    <div className="relative z-10 text-left space-y-1.5">
+                      <span className={`inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[8px] sm:text-[9px] font-extrabold uppercase tracking-widest ${hasCover ? 'bg-[#4C5A9D]/10 border border-[#4C5A9D]/20 text-[#4C5A9D]' : 'bg-white/20 border border-white/35 text-white backdrop-blur-md'}`}>
                         {activeProduct.certBadge}
                       </span>
                       {!hasCover && (
@@ -726,10 +672,10 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                         href={`https://wa.me/59133400835?text=Hola%20Maines%20SRL,%20deseo%20información%20sobre%20el%20producto%20${encodeURIComponent(activeProduct.name)}%20de%20la%20marca%20${brand.name}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-extrabold bg-[#0d1f3b] text-white hover:bg-[#1a365d] active:scale-95 transition-all shadow-md cursor-pointer"
+                        className="inline-flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-6 sm:py-3 rounded-full text-[9px] sm:text-xs font-extrabold bg-[#0d1f3b] text-white hover:bg-[#1a365d] active:scale-95 transition-all shadow-md cursor-pointer"
                       >
                         <span>{isEs ? 'Ordenar Ahora' : 'Order Now'}</span>
-                        <Send className="w-3.5 h-3.5" />
+                        <Send className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />
                       </a>
                     </div>
                   </div>
@@ -742,19 +688,20 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                     
                     {/* Showcase Left: Glitch Image Box & Mini Gallery */}
                     <div className="md:col-span-5 flex flex-col gap-4">
-                      {/* Glitch Showcase Container */}
+                      {/* Product Image Showcase Container */}
                       <div 
                         onClick={() => setLightboxImage(activeImage)}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
-                        className="glitch-container aspect-square w-full rounded-2xl bg-slate-50 border border-slate-200/50 p-0 flex items-center justify-center cursor-zoom-in relative group/image shadow-sm overflow-hidden"
+                        onTouchStart={() => setIsHovered(true)}
+                        onTouchEnd={() => setIsHovered(false)}
+                        onTouchCancel={() => setIsHovered(false)}
+                        className="product-image-container aspect-square w-full rounded-2xl bg-slate-50 border border-slate-200/50 p-0 flex items-center justify-center cursor-zoom-in relative group/image shadow-sm overflow-hidden"
                       >
                         <div className="absolute inset-0 bg-gradient-to-tr from-slate-100/50 via-transparent to-white/50 opacity-40 pointer-events-none" />
                         
-                        {/* 3 Glitch Layers */}
-                        <img src={activeImage} alt={activeProduct.name} className="glitch-img" />
-                        <img src={activeImage} alt="Glitch 1" className="glitch-clone glitch-clone-1" />
-                        <img src={activeImage} alt="Glitch 2" className="glitch-clone glitch-clone-2" />
+                        {/* Static Product Image */}
+                        <img src={activeImage} alt={activeProduct.name} className="product-image" />
 
                         {/* Silent Looping Video on Hover */}
                         {activeVideo && (
@@ -860,7 +807,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                               className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#edf2f7] hover:bg-[#e2e8f0] text-[#2d3748] border border-[#cbd5e0] transition-all duration-200 cursor-pointer shadow-xs w-fit"
                             >
                               <ShieldCheck className="w-4 h-4" style={{ color: resolveBrandColor(brand.accentBg) }} />
-                              <span>{isEs ? "Ver Registro Sanitario Oficial" : "View Official Sanitary Registry"}</span>
+                              <span>{activeProduct.regulatory.label || (isEs ? "Ver Registro Sanitario Oficial" : "View Official Sanitary Registry")}</span>
                             </a>
                           </div>
                         )}
@@ -1066,12 +1013,23 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-4xl max-h-[85vh] bg-white rounded-2xl overflow-hidden p-1.5 shadow-2xl flex items-center justify-center cursor-default"
+              className="relative w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] bg-slate-950/95 border border-slate-800/60 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center cursor-default aspect-square"
             >
-              <img src={lightboxImage} alt="Large product view" className="max-w-full max-h-[80vh] object-contain rounded-xl" />
+              {activeVideo ? (
+                <video
+                  src={activeVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img src={lightboxImage} alt="Large product view" className="w-full h-full object-cover" />
+              )}
               <button
                 onClick={() => setLightboxImage(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/75 hover:scale-105 transition-all focus:outline-none cursor-pointer"
+                className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/75 hover:scale-105 transition-all focus:outline-none cursor-pointer z-30"
               >
                 <X className="w-5 h-5" />
               </button>

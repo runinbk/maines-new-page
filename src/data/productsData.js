@@ -345,22 +345,15 @@ export const brandsData = {
         assets: {
           coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-portada.webp",
           gallery: [
-            {
-              image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-1.webp"
-            },
-            {
-              image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-2.webp"
-            },
-            {
-              image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-3.webp"
-            }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-3.webp" }
           ]
         },
         regulatory: {
           isClickable: false,
           label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
-        },
-        downloadUrl: "#"
+        }
       },
       {
         id: "derm-firm",
@@ -406,59 +399,85 @@ export const brandsData = {
         regulatory: {
           isClickable: false,
           label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
+      },
+      {
+        id: "derm-plasmavit",
+        brand: "dermclar",
+        category: "Cocktails Line",
+        name: "Dermclar PlasmaVit",
+        presentation: "Consultar presentación",
+        subtitle: "Nutrición y regeneración celular",
+        description: "Información técnica en desarrollo...",
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Aminoácidos / Vitaminas", "description": "Complejo nutricional celular." }
+        ],
+        usageIndications: ["Uso tópico profesional."],
+        contraindications: ["Información en desarrollo..."],
+        applicationZones: ["Rostro", "Cuello"],
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+PlasmaVit",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+PlasmaVit" }
+          ]
         },
-        downloadUrl: "#"
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
       },
       {
-        id: "derm-obes",
+        id: "derm-sonic",
         brand: "dermclar",
         category: "Cocktails Line",
-        name: "Dermclar Obes",
-        presentation: "5 viales x 10ml",
-        description: "Solución lipolítica potente diseñada para el tratamiento de adiposidades localizadas y moldeamiento corporal.",
-        activeIngredients: "Fosfatidilcolina, L-Carnitina, Cafeína",
-        applicationZones: ["Abdomen", "Cintura", "Flancos"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Obes",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Obes"
+        name: "Dermclar Sonic",
+        presentation: "Consultar presentación",
+        subtitle: "Tratamiento avanzado",
+        description: "Información técnica en desarrollo...",
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Complejo Activo", "description": "Activos en desarrollo." }
         ],
-        certBadge: "AGEMED Approved",
-        composition: "Solución lipolítica potente diseñada para el tratamiento de adiposidades localizadas y moldeamiento corporal.",
-        downloadUrl: "#"
+        usageIndications: ["Uso tópico profesional con aparatología."],
+        contraindications: ["Información en desarrollo..."],
+        applicationZones: ["Cuerpo"],
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Sonic",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Sonic" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
       },
       {
-        id: "derm-celu",
-        brand: "dermclar",
-        category: "Cocktails Line",
-        name: "Dermclar Celu",
-        presentation: "5 viales x 10ml",
-        description: "Solución diseñada para disminuir el tamaño de los nódulos grasos, mejorando visiblemente el aspecto de la piel de naranja.",
-        activeIngredients: "Extractos reductores y drenantes",
-        applicationZones: ["Glúteos", "Piernas", "Abdomen"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Celu",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Celu"
-        ],
-        certBadge: "AGEMED Approved",
-        composition: "Solución diseñada para disminuir el tamaño de los nódulos grasos, mejorando visiblemente el aspecto de la piel de naranja.",
-        downloadUrl: "#"
-      },
-      {
-        id: "derm-lcarnitina",
+        id: "derm-alcachofa",
         brand: "dermclar",
         category: "Professional Solutions Line",
-        name: "Sol. Est. L-Carnitina",
-        presentation: "10 ampollas x 5ml",
-        description: "Lipolítico esencial. Facilita la oxidación de las grasas para la obtención de energía, disminuyendo el grosor del panículo adiposo.",
-        activeIngredients: "L-Carnitina",
-        applicationZones: ["Abdomen", "Piernas", "Glúteos"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=L-Carnitina",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=L-Carnitina"
+        name: "Sol. Est. Extracto de Alcachofa",
+        presentation: "Consultar presentación",
+        subtitle: "Acción lipolítica y drenante",
+        description: "Información técnica en desarrollo...",
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Extracto de Alcachofa", "description": "Agente lipolítico y depurativo." }
         ],
-        certBadge: "AGEMED Approved",
-        composition: "Lipolítico esencial. Facilita la oxidación de las grasas para la obtención de energía, disminuyendo el grosor del panículo adiposo.",
-        downloadUrl: "#"
+        usageIndications: ["Uso tópico profesional."],
+        contraindications: ["Información en desarrollo..."],
+        applicationZones: ["Abdomen", "Piernas"],
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Extracto+de+Alcachofa",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Extracto+de+Alcachofa" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
       },
       {
         id: "derm-centella",
@@ -466,50 +485,25 @@ export const brandsData = {
         category: "Professional Solutions Line",
         name: "Sol. Est. Centella Asiática",
         presentation: "10 ampollas x 5ml",
-        description: "Reafirmante Tisular. Mejora el tono de la piel y la calidad de las fibras. Ideal para tratamientos de estrías, flacidez y celulitis.",
-        activeIngredients: "Extracto de Centella Asiática",
+        subtitle: "Reafirmante Tisular",
+        description: "Mejora el tono de la piel y la calidad de las fibras. Ideal para tratamientos de estrías, flacidez y celulitis.",
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Extracto de Centella Asiática", "description": "Estimula la síntesis de colágeno." }
+        ],
+        usageIndications: ["Uso tópico profesional."],
+        contraindications: ["Información en desarrollo..."],
         applicationZones: ["Piernas", "Glúteos", "Abdomen"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Centella+Asiatica",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Centella+Asiatica"
-        ],
-        certBadge: "AGEMED Approved",
-        composition: "Reafirmante Tisular. Mejora el tono de la piel y la calidad de las fibras. Ideal para tratamientos de estrías, flacidez y celulitis.",
-        downloadUrl: "#"
-      },
-      {
-        id: "derm-silicio",
-        brand: "dermclar",
-        category: "Professional Solutions Line",
-        name: "Sol. Est. Silicio Orgánico",
-        presentation: "10 ampollas x 5ml",
-        description: "Optimizador estructural. Mejora la capacidad de biosíntesis de proteínas. Ideal en tratamientos de grasa corporal, reducción y revitalización.",
-        activeIngredients: "Silicio Orgánico",
-        applicationZones: ["Rostro", "Cuello", "Cuerpo"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Silicio+Organico",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Silicio+Organico"
-        ],
-        certBadge: "AGEMED Approved",
-        composition: "Optimizador estructural. Mejora la capacidad de biosíntesis de proteínas. Ideal en tratamientos de grasa corporal, reducción y revitalización.",
-        downloadUrl: "#"
-      },
-      {
-        id: "derm-vitc",
-        brand: "dermclar",
-        category: "Professional Solutions Line",
-        name: "Sol. Est. Vitamina C 20%",
-        presentation: "5 viales x 10ml",
-        description: "Antioxidante. Mejora la calidad funcional de la vitalidad celular. Aumenta la luminosidad de la piel, ayudando a reducir la flacidez cutánea.",
-        activeIngredients: "Ascorbato de Sodio",
-        applicationZones: ["Rostro", "Cuello", "Escote", "Manos"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Vitamina+C+20%25",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Vitamina+C+20%25"
-        ],
-        certBadge: "AGEMED Approved",
-        composition: "Antioxidante. Mejora la calidad funcional de la vitalidad celular. Aumenta la luminosidad de la piel, ayudando a reducir la flacidez cutánea.",
-        downloadUrl: "#"
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Centella+Asiatica",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Centella+Asiatica" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
       },
       {
         id: "derm-fosfatidilcolina",
@@ -517,33 +511,103 @@ export const brandsData = {
         category: "Professional Solutions Line",
         name: "Sol. Est. Fosfatidilcolina",
         presentation: "20 ampollas x 5ml",
-        description: "Lipolítico y adipocitolítico. Aumenta la permeabilidad de la membrana del adipocito facilitando la eliminación de los triglicéridos.",
-        activeIngredients: "Fosfatidilcolina",
-        applicationZones: ["Abdomen", "Flancos", "Papada"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Fosfatidilcolina",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Fosfatidilcolina"
+        subtitle: "Lipolítico y adipocitolítico",
+        description: "Aumenta la permeabilidad de la membrana del adipocito facilitando la eliminación de los triglicéridos.",
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Fosfatidilcolina", "description": "Emulsionante natural de grasas." }
         ],
-        certBadge: "AGEMED Approved",
-        composition: "Lipolítico y adipocitolítico. Aumenta la permeabilidad de la membrana del adipocito facilitando la eliminación de los triglicéridos.",
-        downloadUrl: "#"
+        usageIndications: ["Uso tópico profesional."],
+        contraindications: ["Información en desarrollo..."],
+        applicationZones: ["Abdomen", "Flancos", "Papada"],
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Fosfatidilcolina",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Fosfatidilcolina" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
       },
       {
-        id: "derm-cafeina",
+        id: "derm-lcarnitina",
         brand: "dermclar",
         category: "Professional Solutions Line",
-        name: "Sol. Est. de Cafeína",
-        presentation: "10 ampollas x 2ml",
-        description: "Estimulante metabólico local. Favorece la movilización de grasas acumuladas y mejora la microcirculación.",
-        activeIngredients: "Cafeína",
-        applicationZones: ["Abdomen", "Piernas", "Glúteos"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Cafeina",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Cafeina"
+        name: "Sol. Est. L-Carnitina",
+        presentation: "10 ampollas x 5ml",
+        subtitle: "Lipolítico esencial",
+        description: "Facilita la oxidación de las grasas para la obtención de energía, disminuyendo el grosor del panículo adiposo.",
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "L-Carnitina", "description": "Transportador de ácidos grasos." }
         ],
-        certBadge: "AGEMED Approved",
-        composition: "Estimulante metabólico local. Favorece la movilización de grasas acumuladas y mejora la microcirculación.",
-        downloadUrl: "#"
+        usageIndications: ["Uso tópico profesional."],
+        contraindications: ["Información en desarrollo..."],
+        applicationZones: ["Abdomen", "Piernas", "Glúteos"],
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=L-Carnitina",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=L-Carnitina" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
+      },
+      {
+        id: "derm-silicio",
+        brand: "dermclar",
+        category: "Professional Solutions Line",
+        name: "Sol. Est. Silicio Orgánico",
+        presentation: "10 ampollas x 5ml",
+        subtitle: "Optimizador estructural",
+        description: "Mejora la capacidad de biosíntesis de proteínas. Ideal en tratamientos de grasa corporal, reducción y revitalización.",
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Silicio Orgánico", "description": "Regenerador de fibras de colágeno." }
+        ],
+        usageIndications: ["Uso tópico profesional."],
+        contraindications: ["Información en desarrollo..."],
+        applicationZones: ["Rostro", "Cuello", "Cuerpo"],
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Silicio+Organico",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Silicio+Organico" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
+      },
+      {
+        id: "derm-vitc",
+        brand: "dermclar",
+        category: "Professional Solutions Line",
+        name: "Sol. Est. Vitamina C 20%",
+        presentation: "5 viales x 10ml",
+        subtitle: "Antioxidante celular",
+        description: "Mejora la calidad funcional de la vitalidad celular. Aumenta la luminosidad de la piel, ayudando a reducir la flacidez cutánea.",
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Ascorbato de Sodio", "description": "Potente agente antioxidante." }
+        ],
+        usageIndications: ["Uso tópico profesional."],
+        contraindications: ["Información en desarrollo..."],
+        applicationZones: ["Rostro", "Cuello", "Escote", "Manos"],
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Vitamina+C+20%25",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Vitamina+C+20%25" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
       },
       {
         id: "derm-nol",
@@ -551,16 +615,25 @@ export const brandsData = {
         category: "Línea Flebológica",
         name: "Dermclar-nol 3%",
         presentation: "10 ampollas x 2ml",
+        subtitle: "Solución esclerosante superficial",
         description: "Solución especializada para mejorar la apariencia de la piel fatigada de las piernas. Ideal para telangiectasias y varículas pequeñas.",
-        activeIngredients: "Polidocanol 3%",
-        applicationZones: ["Piernas"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar-nol",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar-nol"
+        benefits: ["Beneficio en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Polidocanol 3%", "description": "Agente esclerosante venoso." }
         ],
-        certBadge: "AGEMED Approved",
-        composition: "Solución especializada para mejorar la apariencia de la piel fatigada de las piernas. Ideal para telangiectasias y varículas pequeñas.",
-        downloadUrl: "#"
+        usageIndications: ["Uso tópico profesional."],
+        contraindications: ["Información en desarrollo..."],
+        applicationZones: ["Piernas"],
+        assets: {
+          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar-nol",
+          gallery: [
+            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar-nol" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        }
       }
     ]
   },

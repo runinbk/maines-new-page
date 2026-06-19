@@ -492,20 +492,37 @@ export const brandsData = {
         brand: "dermclar",
         category: "Professional Solutions Line",
         name: "Sol. Est. Extracto de Alcachofa",
-        presentation: "Consultar presentación",
-        subtitle: "Acción lipolítica y drenante",
-        description: "Información técnica en desarrollo...",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "Extracto de Alcachofa", "description": "Agente lipolítico y depurativo." }
+        presentation: "Caja de 10 ampollas x 5ml",
+        subtitle: "Solución purificante, desintoxicante y lipolítica",
+        description: "La Solución Estética de Extracto de Alcachofa es un tratamiento profesional depurativo que facilita la eliminación de líquidos retenidos en los tejidos de manera natural. Actúa como un potente desintoxicante tisular, apoyando de manera eficaz el tratamiento de la celulitis (piel de naranja) y la obesidad localizada mediante la estimulación del sistema linfático.",
+        benefits: [
+          "Estimula la eliminación de líquidos retenidos de forma moderada y natural.",
+          "Potencia la capacidad de desintoxicación de los tejidos, facilitando la eliminación de toxinas.",
+          "Ejerce un efecto lipolítico suave que ayuda a reducir la grasa generalizada y los nódulos celulíticos.",
+          "Protege el lecho capilar, haciendo más eficiente el intercambio de oxigenación y nutrición en la piel."
         ],
-        usageIndications: ["Uso tópico profesional."],
-        contraindications: ["Información en desarrollo..."],
-        applicationZones: ["Abdomen", "Piernas"],
+        activeIngredientsList: [
+          { "name": "Extracto de Alcachofa (Cynara Scolymus)", "description": "Agente natural con alto poder depurativo, lipolítico y ligeramente diurético que regula el metabolismo de los lípidos y promueve el drenaje linfático." }
+        ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina clínica.",
+          "Compatible con aparatología estética: Cavitación, electroporación (mesoterapia virtual), onda galvánica y ultrasonido de baja impedancia.",
+          "Dosis sugerida: Aplicar 5 ml en una terapia semanal sobre la zona a tratar.",
+          "Se recomienda realizar un drenaje linfático manual 72 horas después de la aplicación para maximizar la eliminación de toxinas."
+        ],
+        contraindications: [
+          "Mantener estrictamente fuera del alcance de los niños. No aplicar en menores.",
+          "Evitar el contacto con los ojos y mucosas.",
+          "Dejar de utilizar inmediatamente si aparecen signos de irritación (uso externo únicamente).",
+          "Proteja sus manos al abrir el envase de cristal utilizando una toalla o un paño ligero."
+        ],
+        applicationZones: ["Abdomen", "Muslos", "Glúteos", "Piernas"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Extracto+de+Alcachofa",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/alcachofa/dermclar-alcachofa-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Extracto+de+Alcachofa" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/alcachofa/dermclar-alcachofa-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/alcachofa/dermclar-alcachofa-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/alcachofa/dermclar-alcachofa-3.webp" }
           ]
         },
         regulatory: {
@@ -518,20 +535,37 @@ export const brandsData = {
         brand: "dermclar",
         category: "Professional Solutions Line",
         name: "Sol. Est. Centella Asiática",
-        presentation: "10 ampollas x 5ml",
-        subtitle: "Reafirmante Tisular",
-        description: "Mejora el tono de la piel y la calidad de las fibras. Ideal para tratamientos de estrías, flacidez y celulitis.",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "Extracto de Centella Asiática", "description": "Estimula la síntesis de colágeno." }
+        presentation: "Caja de 10 ampollas x 5ml",
+        subtitle: "Solución reafirmante y reparadora tisular",
+        description: "La Solución Estética de Centella Asiática es un potente reparador tisular de uso profesional. Su fórmula actúa directamente sobre el tejido conectivo, mejorando el tono de la piel y la calidad de las fibras estructurales. Es un tratamiento altamente eficaz y reconocido por su idoneidad en el manejo de estrías, flacidez y diversos grados de celulitis.",
+        benefits: [
+          "Mejora visiblemente el tono, la elasticidad y la firmeza de la piel.",
+          "Repara y mejora la calidad de las fibras de colágeno en el tejido conectivo.",
+          "Tratamiento ideal y altamente eficaz para atenuar estrías y combatir la flacidez.",
+          "Coadyuvante clave en el manejo estético de la celulitis."
         ],
-        usageIndications: ["Uso tópico profesional."],
-        contraindications: ["Información en desarrollo..."],
-        applicationZones: ["Piernas", "Glúteos", "Abdomen"],
+        activeIngredientsList: [
+          { "name": "Extracto de Centella Asiática", "description": "Potente bioestimulante natural que activa la funcionalidad de los fibroblastos, estimulando la síntesis de colágeno y optimizando la microcirculación tisular para la reparación de la piel." }
+        ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina.",
+          "Compatible con aparatología transdérmica: Radiofrecuencia, Ultrasonido de alta impedancia, Electroporación u Onda Galvánica.",
+          "Dosis sugerida: Aplicar 5 ml en una terapia semanal.",
+          "Frecuencia: Se recomienda realizar cada 7 a 8 días, completando un ciclo de 5 a 10 sesiones según el criterio profesional."
+        ],
+        contraindications: [
+          "No usar sobre la piel irritada, eccematosa o con heridas abiertas.",
+          "En caso de presentarse una reacción desfavorable, suspender su uso y consultar con un profesional.",
+          "Exclusivo para trabajo profesional. Mantener fuera del alcance de los niños.",
+          "Almacenar en un lugar seco y fresco, protegido de la luz."
+        ],
+        applicationZones: ["Abdomen", "Glúteos", "Piernas", "Brazos"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Centella+Asiatica",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/centella/dermclar-centella-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Centella+Asiatica" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/centella/dermclar-centella-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/centella/dermclar-centella-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/centella/dermclar-centella-3.webp" }
           ]
         },
         regulatory: {

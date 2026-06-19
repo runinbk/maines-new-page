@@ -452,20 +452,34 @@ export const brandsData = {
         brand: "dermclar",
         category: "Cocktails Line",
         name: "Dermclar Sonic",
-        presentation: "Consultar presentación",
-        subtitle: "Tratamiento avanzado",
-        description: "Información técnica en desarrollo...",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "Complejo Activo", "description": "Activos en desarrollo." }
+        isNew: true,
+        presentation: "Caja de 5 viales x 10ml",
+        subtitle: "Tratamiento para adiposidades localizadas",
+        description: "Fórmula con respaldo médico y científico. Tratamiento para adiposidades localizadas que facilita la reducción del volumen corporal y los cúmulos de grasa localizada.",
+        benefits: [
+          "Fórmula avanzada con respaldo médico y científico.",
+          "Disuelve la grasa almacenada en los adipocitos de forma progresiva.",
+          "Ayuda a eliminar la grasa localizada y reducir el volumen corporal."
         ],
-        usageIndications: ["Uso tópico profesional con aparatología."],
-        contraindications: ["Información en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Fosfatidilcolina", "description": "Agente que facilita la emulsión y descomposición de las grasas." },
+          { "name": "Desoxicolato de Sodio", "description": "Actúa sobre la membrana celular del adipocito." },
+          { "name": "L-Carnitina", "description": "Transportador de ácidos grasos libre para su metabolización." },
+          { "name": "Troxerutina", "description": "Favorece la microcirculación y protege los vasos capilares." },
+          { "name": "Taurina y Oligoelementos", "description": "Aportan vitalidad y optimizan los procesos metabólicos del tejido." }
+        ],
+        usageIndications: [
+          "Uso tópico profesional con aparatología médica o estética."
+        ],
+        contraindications: [
+          "Mantener fuera del alcance de los niños.",
+          "Almacenar en un lugar fresco y protegido de la luz."
+        ],
         applicationZones: ["Cuerpo"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Sonic",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/dermsonic/dermclar-dermsonic-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Sonic" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/dermsonic/dermclar-dermsonic-1.webp" }
           ]
         },
         regulatory: {
@@ -634,20 +648,33 @@ export const brandsData = {
         brand: "dermclar",
         category: "Línea Flebológica",
         name: "Dermclar-nol 3%",
-        presentation: "10 ampollas x 2ml",
-        subtitle: "Solución esclerosante superficial",
-        description: "Solución especializada para mejorar la apariencia de la piel fatigada de las piernas. Ideal para telangiectasias y varículas pequeñas.",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "Polidocanol 3%", "description": "Agente esclerosante venoso." }
+        presentation: "Caja de 10 ampollas x 2ml",
+        subtitle: "Solución esclerosante superficial para piel fatigada",
+        description: "Dermclar-nol 3% es una solución tópica especializada diseñada para mejorar significativamente la apariencia de la piel fatigada de las piernas. Su fórmula hipoalergénica de uso profesional está enfocada en la estética flebológica, siendo ideal para el tratamiento superficial de telangiectasias y varículas pequeñas.",
+        benefits: [
+          "Desvanece y mejora visualmente el aspecto de las 'telas de araña' vasculares en las piernas.",
+          "Alivia la sensación de pesadez y fatiga cutánea en extremidades inferiores.",
+          "Producto hipoalergénico de alta tolerancia cutánea."
         ],
-        usageIndications: ["Uso tópico profesional."],
-        contraindications: ["Información en desarrollo..."],
-        applicationZones: ["Piernas"],
+        activeIngredientsList: [
+          { "name": "Polidocanol 3%", "description": "Agente con propiedades esclerosantes y anestésicas locales que actúa sobre la pared venosa superficial." }
+        ],
+        usageIndications: [
+          "Uso exclusivo tópico profesional.",
+          "Puede ser aplicado en forma tópica por medio de masajes, uso de ultrasonido, electroporación o cualquier otro método de mesoterapia virtual.",
+          "La dosis y frecuencia se determinan según el criterio del profesional basándose en la extensión de la zona."
+        ],
+        contraindications: [
+          "Mantener fuera del alcance de los niños. No aplicar sobre población infantil.",
+          "Evitar estrictamente el contacto con los ojos.",
+          "Dejar de utilizar si aparecen signos de irritación.",
+          "Proteja sus manos al abrir el envase de cristal con una toalla o un paño ligero."
+        ],
+        applicationZones: ["Muslos", "Piernas"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar-nol",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/nol/dermclar-nol-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar-nol" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/nol/dermclar-nol-1.webp" }
           ]
         },
         regulatory: {

@@ -198,7 +198,8 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
           applicationAreas: prod.applicationAreas || [],
           regulatory: prod.regulatory || null,
           clinicalBenefits: prod.clinicalBenefits || null,
-          clinicalInsights: clinicalInsights
+          clinicalInsights: clinicalInsights,
+          isNew: prod.isNew || false
         });
       });
       console.log("Normalized Products for Jetema:", list);
@@ -272,7 +273,8 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
           contraindications: prod.contraindications || null,
           clinicalInsights: prod.clinicalInsights || [
             { title: isEs ? "Ficha Técnica Nutricional" : "Nutritional Fact Sheet", label: isEs ? "Ver Info" : "View Info", type: "dossier" }
-          ]
+          ],
+          isNew: prod.isNew || false
         };
       });
     }
@@ -492,9 +494,16 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                         <img src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain filter drop-shadow-xs" />
                       </div>
                       <div className="min-w-0 flex-grow">
-                        <h4 className="text-[11px] font-extrabold text-[#0D1F3B] truncate leading-tight">
-                          {prod.displayName}
-                        </h4>
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          <h4 className="text-[11px] font-extrabold text-[#0D1F3B] truncate leading-tight">
+                            {prod.displayName}
+                          </h4>
+                          {prod.isNew && (
+                            <span className="bg-[#0ea5e9] text-white text-[8px] font-extrabold px-1.5 py-0.5 uppercase rounded-xs tracking-wider shrink-0">
+                              {isEs ? 'Nuevo' : 'New'}
+                            </span>
+                          )}
+                        </div>
                         <p className="text-[8px] font-extrabold text-slate-400 truncate uppercase mt-0.5">
                           {prod.descriptor.split(' - ')[1] || prod.descriptor.split(' / ')[1] || prod.descriptor}
                         </p>
@@ -542,9 +551,16 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                           <img src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain" />
                         </div>
                         <div className="min-w-0 flex-grow">
-                          <h4 className="text-[12px] font-extrabold text-[#0D1F3B] truncate leading-tight">
-                            {prod.displayName}
-                          </h4>
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <h4 className="text-[12px] font-extrabold text-[#0D1F3B] truncate leading-tight">
+                              {prod.displayName}
+                            </h4>
+                            {prod.isNew && (
+                              <span className="bg-[#0ea5e9] text-white text-[8px] font-extrabold px-1.5 py-0.5 uppercase rounded-xs tracking-wider shrink-0">
+                                {isEs ? 'Nuevo' : 'New'}
+                              </span>
+                            )}
+                          </div>
                           <p className="text-[9px] font-bold text-slate-400 truncate uppercase mt-0.5">
                             {prod.descriptor}
                           </p>
@@ -593,9 +609,16 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                       
                       {/* Name & Desc Block */}
                       <div className="min-w-0 flex-grow">
-                        <h4 className="text-xs sm:text-[13px] font-extrabold text-primary-dark truncate tracking-tight group-hover/item:text-primary-light transition-colors">
-                          {prod.displayName}
-                        </h4>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-xs sm:text-[13px] font-extrabold text-primary-dark truncate tracking-tight group-hover/item:text-primary-light transition-colors">
+                            {prod.displayName}
+                          </h4>
+                          {prod.isNew && (
+                            <span className="bg-[#0ea5e9] text-white text-[9px] font-extrabold px-1.5 py-0.5 uppercase rounded-xs tracking-wider shrink-0">
+                              {isEs ? 'Nuevo' : 'New'}
+                            </span>
+                          )}
+                        </div>
                         <p className="text-[10px] text-slate-400 font-semibold truncate uppercase tracking-wide mt-0.5">
                           {prod.descriptor}
                         </p>
@@ -832,9 +855,16 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                         )}
 
                         {/* Product Title */}
-                        <h3 className={`text-2xl sm:text-3xl font-extrabold font-display tracking-tight leading-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
-                          {activeProduct.displayName}
-                        </h3>
+                        <div className="flex items-center flex-wrap gap-3">
+                          <h3 className={`text-2xl sm:text-3xl font-extrabold font-display tracking-tight leading-tight bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent inline-block`}>
+                            {activeProduct.displayName}
+                          </h3>
+                          {activeProduct.isNew && (
+                            <span className="bg-[#0ea5e9] text-white text-xs font-bold px-2 py-1 uppercase rounded-sm tracking-widest ml-3 shadow-xs">
+                              {isEs ? 'Nuevo' : 'New'}
+                            </span>
+                          )}
+                        </div>
 
                         {brandId === 'dermclar' ? (
                           <div className="space-y-6 pt-2">

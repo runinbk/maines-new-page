@@ -267,6 +267,9 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
           regulatory: prod.regulatory || null,
           benefits: prod.benefits || null,
           activeIngredientsDetails: prod.activeIngredientsDetails || null,
+          activeIngredientsList: prod.activeIngredientsList || null,
+          usageIndications: prod.usageIndications || null,
+          contraindications: prod.contraindications || null,
           clinicalInsights: prod.clinicalInsights || [
             { title: isEs ? "Ficha Técnica Nutricional" : "Nutritional Fact Sheet", label: isEs ? "Ver Info" : "View Info", type: "dossier" }
           ]
@@ -997,14 +1000,27 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                   {brandId === 'dermclar' && (
                     <div className="border-t border-slate-100 pt-8 text-left space-y-8">
                       {/* Active Ingredients Section */}
-                      {(activeProduct.activeIngredientsDetails || activeProduct.activeIngredients) && (
-                        <div className="space-y-2.5">
+                      {(activeProduct.activeIngredientsList || activeProduct.activeIngredientsDetails || activeProduct.activeIngredients) && (
+                        <div className="space-y-3">
                           <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
                             {isEs ? 'Principios Activos' : 'Active Ingredients'}
                           </h3>
-                          <p className="text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
-                            {activeProduct.activeIngredientsDetails || activeProduct.activeIngredients}
-                          </p>
+                          {activeProduct.activeIngredientsList ? (
+                            <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                              {activeProduct.activeIngredientsList.map((item, idx) => (
+                                <li key={idx} className="flex items-start gap-2.5">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
+                                  <span>
+                                    <strong className="font-extrabold text-slate-800" style={{ color: resolveBrandColor(brand.accentBg) }}>{item.name}</strong>: {item.description}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                              {activeProduct.activeIngredientsDetails || activeProduct.activeIngredients}
+                            </p>
+                          )}
                         </div>
                       )}
 
@@ -1031,6 +1047,42 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                               ))
                             )}
                           </ul>
+                        </div>
+                      )}
+
+                      {/* Usage Indications Section */}
+                      {activeProduct.usageIndications && activeProduct.usageIndications.length > 0 && (
+                        <div className="space-y-3">
+                          <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
+                            {isEs ? 'Indicaciones y Modo de Uso' : 'Indications & Usage'}
+                          </h3>
+                          <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                            {activeProduct.usageIndications.map((ind, idx) => (
+                              <li key={idx} className="flex items-start gap-2.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
+                                <span>{ind}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Contraindications Section */}
+                      {activeProduct.contraindications && activeProduct.contraindications.length > 0 && (
+                        <div className="space-y-3">
+                          <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-amber-600 uppercase">
+                            {isEs ? 'Advertencias y Contraindicaciones' : 'Warnings & Contraindications'}
+                          </h3>
+                          <div className="pl-4 border-l-2 border-amber-500/60 bg-amber-500/[0.02] py-1 rounded-r-xl">
+                            <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                              {activeProduct.contraindications.map((contra, idx) => (
+                                <li key={idx} className="flex items-start gap-2.5">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80 shrink-0 mt-2" />
+                                  <span>{contra}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       )}
                     </div>

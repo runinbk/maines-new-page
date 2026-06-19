@@ -311,24 +311,37 @@ export const brandsData = {
         brand: "dermclar",
         category: "Cocktails Line",
         name: "Whitening Dermclar",
-        presentation: "Caja de 5 viales x 5ml",
-        subtitle: "Tratamiento profesional formulado con nanotecnología y biotecnología",
-        description: "Whitening Dermclar es una solución integral y profesional de alta tecnología bioquímica que ayuda a reducir la pigmentación persistente de la piel y prevenir la aparición de nuevas manchas. Actúa tanto en la pigmentación de origen melánico como en la producida por el paso del tiempo y el estrés oxidativo. Nutre, rejuvenece y aclara la piel, recuperando su luminosidad y tersura natural.",
+        presentation: "Caja de 5 Viales x 5ml",
+        subtitle: "Solución integral despigmentante y antioxidante",
+        description: "Dermclar Whitening es una solución integral que actúa tanto en la pigmentación de origen melánico como en la producida por el efecto oxidativo. Combina AHA, antioxidantes de alta tecnología y neuroactivos que impiden los depósitos de melanina por vía neural. Nutre, rejuvenece y aclara la piel de la pigmentación causada por la melanina, hemosiderina y lipofuscina.",
         benefits: [
-          "Inhibe la síntesis de melanina por diferentes vías, incluyendo la innovadora vía neural.",
-          "Promueve un aclaramiento progresivo y disminuye la intensidad de manchas causadas por el fotodaño.",
+          "Mejora visiblemente el aspecto de las manchas en la piel.",
           "Ejerce una potente acción antioxidante, protegiendo las células de los radicales libres.",
-          "Acelera la renovación celular (acción queratolítica suave) y mejora la flexibilidad de la piel.",
-          "Ayuda a estimular la hidratación profunda y favorece la síntesis de colágeno natural."
+          "Regula la melanogénesis inhibiendo la producción de tirosinasa.",
+          "Actúa sobre la mancha impidiendo los depósitos de melanina por vía neural."
         ],
-        activeIngredientsDetails: "Glutatión, Ácido Ascórbico (Vitamina C), Ácido Glicólico, Alfa Arbutina, Ácido Kójico y Pancratium Maritimum (Neurolight).",
-        applicationZones: [
-          "Rostro", 
-          "Cuello", 
-          "Escote", 
-          "Manos", 
-          "Brazos"
+        activeIngredientsList: [
+          { "name": "Glutatión", "description": "Molécula compuesta por aminoácidos que protege las células de los radicales libres, actuando sobre el sistema inmunológico." },
+          { "name": "Ácido Glicólico", "description": "AHA con acción queratolítica, renovadora y antiedad." },
+          { "name": "Alfa Arbutina", "description": "Sustancia natural que regula la melanogénesis e inhibe la producción de tirosinasa." },
+          { "name": "Ácido Kójico", "description": "Potente agente despigmentante natural." },
+          { "name": "Pancratium Maritimum", "description": "Neuroactivo que inhibe la síntesis y exportación de melanina hacia la superficie." },
+          { "name": "Ácido Ascórbico", "description": "Vitamina C que aporta una intensa acción antioxidante y unificadora del tono." }
         ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina.",
+          "Aplicar sobre el área a tratar con electroporador, ultrasonido de alta impedancia u onda galvánica (aplicar la cantidad necesaria para deslizar los electrodos uniformemente).",
+          "Dosis recomendada: 2 a 2.5 ml por zona tratada.",
+          "Frecuencia: 1 sesión cada 8 días (se recomiendan de 8 a 10 sesiones dependiendo de la evolución de cada paciente)."
+        ],
+        contraindications: [
+          "No usar sobre la piel irritada.",
+          "En caso de presentarse una reacción desfavorable, suspender su uso y consultar con un profesional.",
+          "Exclusivo para trabajo profesional. Mantener fuera del alcance de los niños.",
+          "Almacenar en lugar seco y fresco, protegido de la luz y del calor excesivo.",
+          "Después de abierto, utilizar inmediatamente el vial completo."
+        ],
+        applicationZones: ["Rostro", "Cuello", "Escote", "Manos"],
         assets: {
           coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/whitening/dermclar-whitening-portada.webp",
           gallery: [
@@ -354,16 +367,46 @@ export const brandsData = {
         brand: "dermclar",
         category: "Cocktails Line",
         name: "Dermclar Firm",
-        presentation: "5 viales x 10ml",
-        description: "Reafirmante tisular avanzado. Mejora visiblemente la tonicidad, elasticidad y calidad de las fibras de la piel. Ideal para tratamientos de flacidez severa.",
-        activeIngredients: "Silicio Orgánico, DMAE, Centella Asiática",
-        applicationZones: ["Abdomen", "Glúteos", "Brazos", "Piernas"],
-        coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Firm",
-        gallery: [
-          "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+Firm"
+        presentation: "Caja de 5 viales x 10ml",
+        subtitle: "Coctel Reafirmante Tisular Avanzado y Reestructurador Dérmico",
+        description: "Dermclar Firm es una solución transdérmica profesional formulada con una potente sinergia de activos reafirmantes que devuelven la tonicidad, elasticidad y firmeza original a los tejidos. Actúa directamente restaurando la arquitectura de las capas profundas de la dermis, estimulando la contracción muscular protectora y neutralizando el estrés oxidativo responsable del envejecimiento cutáneo prematuro. Diseñado específicamente para combatir la flacidez severa, tanto corporal como facial.",
+        benefits: [
+          "Efecto tensor y lifting mecánico inmediato y de largo plazo al aumentar el tono muscular tisular.",
+          "Reestructura de forma global la matriz extracelular dérmica, mejorando la turgencia cutánea.",
+          "Estimula activamente la biosíntesis de nuevas fibras de colágeno y elastina sanas.",
+          "Mejora significativamente el aspecto estético de estrías previas y complementa el manejo de celulitis flácida."
         ],
-        certBadge: "AGEMED Approved",
-        composition: "Reafirmante tisular avanzado. Mejora visiblemente la tonicidad, elasticidad y calidad de las fibras de la piel. Ideal para tratamientos de flacidez severa.",
+        activeIngredientsList: [
+          { "name": "DMAE (Dimetiletanolamina)", "description": "Precursor de la acetilcolina. Ejerce una potente acción tensora cutánea inmediata al estabilizar la membrana del adipocito y aumentar el tono muscular subyacente." },
+          { "name": "Silicio Orgánico", "description": "Elemento estructural esencial de la matriz dérmica. Organiza los haces de colágeno, induce la regeneración del tejido conectivo flácido y frena la peroxidación lipídica." },
+          { "name": "Centella Asiática", "description": "Bioestimulante tisular profundo. Activa directamente la funcionalidad de los fibroblastos, optimiza la microcirculación y favorece la reparación de estrías y cicatrices." }
+        ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina mediante protocolos de estética avanzada.",
+          "Perfectamente compatible con aparatología transdérmica: Electroporación (Mesoterapia Virtual), Microneedling (Dermapen), Ultrasonido de alta impedancia o Corrientes Galvánicas.",
+          "Dosis: Aplicar de 2 a 5 ml en el área afectada (según criterio clínico y la extensión de la zona).",
+          "Frecuencia recomendada: 1 sesión cada 8 días, completando un ciclo base indispensable de 8 a 10 sesiones durante el tratamiento."
+        ],
+        contraindications: [
+          "No utilizar bajo ninguna circunstancia sobre piel irritada, eccematosa o con heridas abiertas.",
+          "En caso de presentarse cualquier reacción desfavorable o hipersensibilidad, suspenda de inmediato su aplicación y consulte a su especialista.",
+          "Manténgase estrictamente fuera del alcance de los niños. No aplicar en menores de edad.",
+          "Almacenar en un lugar seco y fresco, protegido minuciosamente de la luz directa y del calor excesivo.",
+          "Una vez abierto el vial, se debe utilizar el contenido completo de forma inmediata para asegurar la pureza del tratamiento."
+        ],
+        applicationZones: ["Abdomen", "Glúteos", "Brazos", "Piernas", "Rostro", "Cuello"],
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/firm/derclar-firm-portada.webp",
+          gallery: [
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/firm/derclar-firm-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/firm/derclar-firm-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/firm/derclar-firm-3.webp" }
+          ]
+        },
+        regulatory: {
+          isClickable: false,
+          label: "Certificación AGEMED - Registro Sanitario Oficial Bolivia"
+        },
         downloadUrl: "#"
       },
       {

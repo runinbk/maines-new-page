@@ -305,6 +305,33 @@ export const brandsData = {
       primaryBtn: "Solicitar Catálogo",
       secondaryBtn: "Fichas Técnicas"
     },
+    social: {
+      instagram: {
+        handle: "@dermclarbolivia",
+        url: "https://www.instagram.com/dermclarbolivia/"
+      },
+      tiktok: {
+        handle: "@dermclarbolivia",
+        url: "https://www.tiktok.com/@dermclarbolivia"
+      },
+      facebook: {
+        handle: "@dermclarbolivia",
+        url: "https://www.facebook.com/dermclarbolivia"
+      },
+      videos: [
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/1.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/2.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/3.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/4.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/6.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/7.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/8.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/9.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/10.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/11.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/12.webm"
+      ]
+    },
     products: [
       {
         id: "derm-whitening",
@@ -578,20 +605,37 @@ export const brandsData = {
         brand: "dermclar",
         category: "Professional Solutions Line",
         name: "Sol. Est. Fosfatidilcolina",
-        presentation: "20 ampollas x 5ml",
-        subtitle: "Lipolítico y adipocitolítico",
-        description: "Aumenta la permeabilidad de la membrana del adipocito facilitando la eliminación de los triglicéridos.",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "Fosfatidilcolina", "description": "Emulsionante natural de grasas." }
+        presentation: "Caja de 20 ampollas x 5ml",
+        subtitle: "Solución intensiva lipolítica y adipocitolítica",
+        description: "La Solución Estética de Fosfatidilcolina es un tratamiento profesional enfocado en la reducción de adiposidades localizadas rebeldes. Su fórmula actúa directamente aumentando la permeabilidad de la membrana del adipocito, lo que facilita la saponificación, emulsión y posterior eliminación de los triglicéridos almacenados en el tejido adiposo.",
+        benefits: [
+          "Ejerce una potente acción lipolítica, disolviendo y movilizando los cúmulos de grasa localizada.",
+          "Facilita la emulsión de los triglicéridos para que el cuerpo los elimine de forma natural.",
+          "Ideal para modelar y redefinir tanto el contorno corporal (abdomen, flancos) como el perfil facial (papada)."
         ],
-        usageIndications: ["Uso tópico profesional."],
-        contraindications: ["Información en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Fosfatidilcolina", "description": "Fosfolípido que actúa como un potente agente emulsionante natural de las grasas. Degrada la membrana celular de los adipocitos, facilitando la liberación y metabolización de los lípidos contenidos en su interior." }
+        ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina clínica.",
+          "Compatible y recomendado para uso con equipos de penetración transdérmica: Electroporación (mesoterapia virtual), ultrasonido de alta impedancia u onda galvánica.",
+          "Aplicar la cantidad necesaria para deslizar los electrodos de manera uniforme sobre la zona a tratar.",
+          "Frecuencia sugerida: 1 sesión semanal o quincenal, según la evaluación y el protocolo determinado por el profesional."
+        ],
+        contraindications: [
+          "Precaución clínica: No aplicar en pacientes con alergia conocida a la soya (soja) o sus derivados.",
+          "No usar sobre la piel irritada, eccematosa o con heridas abiertas.",
+          "En caso de presentarse una reacción desfavorable, suspender su uso y consultar con el profesional.",
+          "Exclusivo para trabajo profesional. Mantener fuera del alcance de los niños.",
+          "Almacenar en un lugar seco y fresco, protegido de la luz."
+        ],
         applicationZones: ["Abdomen", "Flancos", "Papada"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Fosfatidilcolina",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/fosfatidilcolina/dermclar-fosfatidilcolina-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Fosfatidilcolina" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/fosfatidilcolina/dermclar-fosfatidilcolina-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/fosfatidilcolina/dermclar-fosfatidilcolina-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/fosfatidilcolina/dermclar-fosfatidilcolina-3.webp" }
           ]
         },
         regulatory: {
@@ -604,20 +648,37 @@ export const brandsData = {
         brand: "dermclar",
         category: "Professional Solutions Line",
         name: "Sol. Est. L-Carnitina",
-        presentation: "10 ampollas x 5ml",
-        subtitle: "Lipolítico esencial",
-        description: "Facilita la oxidación de las grasas para la obtención de energía, disminuyendo el grosor del panículo adiposo.",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "L-Carnitina", "description": "Transportador de ácidos grasos." }
+        presentation: "Caja de 10 ampollas x 5ml",
+        subtitle: "Lipolítico esencial y transportador de ácidos grasos",
+        description: "La Solución Estética de L-Carnitina es un tratamiento lipolítico esencial de grado profesional. La L-Carnitina actúa fisiológicamente como un transportador obligado de los ácidos grasos a través de la membrana mitocondrial, facilitando su oxidación para la obtención de energía celular. Este proceso disminuye eficazmente el grosor del panículo adiposo, combatiendo la acumulación de grasa localizada.",
+        benefits: [
+          "Facilita la oxidación y combustión de las grasas acumuladas para la obtención de energía.",
+          "Disminuye progresivamente el grosor del panículo adiposo (grasa localizada).",
+          "Excelente coadyuvante en tratamientos de moldeamiento corporal y pérdida de medidas.",
+          "Actúa de manera sinérgica al combinarse con otros agentes lipolíticos o reafirmantes."
         ],
-        usageIndications: ["Uso tópico profesional."],
-        contraindications: ["Información en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "L-Carnitina", "description": "Molécula biológica esencial que transporta los ácidos grasos libres al interior de la mitocondria, donde son transformados en energía mediante la beta-oxidación." }
+        ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina.",
+          "Compatible con aparatología transdérmica: Electroporación (mesoterapia virtual), ultrasonido de alta impedancia u onda galvánica.",
+          "Aplicar la cantidad necesaria para deslizar los electrodos de manera uniforme sobre la zona a tratar.",
+          "Dosis sugerida: 5 ml por sesión, adaptada según criterio profesional y área de tratamiento."
+        ],
+        contraindications: [
+          "No usar sobre la piel irritada, eccematosa o con heridas abiertas.",
+          "En caso de presentarse una reacción desfavorable, suspender su uso y consultar con un profesional.",
+          "Exclusivo para trabajo profesional. Mantener fuera del alcance de los niños.",
+          "Almacenar en un lugar seco y fresco, protegido de la luz directa."
+        ],
         applicationZones: ["Abdomen", "Piernas", "Glúteos"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=L-Carnitina",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/lcarnitina/dermclar-lcarnitina-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=L-Carnitina" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/lcarnitina/dermclar-lcarnitina-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/lcarnitina/dermclar-lcarnitina-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/lcarnitina/dermclar-lcarnitina-3.webp" }
           ]
         },
         regulatory: {
@@ -630,20 +691,37 @@ export const brandsData = {
         brand: "dermclar",
         category: "Professional Solutions Line",
         name: "Sol. Est. Silicio Orgánico",
-        presentation: "10 ampollas x 5ml",
-        subtitle: "Optimizador estructural",
-        description: "Mejora la capacidad de biosíntesis de proteínas. Ideal en tratamientos de grasa corporal, reducción y revitalización.",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "Silicio Orgánico", "description": "Regenerador de fibras de colágeno." }
+        presentation: "Caja de 10 ampollas x 5ml",
+        subtitle: "Optimizador estructural y regenerador tisular",
+        description: "La Solución Estética de Silicio Orgánico es un componente estructural fundamental para la matriz extracelular. Funciona como un regenerador biológico que entrecruza y estabiliza las fibras de colágeno y elastina. Esta acción restaura la arquitectura de los tejidos, mejorando significativamente la elasticidad, el tono y previniendo el envejecimiento cutáneo prematuro provocado por la peroxidación lipídica.",
+        benefits: [
+          "Mejora la capacidad de biosíntesis de proteínas esenciales (colágeno y elastina).",
+          "Aporta un potente efecto reafirmante, combatiendo la flacidez cutánea facial y corporal.",
+          "Potencia la regeneración del tejido conectivo, siendo ideal en el tratamiento de estrías.",
+          "Actúa como un excelente coadyuvante en terapias de reducción de grasa corporal y revitalización global."
         ],
-        usageIndications: ["Uso tópico profesional."],
-        contraindications: ["Información en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Silicio Orgánico", "description": "Biomolécula esencial que actúa como cemento dérmico, organizando las fibras estructurales y protegiendo el tejido frente al estrés oxidativo." }
+        ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina clínica.",
+          "Compatible con sistemas de penetración transdérmica: Electroporación (mesoterapia virtual), ultrasonido de alta impedancia, onda galvánica y microneedling.",
+          "Aplicar la cantidad necesaria para deslizar los electrodos o dispositivos de manera uniforme sobre la zona a tratar.",
+          "Se recomienda una terapia semanal, estructurando ciclos de 5 a 10 sesiones según evaluación clínica."
+        ],
+        contraindications: [
+          "No usar sobre la piel irritada, eccematosa o con heridas abiertas.",
+          "En caso de presentarse una reacción desfavorable, suspender su uso y consultar con un profesional.",
+          "Exclusivo para trabajo profesional. Mantener fuera del alcance de los niños.",
+          "Almacenar en un lugar seco y fresco, protegido de la luz."
+        ],
         applicationZones: ["Rostro", "Cuello", "Cuerpo"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Silicio+Organico",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/silicio/dermclar-silicio-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Silicio+Organico" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/silicio/dermclar-silicio-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/silicio/dermclar-silicio-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/silicio/dermclar-silicio-3.webp" }
           ]
         },
         regulatory: {
@@ -656,20 +734,37 @@ export const brandsData = {
         brand: "dermclar",
         category: "Professional Solutions Line",
         name: "Sol. Est. Vitamina C 20%",
-        presentation: "5 viales x 10ml",
-        subtitle: "Antioxidante celular",
-        description: "Mejora la calidad funcional de la vitalidad celular. Aumenta la luminosidad de la piel, ayudando a reducir la flacidez cutánea.",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "Ascorbato de Sodio", "description": "Potente agente antioxidante." }
+        presentation: "Caja de 5 viales x 10ml",
+        subtitle: "Potente antioxidante celular and revitalizante tisular",
+        description: "La Solución Estética de Vitamina C al 20% es un tratamiento profesional enfocado en el rejuvenecimiento cutáneo y la restitución tisular. Considerado uno de los antioxidantes más versátiles y eficaces en la estética médica, actúa mejorando la calidad funcional de la vitalidad celular, neutralizando el impacto de los radicales libres y previniendo el envejecimiento prematuro.",
+        benefits: [
+          "Aumenta visiblemente la luminosidad y unifica el tono de la piel apagada o fotoenvejecida.",
+          "Ejerce una profunda acción antioxidante, protegiendo las células del estrés oxidativo.",
+          "Ayuda a reducir la flacidez cutánea al estimular la síntesis natural de colágeno.",
+          "Mejora la calidad funcional de las células, promoviendo un aspecto revitalizado y saludable."
         ],
-        usageIndications: ["Uso tópico profesional."],
-        contraindications: ["Información en desarrollo..."],
+        activeIngredientsList: [
+          { "name": "Ascorbato de Sodio (Vitamina C 20%)", "description": "Forma estable y altamente asimilable de la Vitamina C que actúa como un escudo antioxidante, bloqueando el daño a nivel celular y favoreciendo la redensificación de la dermis." }
+        ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina clínica.",
+          "Compatible con equipos de penetración transdérmica: Electroporación (mesoterapia virtual), ultrasonido de alta impedancia u onda galvánica.",
+          "Aplicar la cantidad necesaria para deslizar los electrodos de manera uniforme sobre la zona a tratar.",
+          "Frecuencia sugerida: 1 sesión semanal, según la evolución y el criterio del profesional."
+        ],
+        contraindications: [
+          "No usar sobre la piel irritada, eccematosa o con heridas abiertas.",
+          "En caso de presentarse una reacción desfavorable, suspender su uso y consultar con un profesional.",
+          "Exclusivo para trabajo profesional. Mantener fuera del alcance de los niños.",
+          "Almacenar en un lugar seco y fresco, protegido minuciosamente de la luz y el calor."
+        ],
         applicationZones: ["Rostro", "Cuello", "Escote", "Manos"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Vitamina+C+20%25",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/vitc/dermclar-vitc-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Vitamina+C+20%25" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/vitc/dermclar-vitc-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/vitc/dermclar-vitc-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/vitc/dermclar-vitc-3.webp" }
           ]
         },
         regulatory: {

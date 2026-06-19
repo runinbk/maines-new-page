@@ -39,6 +39,12 @@ const TikTokIcon = ({ className }) => (
   </svg>
 );
 
+const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
+  if (!tailwindClass) return defaultColor;
+  const match = tailwindClass.match(/\[#([0-9a-fA-F]+)\]/);
+  return match ? `#${match[1]}` : defaultColor;
+};
+
 /**
  * ReelCard Component
  * Represents a single vertical social media video card (9:16)
@@ -48,6 +54,7 @@ const ReelCard = ({ videoUrl, index, brand, language, isHoveredParent, onHoverCh
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [isMaxHovered, setIsMaxHovered] = useState(false);
 
   const platformIndex = index % 3;
   const platform = platformIndex === 0 ? 'instagram' : (platformIndex === 1 ? 'tiktok' : 'facebook');
@@ -176,9 +183,12 @@ const ReelCard = ({ videoUrl, index, brand, language, isHoveredParent, onHoverCh
               e.stopPropagation();
               onMaximize(videoUrl);
             }}
-            className={`w-8 h-8 rounded-full bg-black/50 backdrop-blur-md hover:bg-[#4C5A9D]/90 border border-white/10 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-lg ${
+            onMouseEnter={() => setIsMaxHovered(true)}
+            onMouseLeave={() => setIsMaxHovered(false)}
+            className={`w-8 h-8 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-lg ${
               isPlayingInline ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
             }`}
+            style={{ backgroundColor: isMaxHovered ? `${getHexColor(brand.accentBg)}E6` : 'rgba(0,0,0,0.5)' }}
             title={isEs ? "Ver en grande" : "Maximize"}
           >
             <Maximize2 className="w-4 h-4" />
@@ -200,7 +210,10 @@ const ReelCard = ({ videoUrl, index, brand, language, isHoveredParent, onHoverCh
       {/* Middle Interactive Icon (only visible on hover, when not playing inline) */}
       {!isPlayingInline && (
         <div className="absolute inset-0 flex items-center justify-center z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="w-14 h-14 rounded-full bg-[#4C5A9D]/90 backdrop-blur-xs shadow-2xl flex items-center justify-center text-white transform scale-95 group-hover:scale-100 transition-transform duration-300">
+          <div 
+            className="w-14 h-14 rounded-full backdrop-blur-xs shadow-2xl flex items-center justify-center text-white transform scale-95 group-hover:scale-100 transition-transform duration-300"
+            style={{ backgroundColor: `${getHexColor(brand.accentBg)}E6` }}
+          >
             <Play className="w-5 h-5 fill-current translate-x-0.5" />
           </div>
         </div>
@@ -249,7 +262,7 @@ const ReelCard = ({ videoUrl, index, brand, language, isHoveredParent, onHoverCh
       {isPlayingInline && (
         <div className="absolute bottom-0 inset-x-0 h-1 bg-white/20 z-25 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-[#4C5A9D] to-[#5AA2D0]"
+            className={`h-full bg-gradient-to-r ${brand.themeGradient || 'from-[#4C5A9D] to-[#5AA2D0]'}`}
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -270,16 +283,19 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
   const [activeSocialVideo, setActiveSocialVideo] = useState(null);
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [isInlinePlaying, setIsInlinePlaying] = useState(false);
+  const [isInlineMaxHovered, setIsInlineMaxHovered] = useState(false);
+  const [isLeftBtnHovered, setIsLeftBtnHovered] = useState(false);
+  const [isRightBtnHovered, setIsRightBtnHovered] = useState(false);
   const cardVideoRef = useRef(null);
   const inlineVideoRef = useRef(null);
 
   const mainImage = brand.id === 'jetema'
     ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp'
     : (brand.id === 'dermclar'
-      ? 'https://placehold.co/600x400/F5F3FF/8B5CF6?text=Dermclar+Logistics'
+      ? '/assets/marcas/dermclar/dermclar-infomarca.jpeg'
       : 'https://placehold.co/600x400/ECFDF5/10B981?text=Xtralife+Logistics');
 
-  const mainVideo = brand.id === 'jetema'
+  const mainVideo = (brand.id === 'jetema' || brand.id === 'dermclar')
     ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.mp4'
     : null;
 
@@ -456,7 +472,10 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
                         });
                         setIsInlinePlaying(false);
                       }}
-                      className="w-8 h-8 rounded-full bg-black/60 hover:bg-[#4C5A9D]/90 border border-white/10 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 pointer-events-auto cursor-pointer shadow-lg"
+                      onMouseEnter={() => setIsInlineMaxHovered(true)}
+                      onMouseLeave={() => setIsInlineMaxHovered(false)}
+                      className="w-8 h-8 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 pointer-events-auto cursor-pointer shadow-lg"
+                      style={{ backgroundColor: isInlineMaxHovered ? `${getHexColor(brand.accentBg)}E6` : 'rgba(0,0,0,0.6)' }}
                       title={isEs ? "Maximizar" : "Maximize"}
                     >
                       <Maximize2 className="w-4 h-4" />
@@ -492,7 +511,14 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
 
                   {mainVideo && (
                     <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-all duration-300 opacity-0 group-hover:opacity-100">
-                      <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-xs border border-white/20 shadow-2xl flex items-center justify-center text-[#4C5A9D] transition-all duration-300 transform group-hover:scale-110 group-hover:bg-[#4C5A9D] group-hover:text-white pointer-events-auto shadow-indigo-500/10">
+                      <div 
+                        className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-xs border border-white/20 shadow-2xl flex items-center justify-center transition-all duration-300 transform group-hover:scale-110 group-hover:text-white pointer-events-auto"
+                        style={{
+                          color: isCardHovered ? '#ffffff' : getHexColor(brand.accentBg),
+                          backgroundColor: isCardHovered ? getHexColor(brand.accentBg) : 'rgba(255,255,255,0.9)',
+                          boxShadow: isCardHovered ? `0 10px 25px -5px ${getHexColor(brand.accentBg)}50` : undefined
+                        }}
+                      >
                         <Play className="w-6 h-6 fill-current translate-x-0.5" />
                       </div>
                     </div>
@@ -666,7 +692,13 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
             <div className="absolute inset-y-0 -left-4 sm:-left-6 flex items-center justify-start z-30 pointer-events-none opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
               <button
                 onClick={() => handleScrollClick('left')}
-                className="w-12 h-12 rounded-full bg-white shadow-xl border border-slate-200 flex items-center justify-center text-slate-700 hover:text-white hover:bg-[#4C5A9D] hover:scale-105 active:scale-95 transition-all duration-200 pointer-events-auto cursor-pointer shadow-indigo-500/5"
+                onMouseEnter={() => setIsLeftBtnHovered(true)}
+                onMouseLeave={() => setIsLeftBtnHovered(false)}
+                className="w-12 h-12 rounded-full bg-white shadow-xl border border-slate-200 flex items-center justify-center text-slate-700 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 pointer-events-auto cursor-pointer shadow-indigo-500/5"
+                style={{
+                  backgroundColor: isLeftBtnHovered ? getHexColor(brand.accentBg) : '#ffffff',
+                  color: isLeftBtnHovered ? '#ffffff' : '#334155'
+                }}
                 title={isEs ? "Anterior" : "Previous"}
               >
                 <ChevronLeft className="w-5 h-5 -translate-x-0.5" />
@@ -676,7 +708,13 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
             <div className="absolute inset-y-0 -right-4 sm:-right-6 flex items-center justify-end z-30 pointer-events-none opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
               <button
                 onClick={() => handleScrollClick('right')}
-                className="w-12 h-12 rounded-full bg-white shadow-xl border border-slate-200 flex items-center justify-center text-slate-700 hover:text-white hover:bg-[#4C5A9D] hover:scale-105 active:scale-95 transition-all duration-200 pointer-events-auto cursor-pointer shadow-indigo-500/5"
+                onMouseEnter={() => setIsRightBtnHovered(true)}
+                onMouseLeave={() => setIsRightBtnHovered(false)}
+                className="w-12 h-12 rounded-full bg-white shadow-xl border border-slate-200 flex items-center justify-center text-slate-700 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 pointer-events-auto cursor-pointer shadow-indigo-500/5"
+                style={{
+                  backgroundColor: isRightBtnHovered ? getHexColor(brand.accentBg) : '#ffffff',
+                  color: isRightBtnHovered ? '#ffffff' : '#334155'
+                }}
                 title={isEs ? "Siguiente" : "Next"}
               >
                 <ChevronRight className="w-5 h-5 translate-x-0.5" />

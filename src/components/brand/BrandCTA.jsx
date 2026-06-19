@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, CheckCircle, AlertCircle, X, Send, Beaker } from 'lucide-react';
 
+const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
+  if (!tailwindClass) return defaultColor;
+  const match = tailwindClass.match(/\[#([0-9a-fA-F]+)\]/);
+  return match ? `#${match[1]}` : defaultColor;
+};
+
 /**
  * BrandCTA Component
  * @param {Object} props
@@ -28,6 +34,11 @@ const BrandCTA = ({ brand, language }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState('idle'); // 'idle' | 'success' | 'error'
+
+  // Button Hover States
+  const [isWaHovered, setIsWaHovered] = useState(false);
+  const [isSuccessHovered, setIsSuccessHovered] = useState(false);
+  const [isSubmitHovered, setIsSubmitHovered] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -58,6 +69,10 @@ const BrandCTA = ({ brand, language }) => {
     setTimeout(() => setStatus('idle'), 300);
   };
 
+  // WhatsApp pre-filled text
+  const waSuffix = brandId === 'jetema' ? 'en mi práctica profesional.' : (brandId === 'dermclar' ? 'en mi clínica médica.' : 'en mi farmacia.');
+  const waText = encodeURIComponent(`Hola Maines SRL, deseo incorporar el portafolio de ${brand.name} ${waSuffix}`);
+
   return (
     <section id="cta-section" className="py-20 lg:py-28 px-6 sm:px-12 xl:px-20 bg-white w-full text-left relative overflow-hidden border-t border-slate-200/40">
 
@@ -87,17 +102,17 @@ const BrandCTA = ({ brand, language }) => {
           </h2>
 
           {/* Left-bordered description */}
-          <div className="pl-4 border-l-[3.5px] text-slate-500 font-semibold text-sm sm:text-base leading-relaxed max-w-xl" style={{ borderLeftColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}>
-            {isEs
+          <div className="pl-4 border-l-[3.5px] text-slate-500 font-semibold text-sm sm:text-base leading-relaxed max-w-xl" style={{ borderLeftColor: getHexColor(brand.accentBg) }}>
+            {brand.cta?.subtitle || (isEs
               ? 'Contacte directamente con un asesor comercial de Maines SRL para recibir atención personalizada sobre precios de distribuidor, capacitaciones clínicas y protocolos certificados.'
-              : 'Contact a commercial advisor from Maines SRL directly to receive personalized support regarding distributor pricing, clinical training, and certified protocols.'}
+              : 'Contact a commercial advisor from Maines SRL directly to receive personalized support regarding distributor pricing, clinical training, and certified protocols.')}
           </div>
 
           {/* Contact Details Info Row */}
           <div className="flex flex-col sm:flex-row gap-6 text-slate-600 text-xs sm:text-sm font-bold w-full max-w-xl">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-xl bg-slate-50 border border-slate-100 shrink-0">
-                <Phone className="w-4 h-4 text-slate-400" style={{ color: brandId === 'jetema' ? '#4C5A9D' : undefined }} />
+                <Phone className="w-4 h-4 text-slate-400" style={{ color: getHexColor(brand.accentBg) }} />
               </div>
               <div className="min-w-0">
                 <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">{isEs ? 'Teléfono' : 'Phone'}</span>
@@ -107,7 +122,7 @@ const BrandCTA = ({ brand, language }) => {
 
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-xl bg-slate-50 border border-slate-100 shrink-0">
-                <MapPin className="w-4 h-4 text-slate-400" style={{ color: brandId === 'jetema' ? '#4C5A9D' : undefined }} />
+                <MapPin className="w-4 h-4 text-slate-400" style={{ color: getHexColor(brand.accentBg) }} />
               </div>
               <div className="min-w-0">
                 <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">{isEs ? 'Dirección' : 'Office'}</span>
@@ -121,13 +136,15 @@ const BrandCTA = ({ brand, language }) => {
 
             {/* WhatsApp CTA */}
             <a
-              href={`https://wa.me/${cleanPhoneForWa}?text=Hola%20Maines%20SRL,%20deseo%20incorporar%20el%20portafolio%20de%20${brand.name}%20en%20mi%20práctica%20profesional.`}
+              href={`https://wa.me/${cleanPhoneForWa}?text=${waText}`}
               target="_blank"
               rel="noopener noreferrer"
+              onMouseEnter={() => setIsWaHovered(true)}
+              onMouseLeave={() => setIsWaHovered(false)}
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-extrabold text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto"
-              style={{ backgroundColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+              style={{ backgroundColor: isWaHovered ? getHexColor(brand.accentHover) : getHexColor(brand.accentBg) }}
             >
-              <span>{isEs ? 'Contactar por WhatsApp' : 'Contact via WhatsApp'}</span>
+              <span>{brand.cta?.primaryBtn || (isEs ? 'Contactar por WhatsApp' : 'Contact via WhatsApp')}</span>
               <Send className="w-3.5 h-3.5" />
             </a>
 
@@ -137,7 +154,7 @@ const BrandCTA = ({ brand, language }) => {
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-extrabold text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto"
             >
               <Mail className="w-3.5 h-3.5 text-slate-400" />
-              <span>{isEs ? 'Enviar Correo' : 'Send Email Inquiry'}</span>
+              <span>{brand.cta?.secondaryBtn || (isEs ? 'Enviar Correo' : 'Send Email Inquiry')}</span>
             </button>
 
           </div>
@@ -151,7 +168,7 @@ const BrandCTA = ({ brand, language }) => {
               brandId === 'jetema'
                 ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/jetema-cta10.webp'
                 : (brandId === 'dermclar'
-                  ? 'https://placehold.co/600x600/FAF8FF/8B5CF6?text=Dermclar+Aesthetic'
+                  ? '/assets/marcas/dermclar/dermclar-cta.jpeg'
                   : 'https://placehold.co/600x600/F5FCFA/10B981?text=Xtralife+Science')
             }
             alt="Biotechnology showcase"
@@ -195,8 +212,10 @@ const BrandCTA = ({ brand, language }) => {
                 </p>
                 <button
                   onClick={closeFormModal}
+                  onMouseEnter={() => setIsSuccessHovered(true)}
+                  onMouseLeave={() => setIsSuccessHovered(false)}
                   className="px-6 py-2.5 rounded-full text-xs font-extrabold text-white transition-all duration-300 transform hover:scale-105 cursor-pointer mt-4"
-                  style={{ backgroundColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+                  style={{ backgroundColor: isSuccessHovered ? getHexColor(brand.accentHover) : getHexColor(brand.accentBg) }}
                 >
                   {isEs ? 'Entendido' : 'Close'}
                 </button>
@@ -297,8 +316,10 @@ const BrandCTA = ({ brand, language }) => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
+                  onMouseEnter={() => setIsSubmitHovered(true)}
+                  onMouseLeave={() => setIsSubmitHovered(false)}
                   className="w-full py-3.5 rounded-xl text-xs sm:text-sm font-extrabold text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.01] active:scale-99 focus:outline-none flex items-center justify-center gap-2 cursor-pointer mt-2 disabled:opacity-50"
-                  style={{ backgroundColor: brandId === 'jetema' ? '#4C5A9D' : `var(--color-${brand.accentBg.replace('bg-', '')})` }}
+                  style={{ backgroundColor: isSubmitHovered ? getHexColor(brand.accentHover) : getHexColor(brand.accentBg) }}
                 >
                   <span>{isSubmitting ? (isEs ? 'Enviando...' : 'Sending...') : (isEs ? 'Enviar Mensaje' : 'Send Message')}</span>
                 </button>

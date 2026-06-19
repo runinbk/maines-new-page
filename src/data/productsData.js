@@ -406,20 +406,40 @@ export const brandsData = {
         brand: "dermclar",
         category: "Cocktails Line",
         name: "Dermclar PlasmaVit",
-        presentation: "Consultar presentación",
-        subtitle: "Nutrición y regeneración celular",
-        description: "Información técnica en desarrollo...",
-        benefits: ["Beneficio en desarrollo..."],
-        activeIngredientsList: [
-          { "name": "Aminoácidos / Vitaminas", "description": "Complejo nutricional celular." }
+        presentation: "Caja de 5 Viales x 10ml",
+        subtitle: "Solución integral bio-estimulante y revitalizante tisular",
+        description: "Dermclar PlasmaVit es un revitalizante tisular avanzado que nutre intensamente los tejidos, mejorando la plasticidad y facilitando los procesos metabólicos celulares. Actúa directamente sobre la matriz extracelular, revitalizando las moléculas de colágeno, elastina y otras fibras estructurales para devolverle a la piel su densidad y firmeza original. Es el aliado perfecto para combatir el estrés oxidativo y el envejecimiento cutáneo.",
+        benefits: [
+          "Nutrición profunda e hidratación intensiva para pieles cansadas, apagadas y fatigadas.",
+          "Efecto antioxidante potente que contrarresta el daño inducido por radicales libres.",
+          "Aporta luminosidad, tonicidad y mejora visiblemente la textura global de la piel.",
+          "Estimula la reparación de los tejidos y la regeneración celular activa."
         ],
-        usageIndications: ["Uso tópico profesional."],
-        contraindications: ["Información en desarrollo..."],
-        applicationZones: ["Rostro", "Cuello"],
+        activeIngredientsList: [
+          { "name": "Aminoácidos Autoestimulantes", "description": "Complejo nutricional esencial que provee los bloques de construcción celular para la síntesis de nuevas proteínas estructurales." },
+          { "name": "Vitamina C (Ácido Ascórbico)", "description": "Antioxidante clave que evita el envejecimiento prematuro, unifica el tono y facilita la absorción de otros minerales." },
+          { "name": "Silanol (Silicio Orgánico)", "description": "Agente reestructurante del tejido dérmico que induce y estimula la producción endógena de colágeno." }
+        ],
+        usageIndications: [
+          "Exclusivo uso tópico profesional en cabina clínica.",
+          "Aplicación transdérmica compatible con aparatología: Ultrasonido de alta impedancia, electroporación (mesoterapia virtual) u onda galvánica.",
+          "Dosis recomendada: Aplicar de 3 a 10 ml por sesión, dependiendo de la extensión del área a tratar.",
+          "Frecuencia del tratamiento: 1 terapia semanal durante un ciclo aproximado de 3 a 5 sesiones."
+        ],
+        contraindications: [
+          "No utilizar sobre la piel irritada, eccematosa o con heridas activas.",
+          "En caso de reacción desfavorable, suspender el uso inmediatamente y consultar al profesional tratante.",
+          "Exclusivo para uso profesional. Mantener estrictamente fuera del alcance de los niños.",
+          "Almacenar en un lugar seco y fresco, protegido de la luz directa y el calor excesivo.",
+          "Utilizar el contenido del vial inmediatamente después de su apertura para garantizar su eficacia."
+        ],
+        applicationZones: ["Rostro", "Cuello", "Escote", "Cuerpo"],
         assets: {
-          coverImage: "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+PlasmaVit",
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/plasmavit/dermclar-plasmavit-portada.webp",
           gallery: [
-            { "image": "https://placehold.co/400x500/e2e8f0/1e293b?text=Dermclar+PlasmaVit" }
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/plasmavit/dermclar-plasmavit-1.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/plasmavit/dermclar-plasmavit-2.webp" },
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/plasmavit/dermclar-plasmavit-3.webp" }
           ]
         },
         regulatory: {

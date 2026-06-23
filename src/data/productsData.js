@@ -1819,9 +1819,75 @@ export const brandsData = {
           es: "1 cápsula diaria",
           en: "1 capsule daily"
         },
-        description: {
-          es: "Funciona principalmente como antioxidante. Es vital para el funcionamiento de las defensas del cuerpo. Interviene en la destrucción de las células dañadas en el organismo, evitando la aparición de enfermedades como el cancer.",
-          en: "Functions primarily as an antioxidant. It is vital for the body's defense mechanisms. Intervenes in the destruction of damaged cells, preventing the appearance of diseases like cancer."
+        shortDescription: {
+          es: "Vitamina liposoluble esencial de alta concentración (1000 mg) que protege a las células del daño oxidativo. Actúa como un potente escudo antioxidante, favoreciendo la salud de la piel, protegiendo la visión y combatiendo activamente el envejecimiento celular prematuro.",
+          en: "Essential fat-soluble vitamin in high concentration (1000 mg) that protects cells from oxidative damage. Acts as a powerful antioxidant shield, promoting skin health, protecting vision, and actively combating premature cellular aging."
+        },
+        catalogBenefits: {
+          es: [
+            "Funciona principalmente como antioxidante.",
+            "Es vital para el funcionamiento de las defensas del cuerpo.",
+            "Interviene en la destrucción de las células dañadas en el organismo, evitando la aparición de enfermedades como el cancer."
+          ],
+          en: [
+            "Functions primarily as an antioxidant.",
+            "It is vital for the body's defense mechanisms.",
+            "Intervenes in the destruction of damaged cells, preventing the appearance of diseases like cancer."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Escudo Antioxidante Celular: Neutraliza los radicales libres, protegiendo las membranas celulares frente al estrés oxidativo diario.",
+            "Rejuvenecimiento Cutáneo: Previene el envejecimiento prematuro de la piel, favoreciendo su elasticidad, hidratación y apariencia radiante.",
+            "Regeneración y Cicatrización: Mejora y acelera los procesos naturales de reparación de tejidos y cicatrización en el cuerpo.",
+            "Protección Visual: Contribuye al mantenimiento estructural y funcional de los ojos, favoreciendo una visión saludable."
+          ],
+          en: [
+            "Cellular Antioxidant Shield: Neutralizes free radicals, protecting cell membranes against daily oxidative stress.",
+            "Skin Rejuvenation: Prevents premature skin aging, promoting elasticity, hydration, and a radiant appearance.",
+            "Regeneration and Healing: Improves and accelerates the body's natural tissue repair and wound healing processes.",
+            "Visual Protection: Contributes to the structural and functional maintenance of the eyes, promoting healthy vision."
+          ]
+        },
+        ingredients: {
+          es: "Vitamina E pura (1000 mg) de alta biodisponibilidad. Formulación liposoluble encapsulada en formato softgel para garantizar una asimilación celular rápida y óptima.",
+          en: "Pure Vitamin E (1000 mg) with high bioavailability. Fat-soluble formulation encapsulated in a softgel format to ensure rapid and optimal cellular assimilation."
+        },
+        usage: {
+          es: "Suplemento nutricional de uso oral. Ingerir 1 cápsula blanda (softgel) al día, idealmente junto con una comida que contenga grasas saludables para maximizar su absorción.",
+          en: "Nutritional supplement for oral use. Take 1 softgel daily, ideally alongside a meal containing healthy fats to maximize absorption."
+        },
+        precautions: {
+          es: "No superar la dosis diaria recomendada. Como con cualquier suplemento de alta concentración, consulte a un profesional de la salud antes de iniciar su consumo si se encuentra bajo algún tratamiento médico específico.",
+          en: "Do not exceed the recommended daily dose. As with any high-concentration supplement, consult a healthcare professional before use if you are undergoing specific medical treatments."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-e/xtralife-vitamina-e-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-e/xtralife-vitamina-e-1.webp" }
+          ]
         }
       },
       {

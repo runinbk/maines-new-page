@@ -813,7 +813,7 @@ export const brandsData = {
       }
     ]
   },
-xtralife: {
+  xtralife: {
     id: "xtralife",
     name: "Xtralife",
     logo: "/assets/xtralife-logo.png",
@@ -936,6 +936,12 @@ xtralife: {
         description: {
           es: "Reduce la presión arterial y el colesterol. Otorga un efecto protector del sistema nervioso. Mejora la salud mental. Previene los accidentes cerebrovasculares y ataques cardiacos.",
           en: "Reduces blood pressure and cholesterol. Provides a protective effect on the nervous system. Improves mental health. Prevents strokes and heart attacks."
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega3/xtralife-omega3-portada.webp",
+          gallery: [
+            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega3/xtralife-omega3-1.webp" }
+          ]
         }
       },
       {

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ArrowRight, ArrowLeft, Mail, Phone, MapPin, Send, 
-  X, Check, AlertCircle, Play, Volume2, Laptop
+  ArrowRight, ArrowLeft, Send, 
+  X, Check, AlertCircle, Play
 } from 'lucide-react';
 
 // Ingest Supabase brand video links
@@ -68,13 +68,7 @@ const CTAContact = () => {
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
   // Reels Carousel states
-  const [playlist, setPlaylist] = useState([]);
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [activeVideoUrl, setActiveVideoUrl] = useState('');
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Ingest and randomize brand videos on mount
-  useEffect(() => {
+  const [playlist] = useState(() => {
     const rawVideos = [];
 
     // Dermclar
@@ -119,11 +113,12 @@ const CTAContact = () => {
       });
     }
 
-    // Shuffle all videos randomly
-    const shuffled = [...rawVideos].sort(() => Math.random() - 0.5);
-    // Select 9 videos to display
-    setPlaylist(shuffled.slice(0, 9));
-  }, []);
+    // Shuffle all videos randomly and select 9
+    return [...rawVideos].sort(() => Math.random() - 0.5).slice(0, 9);
+  });
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeVideoUrl, setActiveVideoUrl] = useState('');
+  const [isHovered, setIsHovered] = useState(false);
 
   // Auto-play interval for carousel
   useEffect(() => {

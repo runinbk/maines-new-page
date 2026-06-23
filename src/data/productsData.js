@@ -813,7 +813,7 @@ export const brandsData = {
       }
     ]
   },
-  xtralife: {
+xtralife: {
     id: "xtralife",
     name: "Xtralife",
     logo: "/assets/xtralife-logo.png",
@@ -831,14 +831,62 @@ export const brandsData = {
     themeBorder: "border-emerald-500/20",
     glowClass: "glow-emerald",
     categories: [
-      { id: "all", label: { es: "Todos", en: "All" } },
-      { id: "cardiovascular", label: { es: "Bienestar Cardiovascular y General", en: "Cardiovascular & General Wellness" } },
-      { id: "energy", label: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" } },
-      { id: "immunity", label: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" } },
-      { id: "bones", label: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" } },
-      { id: "nervous", label: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" } },
-      { id: "specific", label: { es: "Salud Específica y Control", en: "Specific Health & Control" } },
-      { id: "nutricosmetics", label: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" } }
+      {
+        id: "all",
+        label: {
+          es: "Todos",
+          en: "All"
+        }
+      },
+      {
+        id: "cardiovascular",
+        label: {
+          es: "Bienestar Cardiovascular y General",
+          en: "Cardiovascular & General Wellness"
+        }
+      },
+      {
+        id: "energy",
+        label: {
+          es: "Energía, Vitalidad y Rendimiento",
+          en: "Energy, Vitality & Performance"
+        }
+      },
+      {
+        id: "immunity",
+        label: {
+          es: "Inmunidad, Vitaminas y Minerales",
+          en: "Immunity, Vitamins & Minerals"
+        }
+      },
+      {
+        id: "bones",
+        label: {
+          es: "Salud Ósea y Articular",
+          en: "Bone & Joint Health"
+        }
+      },
+      {
+        id: "nervous",
+        label: {
+          es: "Sistema Nervioso, Relajación y Memoria",
+          en: "Nervous System, Relaxation & Memory"
+        }
+      },
+      {
+        id: "specific",
+        label: {
+          es: "Salud Específica y Control",
+          en: "Specific Health & Control"
+        }
+      },
+      {
+        id: "nutricosmetics",
+        label: {
+          es: "Nutricosmética (Piel y Cabello)",
+          en: "Nutricosmetics (Skin & Hair)"
+        }
+      }
     ],
     about: {
       pretitle: "DISTRIBUCIÓN AUTORIZADA",
@@ -870,510 +918,816 @@ export const brandsData = {
         id: "xtralife-omega-3",
         brand: "xtralife",
         category: "cardiovascular",
-        categoryLabel: { es: "Bienestar Cardiovascular y General", en: "Cardiovascular & General Wellness" },
+        categoryLabel: {
+          es: "Bienestar Cardiovascular y General",
+          en: "Cardiovascular & General Wellness"
+        },
         name: "Omega 3",
         descriptor: "Essential Fatty Acids / Ácidos Grasos Esenciales",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100/200 cápsulas blandas", en: "100/200 softgels" },
-        dosage: { es: "1 cápsula diaria", en: "1 softgel daily" },
+        presentation: {
+          es: "100/200 cápsulas blandas",
+          en: "100/200 softgels"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 softgel daily"
+        },
         description: {
-          es: "Reduce presión arterial y colesterol. Protector del sistema nervioso y mejora salud mental.",
-          en: "Reduces blood pressure and cholesterol. Protects the nervous system and improves mental health."
+          es: "Reduce la presión arterial y el colesterol. Otorga un efecto protector del sistema nervioso. Mejora la salud mental. Previene los accidentes cerebrovasculares y ataques cardiacos.",
+          en: "Reduces blood pressure and cholesterol. Provides a protective effect on the nervous system. Improves mental health. Prevents strokes and heart attacks."
         }
       },
       {
         id: "xtralife-omega-3-6-9",
         brand: "xtralife",
         category: "cardiovascular",
-        categoryLabel: { es: "Bienestar Cardiovascular y General", en: "Cardiovascular & General Wellness" },
+        categoryLabel: {
+          es: "Bienestar Cardiovascular y General",
+          en: "Cardiovascular & General Wellness"
+        },
         name: "Omega 3-6-9",
         descriptor: "Balanced Omegas / Omegas Balanceados",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "90 cápsulas blandas", en: "90 softgels" },
-        dosage: { es: "1 cápsula diaria", en: "1 softgel daily" },
+        presentation: {
+          es: "90 cápsulas blandas",
+          en: "90 softgels"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 softgel daily"
+        },
         description: {
-          es: "Disminuye colesterol/triglicéridos, reduce inflamación celular y fortalece huesos.",
-          en: "Lowers cholesterol/triglycerides, reduces cellular inflammation, and strengthens bones."
+          es: "Mejora el sistema inmunológico. Ayuda a disminuir el colesterol y los triglicéridos. Ayuda a reducir la inflamación en las células. Mejora los niveles de concentración y aprendizaje. Fortalece los huesos y dientes.",
+          en: "Improves the immune system. Helps lower cholesterol and triglycerides. Helps reduce inflammation in cells. Improves concentration and learning levels. Strengthens bones and teeth."
         }
       },
       {
         id: "xtralife-perlas-ajo",
         brand: "xtralife",
         category: "cardiovascular",
-        categoryLabel: { es: "Bienestar Cardiovascular y General", en: "Cardiovascular & General Wellness" },
+        categoryLabel: {
+          es: "Bienestar Cardiovascular y General",
+          en: "Cardiovascular & General Wellness"
+        },
         name: "Perlas de Ajo",
         descriptor: "Garlic Oil Extract / Extracto de Aceite de Ajo",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas blandas", en: "100 softgels" },
-        dosage: { es: "1 cápsula diaria", en: "1 softgel daily" },
+        presentation: {
+          es: "100 cápsulas blandas",
+          en: "100 softgels"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 softgel daily"
+        },
         description: {
-          es: "Antibiótico natural, reduce presión arterial y colesterol, mejora circulación.",
-          en: "Natural antibiotic, reduces blood pressure and cholesterol, and improves circulation."
+          es: "Es eficaz como antibiótico, combatiendo numerosos hongos, bacterias y virus. Reduce la presión arterial y el colesterol. Controla los daños causados por la arterioesclerosis y el reuma. Mejora la circulación sanguínea, evita retención de líquidos. Previene varices. Fortalece el sistema inmunológico.",
+          en: "Effective as an antibiotic against fungi, bacteria, and viruses. Reduces blood pressure and cholesterol. Controls damage caused by arteriosclerosis and rheumatism. Improves blood circulation, prevents fluid retention and varicose veins. Strengthens the immune system."
         }
       },
       {
         id: "xtralife-hgh-releasing",
         brand: "xtralife",
         category: "energy",
-        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        categoryLabel: {
+          es: "Energía, Vitalidad y Rendimiento",
+          en: "Energy, Vitality & Performance"
+        },
         name: "HGH Releasing",
         descriptor: "Growth Hormone Support / Soporte de Hormona de Crecimiento",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "120 cápsulas", en: "120 capsules" },
-        dosage: { es: "1 a 2 cápsulas antes de dormir", en: "1 to 2 capsules before sleeping" },
+        presentation: {
+          es: "120 cápsulas",
+          en: "120 capsules"
+        },
+        dosage: {
+          es: "8 a 14 años: 1 cápsula antes de dormir. 14 años en adelante: 2 cápsulas antes de dormir",
+          en: "8 to 14 years: 1 capsule before sleep. 14 years and older: 2 capsules before sleep"
+        },
         description: {
-          es: "Estimulante natural de hormona de crecimiento, favorece masa muscular y reduce fatiga.",
-          en: "Natural growth hormone stimulator, promotes muscle mass and reduces fatigue."
+          es: "Estimulante natural de la hormona del crecimiento. Favorece en el incremento de masa muscular. Aumenta la densidad ósea, asimismo fortaleciéndolos. Alivia el insomnio y mejora la calidad del sueño. Reduce la fatiga y aumenta los niveles de energía. Mejora los niveles de azúcar en sangre.",
+          en: "Natural growth hormone stimulant. Promotes muscle mass increase. Increases bone density and strengthens them. Relieves insomnia and improves sleep quality. Reduces fatigue and increases energy levels. Improves blood sugar levels."
         }
       },
       {
         id: "xtralife-xtra-vigor-male",
         brand: "xtralife",
         category: "energy",
-        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        categoryLabel: {
+          es: "Energía, Vitalidad y Rendimiento",
+          en: "Energy, Vitality & Performance"
+        },
         name: "Xtra Vigor Male",
         descriptor: "Male Performance Complex / Complejo de Rendimiento Masculino",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 comprimidos", en: "100 tablets" },
-        dosage: { es: "2 comprimidos diarios", en: "2 tablets daily" },
+        presentation: {
+          es: "100 comprimidos",
+          en: "100 tablets"
+        },
+        dosage: {
+          es: "2 comprimidos diarios",
+          en: "2 tablets daily"
+        },
         description: {
-          es: "Mejora rendimiento masculino, reduce cansancio/estrés. Con Jalea Real y Polen.",
-          en: "Improves male performance, reduces fatigue/stress. With Royal Jelly and Pollen."
+          es: "Mejora la salud y el rendimiento integral en el hombre. Reduce el cansancio, la debilidad, estrés y otras afecciones derivadas por una baja cantidad de vitaminas. Además cuenta con Jalea Real y Polen para fortalecer el sistema inmunológico. Previene futuros problemas en la próstata y ayuda en la salud sexual.",
+          en: "Improves overall health and performance in men. Reduces fatigue, weakness, stress, and other conditions derived from low vitamins. Contains Royal Jelly and Pollen to strengthen the immune system. Prevents future prostate problems and aids in sexual health."
         }
       },
       {
         id: "xtralife-xtra-vigor-female",
         brand: "xtralife",
         category: "energy",
-        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        categoryLabel: {
+          es: "Energía, Vitalidad y Rendimiento",
+          en: "Energy, Vitality & Performance"
+        },
         name: "Xtra Vigor Female",
         descriptor: "Female Performance Complex / Complejo de Rendimiento Femenino",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 comprimidos", en: "100 tablets" },
-        dosage: { es: "2 comprimidos diarios", en: "2 tablets daily" },
+        presentation: {
+          es: "100 comprimidos",
+          en: "100 tablets"
+        },
+        dosage: {
+          es: "2 comprimidos diarios",
+          en: "2 tablets daily"
+        },
         description: {
-          es: "Mejora rendimiento femenino, reduce cansancio, ayuda a piel/uñas/cabello.",
-          en: "Improves female performance, reduces fatigue, benefits skin/nails/hair."
+          es: "Mejora la salud y el rendimiento integral en la mujer. Reduce el cansancio, la debilidad, estrés y otras afecciones derivadas por una baja cantidad de vitaminas. Además, cuenta con Jalea Real y Polen para fortalecer el sistema inmunológico. Ayuda al crecimiento de las uñas, previene la caída del cabello y mejora la textura de la piel.",
+          en: "Improves overall health and performance in women. Reduces fatigue, weakness, stress, and other conditions derived from low vitamins. Contains Royal Jelly and Pollen to strengthen the immune system. Helps nail growth, prevents hair loss, and improves skin texture."
         }
       },
       {
         id: "xtralife-shilajit",
         brand: "xtralife",
         category: "energy",
-        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        categoryLabel: {
+          es: "Energía, Vitalidad y Rendimiento",
+          en: "Energy, Vitality & Performance"
+        },
         name: "Shilajit",
         descriptor: "Himalayan Shilajit Extract / Extracto de Shilajit del Himalaya",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Aumenta energía celular, mejora función cerebral y combate envejecimiento.",
-          en: "Increases cellular energy, improves brain function, and combats aging."
+          es: "Aumenta los niveles de energía, mejora la función cerebral, apoya la salud del corazón, y combate los efectos del envejecimiento. Poderoso antioxidante y antiinflamatorio.",
+          en: "Increases energy levels, improves brain function, supports heart health, and combats the effects of aging. Powerful antioxidant and anti-inflammatory."
         }
       },
       {
         id: "xtralife-nad-red-wine",
         brand: "xtralife",
         category: "energy",
-        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        categoryLabel: {
+          es: "Energía, Vitalidad y Rendimiento",
+          en: "Energy, Vitality & Performance"
+        },
         name: "NAD + Red Wine",
         descriptor: "Cellular Anti-Aging / Antienvejecimiento Celular",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Retrasa el envejecimiento, aumenta energía celular y protege contra daño oxidativo.",
-          en: "Delays aging, increases cellular energy, and protects against oxidative damage."
+          es: "Reduce la fatiga, retrasa del envejecimiento, aumenta la producción de energía en las células, Ayuda a proteger a las células contra el daño oxidativo y a reducir la inflamación en el cuerpo.",
+          en: "Reduces fatigue, delays aging, increases energy production in cells. Helps protect cells against oxidative damage and reduce body inflammation."
         }
       },
       {
         id: "xtralife-l-arginina",
         brand: "xtralife",
         category: "energy",
-        categoryLabel: { es: "Energía, Vitalidad y Rendimiento", en: "Energy, Vitality & Performance" },
+        categoryLabel: {
+          es: "Energía, Vitalidad y Rendimiento",
+          en: "Energy, Vitality & Performance"
+        },
         name: "L-Arginina",
         descriptor: "Amino Acid Flow Support / Aminoácido de Soporte Circulatorio",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "1 a 2 cápsulas diarias", en: "1 to 2 capsules daily" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "1 a 2 cápsulas diarias",
+          en: "1 to 2 capsules daily"
+        },
         description: {
-          es: "Estimula hormona de crecimiento, ayuda en masa muscular y flujo sanguíneo.",
-          en: "Stimulates growth hormone, aids in muscle mass and blood flow."
+          es: "Estimula la liberación de la hormona del crecimiento. Ayuda en el aumento de masa muscular. Disminuye la Presión arterial. Ayuda a frenar la pérdida de memoria vinculada con la edad.",
+          en: "Stimulates growth hormone release. Aids in muscle mass increase. Lowers blood pressure. Helps slow down age-related memory loss."
         }
       },
       {
         id: "xtralife-vitamina-c-1000",
         brand: "xtralife",
         category: "immunity",
-        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        categoryLabel: {
+          es: "Inmunidad, Vitaminas y Minerales",
+          en: "Immunity, Vitamins & Minerals"
+        },
         name: "Vitamina C 1000 mg",
         descriptor: "Immune Shield / Escudo Inmunológico",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas", en: "100 capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "100 cápsulas",
+          en: "100 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Incrementa absorción de hierro, disminuye síntomas alérgicos/resfríos.",
-          en: "Increases iron absorption, decreases allergic/cold symptoms."
+          es: "Conocida como ácido ascórbico. Incrementa la absorción de hierro en el organismo. Disminuye la severidad y duración de los síntomas alérgicos o resfríos. Participa en la hemostasia favoreciendo la cicatrización de heridas.",
+          en: "Known as ascorbic acid. Increases iron absorption in the body. Decreases the severity and duration of allergic symptoms or colds. Participates in hemostasis, promoting wound healing."
         }
       },
       {
         id: "xtralife-vitamina-d3",
         brand: "xtralife",
         category: "immunity",
-        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        categoryLabel: {
+          es: "Inmunidad, Vitaminas y Minerales",
+          en: "Immunity, Vitamins & Minerals"
+        },
         name: "Vitamina D3",
         descriptor: "Bone & Immune Support / Soporte Óseo e Inmune",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas blandas", en: "100 softgels" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "100 cápsulas blandas",
+          en: "100 softgels"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Contribuye al crecimiento óseo, posee propiedades inmunitarias y evita envejecimiento.",
-          en: "Contributes to bone growth, possesses immune properties, and prevents aging."
+          es: "Aumenta la esperanza de vida en las mujeres. Reduce el riesgo de sufrir una fractura. Contribuye al crecimiento adecuado de los huesos. Posee propiedades inmunitarias. Reduce los riesgos de padecer algún proceso degenerativo. Evita el envejecimiento.",
+          en: "Increases life expectancy in women. Reduces the risk of fractures. Contributes to proper bone growth. Possesses immune properties. Reduces the risks of degenerative processes. Prevents aging."
         }
       },
       {
         id: "xtralife-vitamina-a",
         brand: "xtralife",
         category: "immunity",
-        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        categoryLabel: {
+          es: "Inmunidad, Vitaminas y Minerales",
+          en: "Immunity, Vitamins & Minerals"
+        },
         name: "Vitamina A",
         descriptor: "Retinol Vision Support / Soporte de Visión Retinol",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas blandas", en: "100 softgels" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "100 cápsulas blandas",
+          en: "100 softgels"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Imprescindible para función de la retina, visión nocturna y movilización de hierro.",
-          en: "Essential for retinal function, night vision, and iron mobilization."
+          es: "Conocida también como retinol actúa formando un pigmento visual imprescindible para el correcto funcionamiento de la retina y una mejor visión nocturna. Facilita la movilización del hierro hacia los glóbulos rojos en desarrollo.",
+          en: "Also known as retinol, it forms a visual pigment essential for proper retinal function and better night vision. Facilitates iron mobilization to developing red blood cells."
         }
       },
       {
         id: "xtralife-zinc-50",
         brand: "xtralife",
         category: "immunity",
-        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        categoryLabel: {
+          es: "Inmunidad, Vitaminas y Minerales",
+          en: "Immunity, Vitamins & Minerals"
+        },
         name: "Zinc 50 mg",
         descriptor: "Mineral Defense & Skin / Defensa Mineral y Cutánea",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas", en: "100 capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "100 cápsulas",
+          en: "100 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Equilibra sistema inmune, regula grasa en la piel (acné) y acelera cicatrización.",
-          en: "Balances the immune system, regulates skin sebum (acne), and accelerates healing."
+          es: "Mejora y equilibra el sistema inmunológico. Regula la producción de grasa en la piel, por lo que mejora los procesos de acné y por tanto, el aspecto general de la piel. La aplicación de zinc acelera los procesos de cicatrización. Estimula la regeneración de los tejidos.",
+          en: "Improves and balances the immune system. Regulates skin fat production, improving acne processes and overall skin appearance. Accelerates healing processes. Stimulates tissue regeneration."
         }
       },
       {
         id: "xtralife-echinacea",
         brand: "xtralife",
         category: "immunity",
-        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        categoryLabel: {
+          es: "Inmunidad, Vitaminas y Minerales",
+          en: "Immunity, Vitamins & Minerals"
+        },
         name: "Echinacea",
         descriptor: "Natural Immune Booster / Refuerzo Inmune Natural",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas", en: "100 capsules" },
-        dosage: { es: "3 cápsulas diarias", en: "3 capsules daily" },
+        presentation: {
+          es: "100 cápsulas",
+          en: "100 capsules"
+        },
+        dosage: {
+          es: "3 cápsulas diarias",
+          en: "3 capsules daily"
+        },
         description: {
-          es: "Apoyo natural al sistema inmunológico, ayuda en infecciones respiratorias.",
-          en: "Natural support for the immune system, helps with respiratory infections."
+          es: "Apoyo natural al sistema inmunológico (Elevando las defensas del cuerpo). Ayuda en el tratamiento de procesos infecciosos respiratorios.",
+          en: "Natural support to the immune system (Raising body defenses). Helps in the treatment of respiratory infectious processes."
         }
       },
       {
         id: "xtralife-balanced-b",
         brand: "xtralife",
         category: "immunity",
-        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        categoryLabel: {
+          es: "Inmunidad, Vitaminas y Minerales",
+          en: "Immunity, Vitamins & Minerals"
+        },
         name: "Balanced B",
         descriptor: "Vitamin B Complex / Complejo de Vitaminas B",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 comprimidos", en: "100 tablets" },
-        dosage: { es: "1 comprimido al día", en: "1 tablet daily" },
+        presentation: {
+          es: "100 Comprimidos",
+          en: "100 tablets"
+        },
+        dosage: {
+          es: "1 comprimido al día",
+          en: "1 tablet daily"
+        },
         description: {
-          es: "Complejo de vitaminas B para glóbulos rojos, sistema digestivo y nervioso.",
-          en: "B-vitamin complex for red blood cells, digestive system, and nervous system."
+          es: "Es un suplemento que combina las vitaminas del grupo B, que brindan grandes beneficios al ser consumidos en conjunto, entre ellos la formación de glóbulos rojos, funcionamiento correcto del sistema digestivo y del sistema nervioso. Aporta grandes beneficios al cabello, las uñas y la piel.",
+          en: "A supplement combining B-group vitamins, providing great benefits together, including red blood cell formation, and proper digestive and nervous system function. Great benefits for hair, nails, and skin."
         }
       },
       {
         id: "xtralife-colostrum-3-factor",
         brand: "xtralife",
         category: "immunity",
-        categoryLabel: { es: "Inmunidad, Vitaminas y Minerales", en: "Immunity, Vitamins & Minerals" },
+        categoryLabel: {
+          es: "Inmunidad, Vitaminas y Minerales",
+          en: "Immunity, Vitamins & Minerals"
+        },
         name: "Colostrum 3 Factor",
         descriptor: "Bioactive Immunoglobulins / Inmunoglobulinas Bioactivas",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Favorece regeneración de células/tejidos y fortalece sistema inmunológico.",
-          en: "Promotes cell/tissue regeneration and strengthens the immune system."
+          es: "Ayuda a tener una piel saludable, favorece la regeneración y reparación de células y tejidos en todo el cuerpo humano, desde los huesos hasta los músculos y la piel. Fortalece tu sistema inmunológico, mejora la salud intestinal.",
+          en: "Helps maintain healthy skin, favors cell and tissue regeneration and repair throughout the body, from bones to muscles and skin. Strengthens the immune system, improves intestinal health."
         }
       },
       {
         id: "xtralife-k2-d3-calcio",
         brand: "xtralife",
         category: "bones",
-        categoryLabel: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" },
+        categoryLabel: {
+          es: "Salud Ósea y Articular",
+          en: "Bone & Joint Health"
+        },
         name: "K2 + D3 + Calcio",
         descriptor: "Bone Mineralization / Mineralización Ósea",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Vitamina K2 asegura que el calcio llegue a huesos, apoyando salud cardiovascular.",
-          en: "Vitamin K2 ensures calcium reaches bones, supporting cardiovascular health."
+          es: "La vitamina K2 ayuda a asegurar que el calcio llegue a donde más se necesita, apoyando una salud cardiovascular óptima. En combinación con la vitamina D3, favorece la absorción de calcio en los huesos.",
+          en: "Vitamin K2 helps ensure calcium gets where it is most needed, supporting optimal cardiovascular health. In combination with Vitamin D3, it favors calcium absorption in bones."
         }
       },
       {
         id: "xtralife-cal-mag-zinc",
         brand: "xtralife",
         category: "bones",
-        categoryLabel: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" },
+        categoryLabel: {
+          es: "Salud Ósea y Articular",
+          en: "Bone & Joint Health"
+        },
         name: "Cal-Mag-Zinc + Vitamina D",
         descriptor: "Bone Density Complex / Complejo de Densidad Ósea",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 tabletas", en: "100 tablets" },
-        dosage: { es: "1 a 2 tabletas diarias", en: "1 to 2 tablets daily" },
+        presentation: {
+          es: "100 tabletas",
+          en: "100 tablets"
+        },
+        dosage: {
+          es: "1 a 2 tabletas diarias",
+          en: "1 to 2 tablets daily"
+        },
         description: {
-          es: "Combinación para máxima absorción de calcio, previene osteoporosis y mejora inmunidad.",
-          en: "Combination for maximum calcium absorption, prevents osteoporosis, and improves immunity."
+          es: "Esta combinación perfecta de calcio magnesio y vitamina D permite la máxima absorción de calcio en el organismo usada para prevenir la perdida de minerales en los huesos controlando así la osteoporosis. El zinc es especialmente importante para el funcionamiento natural del sistema inmunológico, la cicatrización de la piel y en la producción de colágeno.",
+          en: "This perfect combination of calcium, magnesium, and vitamin D allows maximum calcium absorption, used to prevent bone mineral loss, thus controlling osteoporosis. Zinc is vital for immune function, skin healing, and collagen production."
         }
       },
       {
         id: "xtralife-cartilago-tiburon",
         brand: "xtralife",
         category: "bones",
-        categoryLabel: { es: "Salud Ósea y Articular", en: "Bone & Joint Health" },
+        categoryLabel: {
+          es: "Salud Ósea y Articular",
+          en: "Bone & Joint Health"
+        },
         name: "Cartílago de Tiburón",
         descriptor: "Shark Cartilage / Cartílago de Tiburón",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas", en: "100 capsules" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "100 cápsulas",
+          en: "100 capsules"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Proteínas, calcio y fósforo para proteger articulaciones, tendones y ligamentos.",
-          en: "Proteins, calcium, and phosphorus to protect joints, tendons, and ligaments."
+          es: "Es una fuente muy importante de proteínas, calcio y fósforo que juegan un papel esencial en la protección de las articulaciones, los tendones y los ligamentos. Además, contribuye a la síntesis del colágeno y la elasticidad del cartílago también para tratar la artritis, la psoriasis, la cicatrización de las heridas, los daños en la retina del ojo debido a la diabetes.",
+          en: "A very important source of proteins, calcium, and phosphorus essential for protecting joints, tendons, and ligaments. Contributes to collagen synthesis and cartilage elasticity, treating arthritis, psoriasis, wound healing, and diabetic retinal damage."
         }
       },
       {
         id: "xtralife-5-htp-melatonina",
         brand: "xtralife",
         category: "nervous",
-        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        categoryLabel: {
+          es: "Sistema Nervioso, Relajación y Memoria",
+          en: "Nervous System, Relaxation & Memory"
+        },
         name: "5-HTP + Melatonina",
         descriptor: "Sleep & Mood Regulator / Regulador de Ánimo y Sueño",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "30 cápsulas", en: "30 capsules" },
-        dosage: { es: "1 cápsula diaria antes de acostarse", en: "1 capsule daily before bedtime" },
+        presentation: {
+          es: "30 cápsulas",
+          en: "30 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria antes de acostarse",
+          en: "1 capsule daily before bedtime"
+        },
         description: {
-          es: "Aumenta serotonina, mejora síntomas de ansiedad/estrés y calidad del sueño.",
-          en: "Increases serotonin, improves anxiety/stress symptoms, and sleep quality."
+          es: "Ayuda a aumentar los niveles de serotonina, mejorando los síntomas de depresión, ansiedad y estrés. Mejorar la calidad del sueño y refuerza el sistema inmunológico.",
+          en: "Helps increase serotonin levels, improving symptoms of depression, anxiety, and stress. Improves sleep quality and reinforces the immune system."
         }
       },
       {
         id: "xtralife-melatonina-10",
         brand: "xtralife",
         category: "nervous",
-        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        categoryLabel: {
+          es: "Sistema Nervioso, Relajación y Memoria",
+          en: "Nervous System, Relaxation & Memory"
+        },
         name: "Melatonina 10 MG",
         descriptor: "High Potency Antioxidant Sleep / Sueño Antioxidante de Alta Potencia",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "1 cápsula diaria de noche", en: "1 capsule daily at night" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria, de preferencia de noche",
+          en: "1 capsule daily, preferably at night"
+        },
         description: {
-          es: "Mejora la calidad del sueño y tiene efecto antioxidante.",
-          en: "Improves sleep quality and has an antioxidant effect."
+          es: "Ayuda a mejorar la calidad del sueño. Tiene efecto antioxidante, fortaleciendo así el sistema inmunológico. Participa en la regulación del estado de animo. Reduce la acidez estomacal.",
+          en: "Helps improve sleep quality. Has an antioxidant effect, strengthening the immune system. Participates in mood regulation. Reduces stomach acidity."
         }
       },
       {
         id: "xtralife-citrato-magnesio",
         brand: "xtralife",
         category: "nervous",
-        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        categoryLabel: {
+          es: "Sistema Nervioso, Relajación y Memoria",
+          en: "Nervous System, Relaxation & Memory"
+        },
         name: "Citrato de Magnesio",
         descriptor: "Magnesium Citrate / Citrato de Magnesio",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas", en: "100 capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "100 cápsulas",
+          en: "100 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Reduce estrés, evita contracturas musculares/calambres y regula glucosa.",
-          en: "Reduces stress, prevents muscle cramps/spasms, and regulates glucose."
+          es: "Reduce el estrés y mejora la calidad del sueño. Evita las contracturas musculares y calambres. Regula los niveles de glucosa en sangre. Fortalece el sistema inmunológico. Ayuda a regular la salud intestinal.",
+          en: "Reduces stress and improves sleep quality. Prevents muscle contractures and cramps. Regulates blood glucose levels. Strengthens the immune system. Helps regulate intestinal health."
         }
       },
       {
         id: "xtralife-resveratrol",
         brand: "xtralife",
         category: "nervous",
-        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        categoryLabel: {
+          es: "Sistema Nervioso, Relajación y Memoria",
+          en: "Nervous System, Relaxation & Memory"
+        },
         name: "Resveratrol",
         descriptor: "Natural Antioxidant / Antioxidante Natural",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Antioxidante y antiinflamatorio, previene envejecimiento y protege el corazón.",
-          en: "Antioxidant and anti-inflammatory, prevents aging, and protects the heart."
+          es: "Tiene propiedades antioxidantes y antiinflamatorias, ayuda a prevenir el envejecimiento prematuro, protege de enfermedades cardiovasculares, evita enfermedades neurodegenerativas.",
+          en: "Has antioxidant and anti-inflammatory properties, helps prevent premature aging, protects from cardiovascular diseases, and prevents neurodegenerative diseases."
         }
       },
       {
         id: "xtralife-ginkgo-biloba",
         brand: "xtralife",
         category: "nervous",
-        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        categoryLabel: {
+          es: "Sistema Nervioso, Relajación y Memoria",
+          en: "Nervous System, Relaxation & Memory"
+        },
         name: "Ginkgo Biloba",
         descriptor: "Mental Focus & Circulation / Concentración Mental y Circulación",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "120 cápsulas", en: "120 capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "120 cápsulas",
+          en: "120 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Mejora circulación cerebral, ayuda con problemas de memoria, concentración y ansiedad.",
-          en: "Improves brain circulation, helps with memory, concentration, and anxiety issues."
+          es: "Mejora la circulación sanguínea a nivel cerebral. Trastornos del flujo de sangre (trastornos circulatorios), Asma y alergias. Ayuda con Problemas de memoria y concentración, ansiedad, estrés y problemas anímicos. Aumenta la virilidad masculina.",
+          en: "Improves blood circulation at the brain level. Blood flow disorders (circulatory disorders), Asthma and allergies. Helps with Memory and concentration problems, anxiety, stress, and mood problems. Increases male virility."
         }
       },
       {
         id: "xtralife-cerebrin",
         brand: "xtralife",
         category: "nervous",
-        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        categoryLabel: {
+          es: "Sistema Nervioso, Relajación y Memoria",
+          en: "Nervous System, Relaxation & Memory"
+        },
         name: "Cerebrin",
         descriptor: "Brain Neuro-Nutrient / Neuro-Nutriente Cerebral",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "120 cápsulas", en: "120 capsules" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "120 cápsulas",
+          en: "120 capsules"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Neuro-nutriente completo para promover circulación cerebral y mejorar memoria.",
-          en: "Complete neuro-nutrient to promote brain circulation and improve memory."
+          es: "Neuro nutriente más completo para proporcionarle al cerebro los nutrientes de apoyo necesarios para el pleno desarrollo de sus funciones. Promueve la circulación del cerebro y mejora la memoria.",
+          en: "The most complete neuro-nutrient to provide the brain with necessary support nutrients for full function development. Promotes brain circulation and improves memory."
         }
       },
       {
         id: "xtralife-glicinato-magnesio",
         brand: "xtralife",
         category: "nervous",
-        categoryLabel: { es: "Sistema Nervioso, Relajación y Memoria", en: "Nervous System, Relaxation & Memory" },
+        categoryLabel: {
+          es: "Sistema Nervioso, Relajación y Memoria",
+          en: "Nervous System, Relaxation & Memory"
+        },
         name: "Glicinato de Magnesio",
         descriptor: "Magnesium Glycinate / Glicinato de Magnesio",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "90 cápsulas", en: "90 capsules" },
-        dosage: { es: "3 cápsulas diarias", en: "3 capsules daily" },
+        presentation: {
+          es: "90 cápsulas",
+          en: "90 capsules"
+        },
+        dosage: {
+          es: "3 cápsulas diarias",
+          en: "3 capsules daily"
+        },
         description: {
-          es: "Reduce ansiedad, mejora el sueño, migrañas y fatiga.",
-          en: "Reduces anxiety, improves sleep, migraines, and fatigue."
+          es: "Ayuda en la reducción del estrés y la ansiedad, mejora la calidad del sueño, la salud cardiovascular, cognitiva y digestiva reduce las migrañas y fatiga.",
+          en: "Helps reduce stress and anxiety, improves sleep quality, cardiovascular, cognitive, and digestive health, reduces migraines and fatigue."
         }
       },
       {
         id: "xtralife-prostatin",
         brand: "xtralife",
         category: "specific",
-        categoryLabel: { es: "Salud Específica y Control", en: "Specific Health & Control" },
+        categoryLabel: {
+          es: "Salud Específica y Control",
+          en: "Specific Health & Control"
+        },
         name: "Prostatin",
         descriptor: "Prostate Care Complex / Complejo de Cuidado Prostático",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Ayuda a mantener salud prostática, alivia inflamación y actúa como diurético.",
-          en: "Helps maintain prostate health, relieves inflammation, and acts as a diuretic."
+          es: "Ayuda a mantener la salud prostática. Alivia de forma eficaz los síntomas del dolor e inflamación de la próstata. Fortalece el deseo sexual. Actúa como un diurético y antiséptico de las vías urinarias. Estimula la fertilidad.",
+          en: "Helps maintain prostate health. Effectively relieves prostate pain and inflammation symptoms. Strengthens sexual desire. Acts as a diuretic and antiseptic for the urinary tract. Stimulates fertility."
         }
       },
       {
         id: "xtralife-citrato-potasio",
         brand: "xtralife",
         category: "specific",
-        categoryLabel: { es: "Salud Específica y Control", en: "Specific Health & Control" },
+        categoryLabel: {
+          es: "Salud Específica y Control",
+          en: "Specific Health & Control"
+        },
         name: "Citrato de Potasio",
         descriptor: "Kidney & Metabolic Support / Soporte Renal y Metabólico",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "90 cápsulas", en: "90 capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "90 cápsulas",
+          en: "90 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Diurético, favorece eliminación de cálculos renales y desechos metabólicos.",
-          en: "Diuretic, promotes elimination of kidney stones and metabolic waste."
+          es: "Favorece la eliminación de desechos metabólicos de las celulas. Contribuye al normal funcionamiento del sistema nervioso central. Actúa como diurético ya que favorece la eliminación del líquido, lo que contribuye a eliminar los cálculos renales, prevenir la formación de nuevos cálculos y reducir su crecimiento.",
+          en: "Favors the elimination of metabolic waste from cells. Contributes to normal central nervous system function. Acts as a diuretic, favoring fluid elimination, which helps eliminate kidney stones, prevent new stone formation, and reduce their growth."
         }
       },
       {
         id: "xtralife-isoflavonas-soya",
         brand: "xtralife",
         category: "specific",
-        categoryLabel: { es: "Salud Específica y Control", en: "Specific Health & Control" },
+        categoryLabel: {
+          es: "Salud Específica y Control",
+          en: "Specific Health & Control"
+        },
         name: "Isoflavonas de Soya",
         descriptor: "Menopause Balance / Equilibrio de Menopausia",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "60 cápsulas", en: "60 capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "60 cápsulas",
+          en: "60 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Ayudan a controlar efectos de la menopausia y reducen riesgo de osteoporosis.",
-          en: "Help manage menopause effects and reduce the risk of osteoporosis."
+          es: "Las isoflavonas ayudan a cambiar los efectos de la menopausia (ayuda a controlar los sofocos y los sudores nocturnos asociados con la menopausia). Reducen el riesgo de osteoporosis (mantiene la densidad ósea durante y después de la menopausia) Evitan el incremento de peso.",
+          en: "Isoflavones help change menopause effects (helps control hot flashes and night sweats). Reduce osteoporosis risk (maintains bone density during and after menopause). Prevent weight gain."
         }
       },
       {
         id: "xtralife-aceite-primula",
         brand: "xtralife",
         category: "specific",
-        categoryLabel: { es: "Salud Específica y Control", en: "Specific Health & Control" },
+        categoryLabel: {
+          es: "Salud Específica y Control",
+          en: "Specific Health & Control"
+        },
         name: "Aceite de Prímula",
         descriptor: "Evening Primrose Oil / Aceite de Onagra",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas blandas", en: "100 softgels" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "100 cápsulas blandas",
+          en: "100 softgels"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Equilibrio hormonal (SPM, SOP) y afectaciones de la piel (acné, psoriasis).",
-          en: "Hormonal balance (PMS, PCOS) and skin conditions (acne, psoriasis)."
+          es: "Previene enfermedades benignas de mama, tratamiento efectivo para nódulos poliquísticos. Equilibrio hormonal: (SPM) síndrome premenstrual, (SOP) síndrome de ovario poliquístico. Afectaciones de la piel: acné, psoriasis.",
+          en: "Prevents benign breast diseases, effective treatment for polycystic nodules. Hormonal balance: (PMS) premenstrual syndrome, (PCOS) polycystic ovary syndrome. Skin conditions: acne, psoriasis."
         }
       },
       {
         id: "xtralife-colageno-plus",
         brand: "xtralife",
         category: "nutricosmetics",
-        categoryLabel: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" },
+        categoryLabel: {
+          es: "Nutricosmética (Piel y Cabello)",
+          en: "Nutricosmetics (Skin & Hair)"
+        },
         name: "Colágeno Plus + Vitamina C",
         descriptor: "Hydrolyzed Collagen complex / Complejo de Colágeno Hidrolizado",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "120 cápsulas", en: "120 capsules" },
-        dosage: { es: "2 cápsulas diarias", en: "2 capsules daily" },
+        presentation: {
+          es: "120 cápsulas",
+          en: "120 capsules"
+        },
+        dosage: {
+          es: "2 cápsulas diarias",
+          en: "2 capsules daily"
+        },
         description: {
-          es: "Da fuerza y flexibilidad a huesos, piel, articulaciones, cabello y uñas.",
-          en: "Provides strength and flexibility to bones, skin, joints, hair, and nails."
+          es: "Proporciona fuerza y flexibilidad a los huesos, las articulaciones, la piel, los tendones, los ligamentos, el cabello, las uñas, los vasos sanguíneos y los ojos, entre otros tejidos en todo el cuerpo. Tiene función antioxidante. Estimula el proceso de regeneración de ligamentos, músculo y tendones.",
+          en: "Provides strength and flexibility to bones, joints, skin, tendons, ligaments, hair, nails, blood vessels, and eyes, among other tissues. Has antioxidant function. Stimulates ligament, muscle, and tendon regeneration."
         }
       },
       {
         id: "xtralife-vitamina-e",
         brand: "xtralife",
         category: "nutricosmetics",
-        categoryLabel: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" },
+        categoryLabel: {
+          es: "Nutricosmética (Piel y Cabello)",
+          en: "Nutricosmetics (Skin & Hair)"
+        },
         name: "Vitamina E",
         descriptor: "Antioxidant Defense / Defensa Antioxidante",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 cápsulas", en: "100 capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "100 cápsulas",
+          en: "100 capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Principalmente antioxidante vital para defensas y destrucción de células dañadas.",
-          en: "Mainly vital antioxidant for defenses and destruction of damaged cells."
+          es: "Funciona principalmente como antioxidante. Es vital para el funcionamiento de las defensas del cuerpo. Interviene en la destrucción de las células dañadas en el organismo, evitando la aparición de enfermedades como el cancer.",
+          en: "Functions primarily as an antioxidant. It is vital for the body's defense mechanisms. Intervenes in the destruction of damaged cells, preventing the appearance of diseases like cancer."
         }
       },
       {
         id: "xtralife-biotina-10000",
         brand: "xtralife",
         category: "nutricosmetics",
-        categoryLabel: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" },
+        categoryLabel: {
+          es: "Nutricosmética (Piel y Cabello)",
+          en: "Nutricosmetics (Skin & Hair)"
+        },
         name: "Biotina 10,000 MCG",
         descriptor: "Maximum Strength Biotin / Biotina de Máxima Potencia",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "100 tabletas", en: "100 tablets" },
-        dosage: { es: "1 tableta diaria", en: "1 tablet daily" },
+        presentation: {
+          es: "100 tabletas",
+          en: "100 tablets"
+        },
+        dosage: {
+          es: "1 tableta diaria",
+          en: "1 tablet daily"
+        },
         description: {
-          es: "Previene caída de cabello, da volumen y alivia dolores musculares/dermatitis.",
-          en: "Prevents hair loss, provides volume, and relieves muscle pain/dermatitis."
+          es: "Previene la caída del cabello y acelera su crecimiento. Brinda volumen y sedosidad. Favorece la hidratación de la piel, evitando las enfermedades del cuero cabelludo. Alivia los dolores musculares, y la dermatitis.",
+          en: "Prevents hair loss and accelerates growth. Provides volume and silkiness. Favors skin hydration, preventing scalp diseases. Relieves muscle pain and dermatitis."
         }
       },
       {
         id: "xtralife-locion-aloe",
         brand: "xtralife",
         category: "nutricosmetics",
-        categoryLabel: { es: "Nutricosmética (Piel y Cabello)", en: "Nutricosmetics (Skin & Hair)" },
+        categoryLabel: {
+          es: "Nutricosmética (Piel y Cabello)",
+          en: "Nutricosmetics (Skin & Hair)"
+        },
         name: "Loción Aloe Vera + Vitamina E",
         descriptor: "Applicable Aloe Skin Complex / Complejo de Aloe Aplicable",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
-        presentation: { es: "90 cápsulas aplicables", en: "90 applicable capsules" },
-        dosage: { es: "1 cápsula diaria", en: "1 capsule daily" },
+        presentation: {
+          es: "90 cápsulas aplicables",
+          en: "90 applicable capsules"
+        },
+        dosage: {
+          es: "1 cápsula diaria",
+          en: "1 capsule daily"
+        },
         description: {
-          es: "Suaviza la piel, previene arrugas y fortalece crecimiento del cabello.",
-          en: "Softens skin, prevents wrinkles, and strengthens hair growth."
+          es: "Suaviza la piel. Prevenir arrugas, Evitar líneas en el rostro. Protege la piel del daño generado por los radicales libres. También combinado con la vitamina E combate la resequedad del cuero cabelludo. Fortalece el crecimiento del cabello, dándole además brillo.",
+          en: "Softens skin. Prevents wrinkles and facial lines. Protects skin from free radical damage. Combined with Vitamin E, combats scalp dryness. Strengthens hair growth, providing shine."
         }
       }
     ]

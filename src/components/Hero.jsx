@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '../LanguageContext';
-import { CheckCircle2, ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 import heroBgImage from '../../assets/hero-sections/hero-backgront1.webp';
 import { handleNavClick } from '../utils/navigation';
 

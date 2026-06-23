@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, CheckCircle, AlertCircle, X, Send, Beaker } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle, AlertCircle, X, Send } from 'lucide-react';
 
 const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
   if (!tailwindClass) return defaultColor;

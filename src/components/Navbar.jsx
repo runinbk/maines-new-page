@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { Menu, X, Globe, ArrowRight } from 'lucide-react';
 import { handleLinkClick } from '../utils/navigation';

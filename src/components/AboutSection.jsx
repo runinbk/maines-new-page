@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../LanguageContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  ShieldCheck, Award, Zap, HeartHandshake, Compass, Eye, Calendar, ArrowRight
+  ShieldCheck, Award, Zap, HeartHandshake, Compass, Eye, Calendar
 } from 'lucide-react';
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useLanguage } from '../LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { 

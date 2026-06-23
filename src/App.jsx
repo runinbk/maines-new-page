@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { LanguageProvider, useLanguage } from './LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -54,7 +54,7 @@ function AppContent() {
         window.history.replaceState({}, '', window.location.pathname);
       }
     }
-  }, [currentPath, activeBrandId]);
+  }, [currentPath, activeBrandId, routeInfo.sectionId]);
 
   // Homepage Scroll-Spy URL Updater
   useEffect(() => {

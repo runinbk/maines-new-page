@@ -49,12 +49,13 @@ const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
  * ReelCard Component
  * Represents a single vertical social media video card (9:16)
  */
-const ReelCard = ({ videoUrl, index, brand, language, isHoveredParent, onHoverChange, isPlayingInline, onPlayingChange, onMaximize }) => {
+const ReelCard = ({ videoUrl, index, brand, language, onHoverChange, isPlayingInline, onPlayingChange, onMaximize }) => {
   const isEs = language === 'es';
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isMaxHovered, setIsMaxHovered] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
 
   const platformIndex = index % 3;
   const platform = platformIndex === 0 ? 'instagram' : (platformIndex === 1 ? 'tiktok' : 'facebook');
@@ -152,6 +153,8 @@ const ReelCard = ({ videoUrl, index, brand, language, isHoveredParent, onHoverCh
         muted={!isPlayingInline || isMuted}
         playsInline
         autoPlay
+        onPlay={() => setIsPaused(false)}
+        onPause={() => setIsPaused(true)}
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleVideoEnded}
         className="w-full h-full object-cover z-0"
@@ -241,7 +244,7 @@ const ReelCard = ({ videoUrl, index, brand, language, isHoveredParent, onHoverCh
               onClick={handleTogglePlay}
               className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
             >
-              {isPlayingInline && !videoRef.current?.paused ? (
+              {!isPaused ? (
                 <Pause className="w-3.5 h-3.5 fill-current" />
               ) : (
                 <Play className="w-3.5 h-3.5 fill-current translate-x-0.5" />
@@ -339,7 +342,6 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
   }, [activeVideo, activeSocialVideo]);
 
   // Social Video Carousel States & Logic
-  const [shuffledVideos, setShuffledVideos] = useState([]);
   const carouselRef = useRef(null);
   const scrollRequestRef = useRef(null);
   const isPausedRef = useRef(false);
@@ -347,12 +349,17 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
   const [activePlayingIndex, setActivePlayingIndex] = useState(null);
   const resumeTimeoutRef = useRef(null);
 
-  // Shuffle the video list on mount
+  const [shuffledVideos, setShuffledVideos] = useState([]);
+
+  // Shuffle the video list on mount or when socialConfig changes
   useEffect(() => {
     if (socialConfig && socialConfig.videos) {
       const originalList = socialConfig.videos.map((url, idx) => ({ url, originalIndex: idx }));
       const shuffled = [...originalList].sort(() => Math.random() - 0.5);
-      setShuffledVideos(shuffled);
+      const timer = setTimeout(() => {
+        setShuffledVideos(shuffled);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [socialConfig]);
 
@@ -375,22 +382,22 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
     };
   }, [hoveredIndex, activePlayingIndex, activeSocialVideo]);
 
-  // Infinite smooth scroll loop
-  const animateScroll = () => {
-    if (carouselRef.current && !isPausedRef.current && shuffledVideos.length > 0) {
-      const container = carouselRef.current;
-      const halfWidth = container.scrollWidth / 2;
-      if (halfWidth > 0) {
-        container.scrollLeft += 0.8;
-        if (container.scrollLeft >= halfWidth) {
-          container.scrollLeft -= halfWidth;
+  useEffect(() => {
+    // Infinite smooth scroll loop
+    const animateScroll = () => {
+      if (carouselRef.current && !isPausedRef.current && shuffledVideos.length > 0) {
+        const container = carouselRef.current;
+        const halfWidth = container.scrollWidth / 2;
+        if (halfWidth > 0) {
+          container.scrollLeft += 0.8;
+          if (container.scrollLeft >= halfWidth) {
+            container.scrollLeft -= halfWidth;
+          }
         }
       }
-    }
-    scrollRequestRef.current = requestAnimationFrame(animateScroll);
-  };
+      scrollRequestRef.current = requestAnimationFrame(animateScroll);
+    };
 
-  useEffect(() => {
     scrollRequestRef.current = requestAnimationFrame(animateScroll);
     return () => cancelAnimationFrame(scrollRequestRef.current);
   }, [shuffledVideos]);

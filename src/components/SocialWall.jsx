@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { 
-  ArrowLeft, ArrowRight, Play, Eye, 
-  Volume2, VolumeX, ChevronDown, ChevronUp 
+  ArrowLeft, ArrowRight, Play, 
+  Volume2, ChevronDown, ChevronUp 
 } from 'lucide-react';
 
 // Dynamic Vite Asset Ingestion - automatically imports all 31 WebM videos in assets/videos subfolders!
@@ -117,24 +117,7 @@ const SocialWall = () => {
   const revealRef = useScrollReveal();
   
   // Shuffled playlist and navigation states
-  const [fullPlaylist, setFullPlaylist] = useState([]);
-  const [playlist, setPlaylist] = useState([]);
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [isPlayingWithAudio, setIsPlayingWithAudio] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
-  const [isGalleryLoading, setIsGalleryLoading] = useState(false);
-  
-  // Mouse click-and-drag horizontal scroll states
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [isUserInteracting, setIsUserInteracting] = useState(false);
-  
-  const scrollContainerRef = useRef(null);
-  const interactionTimeoutRef = useRef(null);
-
-  // Ingest, structure, and shuffle all 31 video files dynamically on component mount
-  useEffect(() => {
+  const [shuffledVideos] = useState(() => {
     const rawVideos = Object.entries(videoImports).map(([path, mod], idx) => {
       let brand = 'Xtralife';
       let user = '@xtralifeboliviaoficial';
@@ -163,24 +146,34 @@ const SocialWall = () => {
         videoUrl: mod.default
       };
     });
+    return [...rawVideos].sort(() => Math.random() - 0.5);
+  });
 
-    // Shuffle all 31 videos to guarantee absolute randomness and remove layout bias
-    const shuffled = [...rawVideos].sort(() => Math.random() - 0.5);
-    setFullPlaylist(shuffled);
+  const [playlist, setPlaylist] = useState(() => shuffledVideos.slice(0, 8));
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [isPlayingWithAudio, setIsPlayingWithAudio] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
+  const [isGalleryLoading, setIsGalleryLoading] = useState(() => window.innerWidth >= 1900);
+  
+  // Mouse click-and-drag horizontal scroll states
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  
+  const scrollContainerRef = useRef(null);
+  const interactionTimeoutRef = useRef(null);
 
-    // Two-stage load strategy:
-    // Render only the first 8 videos immediately for instantaneous initial page paint
-    setPlaylist(shuffled.slice(0, 8));
-
+  // Load the remaining playlist items and handle initial preload on desktop
+  useEffect(() => {
     // After 1.2 seconds, load and append the remaining 23 videos dynamically in the background
     const timer = setTimeout(() => {
-      setPlaylist(shuffled);
+      setPlaylist(shuffledVideos);
     }, 1200);
 
     // Auto-show gallery on large screens (>= 1900px) after preloading the first 5 videos
     if (window.innerWidth >= 1900) {
-      setIsGalleryLoading(true);
-      const videosToPreload = shuffled.slice(0, 5).map(item => item.videoUrl);
+      const videosToPreload = shuffledVideos.slice(0, 5).map(item => item.videoUrl);
       const preloadPromises = videosToPreload.map(url => {
         return new Promise((resolve) => {
           const video = document.createElement('video');
@@ -205,7 +198,7 @@ const SocialWall = () => {
     }
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [shuffledVideos]);
 
   // Automatic slide rotation hook (auto-advance every 6 seconds)
   // Stops automatically if the active video is clicked and plays with audio!

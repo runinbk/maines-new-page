@@ -933,26 +933,90 @@ export const brandsData = {
           es: "1 cápsula diaria",
           en: "1 softgel daily"
         },
-        description: {
-          es: "Reduce la presión arterial y el colesterol. Otorga un efecto protector del sistema nervioso. Mejora la salud mental. Previene los accidentes cerebrovasculares y ataques cardiacos.",
-          en: "Reduces blood pressure and cholesterol. Provides a protective effect on the nervous system. Improves mental health. Prevents strokes and heart attacks."
+        shortDescription: {
+          es: "Suplemento nutricional avanzado, rico en ácidos grasos esenciales EPA y DHA. Diseñado para optimizar la función cardiovascular, cognitiva y articular, proporcionando un soporte biológico integral para el bienestar general.",
+          en: "Advanced nutritional supplement rich in essential EPA and DHA fatty acids. Designed to optimize cardiovascular, cognitive, and joint function, providing comprehensive biological support for overall well-being."
+        },
+        catalogBenefits: {
+          es: [
+            "Reduce la presión arterial y el colesterol.",
+            "Otorga un efecto protector del sistema nervioso.",
+            "Mejora la salud mental.",
+            "Previene los accidentes cerebrovasculares y ataques cardiacos."
+          ],
+          en: [
+            "Reduces blood pressure and cholesterol.",
+            "Provides a protective effect on the nervous system.",
+            "Improves mental health.",
+            "Prevents strokes and heart attacks."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Equilibrio Lipídico: Contribuye a regular los niveles de triglicéridos, favoreciendo la estabilidad del ritmo cardíaco.",
+            "Soporte Cognitivo: Optimiza las funciones neurológicas, promoviendo una mayor retención, concentración y claridad mental.",
+            "Movilidad Articular: Favorece la lubricación y flexibilidad de las articulaciones, mitigando el desgaste y la inflamación.",
+            "Acción Antiinflamatoria: Actúa a nivel celular para reducir marcadores sistémicos de inflamación.",
+            "Protección Ocular: Aporta nutrientes críticos para el mantenimiento de la retina y la agudeza visual."
+          ],
+          en: [
+            "Lipid Balance: Helps regulate triglyceride levels, promoting heart rhythm stability.",
+            "Cognitive Support: Optimizes neurological functions, promoting better retention, concentration, and mental clarity.",
+            "Joint Mobility: Supports joint lubrication and flexibility, mitigating wear and inflammation.",
+            "Anti-inflammatory Action: Acts at the cellular level to reduce systemic markers of inflammation.",
+            "Eye Protection: Provides critical nutrients for retina maintenance and visual acuity."
+          ]
+        },
+        ingredients: {
+          es: "Aceite de pescado de alta pureza estandarizado, que garantiza una concentración óptima de los ácidos grasos esenciales EPA (Ácido Eicosapentaenoico) y DHA (Ácido Docosahexaenoico).",
+          en: "Standardized high-purity fish oil, ensuring an optimal concentration of essential fatty acids EPA (Eicosapentaenoic Acid) and DHA (Docosahexaenoic Acid)."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 1 cápsula diaria, preferentemente acompañada de una comida principal para optimizar la absorción lipídica. Se sugiere un uso regular para mantener los niveles óptimos en el organismo.",
+          en: "Oral administration. Take 1 softgel daily, preferably with a main meal to optimize lipid absorption. Regular use is suggested to maintain optimal levels in the body."
+        },
+        precautions: {
+          es: "No superar la dosis diaria sugerida. Pacientes bajo tratamiento con anticoagulantes y mujeres en período de gestación o lactancia deben consultar a un especialista antes de iniciar su consumo. Conservar en un ambiente fresco, seco y fuera del alcance de los niños.",
+          en: "Do not exceed the suggested daily dose. Patients undergoing anticoagulant treatment, pregnant or nursing women should consult a specialist before use. Store in a cool, dry place, out of the reach of children."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
         },
         assets: {
           coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega3/xtralife-omega3-portada.webp",
           gallery: [
-            { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega3/xtralife-omega3-1.webp" }
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega3/xtralife-omega3-1.webp" }
           ]
         }
       },
       {
-        id: "xtralife-omega-3-6-9",
+        id: "xtralife-omega-369",
         brand: "xtralife",
         category: "cardiovascular",
         categoryLabel: {
           es: "Bienestar Cardiovascular y General",
           en: "Cardiovascular & General Wellness"
         },
-        name: "Omega 3-6-9",
+        name: "Omega 369",
         descriptor: "Balanced Omegas / Omegas Balanceados",
         certBadge: "MADE IN USA • CERTIFICACIÓN GMP",
         presentation: {
@@ -963,9 +1027,81 @@ export const brandsData = {
           es: "1 cápsula diaria",
           en: "1 softgel daily"
         },
-        description: {
-          es: "Mejora el sistema inmunológico. Ayuda a disminuir el colesterol y los triglicéridos. Ayuda a reducir la inflamación en las células. Mejora los niveles de concentración y aprendizaje. Fortalece los huesos y dientes.",
-          en: "Improves the immune system. Helps lower cholesterol and triglycerides. Helps reduce inflammation in cells. Improves concentration and learning levels. Strengthens bones and teeth."
+        shortDescription: {
+          es: "Fórmula integral que proporciona un balance óptimo de ácidos grasos esenciales (Omega-3, 6 y 9) procedentes de fuentes naturales de alta pureza. Diseñada para promover la salud cardiovascular, optimizar la función cognitiva y brindar soporte celular avanzado.",
+          en: "Comprehensive formula providing an optimal balance of essential fatty acids (Omega-3, 6, and 9) from high-purity natural sources. Designed to promote cardiovascular health, optimize cognitive function, and provide advanced cellular support."
+        },
+        catalogBenefits: {
+          es: [
+            "Mejora el sistema inmunológico.",
+            "Ayuda a disminuir el colesterol y los triglicéridos.",
+            "Ayuda a reducir la inflamación en las células.",
+            "Mejora los niveles de concentración y aprendizaje.",
+            "Fortalece los huesos y dientes."
+          ],
+          en: [
+            "Improves the immune system.",
+            "Helps lower cholesterol and triglycerides.",
+            "Helps reduce cellular inflammation.",
+            "Improves concentration and learning levels.",
+            "Strengthens bones and teeth."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Soporte Cardiovascular: Contribuye a la regulación del perfil lipídico, promoviendo una circulación sanguínea óptima y protegiendo la salud del corazón.",
+            "Rendimiento Cognitivo: Los ácidos EPA y DHA respaldan la función neurológica, mejorando la memoria, la retención y el enfoque diario.",
+            "Respuesta Antiinflamatoria: Mitiga los procesos inflamatorios sistémicos, favoreciendo la flexibilidad y el confort articular.",
+            "Nutricosmética Celular: Los Omega-6 y 9 asisten en la retención de humedad cutánea, fortaleciendo la barrera de la piel y los anexos (cabello y uñas).",
+            "Refuerzo Inmunológico: Fortalece las defensas naturales del organismo, incrementando la resistencia ante agentes externos."
+          ],
+          en: [
+            "Cardiovascular Support: Contributes to the regulation of the lipid profile, promoting optimal blood circulation and protecting heart health.",
+            "Cognitive Performance: EPA and DHA acids support neurological function, improving memory, retention, and daily focus.",
+            "Anti-inflammatory Response: Mitigates systemic inflammatory processes, promoting joint flexibility and comfort.",
+            "Cellular Nutricosmetics: Omega-6 and 9 assist in skin moisture retention, strengthening the skin barrier and appendages (hair and nails).",
+            "Immune Boost: Strengthens the body's natural defenses, increasing resistance to external agents."
+          ]
+        },
+        ingredients: {
+          es: "Complejo de aceites naturales de alta calidad que incluye aceite de pescado (fuente estandarizada de EPA y DHA), aceite de linaza y aceite de borraja. Fórmula libre de gluten, lactosa y aditivos artificiales.",
+          en: "High-quality natural oil complex including fish oil (standardized source of EPA and DHA), flaxseed oil, and borage oil. Formula free of gluten, lactose, and artificial additives."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 1 cápsula diaria, preferentemente acompañada de una comida principal para maximizar la absorción metabólica de los lípidos.",
+          en: "Oral administration. Take 1 softgel daily, preferably with a main meal to maximize the metabolic absorption of lipids."
+        },
+        precautions: {
+          es: "Fórmula diseñada para adultos. Pacientes bajo tratamiento con anticoagulantes, con afecciones circulatorias crónicas, o mujeres en período de gestación o lactancia, deben consultar a un especialista médico previo a su uso. Conservar en un lugar fresco y seco, fuera del alcance de los niños.",
+          en: "Formula designed for adults. Patients undergoing anticoagulant treatment, with chronic circulatory conditions, or pregnant and nursing women, must consult a medical specialist prior to use. Store in a cool, dry place, out of the reach of children."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega369/xtralife-omega369-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega369/xtralife-omega369-1.webp" }
+          ]
         }
       },
       {

@@ -9,7 +9,9 @@ import {
   Maximize2, 
   X, 
   ChevronLeft,
-  ShieldCheck 
+  ShieldCheck,
+  Check,
+  ChevronDown
 } from 'lucide-react';
 import jetemaProducts from '../../data/jetemaProducts.json';
 
@@ -94,6 +96,52 @@ const getProductThumbnail = (prod) => {
     return typeof item === 'object' ? item.image : item;
   }
   return prod.coverImage;
+};
+
+const defaultSectionsConfig = {
+  extendedBenefits: {
+    theme: "accent",
+    collapsible: true,
+    defaultExpanded: false
+  },
+  ingredients: {
+    theme: "normal",
+    collapsible: true,
+    defaultExpanded: false
+  },
+  usage: {
+    theme: "normal",
+    collapsible: true,
+    defaultExpanded: false
+  },
+  precautions: {
+    theme: "warning",
+    collapsible: true,
+    defaultExpanded: false
+  }
+};
+
+const renderSectionContent = (key, content) => {
+  if (key === 'extendedBenefits') {
+    const list = Array.isArray(content) ? content : [];
+    return (
+      <ul className="space-y-3 mt-1.5">
+        {list.map((benefit, idx) => (
+          <li key={idx} className="flex items-start gap-3 text-left">
+            <Check className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+            <span className="text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+              {benefit}
+            </span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  return (
+    <p className="text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed mt-1 text-left">
+      {content}
+    </p>
+  );
 };
 
 /**
@@ -261,9 +309,17 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
           applicationZones: prod.applicationZones || null,
           presentation: presResolved || null,
           dosage: doseResolved || null,
+          shortDescription: resolveTranslation(prod.shortDescription) || null,
           applicationAreas: prod.applicationAreas || prod.applicationZones || (prod.specifications && prod.specifications.find(s => s.label.includes('Method') || s.label.includes('Protocol') || s.label.includes('Recommendation') || s.label.includes('Indication'))?.value.split(', ')) || [isEs ? "Aplicación Clínica Transdérmica" : "Clinical Transdermal Application"],
           regulatory: prod.regulatory || null,
-          benefits: prod.benefits || null,
+          benefits: prod.benefits ? (Array.isArray(prod.benefits) ? prod.benefits : (prod.benefits[isEs ? 'es' : 'en'] || prod.benefits['es'] || [])) : null,
+          catalogBenefits: prod.catalogBenefits ? (prod.catalogBenefits[isEs ? 'es' : 'en'] || prod.catalogBenefits['es'] || []) : null,
+          extendedBenefits: prod.extendedBenefits ? (prod.extendedBenefits[isEs ? 'es' : 'en'] || prod.extendedBenefits['es'] || []) : null,
+          ingredients: resolveTranslation(prod.ingredients) || null,
+          usage: resolveTranslation(prod.usage) || null,
+          precautions: resolveTranslation(prod.precautions) || null,
+          whyChoose: resolveTranslation(prod.whyChoose) || null,
+          sectionsConfig: prod.sectionsConfig || null,
           activeIngredientsDetails: prod.activeIngredientsDetails || null,
           activeIngredientsList: prod.activeIngredientsList || null,
           usageIndications: prod.usageIndications || null,
@@ -282,6 +338,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
   const [selectedCategory, setSelectedCategory] = useState('all');
   // selectedProductId and onSelectProduct are managed by the parent BrandLayout component to align with clean URL paths
   const [showMobileList, setShowMobileList] = useState(false);
+  const [expandedSections, setExpandedSections] = useState({});
 
   const specsTableRef = useRef(null);
   const [lightboxImage, setLightboxImage] = useState(null);
@@ -332,6 +389,15 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
     setPrevSelectedProductId(selectedProductId);
     setActiveGalleryIdx(0);
     setIsHovered(false);
+    
+    // Reset expanded sections dynamically based on product configuration
+    const nextProd = normalizedProducts.find(p => p.id === selectedProductId) || null;
+    const config = nextProd?.sectionsConfig || defaultSectionsConfig;
+    const initialExpanded = {};
+    Object.keys(config).forEach(key => {
+      initialExpanded[key] = !!config[key]?.defaultExpanded;
+    });
+    setExpandedSections(initialExpanded);
   }
 
   const activeImage = useMemo(() => {
@@ -906,44 +972,98 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                           </div>
                         ) : (
                           <>
-                            {/* Slogan with accent left border */}
-                            {activeProduct.slogan && (
-                              <div className="py-1 px-4 border-l-2 bg-slate-50/50 rounded-r-xl" style={{ borderLeftColor: resolveBrandColor(brand.accentBg) }}>
-                                <p className="text-xs font-bold text-slate-500 italic leading-relaxed">
-                                  "{activeProduct.slogan}"
+                            {activeProduct.shortDescription ? (
+                              <div className="space-y-6 text-left pt-2 pb-4">
+                                {/* Product detailed description */}
+                                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-medium">
+                                  {activeProduct.shortDescription}
                                 </p>
-                              </div>
-                            )}
 
-                            {/* Product detailed description */}
-                            <p className="text-sm text-slate-500 leading-relaxed font-medium">
-                              {activeProduct.description}
-                            </p>
+                                {/* Aesthetic Pills/Badges for Presentation & Dosage */}
+                                <div className="flex flex-wrap gap-2.5 py-1">
+                                  {activeProduct.presentation && (
+                                    <div className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full text-xs font-bold bg-emerald-50 border border-emerald-200/50 text-emerald-700 shadow-xs">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                      <span>
+                                        {isEs ? 'Presentación: ' : 'Presentation: '}
+                                        {activeProduct.presentation}
+                                      </span>
+                                    </div>
+                                  )}
+                                  {activeProduct.dosage && (
+                                    <div className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full text-xs font-bold bg-teal-50 border border-teal-200/50 text-teal-700 shadow-xs">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse" />
+                                      <span>
+                                        {isEs ? 'Dosis: ' : 'Dosage: '}
+                                        {activeProduct.dosage}
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
 
-                            {/* Clinical Benefits checklist */}
-                            {activeProduct.clinicalBenefits && activeProduct.clinicalBenefits.length > 0 && (
-                              <div className="pt-3 space-y-3">
-                                <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
-                                  {isEs ? 'Beneficios Clínicos' : 'Clinical Benefits'}
-                                </span>
-                                <ul className="space-y-2.5">
-                                  {activeProduct.clinicalBenefits.map((benefit, idx) => (
-                                    <li key={idx} className="flex items-start gap-2.5">
-                                      <div className="shrink-0 mt-0.5" style={{ color: resolveBrandColor(brand.accentBg) }}>
-                                        <CheckCircle2 className="w-4 h-4" />
-                                      </div>
-                                      <div className="space-y-0.5 text-left">
-                                        <h4 className="text-xs sm:text-sm font-extrabold text-slate-800 leading-tight">
-                                          {benefit.title}
-                                        </h4>
-                                        <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                                          {benefit.detail}
-                                        </p>
-                                      </div>
-                                    </li>
-                                  ))}
-                                </ul>
+                                {/* Catalog Benefits List (Priority) */}
+                                {activeProduct.catalogBenefits && activeProduct.catalogBenefits.length > 0 && (
+                                  <div className="space-y-3 pt-2 border-t border-slate-100/60">
+                                    <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/45 uppercase block">
+                                      {isEs ? 'Beneficios Oficiales' : 'Official Benefits'}
+                                    </span>
+                                    <ul className="space-y-3">
+                                      {activeProduct.catalogBenefits.map((benefit, idx) => (
+                                        <li key={idx} className="flex items-start gap-3">
+                                          <div className="shrink-0 mt-0.5" style={{ color: resolveBrandColor(brand.accentBg) }}>
+                                            <CheckCircle2 className="w-5 h-5" />
+                                          </div>
+                                          <span className="text-sm sm:text-[15px] text-slate-800 font-extrabold leading-relaxed">
+                                            {benefit}
+                                          </span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
                               </div>
+                            ) : (
+                              <>
+                                {/* Slogan with accent left border */}
+                                {activeProduct.slogan && (
+                                  <div className="py-1 px-4 border-l-2 bg-slate-50/50 rounded-r-xl" style={{ borderLeftColor: resolveBrandColor(brand.accentBg) }}>
+                                    <p className="text-xs font-bold text-slate-500 italic leading-relaxed">
+                                      "{activeProduct.slogan}"
+                                    </p>
+                                  </div>
+                                )}
+
+                                {/* Product detailed description */}
+                                <p className="text-sm text-slate-500 leading-relaxed font-medium">
+                                  {activeProduct.description}
+                                </p>
+
+                                {/* Clinical Benefits checklist */}
+                                {activeProduct.clinicalBenefits && activeProduct.clinicalBenefits.length > 0 && (
+                                  <div className="pt-3 space-y-3">
+                                    <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                                      {isEs ? 'Beneficios Clínicos' : 'Clinical Benefits'}
+                                    </span>
+                                    <ul className="space-y-2.5">
+                                      {activeProduct.clinicalBenefits.map((benefit, idx) => (
+                                        <li key={idx} className="flex items-start gap-2.5">
+                                          <div className="shrink-0 mt-0.5" style={{ color: resolveBrandColor(brand.accentBg) }}>
+                                            <CheckCircle2 className="w-4 h-4" />
+                                          </div>
+                                          <div className="space-y-0.5 text-left">
+                                            <h4 className="text-xs sm:text-sm font-extrabold text-slate-800 leading-tight">
+                                              {benefit.title}
+                                            </h4>
+                                            <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                                              {benefit.detail}
+                                            </p>
+                                          </div>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              </>
                             )}
 
                             {activeProduct.activeIngredients && (
@@ -994,7 +1114,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                         )}
 
                         {/* Suplementación Info for Xtralife */}
-                        {brandId === 'xtralife' && (
+                        {brandId === 'xtralife' && !activeProduct.shortDescription && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
                             {activeProduct.presentation && (
                               <div className="bg-emerald-50/50 border border-emerald-100/60 rounded-2xl p-4 flex flex-col justify-between">
@@ -1022,6 +1142,108 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                     </div>
 
                   </div>
+
+                  {/* 2.4. Full-Width Rich Details for Xtralife (e.g. Omega 3) */}
+                  {brandId === 'xtralife' && activeProduct.shortDescription && (
+                    <div className="border-t border-slate-200/60 pt-8 text-left space-y-6">
+                      {Object.keys(activeProduct.sectionsConfig || defaultSectionsConfig).map(key => {
+                        const config = (activeProduct.sectionsConfig || defaultSectionsConfig)[key];
+                        const content = activeProduct[key];
+                        if (!content || (Array.isArray(content) && content.length === 0)) return null;
+
+                        const isExpanded = !!expandedSections[key];
+
+                        let containerClass = "py-4 border-b border-slate-100/60";
+                        let titleClass = "text-xs sm:text-sm font-black uppercase tracking-wider transition-colors duration-200";
+                        let isWarningOrInfo = config.theme === 'warning' || config.theme === 'info';
+
+                        if (config.theme === 'warning') {
+                          containerClass = "border-l-4 border-amber-500 bg-amber-50/30 px-5 py-4 rounded-r-2xl my-3";
+                          titleClass = "text-xs sm:text-sm font-black uppercase tracking-wider text-amber-800";
+                        } else if (config.theme === 'info') {
+                          containerClass = "border-l-4 border-sky-500 bg-sky-50/35 px-5 py-4 rounded-r-2xl my-3";
+                          titleClass = "text-xs sm:text-sm font-black uppercase tracking-wider text-sky-850";
+                        } else if (config.theme === 'accent') {
+                          titleClass += " text-emerald-600 hover:text-emerald-700";
+                        } else {
+                          // theme === 'normal'
+                          titleClass += " text-slate-800 hover:text-[#10b981]";
+                        }
+
+                        const toggleSection = () => {
+                          if (config.collapsible) {
+                            setExpandedSections(prev => ({
+                              ...prev,
+                              [key]: !prev[key]
+                            }));
+                          }
+                        };
+
+                        const labels = {
+                          extendedBenefits: isEs ? 'Propiedades y Beneficios Extendidos' : 'Extended Properties & Benefits',
+                          ingredients: isEs ? 'Ingredientes' : 'Ingredients',
+                          usage: isEs ? 'Modo de Uso' : 'Directions & Dosage',
+                          precautions: isEs ? 'Precauciones' : 'Precautions'
+                        };
+                        const headerText = labels[key] || key;
+
+                        return (
+                          <div key={key} className={containerClass}>
+                            {config.collapsible ? (
+                              <button
+                                onClick={toggleSection}
+                                className="w-full flex items-center justify-between transition-colors text-left focus:outline-none cursor-pointer group"
+                              >
+                                <span className={titleClass}>
+                                  {headerText}
+                                </span>
+                                <ChevronDown 
+                                  className={`w-5 h-5 transition-transform duration-300 ${
+                                    isExpanded ? 'rotate-180' : ''
+                                  } ${isWarningOrInfo ? (config.theme === 'warning' ? 'text-amber-600' : 'text-sky-650') : 'text-slate-400 group-hover:text-slate-600'}`} 
+                                />
+                              </button>
+                            ) : (
+                              <div className="w-full flex items-center justify-between text-left">
+                                <span className={titleClass}>
+                                  {headerText}
+                                </span>
+                              </div>
+                            )}
+
+                            {config.collapsible ? (
+                              <motion.div
+                                initial={false}
+                                animate={{ height: isExpanded ? 'auto' : 0 }}
+                                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                                className="overflow-hidden"
+                              >
+                                <div className="pt-3 pb-1">
+                                  {renderSectionContent(key, content)}
+                                </div>
+                              </motion.div>
+                            ) : (
+                              <div className="pt-3 pb-1">
+                                {renderSectionContent(key, content)}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+
+                      {/* whyChoose Block (Clean left accent border style instead of card) */}
+                      {activeProduct.whyChoose && (
+                        <div className="border-l-4 border-emerald-500 bg-emerald-50/20 px-5 py-4 rounded-r-2xl text-left mt-2">
+                          <span className="text-[10px] font-extrabold tracking-widest text-emerald-600 uppercase block mb-1.5">
+                            {isEs ? '¿Por qué elegir Xtralife?' : 'Why Choose Xtralife?'}
+                          </span>
+                          <p className="text-sm text-slate-600 leading-relaxed font-semibold italic">
+                            "{activeProduct.whyChoose}"
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   {/* 2.5. Full-Width Clinical Details for Dermclar */}
                   {brandId === 'dermclar' && (

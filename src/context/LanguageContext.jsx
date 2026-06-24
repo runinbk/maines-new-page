@@ -16,6 +16,7 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('maines_lang', language);
+    document.documentElement.lang = language;
   }, [language]);
 
   const toggleLanguage = () => {

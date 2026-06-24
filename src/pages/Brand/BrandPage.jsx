@@ -161,16 +161,34 @@ export const BrandPage = () => {
   }, [brandId, loadingBrand]);
 
   // Dynamic Page Meta Hooks for SEO
-  const pageTitle = brand 
-    ? `${brand.name} | ${isEs ? 'Biotecnología y Estética Profesional' : 'Professional Biotechnology & Aesthetics'}` 
-    : '';
-  const pageDesc = brand 
+  const selectedProduct = useMemo(() => {
+    if (!brand || !selectedProductId) return null;
+    return brand.products?.find(p => 
+      p.id === selectedProductId || 
+      p.id.toLowerCase().includes(selectedProductId.toLowerCase()) || 
+      selectedProductId.toLowerCase().includes(p.id.toLowerCase())
+    ) || null;
+  }, [brand, selectedProductId]);
+
+  const pageTitle = selectedProduct
+    ? `${selectedProduct.name} | ${brand?.name}`
+    : brand 
+      ? `${brand.name} | ${isEs ? 'Biotecnología y Estética Profesional' : 'Professional Biotechnology & Aesthetics'}` 
+      : '';
+
+  const pageDesc = selectedProduct
     ? (isEs 
-        ? `Explora el catálogo oficial de ${brand.name} importado en Bolivia por Maines SRL. Distribución autorizada de fórmulas de alta calidad.` 
-        : `Explore the official catalog of ${brand.name} imported in Bolivia by Maines SRL. Authorized distributor of premium formulas.`) 
-    : '';
+        ? `${selectedProduct.name}: ${selectedProduct.composition || selectedProduct.descriptor || ''}. Distribuidor oficial ${brand?.name} importado por Maines SRL.` 
+        : `${selectedProduct.name}: ${selectedProduct.composition || selectedProduct.descriptor || ''}. Official distributor ${brand?.name} imported by Maines SRL.`)
+    : brand 
+      ? (isEs 
+          ? `Explora el catálogo oficial de ${brand.name} importado en Bolivia por Maines SRL. Distribución autorizada de fórmulas de alta calidad.` 
+          : `Explore the official catalog of ${brand.name} imported in Bolivia by Maines SRL. Authorized distributor of premium formulas.`) 
+      : '';
+
+  const ogImage = selectedProduct?.coverImage || selectedProduct?.assets?.coverImage || brand?.logo || null;
   
-  usePageMeta(pageTitle, pageDesc);
+  usePageMeta(pageTitle, pageDesc, ogImage);
 
   if (loadingBrand) {
     return <PageSkeleton />;

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import PageLoader from '../common/PageLoader';
+import { PageSkeleton } from '../common/Skeleton';
 import BrandHero from './BrandHero';
 import ProductCatalog from './ProductCatalog';
 import BrandAbout from './BrandAbout';
@@ -160,7 +160,7 @@ const BrandLayout = () => {
   }, [brandId]);
 
   if (loadingBrand) {
-    return <PageLoader />;
+    return <PageSkeleton />;
   }
 
   if (!brand) {

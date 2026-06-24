@@ -1,5 +1,6 @@
 import { useState, memo } from 'react';
 import { Mail, Phone, MapPin, CheckCircle, AlertCircle, X, Send } from 'lucide-react';
+import ImageWithSkeleton from '../common/ImageWithSkeleton';
 
 const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
   if (!tailwindClass) return defaultColor;
@@ -165,7 +166,7 @@ const BrandCTA = ({ brand, language }) => {
 
         {/* Right Column: CTA Image directly rendered without square card or floating badge */}
         <div className="w-full flex items-center justify-center mt-10 lg:mt-0">
-          <img
+          <ImageWithSkeleton
             src={
               brandId === 'jetema'
                 ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/jetema-cta10.webp'
@@ -175,6 +176,7 @@ const BrandCTA = ({ brand, language }) => {
             }
             alt="Biotechnology showcase"
             className="w-full max-w-[480px] h-auto object-contain rounded-[24px] shadow-2xl border border-slate-100/60"
+            loading="lazy"
           />
         </div>
 

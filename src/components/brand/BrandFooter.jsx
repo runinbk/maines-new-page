@@ -119,6 +119,7 @@ const BrandFooter = ({ brand, language }) => {
                 src={brand.logo} 
                 alt={`${brand.name} logo`} 
                 className="h-[22px] w-auto object-contain filter brightness-0 invert" 
+                loading="lazy"
               />
             </div>
             <p className="text-white/60 font-semibold text-xs sm:text-sm leading-relaxed max-w-md">

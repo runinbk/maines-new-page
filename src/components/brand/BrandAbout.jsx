@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, memo } from 'react';
 import { Award, ChevronLeft, ChevronRight, Maximize2, Pause, Play, Volume2, VolumeX, X } from 'lucide-react';
+import ImageWithSkeleton from '../common/ImageWithSkeleton';
 
 const InstagramIcon = (props) => (
   <svg 
@@ -227,7 +228,7 @@ const ReelCard = ({ videoUrl, index, brand, language, onHoverChange, isPlayingIn
       <div className="absolute bottom-5 inset-x-4 flex flex-col gap-2.5 z-20 pointer-events-none">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-full bg-white p-0.5 overflow-hidden flex items-center justify-center shrink-0 border border-white/40 shadow-sm">
-            <img src={brand.logo} alt={brand.name} className="w-full h-full object-contain" />
+            <img src={brand.logo} alt={brand.name} className="w-full h-full object-contain" loading="lazy" />
           </div>
           <div className="flex flex-col">
             <span className="text-[11px] font-extrabold text-white leading-tight shadow-text">
@@ -486,7 +487,7 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
                 </div>
               ) : (
                 <>
-                  <img 
+                  <ImageWithSkeleton 
                     src={mainImage} 
                     alt={data.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

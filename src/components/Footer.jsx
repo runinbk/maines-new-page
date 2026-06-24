@@ -83,6 +83,7 @@ const Footer = () => {
                 src="/assets/logo-maines.svg" 
                 alt="Maines Logo" 
                 className="h-9 w-auto brightness-0 invert" 
+                loading="lazy"
               />
             </Link>
             <p className="text-xs sm:text-sm text-slate-400 max-w-xs leading-relaxed font-medium">

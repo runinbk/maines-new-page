@@ -411,6 +411,7 @@ const CTAContact = () => {
                               src={getBrandLogo(reel.brand)} 
                               alt={`${reel.brand} Logo`} 
                               className="max-w-[70%] max-h-[70%] object-contain"
+                              loading="lazy"
                             />
                           </div>
                           <span className="text-[10px] font-bold text-white tracking-wide truncate max-w-[100px] hover:underline">

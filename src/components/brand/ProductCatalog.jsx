@@ -14,6 +14,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import jetemaProducts from '../../data/jetemaProducts.json';
+import ImageWithSkeleton from '../common/ImageWithSkeleton';
 
 // Import custom application zone icons
 import zonaRostro from '../../../assets/iconos/zonas/zona-rostro.png';
@@ -582,7 +583,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                       }}
                     >
                       <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-200/30 flex items-center justify-center p-0.5 shrink-0">
-                        <img src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain filter drop-shadow-xs" />
+                        <ImageWithSkeleton src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain filter drop-shadow-xs" />
                       </div>
                       <div className="min-w-0 flex-grow">
                         <div className="flex items-center gap-1.5 min-w-0">
@@ -639,7 +640,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                         }}
                       >
                         <div className="w-10 h-10 rounded-lg bg-white border border-slate-100 flex items-center justify-center p-1 shrink-0">
-                          <img src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain" />
+                          <ImageWithSkeleton src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain" />
                         </div>
                         <div className="min-w-0 flex-grow">
                           <div className="flex items-center gap-1.5 min-w-0">
@@ -691,7 +692,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                     >
                       {/* Left Thumbnail Box */}
                       <div className="w-12 h-12 rounded-xl bg-white border border-slate-200/50 overflow-hidden flex items-center justify-center p-1 shrink-0 shadow-sm">
-                        <img 
+                        <ImageWithSkeleton 
                           src={getProductThumbnail(prod)} 
                           alt={prod.name} 
                           className="max-w-full max-h-full object-contain filter drop-shadow-sm transition-transform duration-300 group-hover/item:scale-105" 
@@ -814,7 +815,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                         <div className="absolute inset-0 bg-gradient-to-tr from-slate-100/50 via-transparent to-white/50 opacity-40 pointer-events-none" />
                         
                         {/* Static Product Image */}
-                        <img src={activeImage} alt={activeProduct.name} className="product-image" />
+                        <ImageWithSkeleton src={activeImage} alt={activeProduct.name} className="product-image" />
 
                         {/* Silent Looping Video on Hover */}
                         {activeVideo && (
@@ -886,7 +887,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                                   borderColor: isThumbSelected ? resolveBrandColor(brand.accentBg) : '#e2e8f0'
                                 }}
                               >
-                                <img src={thumbSrc} alt={`Thumb ${idx + 1}`} className="max-w-full max-h-full object-contain" />
+                                <ImageWithSkeleton src={thumbSrc} alt={`Thumb ${idx + 1}`} className="max-w-full max-h-full object-contain" />
                               </button>
                             );
                           })}
@@ -1505,7 +1506,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <img src={lightboxImage} alt="Large product view" className="w-full h-full object-cover" />
+                <ImageWithSkeleton src={lightboxImage} alt="Large product view" className="w-full h-full object-cover" />
               )}
               <button
                 onClick={() => setLightboxImage(null)}

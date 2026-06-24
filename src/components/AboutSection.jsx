@@ -172,6 +172,7 @@ const AboutSection = () => {
                   src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp"
                   alt="Maines Corporativo"
                   className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
                 />
               )}
 
@@ -300,6 +301,7 @@ const AboutSection = () => {
                 src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar1.webp" 
                 alt={t('about.pillar1Title')} 
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
+                loading="lazy"
               />
               {/* Premium Light Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
@@ -333,6 +335,7 @@ const AboutSection = () => {
                 src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar2.webp" 
                 alt={t('about.pillar2Title')} 
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
+                loading="lazy"
               />
               {/* Premium Light Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
@@ -366,6 +369,7 @@ const AboutSection = () => {
                 src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar3.webp" 
                 alt={t('about.pillar3Title')} 
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
+                loading="lazy"
               />
               {/* Premium Light Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
@@ -399,6 +403,7 @@ const AboutSection = () => {
                 src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar4.webp" 
                 alt={t('about.pillar4Title')} 
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
+                loading="lazy"
               />
               {/* Premium Light Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />

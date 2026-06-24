@@ -104,6 +104,9 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
 
   // Brand Subpage Scroll-Spy URL Updater
   useEffect(() => {
+    let observer = null;
+    let topObserver = null;
+
     const timer = setTimeout(() => {
       const sections = [
         { id: 'catalog-section', pathKey: 'catalog-section' },
@@ -130,7 +133,7 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
         });
       };
 
-      const observer = new IntersectionObserver(handleIntersect, observerOptions);
+      observer = new IntersectionObserver(handleIntersect, observerOptions);
 
       sections.forEach(s => {
         const el = document.getElementById(s.id);
@@ -149,7 +152,7 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
         });
       };
 
-      const topObserver = new IntersectionObserver(handleTopIntersect, {
+      topObserver = new IntersectionObserver(handleTopIntersect, {
         root: null,
         rootMargin: '0px 0px -80% 0px',
         threshold: 0
@@ -158,17 +161,17 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
       if (heroEl) {
         topObserver.observe(heroEl);
       }
-
-      return () => {
-        sections.forEach(s => {
-          const el = document.getElementById(s.id);
-          if (el) observer.unobserve(el);
-        });
-        if (heroEl) topObserver.unobserve(heroEl);
-      };
     }, 300);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (observer) {
+        observer.disconnect();
+      }
+      if (topObserver) {
+        topObserver.disconnect();
+      }
+    };
   }, [brandId]);
 
   if (!brand) {

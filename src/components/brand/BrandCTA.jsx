@@ -20,7 +20,7 @@ const BrandCTA = ({ brand, language }) => {
   const brandId = brand.id;
 
   // Contact details
-  const contactPhone = brandId === 'jetema' ? '+591 77099888' : '+591 77099888';
+  const contactPhone = '+591 77099888';
   const cleanPhoneForWa = contactPhone.replace(/\+/g, '').replace(/\s/g, '');
   const locationText = isEs
     ? 'Calle San Ramón Nro. 3270 - Santa Cruz, Bolivia'

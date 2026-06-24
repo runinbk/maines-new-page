@@ -131,6 +131,18 @@ const CTAContact = () => {
     return () => clearInterval(interval);
   }, [playlist.length, isVideoModalOpen, isHovered]);
 
+  // Handle body overflow when modals are open
+  useEffect(() => {
+    if (isModalOpen || isVideoModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen, isVideoModalOpen]);
+
   const handlePrev = () => {
     if (playlist.length === 0) return;
     setActiveIdx((prev) => (prev === 0 ? playlist.length - 1 : prev - 1));

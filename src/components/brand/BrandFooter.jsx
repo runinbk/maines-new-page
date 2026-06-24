@@ -258,7 +258,7 @@ const BrandFooter = ({ brand, language, onBackToHome }) => {
             {/* Social channels links */}
             <div className="flex items-center gap-3">
               <a 
-                href="https://www.instagram.com/dermclarbolivia/" 
+                href={brand.social?.instagram?.url || "https://www.instagram.com/dermclarbolivia/"} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/50 hover:text-white transition-colors"

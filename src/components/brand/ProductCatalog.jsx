@@ -247,7 +247,6 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
           isNew: prod.isNew || false
         });
       });
-      console.log("Normalized Products for Jetema:", list);
       return list;
     } else {
       // Dermclar & Xtralife

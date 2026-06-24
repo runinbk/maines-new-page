@@ -40,9 +40,8 @@ const LinkedInIcon = ({ className }) => (
 /**
  * BrandFooter Component
  * @param {Object} props
- * @param {import('../../data/productsData').BrandConfig} props.brand - Active brand config
+ * @param {Object} props.brand - Active brand config
  * @param {string} props.language - Active language ('es' | 'en')
- * @param {function} props.onBackToHome - Trigger action to return back to home portal
  */
 const BrandFooter = ({ brand, language }) => {
   const isEs = language === 'es';
@@ -99,11 +98,9 @@ const BrandFooter = ({ brand, language }) => {
         
         {/* 1. Hero Slogan Centered Section */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto space-y-4 pb-4 border-b border-white/10 w-full">
-          
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight leading-tight drop-shadow-sm">
             {activeSlogan.title}
           </h3>
-          
           <p className="text-xs sm:text-sm text-white/80 font-medium leading-relaxed max-w-xl">
             {activeSlogan.sub}
           </p>
@@ -242,16 +239,11 @@ const BrandFooter = ({ brand, language }) => {
 
         {/* 4. Bottom Segment: Copyright & Social Channels & Watermark */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t border-white/10 text-white/40 text-xs font-semibold relative z-10">
-          
-          {/* Copyright description */}
           <div>
             <span>{isEs ? '© 2026 Maines SRL. Todos los derechos reservados. Importador Autorizado en Bolivia.' : '© 2026 Maines SRL. All rights reserved. Authorized Distributor.'}</span>
           </div>
 
-          {/* Social icons row */}
           <div className="flex items-center gap-6">
-            
-            {/* Social channels links */}
             <div className="flex items-center gap-3">
               <a 
                 href={brand.social?.instagram?.url || "https://www.instagram.com/dermclarbolivia/"} 
@@ -273,7 +265,6 @@ const BrandFooter = ({ brand, language }) => {
               </a>
             </div>
 
-            {/* Scroll-To-Top button capsule */}
             <button
               onClick={scrollToTop}
               className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/50 hover:text-white transition-colors focus:outline-none cursor-pointer"
@@ -281,9 +272,7 @@ const BrandFooter = ({ brand, language }) => {
             >
               <ArrowUp className="w-4 h-4 animate-bounce" />
             </button>
-
           </div>
-
         </div>
 
       </div>

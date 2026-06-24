@@ -1,6 +1,6 @@
 import { useState, memo } from 'react';
 import { Mail, Phone, MapPin, CheckCircle, AlertCircle, X, Send } from 'lucide-react';
-import ImageWithSkeleton from '../common/ImageWithSkeleton';
+import ImageWithSkeleton from '../../../components/ui/ImageWithSkeleton';
 
 const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
   if (!tailwindClass) return defaultColor;
@@ -13,7 +13,7 @@ const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
 /**
  * BrandCTA Component
  * @param {Object} props
- * @param {import('../../data/productsData').BrandConfig} props.brand - Active brand config
+ * @param {Object} props.brand - Active brand config
  * @param {string} props.language - Active language ('es' | 'en')
  */
 const BrandCTA = ({ brand, language }) => {
@@ -164,7 +164,7 @@ const BrandCTA = ({ brand, language }) => {
 
         </div>
 
-        {/* Right Column: CTA Image directly rendered without square card or floating badge */}
+        {/* Right Column: CTA Image */}
         <div className="w-full flex items-center justify-center mt-10 lg:mt-0">
           <ImageWithSkeleton
             src={
@@ -182,18 +182,15 @@ const BrandCTA = ({ brand, language }) => {
 
       </div>
 
-      {/* Modal / Formulario Emergente Portal */}
+      {/* Modal Form */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* Backdrop blur overlay */}
           <div
             onClick={closeFormModal}
             className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-all duration-300 cursor-pointer"
           />
 
-          {/* Modal Container */}
           <div className="bg-white border border-slate-200 rounded-[28px] w-full max-w-lg shadow-2xl p-6 sm:p-8 relative z-10 text-left animate-fade-in">
-            {/* Close Button */}
             <button
               onClick={closeFormModal}
               className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors focus:outline-none cursor-pointer"
@@ -218,7 +215,7 @@ const BrandCTA = ({ brand, language }) => {
                   onClick={closeFormModal}
                   onMouseEnter={() => setIsSuccessHovered(true)}
                   onMouseLeave={() => setIsSuccessHovered(false)}
-                  className="px-6 py-2.5 rounded-full text-xs font-extrabold text-white transition-all duration-300 transform hover:scale-105 cursor-pointer mt-4"
+                  className="px-6 py-2.5 rounded-full text-xs font-extrabold text-white transition-all duration-355 transform hover:scale-105 cursor-pointer mt-4"
                   style={{ backgroundColor: isSuccessHovered ? getHexColor(brand.accentHover) : getHexColor(brand.accentBg) }}
                 >
                   {isEs ? 'Entendido' : 'Close'}
@@ -245,8 +242,6 @@ const BrandCTA = ({ brand, language }) => {
                 )}
 
                 <div className="space-y-4">
-
-                  {/* Full Name */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
                       {isEs ? 'Nombre Completo' : 'Full Name'} *
@@ -262,10 +257,7 @@ const BrandCTA = ({ brand, language }) => {
                     />
                   </div>
 
-                  {/* Email & Phone grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                    {/* Email */}
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
                         {isEs ? 'Correo Electrónico' : 'Email'} *
@@ -281,7 +273,6 @@ const BrandCTA = ({ brand, language }) => {
                       />
                     </div>
 
-                    {/* Phone */}
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
                         {isEs ? 'Teléfono / Celular' : 'Phone'} *
@@ -296,10 +287,8 @@ const BrandCTA = ({ brand, language }) => {
                         className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-all font-medium"
                       />
                     </div>
-
                   </div>
 
-                  {/* Message */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
                       {isEs ? 'Mensaje / Consulta' : 'Message'} *
@@ -314,7 +303,6 @@ const BrandCTA = ({ brand, language }) => {
                       className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-300 transition-all font-medium resize-none"
                     />
                   </div>
-
                 </div>
 
                 <button
@@ -327,14 +315,11 @@ const BrandCTA = ({ brand, language }) => {
                 >
                   <span>{isSubmitting ? (isEs ? 'Enviando...' : 'Sending...') : (isEs ? 'Enviar Mensaje' : 'Send Message')}</span>
                 </button>
-
               </form>
             )}
-
           </div>
         </div>
       )}
-
     </section>
   );
 };

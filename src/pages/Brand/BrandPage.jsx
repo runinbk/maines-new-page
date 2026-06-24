@@ -1,20 +1,21 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { PageSkeleton } from '../common/Skeleton';
-import BrandHero from './BrandHero';
-import ProductCatalog from './ProductCatalog';
-import BrandAbout from './BrandAbout';
-import BrandCTA from './BrandCTA';
-import BrandFooter from './BrandFooter';
+import { PageSkeleton } from '../../components/ui/Skeleton';
+import BrandHero from './components/BrandHero';
+import ProductCatalog from './components/ProductCatalog';
+import BrandAbout from './components/BrandAbout';
+import BrandCTA from './components/BrandCTA';
+import BrandFooter from './components/BrandFooter';
 import { Globe, ArrowLeft, Send } from 'lucide-react';
 import { getProductIdFromSlug, getProductSlug } from '../../utils/navigation';
-import { useLanguage } from '../../LanguageContext';
+import { useLanguage } from '../../context/LanguageContext';
+import { usePageMeta } from '../../hooks/usePageMeta';
 
 /**
- * BrandLayout Master Component
+ * BrandPage Master Component
  * Integrates React Router for clean subpaths and lazy state synchronization
  */
-const BrandLayout = () => {
+export const BrandPage = () => {
   const navigate = useNavigate();
   const { brandId, productSlug } = useParams();
   const { language, toggleLanguage } = useLanguage();
@@ -157,7 +158,19 @@ const BrandLayout = () => {
       observer.disconnect();
       topObserver.disconnect();
     };
-  }, [brandId]);
+  }, [brandId, loadingBrand]);
+
+  // Dynamic Page Meta Hooks for SEO
+  const pageTitle = brand 
+    ? `${brand.name} | ${isEs ? 'Biotecnología y Estética Profesional' : 'Professional Biotechnology & Aesthetics'}` 
+    : '';
+  const pageDesc = brand 
+    ? (isEs 
+        ? `Explora el catálogo oficial de ${brand.name} importado en Bolivia por Maines SRL. Distribución autorizada de fórmulas de alta calidad.` 
+        : `Explore the official catalog of ${brand.name} imported in Bolivia by Maines SRL. Authorized distributor of premium formulas.`) 
+    : '';
+  
+  usePageMeta(pageTitle, pageDesc);
 
   if (loadingBrand) {
     return <PageSkeleton />;
@@ -221,7 +234,7 @@ const BrandLayout = () => {
 
               <div className="h-4 w-px bg-slate-200 hidden xxs:block" />
 
-              {/* Dynamic Brand Logo (scrolled back to top section) */}
+              {/* Dynamic Brand Logo */}
               <Link 
                 to={`/${brandId}`}
                 className="flex items-center gap-1.5 group cursor-pointer"
@@ -234,7 +247,7 @@ const BrandLayout = () => {
               </Link>
             </div>
 
-            {/* Center: Anchor Links specific to subpage */}
+            {/* Center: Anchor Links */}
             <nav className="hidden md:flex items-center gap-8 2xl:gap-12">
               <Link
                 to={`/${brandId}/catalogo`}
@@ -301,11 +314,11 @@ const BrandLayout = () => {
         <BrandCTA brand={brand} language={language} />
       </main>
 
-      {/* 3. Shared regulatory regulatory disclaimers footer */}
+      {/* 3. Footer */}
       <BrandFooter brand={brand} language={language} onBackToHome={handleBackToHome} />
 
     </div>
   );
 };
 
-export default BrandLayout;
+export default BrandPage;

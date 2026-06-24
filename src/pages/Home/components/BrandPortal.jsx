@@ -1,26 +1,20 @@
 import { useState, useMemo } from 'react';
-import { useLanguage } from '../LanguageContext';
+import { useLanguage } from '../../../context/LanguageContext';
 import { Link } from 'react-router-dom';
 
 const BrandCard = ({ brand, index }) => {
-  // Card-specific rotation directions on portal-hover:
-  // Card 0: rotates left (-rotate-[1.5deg])
-  // Card 1: stays centered
-  // Card 2: rotates right (rotate-[1.5deg])
   const hoverRotateClass = index === 0 
     ? 'hover:-rotate-[1.5deg]' 
     : index === 2 
       ? 'hover:rotate-[1.5deg]' 
       : '';
 
-  // Card-specific blob classes (referencing CSS shapes we added to index.css)
   const blobShapeClass = index === 0 
     ? 'liquid-glass-blob-1' 
     : index === 1 
       ? 'liquid-glass-blob-2' 
       : 'liquid-glass-blob-3';
 
-  // Bubble-specific irregular shapes
   const bubbleShapeClass = index === 0
     ? 'rounded-[45%_55%_60%_40%_/_50%_45%_55%_50%]'
     : index === 1
@@ -36,12 +30,10 @@ const BrandCard = ({ brand, index }) => {
         to={`/${brand.key}`}
         className="relative liquid-glass-size flex items-center justify-center cursor-pointer"
       >
-        {/* Aura light behind blob (Refracts light through the glass, optimized CSS transition) */}
         <div 
           className={`absolute w-[80%] h-[80%] rounded-full bg-gradient-to-tr ${brand.auraClass} filter blur-[40px] opacity-20 transition-all duration-700 ease-out group-hover/card:scale-110 group-hover/card:translate-x-1.5 group-hover/card:-translate-y-1.5 group-hover/card:opacity-60`}
         />
 
-        {/* Liquid Glass Blob (Outer shell) */}
         <div 
           className={`absolute inset-0 border backdrop-blur-[8px] transition-all duration-600 ease-out ${blobShapeClass} liquid-glass-shadow ${brand.borderColor}`}
           style={{
@@ -50,11 +42,9 @@ const BrandCard = ({ brand, index }) => {
           }}
         />
 
-        {/* Foreground Content Overlay */}
         <div 
           className="relative z-10 flex flex-col items-center justify-center text-center w-full h-full liquid-glass-content transition-transform duration-500 group-hover/card:scale-[1.02] group-hover/card:-translate-y-1"
         >
-          {/* Brand Logo Image */}
           <div className="w-full flex items-center justify-center liquid-glass-logo">
             <img 
               src={brand.logo} 
@@ -63,23 +53,19 @@ const BrandCard = ({ brand, index }) => {
             />
           </div>
 
-          {/* Brand Title */}
           <h3 className="font-extrabold text-slate-800 font-display tracking-tight transition-colors duration-300 group-hover/card:text-slate-900 liquid-glass-title">
             {brand.displayName}
           </h3>
 
-          {/* Subtitle / Tagline */}
           <span className={`font-extrabold uppercase transition-colors duration-300 ${brand.textColorClass} liquid-glass-tagline`}>
             {brand.tagline}
           </span>
 
-          {/* Description */}
           <p className="text-slate-500 font-medium transition-colors duration-300 group-hover/card:text-slate-600 liquid-glass-desc hidden lg:block">
             {brand.description}
           </p>
         </div>
 
-        {/* Secondary Overlapping Glass Bubbles (Optimized: No backdrop blur, static shape, GPU translation) */}
         {index === 0 && (
           <div 
             className={`absolute border border-white/50 pointer-events-none animate-bobbing-1 liquid-glass-secondary-bubble ${bubbleShapeClass}`}
@@ -129,7 +115,6 @@ const BrandCard = ({ brand, index }) => {
 const BrandPortal = () => {
   const { t } = useLanguage();
 
-  // Stable brand configurations for rendering
   const defaultBrands = useMemo(() => [
     {
       id: 1,
@@ -178,7 +163,6 @@ const BrandPortal = () => {
     }
   ], [t]);
 
-  // Randomize the order of the brands on component mount using keys
   const [shuffledKeys] = useState(() => {
     const keys = ["jetema", "xtralife", "dermclar"];
     for (let i = keys.length - 1; i > 0; i--) {
@@ -198,28 +182,21 @@ const BrandPortal = () => {
       id="ecosystem" 
       className="h-[100dvh] min-h-[100dvh] w-full bg-slate-50 relative overflow-hidden flex flex-col justify-between select-none py-4"
     >
-      {/* Background Silk-Mesh 3D Organic Folds Accent */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* White silk surface base */}
         <div className="absolute inset-0 bg-[#f8fafc]" />
         
-        {/* Soft 3D undulation ambient radial shadows */}
         <div className="absolute inset-0 opacity-[0.45] bg-[radial-gradient(circle_at_20%_20%,#ffffff_0%,transparent_50%),radial-gradient(circle_at_80%_80%,#e2e8f0_0%,transparent_60%),radial-gradient(circle_at_50%_10%,#f1f5f9_0%,transparent_50%)]" />
         
-        {/* Stretched soft secondary mesh gradients for volume */}
         <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-slate-100/30 filter blur-[90px] animate-pulse-slow" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] rounded-full bg-slate-100/40 filter blur-[110px] animate-pulse-slow" style={{ animationDelay: '3s' }} />
 
-        {/* Brand auric glows that float dynamically in the section backdrop */}
         <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] rounded-full bg-blue-100/30 filter blur-[105px] animate-pulse-slow" />
         <div className="absolute bottom-1/4 right-1/4 w-[550px] h-[550px] rounded-full bg-emerald-100/20 filter blur-[120px] animate-pulse-slow" style={{ animationDelay: '3s' }} />
         
-        {/* Decorative thin mesh grid */}
         <div 
           className="absolute inset-0 opacity-[0.01] bg-[linear-gradient(to_right,#0ea5e9_1px,transparent_1px),linear-gradient(to_bottom,#0ea5e9_1px,transparent_1px)] bg-[size:4rem_4rem]" 
         />
         
-        {/* Organic wavy line decoration */}
         <div className="absolute inset-0 opacity-[0.025] text-slate-400">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
             <path d="M-100,200 Q200,300 500,150 T1100,250 T1700,100" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="5 5" className="animate-pulse" style={{ animationDuration: '8s' }} />
@@ -228,7 +205,6 @@ const BrandPortal = () => {
         </div>
       </div>
 
-      {/* Floating Sleek Glass Header capsule (Occupies 8vh of vertical height) */}
       <div className="relative z-10 h-[8vh] flex items-center justify-center px-6">
         <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/40 backdrop-blur-md font-bold uppercase tracking-widest text-slate-600 shadow-sm liquid-glass-badge">
           <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
@@ -236,7 +212,6 @@ const BrandPortal = () => {
         </div>
       </div>
 
-      {/* 3-Column Fluid Grid Layout (Occupies 80vh of vertical height) */}
       <div className="relative z-10 h-[80vh] w-full flex items-center justify-center">
         <div className="w-full max-w-[1700px] h-full px-4 sm:px-6 lg:px-8 grid grid-cols-1 grid-rows-3 lg:grid-cols-3 lg:grid-rows-1 gap-4 lg:gap-8 items-stretch group/portal">
           {orderedBrands.map((brand, i) => (
@@ -249,7 +224,6 @@ const BrandPortal = () => {
         </div>
       </div>
 
-      {/* Description Footer at the bottom of the section (Occupies 8vh of vertical height) */}
       <div className="relative z-10 h-[8vh] flex items-center justify-center px-6">
         <p className="text-slate-400 font-semibold max-w-xl bg-white/30 backdrop-blur-sm rounded-full border border-slate-200/50 shadow-sm liquid-glass-footer-text text-center">
           {t('brands.subtitle')}

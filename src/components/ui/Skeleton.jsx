@@ -1,4 +1,3 @@
-
 /**
  * Base pulse skeleton block
  */

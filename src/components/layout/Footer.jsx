@@ -1,11 +1,10 @@
-
-import { useLanguage } from '../LanguageContext';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useLanguage } from '../../context/LanguageContext';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { 
   MapPin, Phone, Mail, ArrowUp 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { InstagramIcon, LinkedinIcon } from './common/Icons';
+import { InstagramIcon, LinkedinIcon } from '../ui/Icons';
 
 const Footer = () => {
   const { t } = useLanguage();

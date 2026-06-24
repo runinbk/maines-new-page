@@ -1,14 +1,14 @@
 import { useState, useEffect, memo } from 'react';
 import { ArrowDown } from 'lucide-react';
-import jetemaHeroBg from '../../../assets/jetema/hero.webp';
-import dermclarHeroBg from '../../../assets/marcas/dermclar/dermclar-hero.jpeg';
-import xtralifeHeroBg from '../../../assets/marcas/xtralife/xtralife-hero.jpeg';
+import jetemaHeroBg from '../../../../assets/jetema/hero.webp';
+import dermclarHeroBg from '../../../../assets/marcas/dermclar/dermclar-hero.jpeg';
+import xtralifeHeroBg from '../../../../assets/marcas/xtralife/xtralife-hero.jpeg';
 import { Link } from 'react-router-dom';
 
 /**
  * BrandHero Component
  * @param {Object} props
- * @param {import('../../data/productsData').BrandConfig} props.brand - The active brand configuration
+ * @param {Object} props.brand - The active brand configuration
  * @param {string} props.language - Active language ('es' | 'en')
  */
 const BrandHero = ({ brand, language }) => {
@@ -19,7 +19,6 @@ const BrandHero = ({ brand, language }) => {
     const timer = setTimeout(() => setLoaded(true), 150);
     return () => clearTimeout(timer);
   }, []);
-
 
   const isJetema = brand.id === 'jetema';
   const isDermclar = brand.id === 'dermclar';
@@ -92,7 +91,6 @@ const BrandHero = ({ brand, language }) => {
     <section id="brand-hero-section" className="relative min-h-[100dvh] pt-20 pb-4 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 px-4 xs:px-6 sm:px-12 lg:px-20">
       {/* Background Image with overlay for legibility */}
       <picture className="absolute inset-0 z-0 select-none pointer-events-none w-full h-full">
-        {/* On mobile screens (< 768px), we load a blank small 1x1 spacer to save bandwidth */}
         <source media="(max-width: 767px)" srcSet="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E" />
         <img 
           src={heroBg} 
@@ -100,7 +98,8 @@ const BrandHero = ({ brand, language }) => {
           className="w-full h-full object-cover object-center opacity-95"
         />
       </picture>
-      {/* Soft overlay blanca semitransparente */}
+      
+      {/* Soft overlay */}
       <div className="absolute inset-0 z-0 bg-white/70 backdrop-blur-[1px]" />
 
       {/* Ambient glow mesh circle */}
@@ -116,7 +115,7 @@ const BrandHero = ({ brand, language }) => {
       <div className="mx-auto w-full px-2 sm:px-8 relative z-10 max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 2xl:gap-20 items-center">
           
-          {/* Column A (Texts): Order-2 on mobile, Order-1 on desktop */}
+          {/* Column A (Texts) */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 2xl:space-y-12 order-2 lg:order-1 flex flex-col items-center lg:items-start">
             
             {/* Pre-title */}
@@ -166,7 +165,7 @@ const BrandHero = ({ brand, language }) => {
               </p>
             </div>
 
-            {/* Unique Button Centered below text */}
+            {/* CTA Button */}
             <div 
               className={`w-full flex justify-center lg:justify-start pt-1 transition-all duration-1000 delay-600 transform ${
                 loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -187,7 +186,7 @@ const BrandHero = ({ brand, language }) => {
             </div>
           </div>
 
-          {/* Column B (Logo isotype): Centered, Order-1 on mobile, Order-2 on desktop */}
+          {/* Column B (Logo isotype) */}
           <div className="lg:col-span-5 relative h-[100px] xs:h-[130px] sm:h-[180px] md:h-[240px] lg:h-[400px] 2xl:h-[500px] flex items-center justify-center lg:justify-end order-1 lg:order-2">
             <div 
               className={`transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) transform ${

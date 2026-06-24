@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useLanguage } from '../LanguageContext';
+import { useLanguage } from '../../../context/LanguageContext';
 import { ArrowRight, ArrowDown } from 'lucide-react';
-import heroBgImage from '../../assets/hero-sections/hero-backgront1.webp';
+import heroBgImage from '../../../../assets/hero-sections/hero-backgront1.webp';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -40,7 +40,7 @@ const Hero = () => {
       <div className="mx-auto w-full px-2 sm:px-8 relative z-10 max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 2xl:gap-20 items-center">
           
-          {/* Column A (Texts): Order-2 on mobile, Order-1 on desktop */}
+          {/* Column A (Texts) */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 2xl:space-y-12 order-2 lg:order-1 flex flex-col items-center lg:items-start">
             
             {/* Pre-title */}
@@ -64,7 +64,6 @@ const Hero = () => {
               >
                 {t('hero.title').split(' ').map((word, idx) => {
                   const cleanedWord = word.replace(/[.,]/g, '');
-                  // Highlight key aesthetic/medical-tech words to maintain design fidelity
                   const isHighlight = ['estética', 'salud', 'aesthetic', 'medicine', 'healthcare'].includes(cleanedWord);
                   return (
                     <span 
@@ -113,10 +112,8 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Column B (Logo isotype): Centered, Order-1 on mobile, Order-2 on desktop */}
+          {/* Column B (Logo isotype) */}
           <div className="lg:col-span-5 relative h-[100px] xs:h-[130px] sm:h-[180px] md:h-[240px] lg:h-[400px] 2xl:h-[500px] flex items-center justify-center lg:justify-end order-1 lg:order-2">
-            
-            {/* Background floating logo (Central visual focus) */}
             <div 
               className={`transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) transform ${
                 loaded ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-75 rotate-3'
@@ -131,7 +128,6 @@ const Hero = () => {
                 }}
               />
             </div>
-
           </div>
 
         </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useLanguage } from '../LanguageContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { Menu, X, Globe, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

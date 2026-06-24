@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef, memo } from 'react';
-import { Award, ChevronLeft, ChevronRight, Maximize2, Pause, Play, Volume2, VolumeX, X } from 'lucide-react';
-import ImageWithSkeleton from '../common/ImageWithSkeleton';
-import { InstagramIcon, FacebookIcon, TikTokIcon } from '../common/Icons';
+import { Award, Play, X, Maximize2 } from 'lucide-react';
+import { useLanguage } from '../../../../context/LanguageContext';
+import ImageWithSkeleton from '../../../../components/ui/ImageWithSkeleton';
+import { InstagramIcon, FacebookIcon, TikTokIcon } from '../../../../components/ui/Icons';
+import { VideoCarousel } from './VideoCarousel';
 
 const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
   if (!tailwindClass) return defaultColor;
@@ -11,238 +13,10 @@ const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
 };
 
 /**
- * ReelCard Component
- * Represents a single vertical social media video card (9:16)
+ * BrandAbout - Decomposed orchestrator component for brand history, video reels, and official support
  */
-const ReelCard = ({ videoUrl, index, brand, language, onHoverChange, isPlayingInline, onPlayingChange, onMaximize }) => {
-  const isEs = language === 'es';
-  const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const [isMaxHovered, setIsMaxHovered] = useState(false);
-  const [isPaused, setIsPaused] = useState(true);
-
-  const platformIndex = index % 3;
-  const platform = platformIndex === 0 ? 'instagram' : (platformIndex === 1 ? 'tiktok' : 'facebook');
-  
-  const socialData = brand.social || {
-    instagram: { handle: "@jetemaboliviaoficial", url: "#" },
-    tiktok: { handle: "@jetema.bo", url: "#" },
-    facebook: { handle: "@jetemaboliviaoficial", url: "#" }
-  };
-
-  const handle = socialData[platform].handle;
-  const linkUrl = socialData[platform].url;
-
-  // Render Platform Icon
-  const renderPlatformIcon = (className) => {
-    if (platform === 'instagram') return <InstagramIcon className={className} />;
-    if (platform === 'facebook') return <FacebookIcon className={className} />;
-    return <TikTokIcon className={className} />;
-  };
-
-  // Sync mute state of the video
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isPlayingInline || isMuted;
-    }
-  }, [isPlayingInline, isMuted]);
-
-  // Handle play/pause state change: Keep autoplaying silently if not playing inline
-  useEffect(() => {
-    if (videoRef.current) {
-      if (isPlayingInline) {
-        videoRef.current.play().catch(err => console.warn(err));
-      } else {
-        videoRef.current.muted = true;
-        videoRef.current.play().catch(err => console.warn(err));
-      }
-    }
-  }, [isPlayingInline]);
-
-  const handleTogglePlay = (e) => {
-    e.stopPropagation();
-    if (videoRef.current) {
-      if (isPlayingInline) {
-        onPlayingChange(false);
-        setIsMuted(true);
-      } else {
-        onPlayingChange(true);
-        setIsMuted(false);
-      }
-    }
-  };
-
-  const handleToggleMute = (e) => {
-    e.stopPropagation();
-    if (videoRef.current) {
-      const nextMuted = !isMuted;
-      videoRef.current.muted = nextMuted;
-      setIsMuted(nextMuted);
-    }
-  };
-
-  const handleClosePlayer = (e) => {
-    e.stopPropagation();
-    onPlayingChange(false);
-    setIsMuted(true);
-    setProgress(0);
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-    }
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      const current = videoRef.current.currentTime;
-      const duration = videoRef.current.duration || 1;
-      setProgress((current / duration) * 100);
-    }
-  };
-
-  const handleVideoEnded = () => {
-    handleClosePlayer({ stopPropagation: () => {} });
-  };
-
-  return (
-    <div
-      onMouseEnter={() => onHoverChange(true)}
-      onMouseLeave={() => onHoverChange(false)}
-      onClick={handleTogglePlay}
-      className="snap-center shrink-0 w-[260px] sm:w-[280px] aspect-[9/16] rounded-[24px] sm:rounded-[32px] overflow-hidden border border-slate-200/80 bg-slate-950 shadow-lg relative group cursor-pointer select-none text-left animate-fade-in"
-    >
-      <video
-        ref={videoRef}
-        src={videoUrl}
-        loop
-        muted={!isPlayingInline || isMuted}
-        playsInline
-        autoPlay
-        onPlay={() => setIsPaused(false)}
-        onPause={() => setIsPaused(true)}
-        onTimeUpdate={handleTimeUpdate}
-        onEnded={handleVideoEnded}
-        className="w-full h-full object-cover z-0"
-      />
-      
-      {/* Dark gradient vignette overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/40 z-10 pointer-events-none" />
-      
-      {/* Top Bar Overlay */}
-      <div className="absolute top-4 inset-x-4 flex items-center justify-between z-20 pointer-events-none">
-        {isPlayingInline ? (
-          <button
-            onClick={handleClosePlayer}
-            className="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md hover:bg-red-600/90 border border-white/10 flex items-center justify-center text-white transition-all duration-200 pointer-events-auto hover:scale-110 active:scale-95 cursor-pointer shadow-lg"
-            title={isEs ? "Cerrar" : "Close"}
-          >
-            <X className="w-4 h-4" />
-          </button>
-        ) : (
-          <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-inner">
-            <Play className="w-3.5 h-3.5 fill-current translate-x-0.5" />
-          </div>
-        )}
-
-        <div className="flex items-center gap-2 pointer-events-auto">
-          {/* Maximize Button overlay (visible on hover or when playing inline) */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onMaximize(videoUrl);
-            }}
-            onMouseEnter={() => setIsMaxHovered(true)}
-            onMouseLeave={() => setIsMaxHovered(false)}
-            className={`w-8 h-8 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-lg ${
-              isPlayingInline ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-            }`}
-            style={{ backgroundColor: isMaxHovered ? `${getHexColor(brand.accentBg)}E6` : 'rgba(0,0,0,0.5)' }}
-            title={isEs ? "Ver en grande" : "Maximize"}
-          >
-            <Maximize2 className="w-4 h-4" />
-          </button>
-
-          <a
-            href={linkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/25 border border-white/20 flex items-center gap-1.5 text-white text-[10px] font-extrabold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 pointer-events-auto shadow-md"
-          >
-            {renderPlatformIcon("w-3 h-3")}
-            <span>{platform}</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Middle Interactive Icon (only visible on hover, when not playing inline) */}
-      {!isPlayingInline && (
-        <div className="absolute inset-0 flex items-center justify-center z-15 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div 
-            className="w-14 h-14 rounded-full backdrop-blur-xs shadow-2xl flex items-center justify-center text-white transform scale-95 group-hover:scale-100 transition-transform duration-300"
-            style={{ backgroundColor: `${getHexColor(brand.accentBg)}E6` }}
-          >
-            <Play className="w-5 h-5 fill-current translate-x-0.5" />
-          </div>
-        </div>
-      )}
-
-      {/* Bottom Profile Info Overlay */}
-      <div className="absolute bottom-5 inset-x-4 flex flex-col gap-2.5 z-20 pointer-events-none">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-white p-0.5 overflow-hidden flex items-center justify-center shrink-0 border border-white/40 shadow-sm">
-            <img src={brand.logo} alt={brand.name} className="w-full h-full object-contain" loading="lazy" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[11px] font-extrabold text-white leading-tight shadow-text">
-              {brand.name}
-            </span>
-            <span className="text-[9px] font-bold text-slate-300 leading-none tracking-wide shadow-text">
-              {handle}
-            </span>
-          </div>
-        </div>
-
-        {isPlayingInline && (
-          <div className="flex items-center justify-between mt-1 pointer-events-auto">
-            <button
-              onClick={handleTogglePlay}
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
-            >
-              {!isPaused ? (
-                <Pause className="w-3.5 h-3.5 fill-current" />
-              ) : (
-                <Play className="w-3.5 h-3.5 fill-current translate-x-0.5" />
-              )}
-            </button>
-
-            <button
-              onClick={handleToggleMute}
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
-              title={isMuted ? (isEs ? "Activar sonido" : "Unmute") : (isEs ? "Silenciar" : "Mute")}
-            >
-              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-            </button>
-          </div>
-        )}
-      </div>
-
-      {isPlayingInline && (
-        <div className="absolute bottom-0 inset-x-0 h-1 bg-white/20 z-25 overflow-hidden">
-          <div
-            className={`h-full bg-gradient-to-r ${brand.themeGradient || 'from-[#4C5A9D] to-[#5AA2D0]'}`}
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      )}
-    </div>
-  );
-};
-
-/**
- * BrandAbout Component
- */
-const BrandAbout = ({ brand, language, onBackToHome }) => {
+const BrandAbout = ({ brand, onBackToHome }) => {
+  const { language } = useLanguage();
   const isEs = language === 'es';
   const data = brand.about;
   const socialConfig = brand.social;
@@ -252,13 +26,10 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [isInlinePlaying, setIsInlinePlaying] = useState(false);
   const [isInlineMaxHovered, setIsInlineMaxHovered] = useState(false);
-  const [isLeftBtnHovered, setIsLeftBtnHovered] = useState(false);
-  const [isRightBtnHovered, setIsRightBtnHovered] = useState(false);
   const cardVideoRef = useRef(null);
   const inlineVideoRef = useRef(null);
 
   const mainImage = 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp';
-
   const mainVideo = 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.mp4';
 
   useEffect(() => {
@@ -299,79 +70,6 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [activeVideo, activeSocialVideo]);
-
-  // Social Video Carousel States & Logic
-  const carouselRef = useRef(null);
-  const scrollRequestRef = useRef(null);
-  const isPausedRef = useRef(false);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [activePlayingIndex, setActivePlayingIndex] = useState(null);
-  const resumeTimeoutRef = useRef(null);
-
-  const [shuffledVideos, setShuffledVideos] = useState([]);
-
-  // Shuffle the video list on mount or when socialConfig changes
-  useEffect(() => {
-    if (socialConfig && socialConfig.videos) {
-      const originalList = socialConfig.videos.map((url, idx) => ({ url, originalIndex: idx }));
-      const shuffled = [...originalList].sort(() => Math.random() - 0.5);
-      const timer = setTimeout(() => {
-        setShuffledVideos(shuffled);
-      }, 0);
-      return () => clearTimeout(timer);
-    }
-  }, [socialConfig]);
-
-  // Pause carousel scrolling on hover, inline video playing, or fullscreen modal
-  useEffect(() => {
-    if (activePlayingIndex !== null || hoveredIndex !== null || activeSocialVideo !== null) {
-      isPausedRef.current = true;
-      if (resumeTimeoutRef.current) {
-        clearTimeout(resumeTimeoutRef.current);
-        resumeTimeoutRef.current = null;
-      }
-    } else {
-      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
-      resumeTimeoutRef.current = setTimeout(() => {
-        isPausedRef.current = false;
-      }, 2500); // waits 2.5 seconds before resuming scroll
-    }
-    return () => {
-      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
-    };
-  }, [hoveredIndex, activePlayingIndex, activeSocialVideo]);
-
-  useEffect(() => {
-    // Infinite smooth scroll loop
-    const animateScroll = () => {
-      if (carouselRef.current && !isPausedRef.current && shuffledVideos.length > 0) {
-        const container = carouselRef.current;
-        const halfWidth = container.scrollWidth / 2;
-        if (halfWidth > 0) {
-          container.scrollLeft += 0.8;
-          if (container.scrollLeft >= halfWidth) {
-            container.scrollLeft -= halfWidth;
-          }
-        }
-      }
-      scrollRequestRef.current = requestAnimationFrame(animateScroll);
-    };
-
-    scrollRequestRef.current = requestAnimationFrame(animateScroll);
-    return () => cancelAnimationFrame(scrollRequestRef.current);
-  }, [shuffledVideos]);
-
-  const handleScrollClick = (direction) => {
-    if (carouselRef.current) {
-      const cardWidth = 304; // card width 280px + gap 24px
-      carouselRef.current.scrollBy({
-        left: direction === 'left' ? -cardWidth : cardWidth,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const doubledVideos = [...shuffledVideos, ...shuffledVideos];
 
   return (
     <section id="about-section" className="py-20 lg:py-28 px-6 sm:px-12 xl:px-20 bg-white w-full border-t border-slate-200/40 relative overflow-hidden">
@@ -580,7 +278,7 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
 
       </div>
 
-      {/* Social Media Feed (Comunidad Jetema) consolidated under Company */}
+      {/* Social Media Feed consolidated under Company */}
       {socialConfig && socialConfig.videos && socialConfig.videos.length > 0 && (
         <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] mx-auto mt-28 lg:mt-36 border-t border-slate-200/50 pt-20 sm:pt-24 flex flex-col gap-14">
           
@@ -653,75 +351,7 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
           </div>
 
           {/* Carousel Container */}
-          <div className="relative w-full group/carousel">
-            
-            <div className="absolute inset-y-0 -left-4 sm:-left-6 flex items-center justify-start z-30 pointer-events-none opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
-              <button
-                onClick={() => handleScrollClick('left')}
-                onMouseEnter={() => setIsLeftBtnHovered(true)}
-                onMouseLeave={() => setIsLeftBtnHovered(false)}
-                className="w-12 h-12 rounded-full bg-white shadow-xl border border-slate-200 flex items-center justify-center text-slate-700 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 pointer-events-auto cursor-pointer shadow-indigo-500/5"
-                style={{
-                  backgroundColor: isLeftBtnHovered ? getHexColor(brand.accentBg) : '#ffffff',
-                  color: isLeftBtnHovered ? '#ffffff' : '#334155'
-                }}
-                title={isEs ? "Anterior" : "Previous"}
-              >
-                <ChevronLeft className="w-5 h-5 -translate-x-0.5" />
-              </button>
-            </div>
-
-            <div className="absolute inset-y-0 -right-4 sm:-right-6 flex items-center justify-end z-30 pointer-events-none opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
-              <button
-                onClick={() => handleScrollClick('right')}
-                onMouseEnter={() => setIsRightBtnHovered(true)}
-                onMouseLeave={() => setIsRightBtnHovered(false)}
-                className="w-12 h-12 rounded-full bg-white shadow-xl border border-slate-200 flex items-center justify-center text-slate-700 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 pointer-events-auto cursor-pointer shadow-indigo-500/5"
-                style={{
-                  backgroundColor: isRightBtnHovered ? getHexColor(brand.accentBg) : '#ffffff',
-                  color: isRightBtnHovered ? '#ffffff' : '#334155'
-                }}
-                title={isEs ? "Siguiente" : "Next"}
-              >
-                <ChevronRight className="w-5 h-5 translate-x-0.5" />
-              </button>
-            </div>
-
-            {/* Horizontal continuous autoplay scroll track (removed snapping and scroll-smooth to allow script auto scroll) */}
-            <div
-              ref={carouselRef}
-              className="flex gap-6 overflow-x-auto py-4 px-1 scrollbar-hide"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {doubledVideos.map((video, idx) => (
-                <ReelCard
-                  key={`${video.url}-${idx}`}
-                  videoUrl={video.url}
-                  index={video.originalIndex}
-                  brand={brand}
-                  language={language}
-                  isHoveredParent={hoveredIndex === idx}
-                  onHoverChange={(hovered) => {
-                    if (hovered) {
-                      setHoveredIndex(idx);
-                    } else {
-                      if (hoveredIndex === idx) setHoveredIndex(null);
-                    }
-                  }}
-                  isPlayingInline={activePlayingIndex === idx}
-                  onPlayingChange={(playing) => {
-                    if (playing) {
-                      setActivePlayingIndex(idx);
-                    } else {
-                      if (activePlayingIndex === idx) setActivePlayingIndex(null);
-                    }
-                  }}
-                  onMaximize={(url) => setActiveSocialVideo(url)}
-                />
-              ))}
-            </div>
-
-          </div>
+          <VideoCarousel brand={brand} onMaximizeVideo={(url) => setActiveSocialVideo(url)} />
 
         </div>
       )}
@@ -754,13 +384,9 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
       {/* Social Vertical Video Lightbox Modal Player */}
       {activeSocialVideo && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xl animate-fade-in transition-all duration-300">
-          {/* Modal Backdrop click handler */}
           <div className="absolute inset-0 cursor-pointer" onClick={() => setActiveSocialVideo(null)} />
           
-          {/* 9:16 Vertical frame container taking up 85vh */}
-          <div className="relative bg-black rounded-[28px] h-[85vh] aspect-[9/16] overflow-hidden shadow-2xl border border-white/10 z-10 animate-scale-up">
-            
-            {/* Close Button */}
+          <div className="relative bg-black rounded-[28px] h-[85vh] aspect-[9/16] overflow-hidden shadow-2xl border border-white/10 z-10 animate-scale-in">
             <button
               onClick={() => setActiveSocialVideo(null)}
               className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 border border-white/10 flex items-center justify-center text-white hover:text-red-400 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer shadow-lg"
@@ -769,7 +395,6 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Vertical Video Element */}
             <video
               src={activeSocialVideo}
               controls

@@ -265,8 +265,8 @@ export const brandsData = {
     description: "Fórmulas de mesoterapia transdérmica premium enfocadas en la regeneración celular activa, el rejuvenecimiento y tratamientos corporales eficaces.",
     bgImage: "/assets/marcas/card-dermclar.webp",
     heroBg: "/assets/marcas/dermclar/dermclar-hero.jpeg",
-    aboutBg: "/assets/marcas/dermclar/dermclar-infomarca.jpeg",
-    ctaBg: "/assets/marcas/dermclar/dermclar-cta.jpeg",
+    aboutBg: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp",
+    ctaBg: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/dermclar-cta.webp",
     accentColor: "text-[#0ea5e9]",
     accentBg: "bg-[#0ea5e9]",
     accentHover: "hover:bg-[#0284c7]",
@@ -820,7 +820,7 @@ export const brandsData = {
     tagline: "Nutrición Natural y Suplementación Científica de Vanguardia",
     description: "Vitaminas, minerales y suplementos nutricionales de formulación norteamericana avanzada. Respaldo biológico para la longevidad y vitalidad.",
     bgImage: "/assets/marcas/card-xtralife.webp",
-    heroBg: "/assets/marcas/xtralife/xtralife-hero.jpeg",
+    heroBg: "/assets/marcas/xtralife/xtralife-cta.jpeg",
     aboutBg: "/assets/marcas/xtralife/xtralife-infomarca.jpeg",
     ctaBg: "/assets/marcas/xtralife/xtralife-cta.jpeg",
     accentColor: "text-emerald-500",
@@ -1498,9 +1498,77 @@ export const brandsData = {
           es: "2 cápsulas diarias",
           en: "2 capsules daily"
         },
-        description: {
-          es: "Aumenta los niveles de energía, mejora la función cerebral, apoya la salud del corazón, y combate los efectos del envejecimiento. Poderoso antioxidante y antiinflamatorio.",
-          en: "Increases energy levels, improves brain function, supports heart health, and combats the effects of aging. Powerful antioxidant and anti-inflammatory."
+        shortDescription: {
+          es: "Resina mineral bioactiva de alta montaña. Complejo rico en ácido fúlvico y más de 80 minerales traza en forma iónica. Diseñado para optimizar la función mitocondrial, potenciar el metabolismo energético, mejorar la claridad cognitiva y modular el equilibrio hormonal sistémico.",
+          en: "Bioactive high-mountain mineral resin. Complex rich in fulvic acid and over 80 ionic trace minerals. Designed to optimize mitochondrial function, boost metabolic energy, enhance cognitive clarity, and modulate systemic hormonal balance."
+        },
+        catalogBenefits: {
+          es: [
+            "Aumenta los niveles de energía, mejora la función cerebral.",
+            "Apoya la salud del corazón.",
+            "Combate los efectos del envejecimiento.",
+            "Poderoso antioxidante y antiinflamatorio."
+          ],
+          en: [
+            "Increases energy levels, improves brain function.",
+            "Supports heart health.",
+            "Combats the effects of aging.",
+            "Powerful antioxidant and anti-inflammatory."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Optimización Bioenergética: Favorece la eficiencia del ciclo de Krebs y la salud mitocondrial, resultando en una producción de energía celular sostenida a lo largo del día.",
+            "Potenciador Cognitivo y Neuroprotector: Mejora la plasticidad neuronal, la memoria y el enfoque mental, ayudando a mitigar la fatiga cognitiva derivada del estrés.",
+            "Modulación Hormonal y Metabólica: Coadyuva en la optimización de los niveles naturales de testosterona y mejora el metabolismo de nutrientes, favoreciendo la composición corporal.",
+            "Acción Antiinflamatoria y Antioxidante: Sus ácidos húmicos y fúlvicos neutralizan el estrés oxidativo sistémico, apoyando la recuperación muscular y la salud articular."
+          ],
+          en: [
+            "Bioenergetic Optimization: Promotes the efficiency of the Krebs cycle and mitochondrial health, resulting in sustained cellular energy production throughout the day.",
+            "Cognitive Enhancer and Neuroprotector: Improves neuronal plasticity, memory, and mental focus, helping to mitigate cognitive fatigue derived from stress.",
+            "Hormonal and Metabolic Modulation: Assists in optimizing natural testosterone levels and improves nutrient metabolism, favoring body composition.",
+            "Anti-inflammatory and Antioxidant Action: Its humic and fulvic acids neutralize systemic oxidative stress, supporting muscle recovery and joint health."
+          ]
+        },
+        ingredients: {
+          es: "Extracto purificado de Shilajit (concentración equivalente a 5000 mg por dosis). Rico en ácido fúlvico y complejo mineral traza iónico. Cápsulas de gelatina, celulosa y estearato de magnesio como agentes de textura.",
+          en: "Purified Shilajit extract (concentration equivalent to 5000 mg per serving). Rich in fulvic acid and ionic trace mineral complex. Gelatin capsules, cellulose, and magnesium stearate as texture agents."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 2 cápsulas diarias con abundante agua. Se recomienda su consumo junto con la primera comida del día para potenciar la absorción de sus minerales iónicos.",
+          en: "Oral administration. Take 2 capsules daily with plenty of water. It is recommended to take it with the first meal of the day to enhance the absorption of its ionic minerals."
+        },
+        precautions: {
+          es: "Uso exclusivo para adultos. No consumir en caso de padecer enfermedades renales, hemocromatosis (exceso de hierro) o gota, sin supervisión médica. Las mujeres embarazadas o en periodo de lactancia deben evitar su uso. Mantener fuera del alcance de los niños.",
+          en: "Exclusive use for adults. Do not consume in case of renal diseases, hemochromatosis (iron overload), or gout, without medical supervision. Pregnant or nursing women should avoid its use. Keep out of reach of children."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/shilajit/xtralife-shilajit-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/shilajit/xtralife-shilajit-1.webp" }
+          ]
         }
       },
       {
@@ -1522,9 +1590,77 @@ export const brandsData = {
           es: "2 cápsulas diarias",
           en: "2 capsules daily"
         },
-        description: {
-          es: "Reduce la fatiga, retrasa del envejecimiento, aumenta la producción de energía en las células, Ayuda a proteger a las células contra el daño oxidativo y a reducir la inflamación en el cuerpo.",
-          en: "Reduces fatigue, delays aging, increases energy production in cells. Helps protect cells against oxidative damage and reduce body inflammation."
+        shortDescription: {
+          es: "Complejo avanzado de longevidad celular. Combina Nicotinamida Adenina Dinucleótido (NAD) con polifenoles de Vitis vinifera para optimizar la eficiencia mitocondrial, proteger la integridad del ADN y potenciar la producción de energía celular (ATP) frente al estrés oxidativo.",
+          en: "Advanced cellular longevity complex. Combines Nicotinamide Adenine Dinucleotide (NAD) with Vitis vinifera polyphenols to optimize mitochondrial efficiency, protect DNA integrity, and boost cellular energy (ATP) production against oxidative stress."
+        },
+        catalogBenefits: {
+          es: [
+            "Reduce la fatiga y retrasa el envejecimiento.",
+            "Aumenta la producción de energía en las células.",
+            "Ayuda a proteger a las células contra el daño oxidativo.",
+            "Ayuda a reducir la inflamación en el cuerpo."
+          ],
+          en: [
+            "Reduces fatigue and delays aging.",
+            "Increases energy production in cells.",
+            "Helps protect cells against oxidative damage.",
+            "Helps reduce body inflammation."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Optimización Bioenergética: Incrementa la eficiencia de la cadena respiratoria mitocondrial, elevando la disponibilidad de ATP para un mayor rendimiento físico y mental sostenido.",
+            "Reparación y Estabilidad Genómica: El NAD+ es un cofactor crítico para las sirtuinas y polimerasas, enzimas responsables de la reparación del ADN y la estabilidad de la cromatina frente a agresiones externas.",
+            "Sinergia Antioxidante (Polifenoles): Los extractos de Vitis vinifera proveen una protección sistémica avanzada contra radicales libres, mitigando la inflamación crónica de bajo grado asociada a la senescencia celular.",
+            "Funcionalidad Metabólica: Favorece la homeostasis de los procesos metabólicos celulares, mejorando la resistencia al agotamiento y el mantenimiento de la vitalidad tisular."
+          ],
+          en: [
+            "Bioenergetic Optimization: Increases the efficiency of the mitochondrial respiratory chain, raising ATP availability for greater sustained physical and mental performance.",
+            "Genomic Repair and Stability: NAD+ is a critical cofactor for sirtuins and polymerases, enzymes responsible for DNA repair and chromatin stability against external stressors.",
+            "Antioxidant Synergy (Polyphenols): Vitis vinifera extracts provide advanced systemic protection against free radicals, mitigating low-grade chronic inflammation associated with cellular senescence.",
+            "Metabolic Functionality: Promotes homeostasis of cellular metabolic processes, improving resistance to exhaustion and the maintenance of tissue vitality."
+          ]
+        },
+        ingredients: {
+          es: "Matriz estandarizada de NAD (Nicotinamida Adenina Dinucleótido - 100 mg) y Extracto de Fruto de Vino Rojo (Vitis vinifera, equivalente a 2000 mg de extracto concentrado 4:1). Producto libre de gluten, lactosa y conservantes artificiales.",
+          en: "Standardized matrix of NAD (Nicotinamide Adenine Dinucleotide - 100 mg) and Red Wine Fruit Extract (Vitis vinifera, equivalent to 2000 mg of 4:1 concentrated extract). Product free of gluten, lactose, and artificial preservatives."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 2 cápsulas diarias, preferentemente por la mañana con el estómago vacío o junto con una comida ligera para optimizar su biodisponibilidad y respuesta metabólica.",
+          en: "Oral administration. Take 2 capsules daily, preferably in the morning on an empty stomach or alongside a light meal to optimize its bioavailability and metabolic response."
+        },
+        precautions: {
+          es: "Uso exclusivo para adultos. Pacientes con patologías oncológicas activas, trastornos de la coagulación o bajo tratamiento médico para enfermedades metabólicas deben realizar una consulta médica estricta antes de iniciar el suplemento. No superar la dosis sugerida.",
+          en: "Exclusive use for adults. Patients with active oncological pathologies, coagulation disorders, or under medical treatment for metabolic diseases must strictly undergo medical consultation before starting the supplement. Do not exceed the suggested dose."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/nad-red-wine/xtralife-nad-red-wine-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/nad-red-wine/xtralife-nad-red-wine-1.webp" }
+          ]
         }
       },
       {
@@ -2186,9 +2322,73 @@ export const brandsData = {
           es: "2 cápsulas diarias",
           en: "2 capsules daily"
         },
-        description: {
-          es: "Ayuda a tener una piel saludable, favorece la regeneración y reparación de células y tejidos en todo el cuerpo humano, desde los huesos hasta los músculos y la piel. Fortalece tu sistema inmunológico, mejora la salud intestinal.",
-          en: "Helps maintain healthy skin, favors cell and tissue regeneration and repair throughout the body, from bones to muscles and skin. Strengthens the immune system, improves intestinal health."
+        shortDescription: {
+          es: "Complejo bioactivo derivado de calostro bovino de alta calidad. Estandarizado para aportar inmunoglobulinas (IgG), factores de crecimiento y nutrientes esenciales que modulan la respuesta inmunitaria, favorecen la regeneración tisular y mantienen la homeostasis de la microbiota intestinal.",
+          en: "Bioactive complex derived from high-quality bovine colostrum. Standardized to provide immunoglobulins (IgG), growth factors, and essential nutrients that modulate immune response, promote tissue regeneration, and maintain intestinal microbiota homeostasis."
+        },
+        catalogBenefits: {
+          es: [
+            "Ayuda a tener una piel saludable, favorece la regeneración y reparación de células y tejidos en todo el cuerpo humano, desde los huesos hasta los músculos y la piel.",
+            "Fortalece tu sistema inmunológico, mejora la salud intestinal."
+          ],
+          en: [
+            "Helps maintain healthy skin, favors cell and tissue regeneration and repair throughout the body, from bones to muscles and skin.",
+            "Strengthens the immune system, improves intestinal health."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Modulación Inmunológica: Aporta anticuerpos y factores de transferencia que fortalecen las defensas del organismo, reduciendo la severidad de procesos infecciosos e inflamatorios.",
+            "Salud y Barrera Intestinal: Promueve el mantenimiento de una microbiota equilibrada y favorece la integridad de la mucosa gastrointestinal, optimizando la absorción de nutrientes.",
+            "Regeneración Tisular: Los factores de crecimiento presentes estimulan la reparación de células y tejidos dañados, siendo un coadyuvante en la recuperación muscular y ósea.",
+            "Acción Antioxidante Sistémica: Combate el estrés oxidativo provocado por radicales libres, favoreciendo un entorno biológico óptimo para el bienestar general."
+          ],
+          en: [
+            "Immunological Modulation: Provides antibodies and transfer factors that strengthen the body's defenses, reducing the severity of infectious and inflammatory processes.",
+            "Intestinal Health and Barrier: Promotes the maintenance of a balanced microbiota and favors the integrity of the gastrointestinal mucosa, optimizing nutrient absorption.",
+            "Tissue Regeneration: The present growth factors stimulate the repair of damaged cells and tissues, acting as an adjuvant in muscle and bone recovery.",
+            "Systemic Antioxidant Action: Combats oxidative stress caused by free radicals, favoring an optimal biological environment for overall well-being."
+          ]
+        },
+        ingredients: {
+          es: "Calostro bovino de alta pureza (estandarizado al 10% de IgG - Inmunoglobulinas). Complejo rico en factores de crecimiento, proteínas, vitaminas y minerales esenciales. Producto libre de gluten y aditivos artificiales.",
+          en: "High-purity bovine colostrum (standardized to 10% IgG - Immunoglobulins). Complex rich in growth factors, proteins, vitamins, and essential minerals. Gluten-free product with no artificial additives."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 2 cápsulas diarias, preferentemente junto con las comidas para facilitar la estabilidad de los componentes bioactivos en el tracto digestivo.",
+          en: "Oral administration. Take 2 capsules daily, preferably alongside meals to facilitate the stability of bioactive components within the digestive tract."
+        },
+        precautions: {
+          es: "Fórmula de origen lácteo. Personas con alergia o hipersensibilidad a la proteína de la leche bovina deben abstenerse de su consumo. Consultar a un médico especialista si padece condiciones autoinmunes o está bajo tratamiento con inmunosupresores.",
+          en: "Formula of dairy origin. Individuals with an allergy or hypersensitivity to bovine milk protein must abstain from consumption. Consult a medical specialist if suffering from autoimmune conditions or undergoing treatment with immunosuppressants."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/colostrum-3-factor/xtralife-colostrum-3-factor-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/colostrum-3-factor/xtralife-colostrum-3-factor-1.webp" }
+          ]
         }
       },
       {
@@ -2210,9 +2410,73 @@ export const brandsData = {
           es: "1 cápsula diaria",
           en: "1 capsule daily"
         },
-        description: {
-          es: "La vitamina K2 ayuda a asegurar que el calcio llegue a donde más se necesita, apoyando una salud cardiovascular óptima. En combinación con la vitamina D3, favorece la absorción de calcio en los huesos.",
-          en: "Vitamin K2 helps ensure calcium gets where it is most needed, supporting optimal cardiovascular health. In combination with Vitamin D3, it favors calcium absorption in bones."
+        shortDescription: {
+          es: "Fórmula trifásica de alta absorción para el soporte estructural del sistema esquelético. Combina Calcio, Vitamina D3 y Vitamina K2 para asegurar una mineralización ósea precisa y proteger la salud cardiovascular, optimizada con pimienta negra para máxima biodisponibilidad.",
+          en: "High-absorption three-phase formula for structural support of the skeletal system. Combines Calcium, Vitamin D3, and Vitamin K2 to ensure precise bone mineralization and protect cardiovascular health, optimized with black pepper for maximum bioavailability."
+        },
+        catalogBenefits: {
+          es: [
+            "La vitamina K2 ayuda a asegurar que el calcio llegue a donde más se necesita, apoyando una salud cardiovascular óptima.",
+            "En combinación con la vitamina D3, favorece la absorción de calcio en los huesos."
+          ],
+          en: [
+            "Vitamin K2 helps ensure calcium gets where it is most needed, supporting optimal cardiovascular health.",
+            "In combination with Vitamin D3, it favors calcium absorption in bones."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Mineralización Ósea dirigida: La Vitamina D3 facilita la absorción intestinal del calcio, mientras que la K2 dirige selectivamente este mineral hacia la matriz ósea, evitando su depósito en arterias.",
+            "Integridad Cardiovascular: Al promover una distribución correcta del calcio, ayuda a prevenir la calcificación vascular, protegiendo la elasticidad y salud del sistema circulatorio.",
+            "Biodisponibilidad Potenciada: Incluye extracto de pimienta negra para incrementar la tasa de absorción intestinal de los nutrientes, garantizando un aprovechamiento sistémico superior.",
+            "Función Neuromuscular e Inmune: La Vitamina D3 contribuye al mantenimiento de la fuerza muscular y provee un soporte esencial para la regulación de la respuesta inmunitaria del organismo."
+          ],
+          en: [
+            "Targeted Bone Mineralization: Vitamin D3 facilitates intestinal calcium absorption, while K2 selectively directs this mineral toward the bone matrix, preventing deposits in arteries.",
+            "Cardiovascular Integrity: By promoting correct calcium distribution, it helps prevent vascular calcification, protecting the elasticity and health of the circulatory system.",
+            "Enhanced Bioavailability: Includes black pepper extract to increase the intestinal absorption rate of nutrients, ensuring superior systemic utilization.",
+            "Neuromuscular and Immune Function: Vitamin D3 contributes to maintaining muscle strength and provides essential support for regulating the body's immune response."
+          ]
+        },
+        ingredients: {
+          es: "Complejo mineral-vitamínico: Citrato de Calcio (210 mg), Vitamina D3 (50 mcg), Vitamina K2-Menaquinona (100 mcg) y extracto de pimienta negra (5 mg) para absorción. Libre de gluten, lactosa y conservantes sintéticos.",
+          en: "Mineral-vitamin complex: Calcium Citrate (210 mg), Vitamin D3 (50 mcg), Vitamin K2-Menaquinone (100 mcg), and black pepper extract (5 mg) for absorption. Gluten-free, lactose-free, and free of synthetic preservatives."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 1 cápsula diaria junto con una comida principal. El contenido de grasas en la comida favorece significativamente la absorción de las vitaminas liposolubles (D3 y K2).",
+          en: "Oral administration. Take 1 capsule daily alongside a main meal. Dietary fat content significantly favors the absorption of fat-soluble vitamins (D3 and K2)."
+        },
+        precautions: {
+          es: "Fórmula de uso adulto. Pacientes anticoagulados (especialmente bajo tratamiento con warfarina u otros antagonistas de la vitamina K) deben consultar obligatoriamente a su médico antes de iniciar el uso de este producto. No superar la dosis diaria establecida.",
+          en: "Formula for adult use. Patients on anticoagulants (especially under treatment with warfarin or other vitamin K antagonists) must strictly consult their physician before starting the use of this product. Do not exceed the established daily dose."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/k2-d3-calcio/xtralife-k2-d3-calcio-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/k2-d3-calcio/xtralife-k2-d3-calcio-1.webp" }
+          ]
         }
       },
       {
@@ -2410,9 +2674,73 @@ export const brandsData = {
           es: "1 cápsula diaria antes de acostarse",
           en: "1 capsule daily before bedtime"
         },
-        description: {
-          es: "Ayuda a aumentar los niveles de serotonina, mejorando los síntomas de depresión, ansiedad y estrés. Mejorar la calidad del sueño y refuerza el sistema inmunológico.",
-          en: "Helps increase serotonin levels, improving symptoms of depression, anxiety, and stress. Improves sleep quality and reinforces the immune system."
+        shortDescription: {
+          es: "Fórmula neuro-reguladora avanzada. Combina 5-HTP derivado de Griffonia simplicifolia con Melatonina para optimizar la síntesis de neurotransmisores clave, favoreciendo la estabilidad emocional, la reducción de la ansiedad y el restablecimiento de los ciclos de sueño reparador.",
+          en: "Advanced neuro-regulatory formula. Combines 5-HTP derived from Griffonia simplicifolia with Melatonin to optimize the synthesis of key neurotransmitters, favoring emotional stability, anxiety reduction, and the restoration of restorative sleep cycles."
+        },
+        catalogBenefits: {
+          es: [
+            "Ayuda a aumentar los niveles de serotonina, mejorando los síntomas de depresión, ansiedad y estrés.",
+            "Mejora la calidad del sueño y refuerza el sistema inmunológico."
+          ],
+          en: [
+            "Helps increase serotonin levels, improving symptoms of depression, anxiety, and stress.",
+            "Improves sleep quality and reinforces the immune system."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Modulación del Estado de Ánimo: El 5-HTP actúa como precursor directo de la serotonina, facilitando el equilibrio neuroquímico necesario para mitigar la fatiga mental y los síntomas de decaimiento.",
+            "Regulación del Ritmo Circadiano: La melatonina ajusta los ciclos de sueño-vigilia, permitiendo una conciliación más rápida y un incremento en la profundidad del descanso nocturno.",
+            "Control Conductual y Apetito: Coadyuva en la gestión del apetito emocional y la ansiedad vinculada al estrés, al favorecer una respuesta neuronal más equilibrada.",
+            "Bienestar Psicológico Integral: La sinergia de sus activos promueve una sensación de calma y bienestar, siendo fundamental en situaciones de alta presión laboral o desajustes emocionales."
+          ],
+          en: [
+            "Mood Modulation: 5-HTP acts as a direct precursor to serotonin, facilitating the neurochemical balance necessary to mitigate mental fatigue and symptoms of low mood.",
+            "Circadian Rhythm Regulation: Melatonin adjusts sleep-wake cycles, allowing for faster sleep onset and increased depth of nocturnal rest.",
+            "Behavioral and Appetite Control: Supports the management of emotional eating and stress-related anxiety by fostering a more balanced neuronal response.",
+            "Comprehensive Psychological Well-being: The synergy of its active ingredients promotes a sense of calmness and well-being, being essential in situations of high work pressure or emotional imbalance."
+          ]
+        },
+        ingredients: {
+          es: "Matriz activa: 5-HTP (L-5 Hidroxitriptófano derivado de Griffonia simplicifolia) - 10 mg; Melatonina - 6 mg. Formulación optimizada para biodisponibilidad neuronal. Libre de gluten, lactosa y colorantes artificiales.",
+          en: "Active matrix: 5-HTP (L-5 Hydroxytryptophan derived from Griffonia simplicifolia) - 10 mg; Melatonin - 6 mg. Formulation optimized for neuronal bioavailability. Free of gluten, lactose, and artificial colors."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 1 cápsula diaria, aproximadamente 30-60 minutos antes de acostarse. No utilizar maquinaria pesada tras su ingesta debido a sus efectos inductores del sueño.",
+          en: "Oral administration. Take 1 capsule daily, approximately 30-60 minutes before bedtime. Do not operate heavy machinery after ingestion due to its sleep-inducing effects."
+        },
+        precautions: {
+          es: "Uso para adultos. No recomendado para personas bajo tratamiento con antidepresivos (ISRS), sedantes o fármacos que afecten el sistema nervioso central sin supervisión médica previa. Mujeres embarazadas o en periodo de lactancia deben consultar a un especialista. No superar la dosis recomendada.",
+          en: "For adult use. Not recommended for individuals under treatment with antidepressants (SSRIs), sedatives, or medications affecting the central nervous system without prior medical supervision. Pregnant or nursing women must consult a specialist. Do not exceed the recommended dose."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/5-htp-melatonina/xtralife-5-htp-melatonina-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/5-htp-melatonina/xtralife-5-htp-melatonina-1.webp" }
+          ]
         }
       },
       {
@@ -2622,9 +2950,77 @@ export const brandsData = {
           es: "2 cápsulas diarias",
           en: "2 capsules daily"
         },
-        description: {
-          es: "Tiene propiedades antioxidantes y antiinflamatorias, ayuda a prevenir el envejecimiento prematuro, protege de enfermedades cardiovasculares, evita enfermedades neurodegenerativas.",
-          en: "Has antioxidant and anti-inflammatory properties, helps prevent premature aging, protects from cardiovascular diseases, and prevents neurodegenerative diseases."
+        shortDescription: {
+          es: "Potente complejo polifenólico de origen vegetal. Formulado para ofrecer una defensa antioxidante avanzada, modular procesos inflamatorios sistémicos y proteger la integridad celular frente al daño oxidativo y el envejecimiento prematuro.",
+          en: "Powerful plant-derived polyphenolic complex. Formulated to provide advanced antioxidant defense, modulate systemic inflammatory processes, and protect cellular integrity against oxidative damage and premature aging."
+        },
+        catalogBenefits: {
+          es: [
+            "Tiene propiedades antioxidantes y antiinflamatorias.",
+            "Ayuda a prevenir el envejecimiento prematuro.",
+            "Protege de enfermedades cardiovasculares.",
+            "Evita enfermedades neurodegenerativas."
+          ],
+          en: [
+            "Has antioxidant and anti-inflammatory properties.",
+            "Helps prevent premature aging.",
+            "Protects from cardiovascular diseases.",
+            "Prevents neurodegenerative diseases."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Protección Celular Avanzada: Neutraliza los radicales libres, reduciendo el daño oxidativo en el ADN y favoreciendo la longevidad celular en tejidos cutáneos y neuronales.",
+            "Modulación Cardiovascular: Favorece la función endotelial y la vasodilatación, contribuyendo a la regulación de los niveles plasmáticos de colesterol y triglicéridos.",
+            "Neuroprotección Sistemática: Actúa como agente protector frente al deterioro cognitivo, promoviendo la salud neuronal mediante la reducción de la neuroinflamación.",
+            "Regulación Metabólica: Contribuye a la mejora del perfil metabólico, apoyando la estabilidad glucémica y la salud endotelial a largo plazo."
+          ],
+          en: [
+            "Advanced Cellular Protection: Neutralizes free radicals, reducing oxidative DNA damage and favoring cellular longevity in cutaneous and neuronal tissues.",
+            "Cardiovascular Modulation: Promotes endothelial function and vasodilation, contributing to the regulation of plasma cholesterol and triglyceride levels.",
+            "Systemic Neuroprotection: Acts as a protective agent against cognitive decline, promoting neuronal health by reducing neuroinflammation.",
+            "Metabolic Regulation: Contributes to improved metabolic profiling, supporting glycemic stability and long-term endothelial health."
+          ]
+        },
+        ingredients: {
+          es: "Fórmula sinérgica basada en Resveratrol (Polygonum cuspidatum) y extracto estandarizado de Vitis vinifera. Suplemento libre de gluten, lactosa y conservantes sintéticos, elaborado bajo estándares de alta pureza.",
+          en: "Synergistic formula based on Resveratrol (Polygonum cuspidatum) and standardized Vitis vinifera extract. Supplement free of gluten, lactose, and synthetic preservatives, manufactured under high-purity standards."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 2 cápsulas diarias, distribuidas preferentemente en dos tomas (mañana y noche) junto con las comidas principales para optimizar su biodisponibilidad sistémica.",
+          en: "Oral administration. Take 2 capsules daily, preferably distributed in two doses (morning and night) alongside main meals to optimize systemic bioavailability."
+        },
+        precautions: {
+          es: "Uso para adultos. Pacientes con trastornos de la coagulación, aquellos bajo tratamiento con fármacos antiagregantes plaquetarios o con antecedentes de condiciones estrógeno-dependientes, deben realizar una consulta médica estricta antes de su consumo. No exceder la dosis recomendada.",
+          en: "For adult use. Patients with coagulation disorders, those under treatment with antiplatelet drugs, or with a history of estrogen-dependent conditions must strictly undergo medical consultation before consumption. Do not exceed the recommended dose."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/resveratrol/xtralife-resveratrol-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/resveratrol/xtralife-resveratrol-1.webp" }
+          ]
         }
       },
       {
@@ -2826,9 +3222,77 @@ export const brandsData = {
           es: "3 cápsulas diarias",
           en: "3 capsules daily"
         },
-        description: {
-          es: "Ayuda en la reducción del estrés y la ansiedad, mejora la calidad del sueño, la salud cardiovascular, cognitiva y digestiva reduce las migrañas y fatiga.",
-          en: "Helps reduce stress and anxiety, improves sleep quality, cardiovascular, cognitive, and digestive health, reduces migraines and fatigue."
+        shortDescription: {
+          es: "Suplemento mineral de alta biodisponibilidad formulado con Glicinato de Magnesio (forma quelada). Diseñado para una absorción celular superior, minimizando la irritación gástrica, mientras apoya la función neurológica, la relajación profunda y la recuperación neuromuscular.",
+          en: "High-bioavailability mineral supplement formulated with Magnesium Glycinate (chelated form). Designed for superior cellular absorption, minimizing gastric irritation, while supporting neurological function, deep relaxation, and neuromuscular recovery."
+        },
+        catalogBenefits: {
+          es: [
+            "Ayuda en la reducción del estrés y la ansiedad.",
+            "Mejora la calidad del sueño.",
+            "Salud cardiovascular, cognitiva y digestiva.",
+            "Reduce las migrañas y fatiga."
+          ],
+          en: [
+            "Helps reduce stress and anxiety.",
+            "Improves sleep quality.",
+            "Cardiovascular, cognitive, and digestive health.",
+            "Reduces migraines and fatigue."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Alta Biodisponibilidad Quelada: Al estar unido a la glicina, este magnesio atraviesa el tracto digestivo sin causar efectos laxantes, asegurando una entrega eficiente a los tejidos.",
+            "Modulación del Sistema Nervioso: Actúa como un potente relajante natural que ayuda a regular los niveles de cortisol, promoviendo la calma y reduciendo la hiperexcitabilidad nerviosa.",
+            "Ciclo del Sueño Reparador: Facilita un descanso profundo al regular los receptores del GABA en el cerebro, fundamentales para la transición al sueño.",
+            "Recuperación y Función Muscular: Apoya la síntesis proteica y la relajación de fibras musculares, siendo altamente efectivo para deportistas y personas con fatiga crónica."
+          ],
+          en: [
+            "High Chelated Bioavailability: Being bound to glycine, this magnesium crosses the digestive tract without causing laxative effects, ensuring efficient delivery to tissues.",
+            "Nervous System Modulation: Acts as a powerful natural relaxant that helps regulate cortisol levels, promoting calmness and reducing nervous hyperexcitability.",
+            "Restorative Sleep Cycle: Facilitates deep rest by regulating GABA receptors in the brain, essential for sleep transition.",
+            "Muscle Recovery and Function: Supports protein synthesis and relaxation of muscle fibers, being highly effective for athletes and individuals with chronic fatigue."
+          ]
+        },
+        ingredients: {
+          es: "Glicinato de Magnesio (Magnesium Glycinate) en forma quelada (2500 mg de complejo por ración). Fórmula de alta tolerancia digestiva, libre de gluten, lactosa y aditivos artificiales.",
+          en: "Magnesium Glycinate in chelated form (2500 mg complex per serving). High digestive tolerance formula, free of gluten, lactose, and artificial additives."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 3 cápsulas diarias, preferentemente distribuidas con las comidas o según indicación profesional, para mantener niveles óptimos de magnesio durante el día.",
+          en: "Oral administration. Take 3 capsules daily, preferably distributed with meals or as professionally indicated, to maintain optimal magnesium levels throughout the day."
+        },
+        precautions: {
+          es: "Uso para adultos. Pacientes con patologías renales severas deben realizar una consulta médica antes de su consumo, ya que la excreción de magnesio depende de la función renal. No superar la dosis diaria recomendada.",
+          en: "For adult use. Patients with severe renal pathologies must undergo medical consultation before consumption, as magnesium excretion depends on renal function. Do not exceed the recommended daily dose."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/glicinato-magnesio/xtralife-glicinato-magnesio-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/glicinato-magnesio/xtralife-glicinato-magnesio-1.webp" }
+          ]
         }
       },
       {
@@ -3214,9 +3678,75 @@ export const brandsData = {
           es: "2 cápsulas diarias",
           en: "2 capsules daily"
         },
-        description: {
-          es: "Proporciona fuerza y flexibilidad a los huesos, las articulaciones, la piel, los tendones, los ligamentos, el cabello, las uñas, los vasos sanguíneos y los ojos, entre otros tejidos en todo el cuerpo. Tiene función antioxidante. Estimula el proceso de regeneración de ligamentos, músculo y tendones.",
-          en: "Provides strength and flexibility to bones, joints, skin, tendons, ligaments, hair, nails, blood vessels, and eyes, among other tissues. Has antioxidant function. Stimulates ligament, muscle, and tendon regeneration."
+        shortDescription: {
+          es: "Fórmula avanzada de colágeno hidrolizado reforzada con Vitamina C. Diseñada para actuar desde el interior, promoviendo la síntesis de proteínas estructurales esenciales para la firmeza de la piel, la salud articular y la integridad de tejidos conectivos.",
+          en: "Advanced hydrolyzed collagen formula reinforced with Vitamin C. Designed to act from within, promoting the synthesis of essential structural proteins for skin firmness, joint health, and the integrity of connective tissues."
+        },
+        catalogBenefits: {
+          es: [
+            "Proporciona fuerza y flexibilidad a los huesos, las articulaciones, la piel, los tendones, los ligamentos, el cabello, las uñas, los vasos sanguíneos y los ojos.",
+            "Tiene función antioxidante.",
+            "Estimula el proceso de regeneración de ligamentos, músculo y tendones."
+          ],
+          en: [
+            "Provides strength and flexibility to bones, joints, skin, tendons, ligaments, hair, nails, blood vessels, and eyes.",
+            "Has antioxidant function.",
+            "Stimulates ligament, muscle, and tendon regeneration."
+          ]
+        },
+        extendedBenefits: {
+          es: [
+            "Revitalización Cutánea: Aumenta la elasticidad y densidad dérmica, reduciendo la visibilidad de líneas de expresión y arrugas mediante una hidratación profunda.",
+            "Soporte Osteoarticular: Contribuye a la regeneración del cartílago y tejido conectivo, mejorando la movilidad, flexibilidad y resistencia de articulaciones y ligamentos ante el estrés mecánico.",
+            "Fortalecimiento de Anexos: Refuerza la estructura de queratina en cabello y uñas, promoviendo su resistencia frente a quiebres y fragilidad.",
+            "Acción sinérgica con Vitamina C: La vitamina C es un cofactor esencial para la hidroxilación de la prolina y lisina, pasos indispensables para una correcta síntesis y estabilización de las fibras de colágeno."
+          ],
+          en: [
+            "Dermal Revitalization: Increases skin elasticity and density, reducing the visibility of fine lines and wrinkles through deep hydration.",
+            "Osteoarticular Support: Contributes to the regeneration of cartilage and connective tissue, improving mobility, flexibility, and resistance of joints and ligaments to mechanical stress.",
+            "Strengthening of Appendages: Reinforces the keratin structure in hair and nails, promoting resistance against breakage and brittleness.",
+            "Synergistic Action with Vitamin C: Vitamin C is an essential cofactor for proline and lysine hydroxylation, indispensable steps for correct collagen fiber synthesis and stabilization."
+          ]
+        },
+        ingredients: {
+          es: "Colágeno Hidrolizado (1000 mg) y Vitamina C de alta pureza. Formulación de alta potencia, libre de gluten, lactosa y conservantes artificiales.",
+          en: "Hydrolyzed Collagen (1000 mg) and high-purity Vitamin C. High-potency formulation, free of gluten, lactose, and artificial preservatives."
+        },
+        usage: {
+          es: "Vía de administración oral. Ingerir 2 cápsulas diarias, preferiblemente repartidas (una en la mañana y otra en la noche) junto con las comidas para optimizar la síntesis proteica.",
+          en: "Oral administration. Take 2 capsules daily, preferably distributed (one in the morning and one at night) alongside meals to optimize protein synthesis."
+        },
+        precautions: {
+          es: "Uso para adultos. Personas con historial de enfermedad renal o bajo dieta estricta de restricción proteica deben consultar a su médico antes de su consumo. No exceder la dosis sugerida.",
+          en: "For adult use. Individuals with a history of renal disease or under a strict protein-restricted diet must consult their physician before consumption. Do not exceed the suggested dose."
+        },
+        sectionsConfig: {
+          extendedBenefits: {
+            theme: "accent",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          ingredients: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          usage: {
+            theme: "normal",
+            collapsible: true,
+            defaultExpanded: false
+          },
+          precautions: {
+            theme: "warning",
+            collapsible: true,
+            defaultExpanded: false
+          }
+        },
+        assets: {
+          coverImage: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/colageno-plus/xtralife-colageno-plus-portada.webp",
+          gallery: [
+            { image: "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/colageno-plus/xtralife-colageno-plus-1.webp" }
+          ]
         }
       },
       {

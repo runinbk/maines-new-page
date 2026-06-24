@@ -168,7 +168,7 @@ const BrandCTA = ({ brand, language }) => {
               brandId === 'jetema'
                 ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/jetema-cta10.webp'
                 : (brandId === 'dermclar'
-                  ? '/assets/marcas/dermclar/dermclar-cta.jpeg'
+                  ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/dermclar-cta.webp'
                   : 'https://placehold.co/600x600/F5FCFA/10B981?text=Xtralife+Science')
             }
             alt="Biotechnology showcase"

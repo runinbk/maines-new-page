@@ -292,11 +292,9 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
   const cardVideoRef = useRef(null);
   const inlineVideoRef = useRef(null);
 
-  const mainImage = brand.id === 'jetema'
+  const mainImage = (brand.id === 'jetema' || brand.id === 'dermclar')
     ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp'
-    : (brand.id === 'dermclar'
-      ? '/assets/marcas/dermclar/dermclar-infomarca.jpeg'
-      : 'https://placehold.co/600x400/ECFDF5/10B981?text=Xtralife+Logistics');
+    : 'https://placehold.co/600x400/ECFDF5/10B981?text=Xtralife+Logistics';
 
   const mainVideo = (brand.id === 'jetema' || brand.id === 'dermclar')
     ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.mp4'

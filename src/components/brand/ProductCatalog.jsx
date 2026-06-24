@@ -339,6 +339,7 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
   // selectedProductId and onSelectProduct are managed by the parent BrandLayout component to align with clean URL paths
   const [showMobileList, setShowMobileList] = useState(false);
   const [expandedSections, setExpandedSections] = useState({});
+  const [isCategoriesExpanded, setIsCategoriesExpanded] = useState(false);
 
   const specsTableRef = useRef(null);
   const [lightboxImage, setLightboxImage] = useState(null);
@@ -481,34 +482,62 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
               />
             </div>
 
-            {/* Horizontal Category Filtering Chips - Desktop Only */}
-            <div className="hidden lg:block space-y-2.5">
-              <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
-                {isEs ? 'Filtrar por Categoría' : 'Filter by Category'}
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {brand.categories.map((cat) => {
-                  const isSelected = selectedCategory === cat.id;
-                  const catLabel = isEs ? cat.label.es : cat.label.en;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setSelectedCategory(cat.id)}
-                      className={`px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide transition-all duration-300 focus:outline-none cursor-pointer ${
-                        isSelected
-                          ? 'text-white shadow-sm'
-                          : 'bg-white text-slate-400 border border-slate-200/50 hover:bg-slate-50 hover:text-slate-600'
-                      }`}
-                      style={{
-                        backgroundColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined,
-                        borderColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined
-                      }}
-                    >
-                      {catLabel}
-                    </button>
-                  );
-                })}
-              </div>
+            {/* Collapsible Category Filtering - Desktop Only */}
+            <div className="hidden lg:block border-b border-slate-200/40 pb-4 mb-2">
+              <button
+                onClick={() => setIsCategoriesExpanded(!isCategoriesExpanded)}
+                className="w-full flex items-center justify-between py-1 focus:outline-none cursor-pointer group text-left"
+              >
+                <div className="space-y-0.5">
+                  <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
+                    {isEs ? 'Filtrar por Categoría' : 'Filter by Category'}
+                  </span>
+                  {!isCategoriesExpanded && (
+                    <span className="text-xs font-bold block transition-all animate-fade-in truncate max-w-[210px]" style={{ color: resolveBrandColor(brand.accentBg) }}>
+                      {isEs 
+                        ? (brand.categories.find(c => c.id === selectedCategory)?.label.es || 'Todos') 
+                        : (brand.categories.find(c => c.id === selectedCategory)?.label.en || 'All')
+                      }
+                    </span>
+                  )}
+                </div>
+                <ChevronDown 
+                  className={`w-4.5 h-4.5 text-slate-400 group-hover:text-slate-600 transition-transform duration-300 ${
+                    isCategoriesExpanded ? 'rotate-180' : ''
+                  }`} 
+                />
+              </button>
+              
+              <motion.div
+                initial={false}
+                animate={{ height: isCategoriesExpanded ? 'auto' : 0, opacity: isCategoriesExpanded ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="flex flex-wrap gap-1.5 pt-3">
+                  {brand.categories.map((cat) => {
+                    const isSelected = selectedCategory === cat.id;
+                    const catLabel = isEs ? cat.label.es : cat.label.en;
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => setSelectedCategory(cat.id)}
+                        className={`px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide transition-all duration-300 focus:outline-none cursor-pointer ${
+                          isSelected
+                            ? 'text-white shadow-sm'
+                            : 'bg-white text-slate-400 border border-slate-200/50 hover:bg-slate-50 hover:text-slate-600'
+                        }`}
+                        style={{
+                          backgroundColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined,
+                          borderColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined
+                        }}
+                      >
+                        {catLabel}
+                      </button>
+                    );
+                  })}
+                </div>
+              </motion.div>
             </div>
 
             {/* Product Selector Header - Mobile Only */}

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../LanguageContext';
-import { motion } from 'framer-motion';
 import { 
   ShieldCheck, Award, Zap, HeartHandshake, Compass, Eye, Calendar
 } from 'lucide-react';
@@ -54,8 +53,25 @@ const CountingNumber = ({ value, duration = 2000, className }) => {
 
 // Progress Bar Item Component for growth metrics
 const ProgressBarItem = ({ year, label, value, percentage }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" ref={ref}>
       <div className="flex justify-between items-end gap-4">
         <div className="text-left">
           <span className="text-base sm:text-lg font-bold text-primary-dark block font-display leading-tight">
@@ -75,12 +91,9 @@ const ProgressBarItem = ({ year, label, value, percentage }) => {
       
       {/* Progress Bar Track */}
       <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden border border-slate-200/50">
-        <motion.div 
-          initial={{ width: 0 }}
-          whileInView={{ width: `${percentage}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="h-full bg-gradient-to-r from-accent to-primary rounded-full shadow-[0_0_8px_rgba(14,165,233,0.25)]"
+        <div 
+          className="h-full bg-gradient-to-r from-accent to-primary rounded-full shadow-[0_0_8px_rgba(14,165,233,0.25)] transition-all duration-[1500ms] ease-out"
+          style={{ width: isVisible ? `${percentage}%` : '0%' }}
         />
       </div>
     </div>
@@ -92,6 +105,25 @@ const AboutSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [preloadMode, setPreloadMode] = useState('metadata');
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -80px 0px'
+    });
+
+    const elements = document.querySelectorAll('.reveal-on-scroll');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   const titleText = t('about.title');
   const [mainTitle, subtitle] = titleText.includes('|') 
@@ -110,12 +142,8 @@ const AboutSection = () => {
       <div className="mx-auto w-full px-2 sm:px-8 relative z-10 max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] space-y-24 sm:space-y-36">
         
         {/* COMPONENT 1: NOSOTROS - CORPORATE INTRO */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center reveal-on-scroll reveal-hidden"
         >
           {/* Left Column: Typography Hierarchy */}
           <div className="lg:col-span-7 space-y-6 text-left">
@@ -195,18 +223,14 @@ const AboutSection = () => {
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* COMPONENT 2: NOSOTROS - HISTORY & PURPOSE */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Timeline block */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 space-y-6 text-left"
+          <div 
+            className="lg:col-span-6 space-y-6 text-left reveal-on-scroll reveal-hidden"
           >
             <div className="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider">
               <Calendar className="w-4 h-4 text-accent" />
@@ -226,15 +250,11 @@ const AboutSection = () => {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Purpose Cards */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6"
+          <div 
+            className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6 reveal-on-scroll reveal-hidden"
           >
             {/* Mission Card */}
             <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-100 flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white relative overflow-hidden group">
@@ -268,33 +288,25 @@ const AboutSection = () => {
               </div>
             </div>
 
-          </motion.div>
+          </div>
         </div>
 
         {/* COMPONENT 3: NOSOTROS - VALUE PILLARS */}
         <div className="space-y-12 sm:space-y-16">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center space-y-3"
+          <div 
+            className="text-center space-y-3 reveal-on-scroll reveal-hidden"
           >
             <span className="text-xs font-bold tracking-widest text-accent uppercase block">
               {t('about.pillarsTitle')}
             </span>
             <div className="w-12 h-1 bg-accent/30 mx-auto rounded-full" />
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10">
             
             {/* Pillar 1: Garantía y Compromiso - Wide (col-span-7) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="md:col-span-7 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50"
+            <div 
+              className="md:col-span-7 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50 reveal-on-scroll reveal-hidden"
             >
               {/* Background Image with Zoom */}
               <img 
@@ -320,15 +332,11 @@ const AboutSection = () => {
                   {t('about.pillar1Desc')}
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Pillar 2: Experiencia Profesional - Narrow (col-span-5) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="md:col-span-5 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50"
+            <div 
+              className="md:col-span-5 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50 reveal-on-scroll reveal-hidden"
             >
               {/* Background Image with Zoom */}
               <img 
@@ -354,15 +362,11 @@ const AboutSection = () => {
                   {t('about.pillar2Desc')}
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Pillar 3: Proximidad y Eficiencia - Narrow (col-span-5) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="md:col-span-5 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50"
+            <div 
+              className="md:col-span-5 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50 reveal-on-scroll reveal-hidden"
             >
               {/* Background Image with Zoom */}
               <img 
@@ -388,15 +392,11 @@ const AboutSection = () => {
                   {t('about.pillar3Desc')}
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Pillar 4: Asesoramiento y Soluciones Personalizadas - Wide (col-span-7) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="md:col-span-7 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50"
+            <div 
+              className="md:col-span-7 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50 reveal-on-scroll reveal-hidden"
             >
               {/* Background Image with Zoom */}
               <img 
@@ -422,18 +422,14 @@ const AboutSection = () => {
                   {t('about.pillar4Desc')}
                 </p>
               </div>
-            </motion.div>
+            </div>
 
           </div>
         </div>
 
         {/* COMPONENT 4: NOSOTROS - GROWTH METRICS */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="glass-card rounded-[36px] border border-slate-100 bg-gradient-to-br from-slate-50 via-white to-slate-50/50 p-8 sm:p-12 lg:p-16 shadow-xl relative overflow-hidden"
+        <div 
+          className="glass-card rounded-[36px] border border-slate-100 bg-gradient-to-br from-slate-50 via-white to-slate-50/50 p-8 sm:p-12 lg:p-16 shadow-xl relative overflow-hidden reveal-on-scroll reveal-hidden"
         >
           {/* Inner Glowing Decorative Circuit Accent */}
           <div className="absolute inset-0 pointer-events-none opacity-5">
@@ -512,7 +508,7 @@ const AboutSection = () => {
             </div>
 
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

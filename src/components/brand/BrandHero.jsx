@@ -91,10 +91,15 @@ const BrandHero = ({ brand, language }) => {
   return (
     <section id="brand-hero-section" className="relative min-h-[100dvh] pt-20 pb-4 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 px-4 xs:px-6 sm:px-12 lg:px-20">
       {/* Background Image with overlay for legibility */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-95" 
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
+      <picture className="absolute inset-0 z-0 select-none pointer-events-none w-full h-full">
+        {/* On mobile screens (< 768px), we load a blank small 1x1 spacer to save bandwidth */}
+        <source media="(max-width: 767px)" srcSet="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E" />
+        <img 
+          src={heroBg} 
+          alt="" 
+          className="w-full h-full object-cover object-center opacity-95"
+        />
+      </picture>
       {/* Soft overlay blanca semitransparente */}
       <div className="absolute inset-0 z-0 bg-white/70 backdrop-blur-[1px]" />
 

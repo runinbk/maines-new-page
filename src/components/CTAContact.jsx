@@ -1,62 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, ArrowLeft, Send, 
   X, Check, AlertCircle, Play
 } from 'lucide-react';
+import { InstagramIcon, FacebookIcon, LinkedinIcon } from './common/Icons';
 
 // Ingest Supabase brand video links
 import brandVideos from '../data/brandVideos.json';
 
-const InstagramIcon = (props) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    {...props}
-  >
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </svg>
-);
 
-const FacebookIcon = (props) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    {...props}
-  >
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-  </svg>
-);
-
-const LinkedinIcon = (props) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    {...props}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
 
 const CTAContact = () => {
   const { t, language } = useLanguage();
@@ -459,23 +412,16 @@ const CTAContact = () => {
       </div>
 
       {/* DYNAMIC CONTACT EMAIL FORM MODAL */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 sm:p-6 bg-slate-950/50 backdrop-blur-md"
-            onClick={() => setIsModalOpen(false)}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 sm:p-6 bg-slate-950/50 backdrop-blur-md animate-fade-in"
+          onClick={() => setIsModalOpen(false)}
+        >
+          {/* Modal Box */}
+          <div 
+            className="w-full max-w-[480px] glass-card rounded-[32px] border border-white/60 p-6 sm:p-8 text-left shadow-2xl relative bg-white animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Box */}
-            <motion.div 
-              initial={{ scale: 0.95, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 15 }}
-              className="w-full max-w-[480px] glass-card rounded-[32px] border border-white/60 p-6 sm:p-8 text-left shadow-2xl relative bg-white"
-              onClick={(e) => e.stopPropagation()}
-            >
               {/* Close Button */}
               <button 
                 onClick={() => setIsModalOpen(false)}
@@ -602,30 +548,21 @@ const CTAContact = () => {
                 </form>
               )}
 
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
 
       {/* DYNAMIC VIDEO MODAL PLAYER WITH AMBIENT GLOW */}
-      <AnimatePresence>
-        {isVideoModalOpen && activeVideoUrl && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 overflow-hidden flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-xl"
-            onClick={() => setIsVideoModalOpen(false)}
+      {isVideoModalOpen && activeVideoUrl && (
+        <div 
+          className="fixed inset-0 z-50 overflow-hidden flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-xl animate-fade-in"
+          onClick={() => setIsVideoModalOpen(false)}
+        >
+          {/* Main Active Vertical Video Frame */}
+          <div 
+            className="w-full max-w-[340px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl relative bg-black border border-white/10 z-20 animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Main Active Vertical Video Frame */}
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="w-full max-w-[340px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl relative bg-black border border-white/10 z-20"
-              onClick={(e) => e.stopPropagation()}
-            >
               {/* Close Button */}
               <button 
                 onClick={() => setIsVideoModalOpen(false)}
@@ -642,20 +579,19 @@ const CTAContact = () => {
                 playsInline
                 className="w-full h-full object-cover z-20 relative"
               />
-            </motion.div>
+          </div>
 
-            {/* Ambient Blurred Video Background Glow */}
-            <video
-              src={activeVideoUrl}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover scale-150 blur-3xl opacity-40 z-10 pointer-events-none"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+          {/* Ambient Blurred Video Background Glow */}
+          <video
+            src={activeVideoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover scale-150 blur-3xl opacity-40 z-10 pointer-events-none"
+          />
+        </div>
+      )}
     </section>
   );
 };

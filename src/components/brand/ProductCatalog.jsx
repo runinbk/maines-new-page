@@ -1,5 +1,4 @@
 import { useState, useMemo, useRef, useEffect, memo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
   Send, 
@@ -508,36 +507,37 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                 />
               </button>
               
-              <motion.div
-                initial={false}
-                animate={{ height: isCategoriesExpanded ? 'auto' : 0, opacity: isCategoriesExpanded ? 1 : 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
+              <div
+                className={`grid transition-all duration-300 ease-out overflow-hidden ${
+                  isCategoriesExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                }`}
               >
-                <div className="flex flex-wrap gap-1.5 pt-3">
-                  {brand.categories.map((cat) => {
-                    const isSelected = selectedCategory === cat.id;
-                    const catLabel = isEs ? cat.label.es : cat.label.en;
-                    return (
-                      <button
-                        key={cat.id}
-                        onClick={() => setSelectedCategory(cat.id)}
-                        className={`px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide transition-all duration-300 focus:outline-none cursor-pointer ${
-                          isSelected
-                            ? 'text-white shadow-sm'
-                            : 'bg-white text-slate-400 border border-slate-200/50 hover:bg-slate-50 hover:text-slate-600'
-                        }`}
-                        style={{
-                          backgroundColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined,
-                          borderColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined
-                        }}
-                      >
-                        {catLabel}
-                      </button>
-                    );
-                  })}
+                <div className="overflow-hidden">
+                  <div className="flex flex-wrap gap-1.5 pt-3">
+                    {brand.categories.map((cat) => {
+                      const isSelected = selectedCategory === cat.id;
+                      const catLabel = isEs ? cat.label.es : cat.label.en;
+                      return (
+                        <button
+                          key={cat.id}
+                          onClick={() => setSelectedCategory(cat.id)}
+                          className={`px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide transition-all duration-300 focus:outline-none cursor-pointer ${
+                            isSelected
+                              ? 'text-white shadow-sm'
+                              : 'bg-white text-slate-400 border border-slate-200/50 hover:bg-slate-50 hover:text-slate-600'
+                          }`}
+                          style={{
+                            backgroundColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined,
+                            borderColor: isSelected ? resolveBrandColor(brand.accentBg) : undefined
+                          }}
+                        >
+                          {catLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Product Selector Header - Mobile Only */}
@@ -611,64 +611,59 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
               </div>
             )}
 
-            {/* Expanded Vertical Selection Drawer - Mobile Only */}
-            <AnimatePresence>
-              {showMobileList && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="lg:hidden overflow-hidden flex flex-col gap-1.5 max-h-[300px] overflow-y-auto no-scrollbar border-b border-slate-200/55 pb-4"
-                >
-                  {filteredProducts.map((prod) => {
-                    const isSelected = selectedProductId === prod.id;
-                    const brandColor = resolveBrandColor(brand.accentBg);
-                    return (
-                      <button
-                        key={prod.id}
-                        onClick={() => {
-                          onSelectProduct(prod.id);
-                          setShowMobileList(false);
-                        }}
-                        className={`w-full p-2.5 rounded-xl border flex items-center gap-3 text-left transition-all duration-300 focus:outline-none cursor-pointer ${
-                          isSelected ? 'bg-slate-50/50 shadow-sm border-slate-200/60' : 'bg-white/40 border-transparent hover:bg-slate-50/30'
-                        }`}
-                        style={{
-                          borderLeftWidth: isSelected ? '3.5px' : '1px',
-                          borderLeftColor: isSelected ? brandColor : undefined
-                        }}
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-white border border-slate-100 flex items-center justify-center p-1 shrink-0">
-                          <ImageWithSkeleton src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain" />
+            <div
+              className={`lg:hidden overflow-hidden transition-all duration-300 ease-out grid ${
+                showMobileList ? 'grid-rows-[1fr] opacity-100 border-b border-slate-200/55 pb-4' : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+              }`}
+            >
+              <div className="overflow-hidden flex flex-col gap-1.5 max-h-[300px] overflow-y-auto no-scrollbar">
+                {filteredProducts.map((prod) => {
+                  const isSelected = selectedProductId === prod.id;
+                  const brandColor = resolveBrandColor(brand.accentBg);
+                  return (
+                    <button
+                      key={prod.id}
+                      onClick={() => {
+                        onSelectProduct(prod.id);
+                        setShowMobileList(false);
+                      }}
+                      className={`w-full p-2.5 rounded-xl border flex items-center gap-3 text-left transition-all duration-300 focus:outline-none cursor-pointer ${
+                        isSelected ? 'bg-slate-50/50 shadow-sm border-slate-200/60' : 'bg-white/40 border-transparent hover:bg-slate-50/30'
+                      }`}
+                      style={{
+                        borderLeftWidth: isSelected ? '3.5px' : '1px',
+                        borderLeftColor: isSelected ? brandColor : undefined
+                      }}
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-white border border-slate-100 flex items-center justify-center p-1 shrink-0">
+                        <ImageWithSkeleton src={getProductThumbnail(prod)} alt={prod.name} className="max-w-full max-h-full object-contain" />
+                      </div>
+                      <div className="min-w-0 flex-grow">
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          <h4 className="text-[12px] font-extrabold text-[#0D1F3B] truncate leading-tight">
+                            {prod.displayName}
+                          </h4>
+                          {prod.isNew && (
+                            <span className="bg-[#0ea5e9] text-white text-[8px] font-extrabold px-1.5 py-0.5 uppercase rounded-xs tracking-wider shrink-0">
+                              {isEs ? 'Nuevo' : 'New'}
+                            </span>
+                          )}
                         </div>
-                        <div className="min-w-0 flex-grow">
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <h4 className="text-[12px] font-extrabold text-[#0D1F3B] truncate leading-tight">
-                              {prod.displayName}
-                            </h4>
-                            {prod.isNew && (
-                              <span className="bg-[#0ea5e9] text-white text-[8px] font-extrabold px-1.5 py-0.5 uppercase rounded-xs tracking-wider shrink-0">
-                                {isEs ? 'Nuevo' : 'New'}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-[9px] font-bold text-slate-400 truncate uppercase mt-0.5">
-                            {prod.descriptor}
-                          </p>
-                        </div>
-                        <ChevronRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
-                      </button>
-                    );
-                  })}
-                  {filteredProducts.length === 0 && (
-                    <div className="text-slate-400 text-xs font-semibold py-4 w-full text-center">
-                      {isEs ? 'Sin productos coincidentes' : 'No matching products'}
-                    </div>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                        <p className="text-[9px] font-bold text-slate-400 truncate uppercase mt-0.5">
+                          {prod.descriptor}
+                        </p>
+                      </div>
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
+                    </button>
+                  );
+                })}
+                {filteredProducts.length === 0 && (
+                  <div className="text-slate-400 text-xs font-semibold py-4 w-full text-center">
+                    {isEs ? 'Sin productos coincidentes' : 'No matching products'}
+                  </div>
+                )}
+              </div>
+            </div>
 
             {/* Scrollable Sidebar Product List - Desktop Only */}
             <div className="hidden lg:flex flex-col gap-2 max-h-[500px] lg:max-h-[620px] overflow-y-auto no-scrollbar pr-1">
@@ -743,16 +738,11 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
 
           {/* RIGHT COLUMN: Detail View (9/12 width on desktop) */}
           <div className="lg:col-span-9 h-full">
-            <AnimatePresence mode="wait">
-              {activeProduct ? (
-                <motion.div
-                  key={activeProduct.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.35 }}
-                  className="w-full bg-white rounded-[32px] border border-slate-200/50 shadow-sm flex flex-col gap-0 overflow-hidden"
-                >
+            {activeProduct ? (
+              <div
+                key={activeProduct.id}
+                className="w-full bg-white rounded-[32px] border border-slate-200/50 shadow-sm flex flex-col gap-0 overflow-hidden animate-fade-in-up"
+              >
                   {/* 1. Header Banner */}
                   <div 
                     className={`relative w-full rounded-t-[32px] rounded-b-none overflow-hidden pt-20 pb-4 sm:pt-28 sm:pb-6 px-4 sm:px-12 flex flex-row items-end justify-between gap-4 shadow-md bg-cover bg-center ${!hasCover ? `bg-gradient-to-r ${brand.themeGradient}` : ''}`}
@@ -1241,16 +1231,17 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                             )}
 
                             {config.collapsible ? (
-                              <motion.div
-                                initial={false}
-                                animate={{ height: isExpanded ? 'auto' : 0 }}
-                                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                                className="overflow-hidden"
+                              <div
+                                className={`grid transition-all duration-300 ease-out overflow-hidden ${
+                                  isExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                                }`}
                               >
-                                <div className="pt-3 pb-1">
-                                  {renderSectionContent(key, content)}
+                                <div className="overflow-hidden">
+                                  <div className="pt-3 pb-1">
+                                    {renderSectionContent(key, content)}
+                                  </div>
                                 </div>
-                              </motion.div>
+                              </div>
                             ) : (
                               <div className="pt-3 pb-1">
                                 {renderSectionContent(key, content)}
@@ -1458,9 +1449,9 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                   )}
 
                   </div>
-                </motion.div>
+                </div>
               ) : (
-                <div className="w-full h-full min-h-[400px] bg-white rounded-[32px] border border-slate-200/50 flex flex-col items-center justify-center p-10 text-center gap-3">
+                <div className="w-full h-full min-h-[400px] bg-white rounded-[32px] border border-slate-200/50 flex flex-col items-center justify-center p-10 text-center gap-3 animate-fade-in">
                   <span className="text-3xl text-slate-300">📦</span>
                   <h4 className="text-sm font-extrabold uppercase tracking-wider text-slate-600">
                     {isEs ? 'Seleccione un Producto' : 'Select a Product'}
@@ -1472,7 +1463,6 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
                   </p>
                 </div>
               )}
-            </AnimatePresence>
           </div>
 
         </div>
@@ -1480,22 +1470,20 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
       </div>
 
       {/* Lightbox / Zoom Modal */}
-      <AnimatePresence>
-        {lightboxImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightboxImage(null)}
-            className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 cursor-zoom-out"
-          >
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] bg-slate-950/95 border border-slate-800/60 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center cursor-default aspect-square"
-            >
+      <div
+        onClick={() => setLightboxImage(null)}
+        className={`fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 cursor-zoom-out transition-all duration-300 ${
+          lightboxImage ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className={`relative w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] bg-slate-950/95 border border-slate-800/60 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center cursor-default aspect-square transition-all duration-300 ${
+            lightboxImage ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+          }`}
+        >
+          {lightboxImage && (
+            <>
               {activeVideo ? (
                 <video
                   src={activeVideo}
@@ -1514,10 +1502,10 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
               >
                 <X className="w-5 h-5" />
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </>
+          )}
+        </div>
+      </div>
     </section>
   );
 };

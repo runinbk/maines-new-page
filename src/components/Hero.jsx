@@ -18,7 +18,7 @@ const Hero = () => {
     <section id="hero" className="relative min-h-[100dvh] pt-24 pb-8 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 px-8 sm:px-12 lg:px-20">
       {/* Background Image with soft opacity and clinical blend */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.28]" 
+        className="absolute inset-0 z-0 bg-cover bg-left lg:bg-center bg-no-repeat opacity-[0.28]" 
         style={{ backgroundImage: `url(${heroBgImage})` }}
       />
       {/* Soft gradient and white color overlay to attenuate and blur */}

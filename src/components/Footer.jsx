@@ -4,7 +4,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { 
   MapPin, Phone, Mail, ArrowUp 
 } from 'lucide-react';
-import { handleLinkClick } from '../utils/navigation';
+import { Link } from 'react-router-dom';
 
 const InstagramIcon = (props) => (
   <svg 
@@ -74,9 +74,8 @@ const Footer = () => {
           
           {/* Col 1: Brand Info */}
           <div className="md:col-span-5 text-left space-y-4">
-            <a 
-              href="/" 
-              onClick={(e) => handleLinkClick(e, null, 'top')} 
+            <Link 
+              to="/" 
               className="inline-block"
             >
               {/* White overlay filter for brand svg inside dark backgrounds */}
@@ -85,7 +84,7 @@ const Footer = () => {
                 alt="Maines Logo" 
                 className="h-9 w-auto brightness-0 invert" 
               />
-            </a>
+            </Link>
             <p className="text-xs sm:text-sm text-slate-400 max-w-xs leading-relaxed font-medium">
               {t('footer.tagline')}
             </p>
@@ -119,40 +118,36 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm font-semibold">
               <li>
-                <a 
-                  href="/nosotros" 
-                  onClick={(e) => handleLinkClick(e, null, 'about')}
+                <Link 
+                  to="/nosotros" 
                   className="hover:text-white transition-colors duration-200"
                 >
                   {t('nav.about')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="/jetema" 
-                  onClick={(e) => handleLinkClick(e, 'jetema', 'top')}
+                <Link 
+                  to="/jetema" 
                   className="hover:text-white transition-colors duration-200"
                 >
                   Jetema
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="/dermclar" 
-                  onClick={(e) => handleLinkClick(e, 'dermclar', 'top')}
+                <Link 
+                  to="/dermclar" 
                   className="hover:text-white transition-colors duration-200"
                 >
                   Dermclar
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="/xtralife" 
-                  onClick={(e) => handleLinkClick(e, 'xtralife', 'top')}
+                <Link 
+                  to="/xtralife" 
                   className="hover:text-white transition-colors duration-200"
                 >
                   Xtralife
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

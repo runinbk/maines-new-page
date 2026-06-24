@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { Menu, X, Globe, ArrowRight } from 'lucide-react';
-import { handleLinkClick } from '../utils/navigation';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { language, toggleLanguage, t } = useLanguage();
@@ -31,10 +31,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: t('nav.home'), href: '/', brandId: null, sectionName: 'top' },
-    { name: t('nav.brands'), href: '/ecosistema', brandId: null, sectionName: 'ecosystem' },
-    { name: t('nav.about'), href: '/nosotros', brandId: null, sectionName: 'about' },
-    { name: t('nav.contact'), href: '/contacto', brandId: null, sectionName: 'contact' }
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.brands'), href: '/ecosistema' },
+    { name: t('nav.about'), href: '/nosotros' },
+    { name: t('nav.contact'), href: '/contacto' }
   ];
 
   return (
@@ -50,9 +50,8 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a 
-            href="/" 
-            onClick={(e) => handleLinkClick(e, null, 'top')}
+          <Link 
+            to="/" 
             className="flex items-center gap-2 group focus:outline-none"
           >
             <img 
@@ -61,19 +60,18 @@ const Navbar = () => {
               className="h-[22px] w-auto sm:h-[28px] transition-transform duration-300 group-hover:scale-105" 
               style={{ filter: 'drop-shadow(0 2px 4px rgba(13, 31, 59, 0.08))' }}
             />
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-8 2xl:gap-12">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.brandId, link.sectionName)}
+                to={link.href}
                 className="text-sm 2xl:text-base font-medium text-primary-dark/80 hover:text-accent transition-colors duration-200 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -82,7 +80,7 @@ const Navbar = () => {
             {/* Language Selector */}
             <button 
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-primary-dark/80 hover:text-accent hover:bg-slate-100/50 transition-all duration-200"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-primary-dark/80 hover:text-accent hover:bg-slate-100/50 transition-all duration-200 cursor-pointer"
               title="Toggle Language"
             >
               <Globe className="w-3.5 h-3.5" />
@@ -90,14 +88,13 @@ const Navbar = () => {
             </button>
 
             {/* CTA Button */}
-            <a 
-              href="/contacto"
-              onClick={(e) => handleLinkClick(e, null, 'contact')}
+            <Link 
+              to="/contacto"
               className="inline-flex items-center gap-1 px-5 py-2 2xl:px-7 2xl:py-3 rounded-full text-xs 2xl:text-sm font-bold text-white bg-gradient-to-r from-accent to-[#0284c7] hover:from-accent-light hover:to-accent shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 transform hover:scale-105 active:scale-95 group"
             >
               <span>{t('nav.cta')}</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Actions */}
@@ -105,7 +102,7 @@ const Navbar = () => {
             {/* Language Toggle for Mobile */}
             <button 
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold text-primary-dark/85 bg-white/60 hover:text-accent transition-all duration-200"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold text-primary-dark/85 bg-white/60 hover:text-accent transition-all duration-200 cursor-pointer"
             >
               <Globe className="w-3.5 h-3.5" />
               <span>{language.toUpperCase()}</span>
@@ -114,7 +111,7 @@ const Navbar = () => {
             {/* Menu Hamburger */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-1.5 rounded-full bg-white/60 text-primary-dark hover:bg-white/80 hover:text-accent transition-all duration-200"
+              className="p-1.5 rounded-full bg-white/60 text-primary-dark hover:bg-white/80 hover:text-accent transition-all duration-200 cursor-pointer"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -141,7 +138,7 @@ const Navbar = () => {
               <img src="/assets/logo-maines.svg" alt="Maines Logo" className="h-[22px] w-auto" />
               <button 
                 onClick={() => setIsOpen(false)}
-                className="p-1 rounded-full bg-slate-100 hover:bg-slate-200 text-primary-dark transition-colors duration-200"
+                className="p-1 rounded-full bg-slate-100 hover:bg-slate-200 text-primary-dark transition-colors duration-200 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -149,33 +146,27 @@ const Navbar = () => {
 
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
-                  onClick={(e) => {
-                    setIsOpen(false);
-                    handleLinkClick(e, link.brandId, link.sectionName);
-                  }}
+                  to={link.href}
+                  onClick={() => setIsOpen(false)}
                   className="text-base font-semibold text-primary-dark/85 hover:text-accent transition-colors duration-200 py-2 border-b border-slate-100"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
 
           <div className="flex flex-col gap-3">
-            <a 
-              href="/contacto"
-              onClick={(e) => {
-                setIsOpen(false);
-                handleLinkClick(e, null, 'contact');
-              }}
+            <Link 
+              to="/contacto"
+              onClick={() => setIsOpen(false)}
               className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full text-sm font-bold text-white bg-gradient-to-r from-accent to-[#0284c7] hover:from-accent-light hover:to-accent shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 transform hover:scale-[1.02] active:scale-95"
             >
               <span>{t('nav.cta')}</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

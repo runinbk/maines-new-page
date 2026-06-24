@@ -1,5 +1,5 @@
 import { ArrowUp, Globe } from 'lucide-react';
-import { handleLinkClick, getBasePath } from '../../utils/navigation';
+import { Link } from 'react-router-dom';
 
 // Custom lightweight SVG Icons to prevent ESM build mismatches
 const InstagramIcon = ({ className }) => (
@@ -43,7 +43,7 @@ const LinkedInIcon = ({ className }) => (
  * @param {string} props.language - Active language ('es' | 'en')
  * @param {function} props.onBackToHome - Trigger action to return back to home portal
  */
-const BrandFooter = ({ brand, language, onBackToHome }) => {
+const BrandFooter = ({ brand, language }) => {
   const isEs = language === 'es';
   const brandId = brand.id;
 
@@ -136,27 +136,24 @@ const BrandFooter = ({ brand, language, onBackToHome }) => {
                 {isEs ? 'Explorar' : 'Explore'}
               </h5>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-white/70">
-                <a 
-                  href={`${getBasePath().replace(/\/$/, '')}/${brandId}/catalogo`} 
-                  onClick={(e) => handleLinkClick(e, brandId, 'catalog-section')}
+                <Link 
+                  to={`/${brandId}/catalogo`} 
                   className="hover:text-white transition-colors duration-200"
                 >
                   {isEs ? 'Catálogo de Productos' : 'Product Catalog'}
-                </a>
-                <a 
-                  href={`${getBasePath().replace(/\/$/, '')}/${brandId}/empresa`} 
-                  onClick={(e) => handleLinkClick(e, brandId, 'about-section')}
+                </Link>
+                <Link 
+                  to={`/${brandId}/empresa`} 
                   className="hover:text-white transition-colors duration-200"
                 >
                   {isEs ? 'Respaldo Institucional' : 'Institutional Support'}
-                </a>
-                <a 
-                  href={`${getBasePath().replace(/\/$/, '')}/${brandId}/contacto`} 
-                  onClick={(e) => handleLinkClick(e, brandId, 'cta-section')}
+                </Link>
+                <Link 
+                  to={`/${brandId}/contacto`} 
                   className="hover:text-white transition-colors duration-200"
                 >
                   {isEs ? 'Contacto Comercial' : 'Commercial Inquiry'}
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -166,12 +163,12 @@ const BrandFooter = ({ brand, language, onBackToHome }) => {
                 {isEs ? 'Portal' : 'Portal'}
               </h5>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-white/70">
-                <button 
-                  onClick={onBackToHome}
+                <Link 
+                  to="/"
                   className="text-left hover:text-white transition-colors duration-200 focus:outline-none cursor-pointer"
                 >
                   {isEs ? 'Página Principal' : 'Main Portal'}
-                </button>
+                </Link>
                 <a href="https://maines-srl.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 flex items-center gap-1">
                   <span>Maines S.R.L.</span>
                   <Globe className="w-3 h-3 text-white/50" />
@@ -185,27 +182,24 @@ const BrandFooter = ({ brand, language, onBackToHome }) => {
                 {isEs ? 'Nuestras Marcas' : 'Our Brands'}
               </h5>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-white/70">
-                <a 
-                  href={`${getBasePath().replace(/\/$/, '')}/jetema`} 
-                  onClick={(e) => handleLinkClick(e, 'jetema', 'top')}
+                <Link 
+                  to="/jetema" 
                   className={`hover:text-white transition-colors duration-200 ${brandId === 'jetema' ? 'text-white font-bold' : ''}`}
                 >
                   Jetema
-                </a>
-                <a 
-                  href={`${getBasePath().replace(/\/$/, '')}/dermclar`} 
-                  onClick={(e) => handleLinkClick(e, 'dermclar', 'top')}
+                </Link>
+                <Link 
+                  to="/dermclar" 
                   className={`hover:text-white transition-colors duration-200 ${brandId === 'dermclar' ? 'text-white font-bold' : ''}`}
                 >
                   Dermclar
-                </a>
-                <a 
-                  href={`${getBasePath().replace(/\/$/, '')}/xtralife`} 
-                  onClick={(e) => handleLinkClick(e, 'xtralife', 'top')}
+                </Link>
+                <Link 
+                  to="/xtralife" 
                   className={`hover:text-white transition-colors duration-200 ${brandId === 'xtralife' ? 'text-white font-bold' : ''}`}
                 >
                   Xtralife
-                </a>
+                </Link>
               </div>
             </div>
 

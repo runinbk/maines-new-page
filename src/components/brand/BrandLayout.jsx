@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { brandsData } from '../../data/productsData';
 import BrandHero from './BrandHero';
 import ProductCatalog from './ProductCatalog';
@@ -6,29 +7,23 @@ import BrandAbout from './BrandAbout';
 import BrandCTA from './BrandCTA';
 import BrandFooter from './BrandFooter';
 import { Globe, ArrowLeft, Send } from 'lucide-react';
-import { handleLinkClick, replaceURLForSection, parseCurrentRoute } from '../../utils/navigation';
+import { getProductIdFromSlug, getProductSlug } from '../../utils/navigation';
+import { useLanguage } from '../../LanguageContext';
 
 /**
  * BrandLayout Master Component
- * @param {Object} props
- * @param {string} props.brandId - Active brand identifier ('jetema' | 'dermclar' | 'xtralife')
- * @param {string} props.language - Active language state ('es' | 'en')
- * @param {function} props.onBackToHome - Routing trigger callback to return to the home brand portal
- * @param {function} props.onToggleLanguage - Callback to switch translation languages
+ * Integrates React Router for clean subpaths and lazy state synchronization
  */
-const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
+const BrandLayout = () => {
+  const navigate = useNavigate();
+  const { brandId, productSlug } = useParams();
+  const { language, toggleLanguage } = useLanguage();
   const isEs = language === 'es';
   
   // 1. Resolve brand configuration or fail gracefully
   const brand = brandsData[brandId];
 
-  // Resolve brand-specific hover styling dynamically to match capsule navbar design
-  const hoverClass = brandId === 'jetema' 
-    ? 'hover:text-[#4C5A9D] after:bg-[#4C5A9D]' 
-    : brandId === 'dermclar' 
-      ? 'hover:text-[#0ea5e9] after:bg-[#0ea5e9]' 
-      : 'hover:text-emerald-500 after:bg-emerald-500';
-
+  // Resolve brand-specific hover text coloring for navigation items
   const brandHoverText = brandId === 'jetema' 
     ? 'hover:text-[#4C5A9D]' 
     : brandId === 'dermclar' 
@@ -39,47 +34,20 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
-  // Initialize selected product state from URL if present
-  const initialRoute = parseCurrentRoute();
-  const [selectedProductId, setSelectedProductId] = useState(initialRoute.productId || '');
+  // Active section tracked locally for the scroll spy highlighting
+  const [activeSection, setActiveSection] = useState('top');
 
-  // Keep a ref of selectedProductId to avoid recreation of IntersectionObserver
-  const selectedProductRef = useRef(selectedProductId);
-  useEffect(() => {
-    selectedProductRef.current = selectedProductId;
-  }, [selectedProductId]);
-
-  // Synchronize state if URL changes externally (e.g. browser back/forward buttons)
-  useEffect(() => {
-    const handlePopState = () => {
-      const route = parseCurrentRoute();
-      if (route.brandId === brandId) {
-        setSelectedProductId(route.productId || '');
-      }
-    };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, [brandId]);
+  // Translate URL slug to productId
+  const selectedProductId = productSlug ? getProductIdFromSlug(productSlug, brandId) : '';
 
   const handleSelectProduct = (prodId) => {
-    setSelectedProductId(prodId);
-    replaceURLForSection(brandId, 'catalog-section', prodId);
-  };
-
-  // Initial load scroll resolving for subpage sections (e.g. direct load of /jetema/catalogo/toxta-100u)
-  useEffect(() => {
-    const route = parseCurrentRoute();
-    if (route.sectionId && route.sectionId !== 'top') {
-      setTimeout(() => {
-        const target = document.getElementById(route.sectionId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 300);
+    if (prodId) {
+      const slug = getProductSlug(prodId, brandId);
+      navigate(`/${brandId}/catalogo/${slug}`);
     } else {
-      window.scrollTo(0, 0);
+      navigate(`/${brandId}/catalogo`);
     }
-  }, [brandId]);
+  };
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -102,75 +70,59 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Brand Subpage Scroll-Spy URL Updater
+  // Brand Subpage Local Scroll-Spy (Highlights Nav tabs based on current viewport)
   useEffect(() => {
-    let observer = null;
-    let topObserver = null;
+    const sections = [
+      { id: 'catalog-section', key: 'catalog' },
+      { id: 'about-section', key: 'about' },
+      { id: 'cta-section', key: 'cta' }
+    ];
 
-    const timer = setTimeout(() => {
-      const sections = [
-        { id: 'catalog-section', pathKey: 'catalog-section' },
-        { id: 'about-section', pathKey: 'about-section' },
-        { id: 'cta-section', pathKey: 'cta-section' }
-      ];
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    };
 
-      const observerOptions = {
-        root: null,
-        rootMargin: '-50% 0px -50% 0px', // Active when section occupies center line of viewport
-        threshold: 0
-      };
-
-      const handleIntersect = (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            const match = sections.find(s => s.id === id);
-            if (match) {
-              const prodId = match.pathKey === 'catalog-section' ? selectedProductRef.current : null;
-              replaceURLForSection(brandId, match.pathKey, prodId);
-            }
-          }
-        });
-      };
-
-      observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-      sections.forEach(s => {
-        const el = document.getElementById(s.id);
-        if (el) {
-          observer.observe(el);
+    const handleIntersect = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
         }
       });
+    };
 
-      // Observe BrandHero element to reset URL back to `/brandname` when at the top
-      const heroEl = document.getElementById('brand-hero-section');
-      const handleTopIntersect = (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            replaceURLForSection(brandId, 'top');
-          }
-        });
-      };
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
 
-      topObserver = new IntersectionObserver(handleTopIntersect, {
-        root: null,
-        rootMargin: '0px 0px -80% 0px',
-        threshold: 0
-      });
-
-      if (heroEl) {
-        topObserver.observe(heroEl);
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) {
+        observer.observe(el);
       }
-    }, 300);
+    });
+
+    const heroEl = document.getElementById('brand-hero-section');
+    const handleTopIntersect = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection('top');
+        }
+      });
+    };
+
+    const topObserver = new IntersectionObserver(handleTopIntersect, {
+      root: null,
+      rootMargin: '0px 0px -80% 0px',
+      threshold: 0
+    });
+
+    if (heroEl) {
+      topObserver.observe(heroEl);
+    }
 
     return () => {
-      clearTimeout(timer);
-      if (observer) {
-        observer.disconnect();
-      }
-      if (topObserver) {
-        topObserver.disconnect();
-      }
+      observer.disconnect();
+      topObserver.disconnect();
     };
   }, [brandId]);
 
@@ -178,15 +130,31 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
     return (
       <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white gap-4">
         <p className="text-sm font-semibold">Brand "{brandId}" not found in database.</p>
-        <button 
-          onClick={onBackToHome}
+        <Link 
+          to="/"
           className="px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/15 rounded-full text-xs font-bold transition-all"
         >
           Return to Portal
-        </button>
+        </Link>
       </div>
     );
   }
+
+  // Helper to generate styles for active nav links
+  const getNavClass = (sectionId) => {
+    const isCurrent = activeSection === sectionId;
+    const activeColorClass = brandId === 'jetema' 
+      ? 'text-[#4C5A9D] after:w-full after:bg-[#4C5A9D]' 
+      : brandId === 'dermclar' 
+        ? 'text-[#0ea5e9] after:w-full after:bg-[#0ea5e9]' 
+        : 'text-emerald-500 after:w-full after:bg-emerald-500';
+
+    return `text-sm 2xl:text-base font-medium transition-colors duration-200 relative py-1 focus:outline-none cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:transition-all after:duration-300 ${
+      isCurrent 
+        ? activeColorClass 
+        : 'text-primary-dark/80 after:w-0 hover:after:w-full hover:text-accent after:bg-accent'
+    }`;
+  };
 
   return (
     <div className="relative min-h-screen bg-lightBg w-full flex flex-col justify-between overflow-x-hidden text-primary-dark">
@@ -205,56 +173,56 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
           <div className="flex items-center justify-between">
             {/* Left side: Back to Portal button + brand mini logo */}
             <div className="flex items-center gap-1.5 sm:gap-4">
-              <button
-                onClick={onBackToHome}
+              <Link
+                to="/"
                 className={`flex items-center gap-0.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold text-primary-dark/80 hover:bg-slate-100/50 transition-all duration-200 focus:outline-none cursor-pointer ${brandHoverText}`}
                 title={isEs ? "Volver al inicio" : "Back to Home"}
               >
                 <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden xxs:inline">{isEs ? "Volver" : "Back"}</span>
-              </button>
+              </Link>
 
               <div className="h-4 w-px bg-slate-200 hidden xxs:block" />
 
-              {/* Dynamic Brand Logo */}
-              <div 
-                onClick={(e) => handleLinkClick(e, brandId, 'top')}
+              {/* Dynamic Brand Logo (scrolled back to top section) */}
+              <Link 
+                to={`/${brandId}`}
                 className="flex items-center gap-1.5 group cursor-pointer"
               >
                 <img 
                   src={brand.logo} 
                   alt={brand.name} 
                   className="h-[15px] xs:h-[18px] sm:h-[24px] md:h-[28px] w-auto object-contain filter drop-shadow-sm brightness-100" 
-                  />
-              </div>
+                />
+              </Link>
             </div>
 
             {/* Center: Anchor Links specific to subpage */}
             <nav className="hidden md:flex items-center gap-8 2xl:gap-12">
-              <button
-                onClick={(e) => handleLinkClick(e, brandId, 'catalog-section')}
-                className={`text-sm 2xl:text-base font-medium text-primary-dark/80 transition-colors duration-200 relative py-1 focus:outline-none cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full ${hoverClass}`}
+              <Link
+                to={`/${brandId}/catalogo`}
+                className={getNavClass('catalog-section')}
               >
                 {isEs ? "Productos" : "Products"}
-              </button>
-              <button
-                onClick={(e) => handleLinkClick(e, brandId, 'about-section')}
-                className={`text-sm 2xl:text-base font-medium text-primary-dark/80 transition-colors duration-200 relative py-1 focus:outline-none cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full ${hoverClass}`}
+              </Link>
+              <Link
+                to={`/${brandId}/empresa`}
+                className={getNavClass('about-section')}
               >
                 {isEs ? "Empresa" : "Company"}
-              </button>
-              <button
-                onClick={(e) => handleLinkClick(e, brandId, 'cta-section')}
-                className={`text-sm 2xl:text-base font-medium text-primary-dark/80 transition-colors duration-200 relative py-1 focus:outline-none cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300 hover:after:w-full ${hoverClass}`}
+              </Link>
+              <Link
+                to={`/${brandId}/contacto`}
+                className={getNavClass('cta-section')}
               >
                 {isEs ? "Contacto" : "Contact"}
-              </button>
+              </Link>
             </nav>
 
             {/* Right Side: Toggle language + High-Conversion Call Button */}
             <div className="flex items-center gap-1.5 sm:gap-3">
               <button 
-                onClick={onToggleLanguage}
+                onClick={toggleLanguage}
                 className={`flex items-center gap-0.5 px-2 py-1 rounded-full text-[10px] sm:text-xs font-bold text-primary-dark/80 hover:bg-slate-100/50 transition-all duration-200 focus:outline-none ${brandHoverText}`}
                 title="Toggle Language"
               >
@@ -262,13 +230,13 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
                 <span>{language.toUpperCase()}</span>
               </button>
 
-              <button
-                onClick={(e) => handleLinkClick(e, brandId, 'cta-section')}
+              <Link
+                to={`/${brandId}/contacto`}
                 className={`inline-flex items-center gap-1 px-3 py-1.5 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-extrabold text-white shadow-md transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer ${brand.accentBg} ${brand.accentHover}`}
               >
                 <span>{isEs ? "Contactar" : "Contact Us"}</span>
                 <Send className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              </button>
+              </Link>
             </div>
 
           </div>
@@ -290,14 +258,14 @@ const BrandLayout = ({ brandId, language, onBackToHome, onToggleLanguage }) => {
         />
 
         {/* Corporate distributor/logistics background */}
-        <BrandAbout brand={brand} language={language} onBackToHome={onBackToHome} />
+        <BrandAbout brand={brand} language={language} onBackToHome={() => navigate('/')} />
 
         {/* B2B clinical pipeline lead collector */}
         <BrandCTA brand={brand} language={language} />
       </main>
 
       {/* 3. Shared regulatory regulatory disclaimers footer */}
-      <BrandFooter brand={brand} language={language} onBackToHome={onBackToHome} />
+      <BrandFooter brand={brand} language={language} onBackToHome={() => navigate('/')} />
 
     </div>
   );

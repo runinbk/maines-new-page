@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import heroBgImage from '../../assets/hero-sections/hero-backgront1.webp';
-import { handleNavClick } from '../utils/navigation';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -95,23 +95,21 @@ const Hero = () => {
                 loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <a 
-                href="#ecosystem"
-                onClick={(e) => handleNavClick(e, 'ecosystem')}
+              <Link 
+                to="/ecosistema"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 2xl:px-10 2xl:py-4.5 rounded-full text-xs sm:text-sm 2xl:text-base font-bold text-white bg-gradient-to-r from-accent to-[#0284c7] hover:from-accent-light hover:to-accent shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/35 transition-all duration-300 transform hover:scale-105 active:scale-95 group cursor-pointer w-full sm:w-auto text-center"
               >
                 <span>{t('hero.cta')}</span>
                 <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
+              </Link>
 
-              <a 
-                href="#about"
-                onClick={(e) => handleNavClick(e, 'about')}
+              <Link 
+                to="/nosotros"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 2xl:px-10 2xl:py-4.5 rounded-full text-xs sm:text-sm 2xl:text-base font-bold text-primary border border-primary/20 bg-white/40 hover:bg-slate-100/50 backdrop-blur-sm transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto text-center"
               >
                 <span>{t('nav.about')}</span>
                 <ArrowDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary/70" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -140,8 +138,8 @@ const Hero = () => {
       </div>
 
       {/* Downward Scroll indicator */}
-      <button 
-        onClick={(e) => handleNavClick(e, 'ecosystem')}
+      <Link 
+        to="/ecosistema"
         aria-label="Scroll to brands"
         className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 transition-colors duration-300 focus:outline-none"
       >
@@ -149,7 +147,7 @@ const Hero = () => {
           {t('nav.brands') || 'Marcas'}
         </span>
         <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-      </button>
+      </Link>
     </section>
   );
 };

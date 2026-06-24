@@ -3,7 +3,7 @@ import { ArrowDown } from 'lucide-react';
 import jetemaHeroBg from '../../../assets/jetema/hero.webp';
 import dermclarHeroBg from '../../../assets/marcas/dermclar/dermclar-hero.jpeg';
 import xtralifeHeroBg from '../../../assets/marcas/xtralife/xtralife-hero.jpeg';
-import { handleLinkClick } from '../../utils/navigation';
+import { Link } from 'react-router-dom';
 
 /**
  * BrandHero Component
@@ -167,8 +167,8 @@ const BrandHero = ({ brand, language }) => {
                 loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <button 
-                onClick={(e) => handleLinkClick(e, brand.id, 'catalog-section')}
+              <Link 
+                to={`/${brand.id}/catalogo`}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 2xl:px-10 2xl:py-4.5 rounded-full text-xs sm:text-sm 2xl:text-base font-bold text-white transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer shadow-lg"
                 style={{
                   backgroundColor: primaryColorHex,
@@ -178,7 +178,7 @@ const BrandHero = ({ brand, language }) => {
                 onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = primaryColorHex; }}
               >
                 <span>{ctaText}</span>
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -204,8 +204,8 @@ const BrandHero = ({ brand, language }) => {
       </div>
 
       {/* Downward Scroll indicator */}
-      <button 
-        onClick={(e) => handleLinkClick(e, brand.id, 'catalog-section')}
+      <Link 
+        to={`/${brand.id}/catalogo`}
         aria-label="Scroll to catalog"
         className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 transition-colors duration-300 focus:outline-none"
       >
@@ -213,7 +213,7 @@ const BrandHero = ({ brand, language }) => {
           {isEs ? 'Catálogo' : 'Catalog'}
         </span>
         <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-      </button>
+      </Link>
     </section>
   );
 };

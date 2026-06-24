@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
-import { handleLinkClick, getBasePath } from '../utils/navigation';
+import { Link } from 'react-router-dom';
 
 const BrandCard = ({ brand, index }) => {
-  const handleCardClick = (e) => {
-    handleLinkClick(e, brand.key, 'top');
-  };
-
   // Card-specific rotation directions on portal-hover:
   // Card 0: rotates left (-rotate-[1.5deg])
   // Card 1: stays centered
@@ -36,10 +32,9 @@ const BrandCard = ({ brand, index }) => {
       className={`flex flex-col items-center justify-center relative select-none transition-all duration-600 cubic-bezier(0.16, 1, 0.3, 1) group-hover/portal:opacity-40 hover:!opacity-100 hover:scale-[1.04] ${hoverRotateClass} group/card`}
     >
       {/* Blob & Aura Container */}
-      <a 
-        href={`${getBasePath().replace(/\/$/, '')}/${brand.key}`}
+      <Link 
+        to={`/${brand.key}`}
         className="relative liquid-glass-size flex items-center justify-center cursor-pointer"
-        onClick={handleCardClick}
       >
         {/* Aura light behind blob (Refracts light through the glass, optimized CSS transition) */}
         <div 
@@ -126,7 +121,7 @@ const BrandCard = ({ brand, index }) => {
             <div className="absolute rounded-[50%] bg-gradient-to-b from-white/70 to-transparent -rotate-[15deg] blur-[0.5px]" style={{ top: '6%', left: '12%', width: '50%', height: '20%' }} />
           </div>
         )}
-      </a>
+      </Link>
     </div>
   );
 };

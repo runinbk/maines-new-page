@@ -63,6 +63,23 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
 
   // 1. Data Normalization & Flattening Engine
   const normalizedProducts = useMemo(() => {
+    const resolveTranslation = (val) => {
+      if (!val) return '';
+      if (typeof val === 'object') {
+        return val[isEs ? 'es' : 'en'] || val['es'] || '';
+      }
+      return val;
+    };
+
+    const resolveArrayTranslation = (val) => {
+      if (!val) return [];
+      if (Array.isArray(val)) return val;
+      if (typeof val === 'object') {
+        return val[isEs ? 'es' : 'en'] || val['es'] || [];
+      }
+      return [];
+    };
+
     if (brandId === 'jetema') {
       const list = [];
       jetemaProducts.forEach(prod => {
@@ -127,26 +144,37 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
           ];
         }
 
+        const subtitleResolved = resolveTranslation(prod.subtitle);
+        const sloganResolved = resolveTranslation(prod.slogan);
+        const descResolved = resolveTranslation(prod.description);
+        const specsResolved = resolveArrayTranslation(prod.specifications);
+        const appAreasResolved = resolveArrayTranslation(prod.applicationAreas);
+        const tagsResolved = resolveArrayTranslation(prod.tags);
+        const clinicalBenefitsResolved = resolveArrayTranslation(prod.clinicalBenefits);
+
         list.push({
           id: prod.id,
           name: prod.name,
           displayName: prod.name.replace('®', ''),
-          subtitle: prod.subtitle,
-          descriptor: prod.subtitle,
+          subtitle: subtitleResolved,
+          descriptor: subtitleResolved,
           category: categoryMapped,
           categoryLabel: categoryLabel,
-          tags: prod.tags || [],
-          slogan: prod.slogan,
-          description: prod.description,
-          composition: prod.description,
+          tags: tagsResolved,
+          slogan: sloganResolved,
+          description: descResolved,
+          composition: descResolved,
           coverImage: prod.assets?.coverImage || getPlaceholdImg(prod.name.split(' ')[0], 'jetema', 600, 600),
           gallery: gallery,
           certBadge: certBadge,
-          specifications: prod.specifications || [],
-          technicalSpecs: (prod.specifications && prod.specifications.length > 0) ? prod.specifications : null,
-          applicationAreas: prod.applicationAreas || [],
-          regulatory: prod.regulatory || null,
-          clinicalBenefits: prod.clinicalBenefits || null,
+          specifications: specsResolved,
+          technicalSpecs: (specsResolved && specsResolved.length > 0) ? specsResolved : null,
+          applicationAreas: appAreasResolved,
+          regulatory: prod.regulatory ? {
+            ...prod.regulatory,
+            label: resolveTranslation(prod.regulatory.label)
+          } : null,
+          clinicalBenefits: clinicalBenefitsResolved,
           clinicalInsights: clinicalInsights,
           isNew: prod.isNew || false
         });
@@ -154,13 +182,6 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
       return list;
     } else {
       const rawProducts = brand.products || [];
-      const resolveTranslation = (val) => {
-        if (!val) return '';
-        if (typeof val === 'object') {
-          return val[isEs ? 'es' : 'en'] || val['es'] || '';
-        }
-        return val;
-      };
 
       return rawProducts.map(prod => {
         const catLabel = prod.categoryLabel?.[isEs ? 'es' : 'en'] || prod.category;
@@ -168,6 +189,12 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
         const descResolved = resolveTranslation(prod.description) || resolveTranslation(prod.composition);
         const presResolved = resolveTranslation(prod.presentation);
         const doseResolved = resolveTranslation(prod.dosage);
+        const tagsResolved = resolveArrayTranslation(prod.tags);
+        const appZonesResolved = resolveArrayTranslation(prod.applicationZones);
+        const specsResolved = resolveArrayTranslation(prod.specifications);
+        const activeIngredientsListResolved = resolveArrayTranslation(prod.activeIngredientsList);
+        const usageIndicationsResolved = resolveArrayTranslation(prod.usageIndications);
+        const contraindicationsResolved = resolveArrayTranslation(prod.contraindications);
 
         let gallery;
         if (prod.assets?.gallery) {
@@ -188,7 +215,7 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
           gallery = [mainImage];
         }
 
-        const resolvedSubtitle = prod.subtitle || prod.descriptor || catLabel;
+        const resolvedSubtitle = resolveTranslation(prod.subtitle) || resolveTranslation(prod.descriptor) || catLabel;
 
         return {
           id: prod.id,
@@ -198,22 +225,25 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
           descriptor: resolvedSubtitle,
           category: prod.category,
           categoryLabel: prod.categoryLabel || { es: catLabel, en: catLabel },
-          tags: prod.tags || (brandId === 'xtralife' ? (presResolved ? [presResolved, doseResolved] : []) : prod.applicationZones) || (prod.category === 'facial' ? ["DMAE", "Ácido Hialurónico", "Firmeza"] : prod.category === 'capilar' ? ["Biotina", "Pantenol", "Anticaída"] : prod.category === 'immunity' ? ["Refuerzo Inmune", "Vitamina C", "Antioxidante"] : ["Colágeno", "Articulaciones", "MSM"]),
-          slogan: prod.slogan || (brandId === 'xtralife' ? (isEs ? "Nutrición premium para tu salud diaria." : "Premium nutrition for your daily health.") : (isEs ? "Fórmula científica de máxima eficacia biológica." : "Scientific formula with maximum biological efficacy.")),
+          tags: tagsResolved.length > 0 ? tagsResolved : (brandId === 'xtralife' ? (presResolved ? [presResolved, doseResolved] : []) : appZonesResolved) || (prod.category === 'facial' ? ["DMAE", "Ácido Hialurónico", "Firmeza"] : prod.category === 'capilar' ? ["Biotina", "Pantenol", "Anticaída"] : prod.category === 'immunity' ? ["Refuerzo Inmune", "Vitamina C", "Antioxidante"] : ["Colágeno", "Articulaciones", "MSM"]),
+          slogan: resolveTranslation(prod.slogan) || (brandId === 'xtralife' ? (isEs ? "Nutrición premium para tu salud diaria." : "Premium nutrition for your daily health.") : (isEs ? "Fórmula científica de máxima eficacia biológica." : "Scientific formula with maximum biological efficacy.")),
           description: descResolved,
           composition: descResolved,
           coverImage: mainImage,
           gallery: gallery,
           certBadge: prod.certBadge || (brandId === 'xtralife' ? "MADE IN USA • GMP" : "AGEMED Approved"),
-          specifications: prod.specifications || [],
-          technicalSpecs: (prod.specifications && prod.specifications.length > 0) ? prod.specifications : null,
-          activeIngredients: prod.activeIngredients || null,
-          applicationZones: prod.applicationZones || null,
+          specifications: specsResolved,
+          technicalSpecs: (specsResolved && specsResolved.length > 0) ? specsResolved : null,
+          activeIngredients: resolveTranslation(prod.activeIngredients) || null,
+          applicationZones: appZonesResolved,
           presentation: presResolved || null,
           dosage: doseResolved || null,
           shortDescription: resolveTranslation(prod.shortDescription) || null,
-          applicationAreas: prod.applicationAreas || prod.applicationZones || (prod.specifications && prod.specifications.find(s => s.label.includes('Method') || s.label.includes('Protocol') || s.label.includes('Recommendation') || s.label.includes('Indication'))?.value.split(', ')) || [isEs ? "Aplicación Clínica Transdérmica" : "Clinical Transdermal Application"],
-          regulatory: prod.regulatory || null,
+          applicationAreas: resolveArrayTranslation(prod.applicationAreas).length > 0 ? resolveArrayTranslation(prod.applicationAreas) : appZonesResolved || (specsResolved && specsResolved.find(s => s.label.includes('Method') || s.label.includes('Protocol') || s.label.includes('Recommendation') || s.label.includes('Indication'))?.value.split(', ')) || [isEs ? "Aplicación Clínica Transdérmica" : "Clinical Transdermal Application"],
+          regulatory: prod.regulatory ? {
+            ...prod.regulatory,
+            label: resolveTranslation(prod.regulatory.label)
+          } : null,
           benefits: prod.benefits ? (Array.isArray(prod.benefits) ? prod.benefits : (prod.benefits[isEs ? 'es' : 'en'] || prod.benefits['es'] || [])) : null,
           catalogBenefits: prod.catalogBenefits ? (prod.catalogBenefits[isEs ? 'es' : 'en'] || prod.catalogBenefits['es'] || []) : null,
           extendedBenefits: prod.extendedBenefits ? (prod.extendedBenefits[isEs ? 'es' : 'en'] || prod.extendedBenefits['es'] || []) : null,
@@ -222,10 +252,10 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
           precautions: resolveTranslation(prod.precautions) || null,
           whyChoose: resolveTranslation(prod.whyChoose) || null,
           sectionsConfig: prod.sectionsConfig || null,
-          activeIngredientsDetails: prod.activeIngredientsDetails || null,
-          activeIngredientsList: prod.activeIngredientsList || null,
-          usageIndications: prod.usageIndications || null,
-          contraindications: prod.contraindications || null,
+          activeIngredientsDetails: resolveTranslation(prod.activeIngredientsDetails) || null,
+          activeIngredientsList: activeIngredientsListResolved.length > 0 ? activeIngredientsListResolved : null,
+          usageIndications: usageIndicationsResolved.length > 0 ? usageIndicationsResolved : null,
+          contraindications: contraindicationsResolved.length > 0 ? contraindicationsResolved : null,
           clinicalInsights: prod.clinicalInsights || [
             { title: isEs ? "Ficha Técnica Nutricional" : "Nutritional Fact Sheet", label: isEs ? "Ver Info" : "View Info", type: "dossier" }
           ],

@@ -73,8 +73,14 @@ const BrandCTA = ({ brand, language }) => {
   };
 
   // WhatsApp pre-filled text
-  const waSuffix = brandId === 'jetema' ? 'en mi práctica profesional.' : (brandId === 'dermclar' ? 'en mi clínica médica.' : 'en mi farmacia.');
-  const waText = encodeURIComponent(`Hola Maines SRL, deseo incorporar el portafolio de ${brand.name} ${waSuffix}`);
+  const waSuffix = isEs
+    ? (brandId === 'jetema' ? 'en mi práctica profesional.' : (brandId === 'dermclar' ? 'en mi clínica médica.' : 'en mi farmacia.'))
+    : (brandId === 'jetema' ? 'in my professional practice.' : (brandId === 'dermclar' ? 'in my medical clinic.' : 'in my pharmacy.'));
+  const waText = encodeURIComponent(
+    isEs
+      ? `Hola Maines SRL, deseo incorporar el portafolio de ${brand.name} ${waSuffix}`
+      : `Hello Maines SRL, I would like to incorporate the ${brand.name} portfolio ${waSuffix}`
+  );
 
   return (
     <section id="cta-section" className="py-20 lg:py-28 px-6 sm:px-12 xl:px-20 bg-white w-full text-left relative overflow-hidden border-t border-slate-200/40">
@@ -89,24 +95,40 @@ const BrandCTA = ({ brand, language }) => {
 
           {/* Main Title with brand gradient highlighted words */}
           <h2 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-[#0D1F3B] font-display tracking-tight leading-[1.15] max-w-2xl">
-            {brandId === 'jetema' ? (
-              <>
-                ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Jetema</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>práctica profesional</span>?
-              </>
-            ) : brandId === 'dermclar' ? (
-              <>
-                ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Dermclar</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>clínica médica</span>?
-              </>
+            {isEs ? (
+              brandId === 'jetema' ? (
+                <>
+                  ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Jetema</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>práctica profesional</span>?
+                </>
+              ) : brandId === 'dermclar' ? (
+                <>
+                  ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Dermclar</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>clínica médica</span>?
+                </>
+              ) : (
+                <>
+                  ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Xtralife</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>farmacia</span>?
+                </>
+              )
             ) : (
-              <>
-                ¿<span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>Desea incorporar</span> el portafolio de <span className="font-extrabold text-[#0D1F3B]">Xtralife</span> en su <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>farmacia</span>?
-              </>
+              brandId === 'jetema' ? (
+                <>
+                  Would you like to <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>incorporate</span> the <span className="font-extrabold text-[#0D1F3B]">Jetema</span> portfolio into your <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>professional practice</span>?
+                </>
+              ) : brandId === 'dermclar' ? (
+                <>
+                  Would you like to <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>incorporate</span> the <span className="font-extrabold text-[#0D1F3B]">Dermclar</span> portfolio into your <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>medical clinic</span>?
+                </>
+              ) : (
+                <>
+                  Would you like to <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>incorporate</span> the <span className="font-extrabold text-[#0D1F3B]">Xtralife</span> portfolio into your <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>pharmacy</span>?
+                </>
+              )
             )}
           </h2>
 
           {/* Left-bordered description */}
           <div className="pl-4 border-l-[3.5px] text-slate-500 font-semibold text-sm sm:text-base leading-relaxed max-w-xl" style={{ borderLeftColor: getHexColor(brand.accentBg) }}>
-            {brand.cta?.subtitle || (isEs
+            {(typeof brand.cta?.subtitle === 'object' ? brand.cta.subtitle[isEs ? 'es' : 'en'] : brand.cta?.subtitle) || (isEs
               ? 'Contacte directamente con un asesor comercial de Maines SRL para recibir atención personalizada sobre precios de distribuidor, capacitaciones clínicas y protocolos certificados.'
               : 'Contact a commercial advisor from Maines SRL directly to receive personalized support regarding distributor pricing, clinical training, and certified protocols.')}
           </div>
@@ -147,7 +169,7 @@ const BrandCTA = ({ brand, language }) => {
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-extrabold text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto"
               style={{ backgroundColor: isWaHovered ? getHexColor(brand.accentHover) : getHexColor(brand.accentBg) }}
             >
-              <span>{brand.cta?.primaryBtn || (isEs ? 'Contactar por WhatsApp' : 'Contact via WhatsApp')}</span>
+              <span>{(typeof brand.cta?.primaryBtn === 'object' ? brand.cta.primaryBtn[isEs ? 'es' : 'en'] : brand.cta?.primaryBtn) || (isEs ? 'Contactar por WhatsApp' : 'Contact via WhatsApp')}</span>
               <Send className="w-3.5 h-3.5" />
             </a>
 
@@ -157,7 +179,7 @@ const BrandCTA = ({ brand, language }) => {
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-extrabold text-slate-600 border border-slate-200 bg-white hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto"
             >
               <Mail className="w-3.5 h-3.5 text-slate-400" />
-              <span>{brand.cta?.secondaryBtn || (isEs ? 'Enviar Correo' : 'Send Email Inquiry')}</span>
+              <span>{(typeof brand.cta?.secondaryBtn === 'object' ? brand.cta.secondaryBtn[isEs ? 'es' : 'en'] : brand.cta?.secondaryBtn) || (isEs ? 'Enviar Correo' : 'Send Email Inquiry')}</span>
             </button>
 
           </div>

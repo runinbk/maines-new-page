@@ -36,12 +36,21 @@ const BrandHero = ({ brand, language }) => {
       : (isEs ? 'MADE IN USA • CERTIFICACIÓN GMP' : 'MADE IN USA • GMP CERTIFIED');
     
   const titleElement = isJetema ? (
-    <>
-      <span>Innovación </span>
-      <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>
-        Biotecnológica Coreana
-      </span>
-    </>
+    isEs ? (
+      <>
+        <span>Innovación </span>
+        <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>
+          Biotecnológica Coreana
+        </span>
+      </>
+    ) : (
+      <>
+        <span>Korean </span>
+        <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>
+          Biotech Innovation
+        </span>
+      </>
+    )
   ) : isDermclar ? (
     <>
       <span>THE GLOBAL </span>
@@ -50,12 +59,21 @@ const BrandHero = ({ brand, language }) => {
       </span>
     </>
   ) : (
-    <>
-      <span>NUTRICIÓN NATURAL </span>
-      <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>
-        PARA UNA VIDA SANA
-      </span>
-    </>
+    isEs ? (
+      <>
+        <span>NUTRICIÓN NATURAL </span>
+        <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>
+          PARA UNA VIDA SANA
+        </span>
+      </>
+    ) : (
+      <>
+        <span>NATURAL NUTRITION </span>
+        <span className={`bg-gradient-to-r ${brand.themeGradient} bg-clip-text text-transparent font-extrabold inline-block`}>
+          FOR A HEALTHY LIFE
+        </span>
+      </>
+    )
   );
 
   const description = isJetema

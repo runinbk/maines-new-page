@@ -29,17 +29,29 @@ import zonaCuerpo from '../../../../../assets/iconos/zonas/zona-cuerpo.png';
 
 const zoneIcons = {
   "Rostro": zonaRostro,
+  "Face": zonaRostro,
   "Cuello": zonaCuello,
+  "Neck": zonaCuello,
   "Escote": zonaEscote,
+  "Cleavage": zonaEscote,
   "Abdomen": zonaAbdomen,
   "Glúteos": zonaGluteos,
+  "Glutes": zonaGluteos,
+  "Buttocks": zonaGluteos,
   "Piernas": zonaPiernas,
+  "Legs": zonaPiernas,
   "Brazos": zonaBrazos,
+  "Arms": zonaBrazos,
   "Manos": zonaManos,
+  "Hands": zonaManos,
   "Cintura": zonaCintura,
+  "Waist": zonaCintura,
   "Flancos": zonaFlancos,
+  "Flanks": zonaFlancos,
   "Papada": zonaPapada,
-  "Cuerpo": zonaCuerpo
+  "Double Chin": zonaPapada,
+  "Cuerpo": zonaCuerpo,
+  "Body": zonaCuerpo
 };
 
 const getZoneIcon = (zoneName) => {

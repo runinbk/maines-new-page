@@ -2,8 +2,14 @@ export default {
   "id": "jetema",
   "name": "Jetema",
   "logo": "/assets/JETEMA-logo.png",
-  "tagline": "Innovación Biotecnológica Coreana para la Medicina Estética",
-  "description": "Dispositivos y bioestimuladores avanzados para tratamientos profesionales de alta precisión. Máxima pureza molecular para resultados estéticos de nivel superior.",
+  "tagline": {
+    "es": "Innovación Biotecnológica Coreana para la Medicina Estética",
+    "en": "Korean Biotech Innovation for Aesthetic Medicine"
+  },
+  "description": {
+    "es": "Dispositivos y bioestimuladores avanzados para tratamientos profesionales de alta precisión. Máxima pureza molecular para resultados estéticos de nivel superior.",
+    "en": "Advanced devices and biostimulators for high-precision professional treatments. Maximum molecular purity for superior aesthetic results."
+  },
   "bgImage": "/assets/marcas/card-jetema.webp",
   "heroBg": "/assets/marcas/jetema-hero.jpg",
   "aboutBg": "/assets/marcas/jetema-institucional.jpg",
@@ -46,29 +52,66 @@ export default {
     }
   ],
   "about": {
-    "pretitle": "RESPALDO OFICIAL",
-    "title": "Distribución Oficial y Respaldo de Maines SRL",
-    "description": "Maines SRL actúa como el canal oficial y exclusivo de Jetema en Bolivia, garantizando la trazabilidad estéril absoluta y la entrega directa a clínicas médicas certificadas de todo el territorio nacional.",
-    "bullets": [
-      {
-        "title": "Suministro Directo",
-        "text": "Cada producto cuenta con certificación de origen Jetema, garantizando autenticidad y seguridad clínica ante organismos locales."
-      },
-      {
-        "title": "Autenticidad Garantizada",
-        "text": "Código de trazabilidad único auditable por profesionales de la salud a través de nuestro portal."
-      },
-      {
-        "title": "Cobertura Nacional",
-        "text": "Distribución ágil, rápida y segura en cajas térmicas controladas a clínicas y consultorios médicos."
-      }
-    ]
+    "pretitle": {
+      "es": "RESPALDO OFICIAL",
+      "en": "OFFICIAL SUPPORT"
+    },
+    "title": {
+      "es": "Distribución Oficial y Respaldo de Maines SRL",
+      "en": "Official Distribution & Support of Maines SRL"
+    },
+    "description": {
+      "es": "Maines SRL actúa como el canal oficial y exclusivo de Jetema en Bolivia, garantizando la trazabilidad estéril absoluta y la entrega directa a clínicas médicas certificadas de todo el territorio nacional.",
+      "en": "Maines SRL acts as the official and exclusive channel for Jetema in Bolivia, guaranteeing absolute sterile traceability and direct delivery to certified medical clinics nationwide."
+    },
+    "bullets": {
+      "es": [
+        {
+          "title": "Suministro Directo",
+          "text": "Cada producto cuenta con certificación de origen Jetema, garantizando autenticidad y seguridad clínica ante organismos locales."
+        },
+        {
+          "title": "Autenticidad Garantizada",
+          "text": "Código de trazabilidad único auditable por profesionales de la salud a través de nuestro portal."
+        },
+        {
+          "title": "Cobertura Nacional",
+          "text": "Distribución ágil, rápida y segura en cajas térmicas controladas a clínicas y consultorios médicos."
+        }
+      ],
+      "en": [
+        {
+          "title": "Direct Supply",
+          "text": "Each product has a Jetema certificate of origin, guaranteeing authenticity and clinical safety before local regulatory bodies."
+        },
+        {
+          "title": "Guaranteed Authenticity",
+          "text": "Unique traceability code auditable by healthcare professionals through our portal."
+        },
+        {
+          "title": "National Coverage",
+          "text": "Agile, fast, and secure distribution in controlled thermal boxes to clinics and medical offices."
+        }
+      ]
+    }
   },
   "cta": {
-    "title": "¿Desea incorporar el portafolio de Jetema en su práctica profesional?",
-    "subtitle": "Contacte directamente con un asesor comercial de Maines SRL para recibir información sobre precios de distribuidor, capacitaciones clínicas y protocolos certificados.",
-    "primaryBtn": "Contactar Asesor",
-    "secondaryBtn": "Descargar Portafolio"
+    "title": {
+      "es": "¿Desea incorporar el portafolio de Jetema en su práctica profesional?",
+      "en": "Would you like to incorporate the Jetema portfolio into your professional practice?"
+    },
+    "subtitle": {
+      "es": "Contacte directamente con un asesor comercial de Maines SRL para recibir información sobre precios de distribuidor, capacitaciones clínicas y protocolos certificados.",
+      "en": "Contact a Maines SRL commercial advisor directly to receive information on distributor pricing, clinical training, and certified protocols."
+    },
+    "primaryBtn": {
+      "es": "Contactar Asesor",
+      "en": "Contact Advisor"
+    },
+    "secondaryBtn": {
+      "es": "Descargar Portafolio",
+      "en": "Download Portfolio"
+    }
   },
   "videos": [
     {

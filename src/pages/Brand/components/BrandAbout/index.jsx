@@ -21,6 +21,14 @@ const BrandAbout = ({ brand, onBackToHome }) => {
   const data = brand.about;
   const socialConfig = brand.social;
 
+  const resolveTranslation = (val) => {
+    if (!val) return '';
+    if (typeof val === 'object') {
+      return val[language] || val[isEs ? 'es' : 'en'] || val['es'] || '';
+    }
+    return val;
+  };
+
   const [activeVideo, setActiveVideo] = useState(null);
   const [activeSocialVideo, setActiveSocialVideo] = useState(null);
   const [isCardHovered, setIsCardHovered] = useState(false);
@@ -150,7 +158,7 @@ const BrandAbout = ({ brand, onBackToHome }) => {
                 <>
                   <ImageWithSkeleton 
                     src={mainImage} 
-                    alt={data.title}
+                    alt={resolveTranslation(data.title)}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   
@@ -195,11 +203,7 @@ const BrandAbout = ({ brand, onBackToHome }) => {
 
             {/* Custom copy bullets mapping */}
             {(() => {
-              const bulletsList = brand.id === 'jetema' ? [
-                { title: "Suministro Directo", text: isEs ? "Garantizando la cadena de frío y bioseguridad." : "Guaranteed cold chain and biosecurity." },
-                { title: "Autenticidad Garantizada", text: isEs ? "Código de trazabilidad único auditable por profesionales de la salud." : "Unique traceability code auditable by healthcare professionals." },
-                { title: "Cobertura Nacional", text: isEs ? "Distribución ágil, rápida y segura en cajas térmicas controladas." : "Fast and secure distribution in temperature-controlled boxes." }
-              ] : data.bullets;
+              const bulletsList = data.bullets?.[language] || data.bullets?.[isEs ? 'es' : 'en'] || [];
 
               return (
                 <>
@@ -246,7 +250,7 @@ const BrandAbout = ({ brand, onBackToHome }) => {
           
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-extrabold uppercase tracking-widest bg-slate-100 text-primary-light mb-6">
             <Award className="w-3.5 h-3.5" />
-            <span>{data.pretitle}</span>
+            <span>{resolveTranslation(data.pretitle)}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-[#0D1F3B] font-display tracking-tight leading-[1.15] mb-6">
@@ -262,7 +266,7 @@ const BrandAbout = ({ brand, onBackToHome }) => {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-500 font-medium leading-relaxed mb-10 max-w-2xl">
-            {data.description}
+            {resolveTranslation(data.description)}
           </p>
 
           <div className="flex flex-wrap items-center justify-start lg:justify-end gap-4 mt-2 w-full">

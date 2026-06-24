@@ -2,8 +2,14 @@ export default {
   "id": "xtralife",
   "name": "Xtralife",
   "logo": "/assets/xtralife-logo.png",
-  "tagline": "Nutrición Natural y Suplementación Científica de Vanguardia",
-  "description": "Vitaminas, minerales y suplementos nutricionales de formulación norteamericana avanzada. Respaldo biológico para la longevidad y vitalidad.",
+  "tagline": {
+    "es": "Nutrición Natural y Suplementación Científica de Vanguardia",
+    "en": "Natural Nutrition and Cutting-edge Scientific Supplementation"
+  },
+  "description": {
+    "es": "Vitaminas, minerales y suplementos nutricionales de formulación norteamericana avanzada. Respaldo biológico para la longevidad y vitalidad.",
+    "en": "Vitamins, minerals, and dietary supplements of advanced US formulation. Biological support for longevity and vitality."
+  },
   "bgImage": "/assets/marcas/card-xtralife.webp",
   "heroBg": "/assets/marcas/xtralife/xtralife-cta.jpeg",
   "aboutBg": "/assets/marcas/xtralife/xtralife-infomarca.jpeg",
@@ -74,29 +80,66 @@ export default {
     }
   ],
   "about": {
-    "pretitle": "DISTRIBUCIÓN AUTORIZADA",
-    "title": "Distribución Oficial y Respaldo de Maines SRL",
-    "description": "Maines SRL importa legalmente y distribuye la línea completa de suplementos Xtralife Natural Products en farmacias, consultorios de nutrición y clínicas de medicina preventiva en Bolivia.",
-    "bullets": [
-      {
-        "title": "Suministro Importado",
-        "text": "Procedencia 100% de Estados Unidos, garantizando los estándares de calidad de la FDA."
-      },
-      {
-        "title": "Control Sanitario",
-        "text": "Registro del SENASAG y AGEMED según corresponda para la libre venta autorizada nacional."
-      },
-      {
-        "title": "Seguridad de Lote",
-        "text": "Monitoreo y trazabilidad rigurosa de fechas de vencimiento y conservación térmica seca."
-      }
-    ]
+    "pretitle": {
+      "es": "DISTRIBUCIÓN AUTORIZADA",
+      "en": "AUTHORIZED DISTRIBUTION"
+    },
+    "title": {
+      "es": "Distribución Oficial y Respaldo de Maines SRL",
+      "en": "Official Distribution & Support of Maines SRL"
+    },
+    "description": {
+      "es": "Maines SRL importa legalmente y distribuye la línea completa de suplementos Xtralife Natural Products en farmacias, consultorios de nutrición y clínicas de medicina preventiva en Bolivia.",
+      "en": "Maines SRL legally imports and distributes the complete line of Xtralife Natural Products supplements in pharmacies, nutrition offices, and preventive medicine clinics in Bolivia."
+    },
+    "bullets": {
+      "es": [
+        {
+          "title": "Suministro Importado",
+          "text": "Procedencia 100% de Estados Unidos, garantizando los estándares de calidad de la FDA."
+        },
+        {
+          "title": "Control Sanitario",
+          "text": "Registro del SENASAG y AGEMED según corresponda para la libre venta autorizada nacional."
+        },
+        {
+          "title": "Seguridad de Lote",
+          "text": "Monitoreo y trazabilidad rigurosa de fechas de vencimiento y conservación térmica seca."
+        }
+      ],
+      "en": [
+        {
+          "title": "Imported Supply",
+          "text": "100% sourced from the United States, guaranteeing FDA quality standards."
+        },
+        {
+          "title": "Sanitary Control",
+          "text": "SENASAG and AGEMED registration as applicable for authorized national free sale."
+        },
+        {
+          "title": "Batch Security",
+          "text": "Rigorous monitoring and traceability of expiration dates and dry thermal conservation."
+        }
+      ]
+    }
   },
   "cta": {
-    "title": "¿Desea incorporar el portafolio de Xtralife en su farmacia o consultorio?",
-    "subtitle": "Contacte con nuestro equipo comercial para obtener listas de precios al por mayor, condiciones de distribución y material educativo para pacientes.",
-    "primaryBtn": "Contactar Ventas",
-    "secondaryBtn": "Descargar Catálogo"
+    "title": {
+      "es": "¿Desea incorporar el portafolio de Xtralife en su farmacia o consultorio?",
+      "en": "Would you like to incorporate the Xtralife portfolio into your pharmacy or office?"
+    },
+    "subtitle": {
+      "es": "Contacte con nuestro equipo comercial para obtener listas de precios al por mayor, condiciones de distribución y material educativo para pacientes.",
+      "en": "Contact our sales team to obtain wholesale price lists, distribution terms, and patient educational materials."
+    },
+    "primaryBtn": {
+      "es": "Contactar Ventas",
+      "en": "Contact Sales"
+    },
+    "secondaryBtn": {
+      "es": "Descargar Catálogo",
+      "en": "Download Catalog"
+    }
   },
   "social": {
     "instagram": {

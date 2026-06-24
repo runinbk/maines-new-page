@@ -41,6 +41,7 @@ const TikTokIcon = ({ className }) => (
 
 const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
   if (!tailwindClass) return defaultColor;
+  if (tailwindClass === 'bg-emerald-500') return '#10b981';
   const match = tailwindClass.match(/\[#([0-9a-fA-F]+)\]/);
   return match ? `#${match[1]}` : defaultColor;
 };
@@ -292,13 +293,9 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
   const cardVideoRef = useRef(null);
   const inlineVideoRef = useRef(null);
 
-  const mainImage = (brand.id === 'jetema' || brand.id === 'dermclar')
-    ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp'
-    : 'https://placehold.co/600x400/ECFDF5/10B981?text=Xtralife+Logistics';
+  const mainImage = 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp';
 
-  const mainVideo = (brand.id === 'jetema' || brand.id === 'dermclar')
-    ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.mp4'
-    : null;
+  const mainVideo = 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.mp4';
 
   useEffect(() => {
     if (cardVideoRef.current) {

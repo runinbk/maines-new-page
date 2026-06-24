@@ -3,6 +3,8 @@ import { Mail, Phone, MapPin, CheckCircle, AlertCircle, X, Send } from 'lucide-r
 
 const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
   if (!tailwindClass) return defaultColor;
+  if (tailwindClass === 'bg-emerald-500') return '#10b981';
+  if (tailwindClass === 'hover:bg-emerald-600') return '#059669';
   const match = tailwindClass.match(/\[#([0-9a-fA-F]+)\]/);
   return match ? `#${match[1]}` : defaultColor;
 };
@@ -169,7 +171,7 @@ const BrandCTA = ({ brand, language }) => {
                 ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/jetema/jetema-cta10.webp'
                 : (brandId === 'dermclar'
                   ? 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/dermclar/dermclar-cta.webp'
-                  : 'https://placehold.co/600x600/F5FCFA/10B981?text=Xtralife+Science')
+                  : 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/xtralife-cta.webp')
             }
             alt="Biotechnology showcase"
             className="w-full max-w-[480px] h-auto object-contain rounded-[24px] shadow-2xl border border-slate-100/60"

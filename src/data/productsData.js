@@ -823,10 +823,10 @@ export const brandsData = {
     heroBg: "/assets/marcas/xtralife/xtralife-cta.jpeg",
     aboutBg: "/assets/marcas/xtralife/xtralife-infomarca.jpeg",
     ctaBg: "/assets/marcas/xtralife/xtralife-cta.jpeg",
-    accentColor: "text-emerald-500",
-    accentBg: "bg-emerald-500",
-    accentHover: "hover:bg-emerald-600",
-    accentFocusRing: "focus:ring-emerald-400/50",
+    accentColor: "text-[#10b981]",
+    accentBg: "bg-[#10b981]",
+    accentHover: "hover:bg-[#059669]",
+    accentFocusRing: "focus:ring-[#10b981]/50",
     themeGradient: "from-emerald-500 to-teal-700",
     themeBorder: "border-emerald-500/20",
     glowClass: "glow-emerald",
@@ -912,6 +912,31 @@ export const brandsData = {
       subtitle: "Contacte con nuestro equipo comercial para obtener listas de precios al por mayor, condiciones de distribución y material educativo para pacientes.",
       primaryBtn: "Contactar Ventas",
       secondaryBtn: "Descargar Catálogo"
+    },
+    social: {
+      instagram: {
+        handle: "@xtralifeboliviaoficial",
+        url: "https://instagram.com/xtralifeboliviaoficial"
+      },
+      tiktok: {
+        handle: "@xtralifeboliviaoficial",
+        url: "https://tiktok.com/@xtralifeboliviaoficial"
+      },
+      facebook: {
+        handle: "@xtralifeboliviaoficial",
+        url: "https://facebook.com/xtralifeboliviaoficial"
+      },
+      videos: [
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/1.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/2.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/3.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/4.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/5.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/6.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/7.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/8.webm",
+        "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/9.webm"
+      ]
     },
     products: [
       {

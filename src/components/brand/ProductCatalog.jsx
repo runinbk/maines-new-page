@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
@@ -1521,4 +1521,4 @@ const ProductCatalog = ({ brand, language, selectedProductId, onSelectProduct })
   );
 };
 
-export default ProductCatalog;
+export default memo(ProductCatalog);

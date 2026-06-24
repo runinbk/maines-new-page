@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { Menu, X, Globe, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,8 +11,9 @@ const Navbar = () => {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let ticked = false;
     
-    const handleScroll = () => {
+    const updateScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 20);
       
@@ -24,18 +25,26 @@ const Navbar = () => {
       }
       
       lastScrollY = currentScrollY;
+      ticked = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticked) {
+        window.requestAnimationFrame(updateScroll);
+        ticked = true;
+      }
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.brands'), href: '/ecosistema' },
     { name: t('nav.about'), href: '/nosotros' },
     { name: t('nav.contact'), href: '/contacto' }
-  ];
+  ], [t]);
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 px-8 sm:px-12 lg:px-20 pt-4 sm:pt-6 transition-all duration-500 transform ${

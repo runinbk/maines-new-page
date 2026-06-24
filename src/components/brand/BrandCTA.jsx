@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { Mail, Phone, MapPin, CheckCircle, AlertCircle, X, Send } from 'lucide-react';
 
 const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
@@ -337,4 +337,4 @@ const BrandCTA = ({ brand, language }) => {
   );
 };
 
-export default BrandCTA;
+export default memo(BrandCTA);

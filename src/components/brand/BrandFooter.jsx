@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { ArrowUp, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -298,4 +299,4 @@ const BrandFooter = ({ brand, language }) => {
   );
 };
 
-export default BrandFooter;
+export default memo(BrandFooter);

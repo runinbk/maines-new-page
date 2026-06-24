@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { ArrowDown } from 'lucide-react';
 import jetemaHeroBg from '../../../assets/jetema/hero.webp';
 import dermclarHeroBg from '../../../assets/marcas/dermclar/dermclar-hero.jpeg';
@@ -218,4 +218,4 @@ const BrandHero = ({ brand, language }) => {
   );
 };
 
-export default BrandHero;
+export default memo(BrandHero);

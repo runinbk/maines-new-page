@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { brandsData } from '../../data/productsData';
+import PageLoader from '../common/PageLoader';
 import BrandHero from './BrandHero';
 import ProductCatalog from './ProductCatalog';
 import BrandAbout from './BrandAbout';
@@ -20,8 +20,28 @@ const BrandLayout = () => {
   const { language, toggleLanguage } = useLanguage();
   const isEs = language === 'es';
   
-  // 1. Resolve brand configuration or fail gracefully
-  const brand = brandsData[brandId];
+  // 1. Resolve brand configuration dynamically
+  const [brand, setBrand] = useState(null);
+  const [loadingBrand, setLoadingBrand] = useState(true);
+  const [prevBrandId, setPrevBrandId] = useState(brandId);
+
+  if (brandId !== prevBrandId) {
+    setPrevBrandId(brandId);
+    setLoadingBrand(true);
+  }
+
+  useEffect(() => {
+    import(`../../data/brands/${brandId}.js`)
+      .then((module) => {
+        setBrand(module.default);
+        setLoadingBrand(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load brand data:", err);
+        setBrand(null);
+        setLoadingBrand(false);
+      });
+  }, [brandId]);
 
   // Resolve brand-specific hover text coloring for navigation items
   const brandHoverText = brandId === 'jetema' 
@@ -40,19 +60,24 @@ const BrandLayout = () => {
   // Translate URL slug to productId
   const selectedProductId = productSlug ? getProductIdFromSlug(productSlug, brandId) : '';
 
-  const handleSelectProduct = (prodId) => {
+  const handleSelectProduct = useCallback((prodId) => {
     if (prodId) {
       const slug = getProductSlug(prodId, brandId);
       navigate(`/${brandId}/catalogo/${slug}`);
     } else {
       navigate(`/${brandId}/catalogo`);
     }
-  };
+  }, [brandId, navigate]);
+
+  const handleBackToHome = useCallback(() => {
+    navigate('/');
+  }, [navigate]);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let ticked = false;
     
-    const handleScroll = () => {
+    const updateScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 20);
       
@@ -64,6 +89,14 @@ const BrandLayout = () => {
       }
       
       lastScrollY = currentScrollY;
+      ticked = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticked) {
+        window.requestAnimationFrame(updateScroll);
+        ticked = true;
+      }
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -125,6 +158,10 @@ const BrandLayout = () => {
       topObserver.disconnect();
     };
   }, [brandId]);
+
+  if (loadingBrand) {
+    return <PageLoader />;
+  }
 
   if (!brand) {
     return (
@@ -258,14 +295,14 @@ const BrandLayout = () => {
         />
 
         {/* Corporate distributor/logistics background */}
-        <BrandAbout brand={brand} language={language} onBackToHome={() => navigate('/')} />
+        <BrandAbout brand={brand} language={language} onBackToHome={handleBackToHome} />
 
         {/* B2B clinical pipeline lead collector */}
         <BrandCTA brand={brand} language={language} />
       </main>
 
       {/* 3. Shared regulatory regulatory disclaimers footer */}
-      <BrandFooter brand={brand} language={language} onBackToHome={() => navigate('/')} />
+      <BrandFooter brand={brand} language={language} onBackToHome={handleBackToHome} />
 
     </div>
   );

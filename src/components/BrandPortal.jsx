@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { Link } from 'react-router-dom';
 
@@ -130,7 +130,7 @@ const BrandPortal = () => {
   const { t } = useLanguage();
 
   // Stable brand configurations for rendering
-  const defaultBrands = [
+  const defaultBrands = useMemo(() => [
     {
       id: 1,
       key: "jetema",
@@ -176,7 +176,7 @@ const BrandPortal = () => {
       borderColor: "border-t-white/80 border-l-cyan-200/50 border-r-cyan-300/35 border-b-cyan-400/25",
       auraClass: "from-cyan-400/25 via-teal-400/15 to-transparent",
     }
-  ];
+  ], [t]);
 
   // Randomize the order of the brands on component mount using keys
   const [shuffledKeys] = useState(() => {
@@ -188,7 +188,10 @@ const BrandPortal = () => {
     return keys;
   });
 
-  const orderedBrands = shuffledKeys.map(key => defaultBrands.find(b => b.key === key));
+  const orderedBrands = useMemo(() => 
+    shuffledKeys.map(key => defaultBrands.find(b => b.key === key)),
+    [shuffledKeys, defaultBrands]
+  );
 
   return (
     <section 

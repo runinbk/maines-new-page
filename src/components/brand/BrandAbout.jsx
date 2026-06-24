@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { Award, ChevronLeft, ChevronRight, Maximize2, Pause, Play, Volume2, VolumeX, X } from 'lucide-react';
 
 const InstagramIcon = (props) => (
@@ -820,4 +820,4 @@ const BrandAbout = ({ brand, language, onBackToHome }) => {
   );
 };
 
-export default BrandAbout;
+export default memo(BrandAbout);

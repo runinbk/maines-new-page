@@ -20,7 +20,7 @@ const InstagramIcon = ({ className }) => (
   </svg>
 );
 
-const LinkedInIcon = ({ className }) => (
+const FacebookIcon = ({ className }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     className={className} 
@@ -31,9 +31,7 @@ const LinkedInIcon = ({ className }) => (
     strokeLinecap="round" 
     strokeLinejoin="round"
   >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
   </svg>
 );
 
@@ -257,13 +255,13 @@ const BrandFooter = ({ brand, language }) => {
                 <InstagramIcon className="w-4 h-4" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href={brand.social?.facebook?.url || "https://www.facebook.com/mainessrl/"} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/50 hover:text-white transition-colors"
-                title="LinkedIn"
+                title="Facebook"
               >
-                <LinkedInIcon className="w-4 h-4" />
+                <FacebookIcon className="w-4 h-4" />
               </a>
             </div>
 

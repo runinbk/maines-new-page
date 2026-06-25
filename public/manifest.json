@@ -1,0 +1,16 @@
+{
+  "name": "Maines S.R.L. | Innovación Médica Global y Medicina Estética",
+  "short_name": "Maines SRL",
+  "description": "Elevamos el estándar de la medicina estética y salud en Bolivia. Importación y distribución exclusiva de marcas globales líderes.",
+  "theme_color": "#0D1F3B",
+  "background_color": "#F2F5F6",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/assets/logo-maines.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

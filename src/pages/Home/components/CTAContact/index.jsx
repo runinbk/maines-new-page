@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../../../../context/LanguageContext';
 import { ArrowRight } from 'lucide-react';
-import { InstagramIcon, FacebookIcon, LinkedinIcon } from '../../../../components/ui/Icons';
+import { InstagramIcon, FacebookIcon } from '../../../../components/ui/Icons';
 import { ContactForm } from './ContactForm';
 import { ReelsCarousel } from './ReelsCarousel';
 
@@ -103,31 +103,22 @@ const CTAContact = () => {
                 </span>
                 <div className="flex gap-3">
                   <a 
-                    href="https://instagram.com" 
+                    href="https://www.instagram.com/maines.srl/" 
                     target="_blank" 
-                    rel="noreferrer" 
+                    rel="noopener noreferrer" 
                     className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 hover:text-pink-500 hover:border-pink-200 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
                     aria-label="Instagram"
                   >
                     <InstagramIcon className="w-4.5 h-4.5" />
                   </a>
                   <a 
-                    href="https://facebook.com" 
+                    href="https://www.facebook.com/mainessrl/" 
                     target="_blank" 
-                    rel="noreferrer" 
+                    rel="noopener noreferrer" 
                     className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-600 hover:border-blue-200 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
                     aria-label="Facebook"
                   >
                     <FacebookIcon className="w-4.5 h-4.5" />
-                  </a>
-                  <a 
-                    href="https://linkedin.com" 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 hover:text-blue-700 hover:border-blue-200 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
-                    aria-label="LinkedIn"
-                  >
-                    <LinkedinIcon className="w-4.5 h-4.5" />
                   </a>
                 </div>
               </div>

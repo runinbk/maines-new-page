@@ -4,7 +4,7 @@ import {
   MapPin, Phone, Mail, ArrowUp 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { InstagramIcon, LinkedinIcon } from '../ui/Icons';
+import { InstagramIcon, FacebookIcon } from '../ui/Icons';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -60,22 +60,22 @@ const Footer = () => {
             {/* Social linkages */}
             <div className="flex items-center gap-3 pt-2">
               <a 
-                href="https://instagram.com" 
+                href="https://www.instagram.com/maines.srl/" 
                 target="_blank" 
-                rel="noreferrer" 
-                className="w-9 h-9 rounded-full bg-slate-800 hover:bg-pink-600 flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 shadow-md"
+                rel="noopener noreferrer" 
+                className="w-9 h-9 rounded-full bg-slate-800 hover:bg-pink-600 flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 shadow-md animate-reveal"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="w-4.5 h-4.5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.facebook.com/mainessrl/" 
                 target="_blank" 
-                rel="noreferrer" 
-                className="w-9 h-9 rounded-full bg-slate-800 hover:bg-accent flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 shadow-md"
-                aria-label="LinkedIn"
+                rel="noopener noreferrer" 
+                className="w-9 h-9 rounded-full bg-slate-800 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition-all duration-300 shadow-md animate-reveal"
+                aria-label="Facebook"
               >
-                <LinkedinIcon className="w-4.5 h-4.5" />
+                <FacebookIcon className="w-4.5 h-4.5" />
               </a>
             </div>
           </div>
@@ -126,22 +126,26 @@ const Footer = () => {
             <h4 className="text-xs font-bold tracking-widest text-white uppercase">
               {t('footer.contactTitle')}
             </h4>
-            <ul className="space-y-3.5 text-xs sm:text-sm font-semibold text-slate-400">
-              <li className="flex gap-2.5 items-start">
-                <MapPin className="w-4.5 h-4.5 text-accent shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{t('footer.address')}</span>
-              </li>
-              <li className="flex gap-2.5 items-center">
-                <Phone className="w-4.5 h-4.5 text-accent shrink-0" />
-                <span>{t('footer.phone')}</span>
-              </li>
-              <li className="flex gap-2.5 items-center">
-                <Mail className="w-4.5 h-4.5 text-accent shrink-0" />
-                <a href={`mailto:${t('footer.email')}`} className="hover:text-white transition-colors duration-200">
-                  {t('footer.email')}
-                </a>
-              </li>
-            </ul>
+            <address className="not-italic">
+              <ul className="space-y-3.5 text-xs sm:text-sm font-semibold text-slate-400">
+                <li className="flex gap-2.5 items-start">
+                  <MapPin className="w-4.5 h-4.5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                  <span className="leading-relaxed">{t('footer.address')}</span>
+                </li>
+                <li className="flex gap-2.5 items-center">
+                  <Phone className="w-4.5 h-4.5 text-accent shrink-0" aria-hidden="true" />
+                  <a href="tel:+59133400835" className="hover:text-white transition-colors duration-200">
+                    {t('footer.phone')}
+                  </a>
+                </li>
+                <li className="flex gap-2.5 items-center">
+                  <Mail className="w-4.5 h-4.5 text-accent shrink-0" aria-hidden="true" />
+                  <a href={`mailto:${t('footer.email')}`} className="hover:text-white transition-colors duration-200">
+                    {t('footer.email')}
+                  </a>
+                </li>
+              </ul>
+            </address>
           </div>
 
         </div>

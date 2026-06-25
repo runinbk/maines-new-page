@@ -133,9 +133,9 @@ const BrandFooter = ({ brand, language }) => {
             
             {/* Brand navigation */}
             <div className="flex flex-col gap-4">
-              <h5 className="text-[10px] font-extrabold uppercase tracking-widest text-white/40">
+              <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/40">
                 {isEs ? 'Explorar' : 'Explore'}
-              </h5>
+              </h4>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-white/70">
                 <Link 
                   to={`/${brandId}/catalogo`} 
@@ -160,9 +160,9 @@ const BrandFooter = ({ brand, language }) => {
 
             {/* Corporate portals links */}
             <div className="flex flex-col gap-4">
-              <h5 className="text-[10px] font-extrabold uppercase tracking-widest text-white/40">
+              <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/40">
                 {isEs ? 'Portal' : 'Portal'}
-              </h5>
+              </h4>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-white/70">
                 <Link 
                   to="/"
@@ -179,9 +179,9 @@ const BrandFooter = ({ brand, language }) => {
 
             {/* Our Brands column */}
             <div className="flex flex-col gap-4">
-              <h5 className="text-[10px] font-extrabold uppercase tracking-widest text-white/40">
+              <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/40">
                 {isEs ? 'Nuestras Marcas' : 'Our Brands'}
-              </h5>
+              </h4>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-white/70">
                 <Link 
                   to="/jetema" 

@@ -41,6 +41,9 @@ export const ContactForm = ({ isOpen, onClose }) => {
     >
       {/* Modal Box */}
       <div 
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-modal-title"
         className="w-full max-w-[480px] glass-card rounded-[32px] border border-white/60 p-6 sm:p-8 text-left shadow-2xl relative bg-white animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
@@ -55,7 +58,7 @@ export const ContactForm = ({ isOpen, onClose }) => {
 
         {/* Modal Header */}
         <div className="space-y-2 mb-6">
-          <h4 className="text-xl sm:text-2xl font-extrabold font-display text-primary-dark">
+          <h4 id="contact-modal-title" className="text-xl sm:text-2xl font-extrabold font-display text-primary-dark">
             {t('ctaSection.contactTitle')}
           </h4>
           <p className="text-xs sm:text-sm text-slate-500 font-medium">
@@ -83,10 +86,11 @@ export const ContactForm = ({ isOpen, onClose }) => {
           <form onSubmit={handleFormSubmit} className="space-y-4">
             {/* Name */}
             <div className="space-y-1">
-              <label className="text-[10px] font-extrabold text-primary-dark/70 uppercase tracking-wider block">
+              <label htmlFor="contact-name" className="text-[10px] font-extrabold text-primary-dark/70 uppercase tracking-wider block">
                 {t('ctaSection.formName')} *
               </label>
               <input 
+                id="contact-name"
                 type="text" 
                 name="name" 
                 required 
@@ -99,10 +103,11 @@ export const ContactForm = ({ isOpen, onClose }) => {
             {/* Email & Phone grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-[10px] font-extrabold text-primary-dark/70 uppercase tracking-wider block">
+                <label htmlFor="contact-email" className="text-[10px] font-extrabold text-primary-dark/70 uppercase tracking-wider block">
                   {t('ctaSection.formEmail')} *
                 </label>
                 <input 
+                  id="contact-email"
                   type="email" 
                   name="email" 
                   required 
@@ -112,10 +117,11 @@ export const ContactForm = ({ isOpen, onClose }) => {
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-extrabold text-primary-dark/70 uppercase tracking-wider block">
+                <label htmlFor="contact-phone" className="text-[10px] font-extrabold text-primary-dark/70 uppercase tracking-wider block">
                   {t('ctaSection.formPhone')}
                 </label>
                 <input 
+                  id="contact-phone"
                   type="tel" 
                   name="phone" 
                   value={formData.phone}
@@ -127,10 +133,11 @@ export const ContactForm = ({ isOpen, onClose }) => {
 
             {/* Message */}
             <div className="space-y-1">
-              <label className="text-[10px] font-extrabold text-primary-dark/70 uppercase tracking-wider block">
+              <label htmlFor="contact-message" className="text-[10px] font-extrabold text-primary-dark/70 uppercase tracking-wider block">
                 {t('ctaSection.formMessage')}
               </label>
               <textarea 
+                id="contact-message"
                 name="message" 
                 rows="3" 
                 value={formData.message}
@@ -141,7 +148,7 @@ export const ContactForm = ({ isOpen, onClose }) => {
 
             {/* Error Banner */}
             {status === 'error' && (
-              <div className="flex gap-2 items-center p-3 rounded-xl bg-rose-50 text-rose-600 text-xs font-semibold">
+              <div role="alert" className="flex gap-2 items-center p-3 rounded-xl bg-rose-50 text-rose-600 text-xs font-semibold">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{t('ctaSection.formError')}</span>
               </div>

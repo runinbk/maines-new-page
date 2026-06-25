@@ -309,6 +309,9 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
   return (
     <section id="catalog-section" className="py-20 lg:py-24 px-4 sm:px-12 xl:px-20 bg-[#F2F5F6] w-full border-t border-slate-200/50">
       <style>{hoverStyles}</style>
+      <h2 className="sr-only">
+        {isEs ? `Catálogo de Productos de ${brand.displayName}` : `${brand.displayName} Product Catalog`}
+      </h2>
       <div className="max-w-7xl xl:max-w-[1360px] 2xl:max-w-[1560px] mx-auto flex flex-col gap-10">
         
         {/* Main 12-Column Layout Grid */}

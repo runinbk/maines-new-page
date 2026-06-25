@@ -52,9 +52,9 @@ const CTAContact = () => {
                   <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                   {language === 'es' ? 'Contacto y Canales' : 'Contact & Channels'}
                 </div>
-                <h3 className="text-3xl sm:text-4xl font-extrabold font-display leading-[1.15] text-primary-dark tracking-tight">
+                <h2 className="text-3xl sm:text-4xl font-extrabold font-display leading-[1.15] text-primary-dark tracking-tight">
                   {t('ctaSection.ctaTitle')}
-                </h3>
+                </h2>
                 <div className="w-12 h-1.5 bg-gradient-to-r from-accent to-primary rounded-full" />
               </div>
 

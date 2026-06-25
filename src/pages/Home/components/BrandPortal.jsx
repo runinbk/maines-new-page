@@ -209,10 +209,10 @@ const BrandPortal = () => {
       </div>
 
       <div className="relative z-10 h-[8vh] flex items-center justify-center px-6">
-        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/40 backdrop-blur-md font-bold uppercase tracking-widest text-slate-600 shadow-sm liquid-glass-badge">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          <span>Portal de Marcas</span>
-        </div>
+        <h2 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/40 backdrop-blur-md font-bold uppercase tracking-widest text-slate-600 shadow-sm liquid-glass-badge">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true" />
+          <span>{t('brands.portalBadge')}</span>
+        </h2>
       </div>
 
       <div className="relative z-10 h-[80vh] w-full flex items-center justify-center">

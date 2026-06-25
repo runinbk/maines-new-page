@@ -25,6 +25,7 @@ export const translations = {
     brands: {
       title: "Portal de ",
       titleAccent: "Marcas",
+      portalBadge: "Portal de Marcas",
       subtitle: "Representamos tecnología de vanguardia y calidad certificada.",
       explore: "Explorar",
       visit: "Visitar Marca",
@@ -146,6 +147,7 @@ export const translations = {
     brands: {
       title: "Our Brand ",
       titleAccent: "Ecosystem",
+      portalBadge: "Brand Portal",
       subtitle: "We represent cutting-edge technology and certified quality.",
       explore: "Explore",
       visit: "Visit Brand",

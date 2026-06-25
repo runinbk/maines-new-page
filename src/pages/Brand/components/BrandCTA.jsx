@@ -212,7 +212,12 @@ const BrandCTA = ({ brand, language }) => {
             className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-all duration-300 cursor-pointer"
           />
 
-          <div className="bg-white border border-slate-200 rounded-[28px] w-full max-w-lg shadow-2xl p-6 sm:p-8 relative z-10 text-left animate-fade-in">
+          <div 
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="brand-cta-title"
+            className="bg-white border border-slate-200 rounded-[28px] w-full max-w-lg shadow-2xl p-6 sm:p-8 relative z-10 text-left animate-fade-in"
+          >
             <button
               onClick={closeFormModal}
               className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors focus:outline-none cursor-pointer"
@@ -246,7 +251,7 @@ const BrandCTA = ({ brand, language }) => {
             ) : (
               <form onSubmit={handleFormSubmit} className="space-y-5">
                 <div className="space-y-1.5 pr-8">
-                  <h3 className="text-lg font-extrabold text-[#0D1F3B] font-display tracking-tight leading-tight">
+                  <h3 id="brand-cta-title" className="text-lg font-extrabold text-[#0D1F3B] font-display tracking-tight leading-tight">
                     {isEs ? 'Enviar Consulta por Correo' : 'Send Email Inquiry'}
                   </h3>
                   <p className="text-xs text-slate-400 font-semibold leading-relaxed">
@@ -257,7 +262,7 @@ const BrandCTA = ({ brand, language }) => {
                 </div>
 
                 {status === 'error' && (
-                  <div className="bg-red-500/10 border border-red-500/20 p-3.5 rounded-xl flex items-center gap-2 text-red-500 text-xs font-medium">
+                  <div role="alert" className="bg-red-500/10 border border-red-500/20 p-3.5 rounded-xl flex items-center gap-2 text-red-500 text-xs font-medium">
                     <AlertCircle className="w-4.5 h-4.5 shrink-0" />
                     <span>{isEs ? 'Ocurrió un error. Intente nuevamente.' : 'An error occurred. Please try again.'}</span>
                   </div>
@@ -265,10 +270,11 @@ const BrandCTA = ({ brand, language }) => {
 
                 <div className="space-y-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
+                    <label htmlFor="brand-cta-name" className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
                       {isEs ? 'Nombre Completo' : 'Full Name'} *
                     </label>
                     <input
+                      id="brand-cta-name"
                       type="text"
                       name="fullName"
                       required
@@ -281,10 +287,11 @@ const BrandCTA = ({ brand, language }) => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
+                      <label htmlFor="brand-cta-email" className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
                         {isEs ? 'Correo Electrónico' : 'Email'} *
                       </label>
                       <input
+                        id="brand-cta-email"
                         type="email"
                         name="email"
                         required
@@ -296,10 +303,11 @@ const BrandCTA = ({ brand, language }) => {
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
+                      <label htmlFor="brand-cta-phone" className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
                         {isEs ? 'Teléfono / Celular' : 'Phone'} *
                       </label>
                       <input
+                        id="brand-cta-phone"
                         type="tel"
                         name="phone"
                         required
@@ -312,10 +320,11 @@ const BrandCTA = ({ brand, language }) => {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
+                    <label htmlFor="brand-cta-message" className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
                       {isEs ? 'Mensaje / Consulta' : 'Message'} *
                     </label>
                     <textarea
+                      id="brand-cta-message"
                       name="message"
                       required
                       rows="4"

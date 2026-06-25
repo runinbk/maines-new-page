@@ -174,6 +174,8 @@ const AboutSection = () => {
               <img 
                 src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar1.webp" 
                 alt={t('about.pillar1Title')} 
+                width="740"
+                height="400"
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
                 loading="lazy"
               />
@@ -201,6 +203,8 @@ const AboutSection = () => {
               <img 
                 src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar2.webp" 
                 alt={t('about.pillar2Title')} 
+                width="520"
+                height="400"
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
                 loading="lazy"
               />
@@ -228,6 +232,8 @@ const AboutSection = () => {
               <img 
                 src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar3.webp" 
                 alt={t('about.pillar3Title')} 
+                width="520"
+                height="400"
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
                 loading="lazy"
               />
@@ -255,6 +261,8 @@ const AboutSection = () => {
               <img 
                 src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar4.webp" 
                 alt={t('about.pillar4Title')} 
+                width="740"
+                height="400"
                 className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
                 loading="lazy"
               />

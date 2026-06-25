@@ -66,6 +66,8 @@ const Navbar = () => {
             <img 
               src="/assets/logo-maines.svg" 
               alt="Maines Logo" 
+              width="110"
+              height="28"
               className="h-[22px] w-auto sm:h-[28px] transition-transform duration-300 group-hover:scale-105" 
               style={{ filter: 'drop-shadow(0 2px 4px rgba(13, 31, 59, 0.08))' }}
             />
@@ -144,7 +146,7 @@ const Navbar = () => {
         >
           <div>
             <div className="flex items-center justify-between mb-8">
-              <img src="/assets/logo-maines.svg" alt="Maines Logo" className="h-[22px] w-auto" />
+              <img src="/assets/logo-maines.svg" alt="Maines Logo" width="86" height="22" className="h-[22px] w-auto" />
               <button 
                 onClick={() => setIsOpen(false)}
                 className="p-1 rounded-full bg-slate-100 hover:bg-slate-200 text-primary-dark transition-colors duration-200 cursor-pointer"

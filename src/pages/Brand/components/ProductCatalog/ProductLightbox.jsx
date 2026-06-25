@@ -28,6 +28,7 @@ export const ProductLightbox = ({
                 loop
                 muted
                 playsInline
+                preload="none"
                 className="w-full h-full object-cover"
               />
             ) : (

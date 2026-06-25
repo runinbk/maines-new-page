@@ -115,6 +115,8 @@ const BrandFooter = ({ brand, language }) => {
               <img 
                 src={brand.logo} 
                 alt={`${brand.name} logo`} 
+                width="88"
+                height="22"
                 className="h-[22px] w-auto object-contain filter brightness-0 invert" 
                 loading="lazy"
               />

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { PageSkeleton } from '../../components/ui/Skeleton';
 import BrandHero from './components/BrandHero';
@@ -10,6 +10,8 @@ import { Globe, ArrowLeft, Send } from 'lucide-react';
 import { getProductIdFromSlug, getProductSlug } from '../../utils/navigation';
 import { useLanguage } from '../../context/LanguageContext';
 import { usePageMeta } from '../../hooks/usePageMeta';
+import BreadcrumbNav from '../../components/seo/BreadcrumbNav';
+import StructuredData from '../../components/seo/StructuredData';
 
 /**
  * BrandPage Master Component
@@ -190,6 +192,85 @@ export const BrandPage = () => {
   
   usePageMeta(pageTitle, pageDesc, ogImage);
 
+  // Esquema de BreadcrumbList JSON-LD
+  const breadcrumbSchema = useMemo(() => {
+    if (!brand) return null;
+    
+    const baseOrigin = "https://www.mainessrl.com";
+    const elements = [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": isEs ? "Inicio" : "Home",
+        "item": `${baseOrigin}/`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": brand.name,
+        "item": `${baseOrigin}/${brand.id}`
+      }
+    ];
+
+    if (selectedProduct) {
+      elements.push({
+        "@type": "ListItem",
+        "position": 3,
+        "name": isEs ? "Catálogo" : "Catalog",
+        "item": `${baseOrigin}/${brand.id}/catalogo`
+      });
+      elements.push({
+        "@type": "ListItem",
+        "position": 4,
+        "name": selectedProduct.name,
+        "item": `${baseOrigin}/${brand.id}/catalogo/${productSlug}`
+      });
+    }
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": elements
+    };
+  }, [brand, selectedProduct, productSlug, isEs]);
+
+  // Esquema de Product JSON-LD
+  const productSchema = useMemo(() => {
+    if (!brand || !selectedProduct) return null;
+
+    const baseOrigin = "https://www.mainessrl.com";
+    return {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": selectedProduct.name,
+      "image": selectedProduct.coverImage || selectedProduct.assets?.coverImage || `${baseOrigin}${brand.logo}`,
+      "description": selectedProduct.composition || selectedProduct.descriptor || "",
+      "category": selectedProduct.category,
+      "brand": {
+        "@type": "Brand",
+        "name": brand.name,
+        "logo": `${baseOrigin}${brand.logo}`
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": window.location.href,
+        "priceCurrency": "USD",
+        "price": "0.00",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "description": "Precio B2B exclusivo para clínicas y doctores bajo cotización directa",
+          "priceCurrency": "USD"
+        },
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Maines S.R.L.",
+          "url": baseOrigin
+        }
+      }
+    };
+  }, [brand, selectedProduct]);
+
   if (loadingBrand) {
     return <PageSkeleton />;
   }
@@ -226,6 +307,9 @@ export const BrandPage = () => {
 
   return (
     <div className="relative min-h-screen bg-lightBg w-full flex flex-col justify-between overflow-x-hidden text-primary-dark">
+      {/* JSON-LD Structured Data */}
+      <StructuredData schema={breadcrumbSchema} id="brand-breadcrumb-schema" />
+      {productSchema && <StructuredData schema={productSchema} id="brand-product-schema" />}
       
       {/* 1. Dynamic Sticky Subpage Capsule Navbar */}
       <header className={`fixed top-0 left-0 w-full z-50 px-3 xs:px-4 sm:px-8 lg:px-20 pt-3 sm:pt-6 transition-all duration-500 transform ${
@@ -260,6 +344,8 @@ export const BrandPage = () => {
                 <img 
                   src={brand.logo} 
                   alt={brand.name} 
+                  width="120"
+                  height="28"
                   className="h-[15px] xs:h-[18px] sm:h-[24px] md:h-[28px] w-auto object-contain filter drop-shadow-sm brightness-100" 
                 />
               </Link>
@@ -313,6 +399,9 @@ export const BrandPage = () => {
 
       {/* 2. Structured Layout Body */}
       <main className="flex-grow">
+        {/* Visual Breadcrumb Navigation Capsule */}
+        <BreadcrumbNav brand={brand} product={selectedProduct} language={language} />
+
         {/* Dynamic Presentation Hero */}
         <BrandHero brand={brand} language={language} />
 

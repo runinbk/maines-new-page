@@ -49,6 +49,9 @@ const BrandCard = ({ brand, index }) => {
             <img 
               src={brand.logo} 
               alt={`${brand.displayName} Logo`} 
+              width="220"
+              height="70"
+              loading="lazy"
               className="max-w-[75%] lg:max-w-[65%] max-h-full object-contain filter drop-shadow-sm select-none opacity-85 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-500" 
             />
           </div>

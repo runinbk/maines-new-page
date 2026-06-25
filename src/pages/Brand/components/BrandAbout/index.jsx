@@ -169,7 +169,7 @@ const BrandAbout = ({ brand, onBackToHome }) => {
                       loop
                       muted
                       playsInline
-                      preload="auto"
+                      preload="none"
                       onTimeUpdate={(e) => {
                         if (e.target.currentTime >= 10) {
                           e.target.currentTime = 0;

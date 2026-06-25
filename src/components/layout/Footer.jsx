@@ -48,6 +48,8 @@ const Footer = () => {
               <img 
                 src="/assets/logo-maines.svg" 
                 alt="Maines Logo" 
+                width="140"
+                height="36"
                 className="h-9 w-auto brightness-0 invert" 
                 loading="lazy"
               />

@@ -113,6 +113,9 @@ const BrandHero = ({ brand, language }) => {
         <img 
           src={heroBg} 
           alt="" 
+          width="1920"
+          height="1080"
+          fetchpriority="high"
           className="w-full h-full object-cover object-center opacity-95"
         />
       </picture>
@@ -214,6 +217,9 @@ const BrandHero = ({ brand, language }) => {
               <img 
                 src={brand.logo} 
                 alt={`${brand.name} Isotype`} 
+                width="400"
+                height="150"
+                fetchpriority="high"
                 className="w-24 xs:w-28 sm:w-44 md:w-56 lg:w-[18rem] xl:w-[22rem] 2xl:w-[25rem] animate-float select-none" 
                 style={{
                   filter: dropShadowFilter

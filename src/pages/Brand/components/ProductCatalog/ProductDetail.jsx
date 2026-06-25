@@ -294,7 +294,7 @@ export const ProductDetail = ({
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  preload="none"
                   className="absolute inset-0 w-full h-full object-cover bg-white rounded-2xl transition-opacity duration-300 pointer-events-none"
                   style={{ opacity: isHovered ? 1 : 0, zIndex: isHovered ? 20 : 0 }}
                 />
@@ -331,7 +331,7 @@ export const ProductDetail = ({
               {activeProduct.gallery.map((item, idx) => {
                 if (item && typeof item === 'object' && item.video) {
                   return (
-                    <video key={idx} src={item.video} preload="auto" muted />
+                    <video key={idx} src={item.video} preload="none" muted />
                   );
                 }
                 return null;

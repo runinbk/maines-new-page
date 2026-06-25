@@ -122,6 +122,9 @@ const Hero = () => {
               <img 
                 src="/assets/logo-maines.svg" 
                 alt="Maines Isotype" 
+                width="400"
+                height="400"
+                fetchpriority="high"
                 className="w-24 xs:w-28 sm:w-44 md:w-56 lg:w-[18rem] xl:w-[22rem] 2xl:w-[25rem] animate-float select-none" 
                 style={{
                   filter: 'drop-shadow(0 20px 30px rgba(14, 165, 233, 0.18)) drop-shadow(0 8px 15px rgba(26, 54, 93, 0.12))'

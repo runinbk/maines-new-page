@@ -75,16 +75,22 @@ export const usePageMeta = (title, description, customOgImage = null) => {
     // 2. Resolve Canonical & absolute URLs
     const baseOrigin = "https://www.mainessrl.com";
     const currentPath = window.location.pathname;
-    const canonicalUrl = `${baseOrigin}${currentPath}`;
+    
+    // Canonical consolidation: homepage section duplicate URLs point to root '/'
+    let canonicalPath = currentPath;
+    if (['/ecosistema', '/nosotros', '/contacto'].includes(currentPath)) {
+      canonicalPath = '/';
+    }
+    const canonicalUrl = `${baseOrigin}${canonicalPath}`;
 
     // 3. Update Base SEO tags
     updateOrCreateMeta('name', 'description', resolvedDescription);
     updateOrCreateLink('canonical', canonicalUrl);
 
     // 4. Update Hreflang Tags (dynamic href alternate mapping)
-    updateOrCreateLink('alternate', `${baseOrigin}${currentPath}`, { hreflang: 'es' });
-    updateOrCreateLink('alternate', `${baseOrigin}${currentPath}`, { hreflang: 'en' });
-    updateOrCreateLink('alternate', `${baseOrigin}${currentPath}`, { hreflang: 'x-default' });
+    updateOrCreateLink('alternate', canonicalUrl, { hreflang: 'es' });
+    updateOrCreateLink('alternate', canonicalUrl, { hreflang: 'en' });
+    updateOrCreateLink('alternate', canonicalUrl, { hreflang: 'x-default' });
 
     // 5. Update Open Graph (Facebook / Social Sharing)
     const resolvedOgImage = customOgImage || `${baseOrigin}/assets/logo-maines.svg`;

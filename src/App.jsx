@@ -8,6 +8,7 @@ import ErrorBoundary from './components/ui/ErrorBoundary';
 // Code Splitting - Lazy load page components to improve initial page load speed
 const Home = React.lazy(() => import('./pages/Home/Home'));
 const BrandPage = React.lazy(() => import('./pages/Brand/BrandPage'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
@@ -32,8 +33,8 @@ function App() {
               <Route path="/:brandId/empresa" element={<BrandPage />} />
               <Route path="/:brandId/contacto" element={<BrandPage />} />
 
-              {/* Fallback Redirect */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              {/* Fallback Route */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

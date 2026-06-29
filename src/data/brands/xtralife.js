@@ -491,6 +491,83 @@ export default {
       }
     },
     {
+      "id": "xtralife-apple-cider",
+      "brand": "xtralife",
+      "isNew": true,
+      "category": "specific",
+      "categoryLabel": {
+        "es": "Salud Específica y Control",
+        "en": "Specific Health & Control"
+      },
+      "name": "Apple Cider Vinegar",
+      "descriptor": "Metabolic & Digestive Support / Soporte Metabólico y Digestivo",
+      "certBadge": "MADE IN USA • GMP CERTIFIED",
+      "presentation": {
+        "es": "60 cápsulas",
+        "en": "60 capsules"
+      },
+      "dosage": {
+        "es": "1 cápsula diaria",
+        "en": "1 capsule daily"
+      },
+      "shortDescription": {
+        "es": "Fórmula concentrada de Vinagre de Sidra de Manzana. Diseñada para optimizar el metabolismo de carbohidratos, facilitar la digestión y reducir la inflamación abdominal. Actúa como coadyuvante natural en procesos de control de peso y bienestar gastrointestinal.",
+        "en": "Concentrated Apple Cider Vinegar formula. Designed to optimize carbohydrate metabolism, facilitate digestion, and reduce abdominal bloating. Acts as a natural adjuvant in weight management and gastrointestinal wellness processes."
+      },
+      "catalogBenefits": {
+        "es": [
+          "Ayuda a bajar de peso evitando la absorción de carbohidratos.",
+          "Elimina la inflamación estomacal.",
+          "Reduce los malestares y calambres de la zona abdominal.",
+          "Promueve una digestión saludable."
+        ],
+        "en": [
+          "Helps with weight loss by preventing carbohydrate absorption.",
+          "Eliminates abdominal bloating.",
+          "Reduces abdominal discomfort and cramps.",
+          "Promotes healthy digestion."
+        ]
+      },
+      "extendedBenefits": {
+        "es": [
+          "Optimización Metabólica: Contribuye a regular la respuesta glucémica postprandial, limitando la absorción excesiva de carbohidratos.",
+          "Alivio Digestivo: Favorece un entorno estomacal saludable, disminuyendo la distensión abdominal y los espasmos frecuentes.",
+          "Acción Detoxificante: Apoya los procesos naturales de depuración del sistema digestivo, facilitando una eliminación eficiente de residuos.",
+          "Bienestar Sistémico: Su consumo regular ayuda a mantener el confort gastrointestinal, mejorando significativamente la calidad de vida diaria."
+        ],
+        "en": [
+          "Metabolic Optimization: Contributes to regulating postprandial glycemic response, limiting excessive carbohydrate absorption.",
+          "Digestive Relief: Promotes a healthy stomach environment, decreasing bloating and frequent spasms.",
+          "Detoxifying Action: Supports natural digestive system purification processes, facilitating efficient waste elimination.",
+          "Systemic Wellness: Regular consumption helps maintain gastrointestinal comfort, significantly improving daily quality of life."
+        ]
+      },
+      "ingredients": {
+        "es": "Extracto concentrado de Vinagre de Sidra de Manzana. Fórmula de alta pureza, libre de gluten, lactosa y saborizantes artificiales.",
+        "en": "Concentrated Apple Cider Vinegar extract. High-purity formula, free of gluten, lactose, and artificial flavors."
+      },
+      "usage": {
+        "es": "Vía de administración oral. Ingerir 1 cápsula, aproximadamente 60 minutos antes de las comidas principales para maximizar su acción metabólica y digestiva.",
+        "en": "Oral administration. Take 1 capsule, approximately 60 minutes before main meals to maximize its metabolic and digestive action."
+      },
+      "precautions": {
+        "es": "Uso para adultos. Si presenta condiciones de salud gástrica preexistentes, está embarazada o en periodo de lactancia, consulte a un profesional médico antes de su uso. No sustituye una dieta equilibrada.",
+        "en": "For adult use. If you have pre-existing gastric health conditions, are pregnant, or breastfeeding, consult a medical professional before use. Does not substitute a balanced diet."
+      },
+      "sectionsConfig": {
+        "extendedBenefits": { "theme": "accent", "collapsible": true, "defaultExpanded": false },
+        "ingredients": { "theme": "normal", "collapsible": true, "defaultExpanded": false },
+        "usage": { "theme": "normal", "collapsible": true, "defaultExpanded": false },
+        "precautions": { "theme": "warning", "collapsible": true, "defaultExpanded": false }
+      },
+      "assets": {
+        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/apple-cider/xtralife-apple-cider-portada.webp",
+        "gallery": [
+          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/apple-cider/xtralife-apple-cider-1.webp" }
+        ]
+      }
+    },
+    {
       "id": "xtralife-omega-3",
       "brand": "xtralife",
       "category": "cardiovascular",

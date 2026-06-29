@@ -53,7 +53,8 @@ const BrandFooter = ({ brand, language }) => {
   const footerGradients = {
     jetema: 'bg-gradient-to-br from-[#5AA2D0] via-[#4C5A9D] to-[#120B25]', // Light Blue -> Indigo/Celeste -> Deep Violet
     dermclar: 'bg-gradient-to-br from-[#0ea5e9] via-[#0284c7] to-[#011e26]', // Cyan -> Sky Blue -> Deep Navy/Teal
-    xtralife: 'bg-gradient-to-br from-[#10B981] via-[#059669] to-[#041D12]'  // Emerald -> Mint -> Deep Green Forest
+    xtralife: 'bg-gradient-to-br from-[#10B981] via-[#059669] to-[#041D12]',  // Emerald -> Mint -> Deep Green Forest
+    cereform: 'bg-gradient-to-br from-[#3e97b6] via-[#2c819f] to-[#144f64]'  // Teal -> Medium Blue -> Deep Teal
   };
 
   const activeGradient = footerGradients[brandId] || 'bg-gradient-to-br from-[#1E293B] via-[#0F172A] to-[#020617]';
@@ -77,6 +78,12 @@ const BrandFooter = ({ brand, language }) => {
       sub: isEs
         ? "Suplementación científica de primer nivel con estándares de pureza norteamericanos."
         : "Top-tier scientific supplementation with North American purity standards."
+    },
+    cereform: {
+      title: "Science & Beauty in Harmony.",
+      sub: isEs
+        ? "Implantes mamarios de alta gama con respaldo de Euromi Biosciences y trazabilidad perfecta."
+        : "Premium breast implants with Euromi Biosciences backing and perfect traceability."
     }
   };
 
@@ -198,6 +205,12 @@ const BrandFooter = ({ brand, language }) => {
                   className={`hover:text-white transition-colors duration-200 ${brandId === 'xtralife' ? 'text-white font-bold' : ''}`}
                 >
                   Xtralife
+                </Link>
+                <Link 
+                  to="/cereform" 
+                  className={`hover:text-white transition-colors duration-200 ${brandId === 'cereform' ? 'text-white font-bold' : ''}`}
+                >
+                  Cereform
                 </Link>
               </div>
             </div>

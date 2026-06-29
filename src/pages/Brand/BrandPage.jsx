@@ -6,6 +6,7 @@ import ProductCatalog from './components/ProductCatalog';
 import BrandAbout from './components/BrandAbout';
 import BrandCTA from './components/BrandCTA';
 import BrandFooter from './components/BrandFooter';
+import CereformLayout from './components/CereformLayout';
 import { Globe, ArrowLeft, Send } from 'lucide-react';
 import { getProductIdFromSlug, getProductSlug } from '../../utils/navigation';
 import { useLanguage } from '../../context/LanguageContext';
@@ -286,6 +287,17 @@ export const BrandPage = () => {
           Return to Portal
         </Link>
       </div>
+    );
+  }
+
+  // Intercept layout if it is the custom Cereform page
+  if (brandId === 'cereform') {
+    return (
+      <CereformLayout 
+        brand={brand} 
+        language={language} 
+        onBackToHome={handleBackToHome} 
+      />
     );
   }
 

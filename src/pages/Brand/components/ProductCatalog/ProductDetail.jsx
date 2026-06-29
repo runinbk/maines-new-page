@@ -429,7 +429,7 @@ export const ProductDetail = ({
                     {activeProduct.description}
                   </p>
 
-                  {activeProduct.applicationZones && (
+                  {activeProduct.applicationZones && activeProduct.applicationZones.length > 0 && (
                     <div className="space-y-3 pt-2">
                       <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
                         {isEs ? 'Zonas de Aplicación' : 'Application Zones'}
@@ -494,7 +494,7 @@ export const ProductDetail = ({
                       {activeProduct.catalogBenefits && activeProduct.catalogBenefits.length > 0 && (
                         <div className="space-y-3 pt-2 border-t border-slate-100/60">
                           <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/45 uppercase block">
-                            {isEs ? 'Beneficios Oficiales' : 'Official Benefits'}
+                            {isEs ? 'Beneficios' : 'Benefits'}
                           </span>
                           <ul className="space-y-3">
                             {activeProduct.catalogBenefits.map((benefit, idx) => (
@@ -563,7 +563,7 @@ export const ProductDetail = ({
                     </div>
                   )}
 
-                  {activeProduct.applicationZones && (
+                  {activeProduct.applicationZones && activeProduct.applicationZones.length > 0 && (
                     <div className="pt-2 space-y-1.5">
                       <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
                         {isEs ? 'Zonas de Aplicación' : 'Application Zones'}

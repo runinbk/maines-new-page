@@ -7,7 +7,8 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
-  Check
+  Check,
+  ChevronDown
 } from 'lucide-react';
 import ImageWithSkeleton from '../../../../components/ui/ImageWithSkeleton';
 import ProductSpecs from './ProductSpecs';
@@ -154,6 +155,11 @@ export const ProductDetail = ({
       Object.keys(config).forEach(key => {
         initialExpanded[key] = !!config[key]?.defaultExpanded;
       });
+      // Initialize default collapsible states for Dermclar
+      initialExpanded['dermIngredients'] = true;
+      initialExpanded['dermBenefits'] = false;
+      initialExpanded['dermUsage'] = false;
+      initialExpanded['dermPrecautions'] = false;
       return initialExpanded;
     }
     return {};
@@ -659,89 +665,181 @@ export const ProductDetail = ({
 
         {/* 2.5. Full-Width Clinical Details for Dermclar */}
         {brandId === 'dermclar' && (
-          <div className="border-t border-slate-100 pt-8 text-left space-y-8">
-            {(activeProduct.activeIngredientsList || activeProduct.activeIngredientsDetails || activeProduct.activeIngredients) && (
-              <div className="space-y-3">
-                <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
-                  {isEs ? 'Principios Activos' : 'Active Ingredients'}
-                </h3>
-                {activeProduct.activeIngredientsList ? (
-                  <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
-                    {activeProduct.activeIngredientsList.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
-                        <span>
-                          <strong className="font-extrabold text-slate-800" style={{ color: resolveBrandColor(brand.accentBg) }}>{item.name}</strong>: {item.description}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
-                    {activeProduct.activeIngredientsDetails || activeProduct.activeIngredients}
-                  </p>
-                )}
-              </div>
-            )}
-
-            {((activeProduct.benefits && activeProduct.benefits.length > 0) || (activeProduct.clinicalBenefits && activeProduct.clinicalBenefits.length > 0)) && (
-              <div className="space-y-3">
-                <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
-                  {isEs ? 'Beneficios' : 'Benefits'}
-                </h3>
-                <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
-                  {activeProduct.benefits ? (
-                    activeProduct.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
-                        <span>{benefit}</span>
-                      </li>
-                    ))
-                  ) : (
-                    activeProduct.clinicalBenefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
-                        <span>{benefit.title}: {benefit.detail}</span>
-                      </li>
-                    ))
-                  )}
-                </ul>
-              </div>
-            )}
-
-            {activeProduct.usageIndications && activeProduct.usageIndications.length > 0 && (
-              <div className="space-y-3">
-                <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
-                  {isEs ? 'Indicaciones y Modo de Uso' : 'Indications & Usage'}
-                </h3>
-                <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
-                  {activeProduct.usageIndications.map((ind, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
-                      <span>{ind}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {activeProduct.contraindications && activeProduct.contraindications.length > 0 && (
-              <div className="space-y-3">
-                <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-amber-600 uppercase">
-                  {isEs ? 'Advertencias y Contraindicaciones' : 'Warnings & Contraindications'}
-                </h3>
-                <div className="pl-4 border-l-2 border-amber-500/60 bg-amber-500/[0.02] py-1 rounded-r-xl">
-                  <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
-                    {activeProduct.contraindications.map((contra, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80 shrink-0 mt-2" />
-                        <span>{contra}</span>
-                      </li>
-                    ))}
-                  </ul>
+          <div className="border-t border-slate-100 pt-8 text-left space-y-2">
+            {(activeProduct.activeIngredientsList || activeProduct.activeIngredientsDetails || activeProduct.activeIngredients) && (() => {
+              const isExpanded = !!expandedSections['dermIngredients'];
+              return (
+                <div className="py-4 border-b border-slate-100/60 animate-fade-in">
+                  <button
+                    onClick={() => setExpandedSections(prev => ({ ...prev, dermIngredients: !prev.dermIngredients }))}
+                    className="w-full flex items-center justify-between transition-colors text-left focus:outline-none cursor-pointer group"
+                  >
+                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#0ea5e9] hover:text-[#0284c7]">
+                      {isEs ? 'Principios Activos' : 'Active Ingredients'}
+                    </span>
+                    <ChevronDown 
+                      className={`w-5 h-5 transition-transform duration-300 text-slate-400 group-hover:text-slate-600 ${
+                        isExpanded ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-out overflow-hidden ${
+                      isExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="pt-4 pb-1">
+                        {activeProduct.activeIngredientsList ? (
+                          <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                            {activeProduct.activeIngredientsList.map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-2.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
+                                <span>
+                                  <strong className="font-extrabold text-slate-800" style={{ color: resolveBrandColor(brand.accentBg) }}>{item.name}</strong>: {item.description}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                            {activeProduct.activeIngredientsDetails || activeProduct.activeIngredients}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
+
+            {((activeProduct.benefits && activeProduct.benefits.length > 0) || (activeProduct.clinicalBenefits && activeProduct.clinicalBenefits.length > 0)) && (() => {
+              const isExpanded = !!expandedSections['dermBenefits'];
+              return (
+                <div className="py-4 border-b border-slate-100/60 animate-fade-in">
+                  <button
+                    onClick={() => setExpandedSections(prev => ({ ...prev, dermBenefits: !prev.dermBenefits }))}
+                    className="w-full flex items-center justify-between transition-colors text-left focus:outline-none cursor-pointer group"
+                  >
+                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#0ea5e9] hover:text-[#0284c7]">
+                      {isEs ? 'Beneficios' : 'Benefits'}
+                    </span>
+                    <ChevronDown 
+                      className={`w-5 h-5 transition-transform duration-300 text-slate-400 group-hover:text-slate-600 ${
+                        isExpanded ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-out overflow-hidden ${
+                      isExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="pt-4 pb-1">
+                        <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                          {activeProduct.benefits ? (
+                            activeProduct.benefits.map((benefit, idx) => (
+                              <li key={idx} className="flex items-start gap-2.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
+                                <span>{benefit}</span>
+                              </li>
+                            ))
+                          ) : (
+                            activeProduct.clinicalBenefits.map((benefit, idx) => (
+                              <li key={idx} className="flex items-start gap-2.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
+                                <span>{benefit.title}: {benefit.detail}</span>
+                              </li>
+                            ))
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {activeProduct.usageIndications && activeProduct.usageIndications.length > 0 && (() => {
+              const isExpanded = !!expandedSections['dermUsage'];
+              return (
+                <div className="py-4 border-b border-slate-100/60 animate-fade-in">
+                  <button
+                    onClick={() => setExpandedSections(prev => ({ ...prev, dermUsage: !prev.dermUsage }))}
+                    className="w-full flex items-center justify-between transition-colors text-left focus:outline-none cursor-pointer group"
+                  >
+                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#0ea5e9] hover:text-[#0284c7]">
+                      {isEs ? 'Indicaciones y Modo de Uso' : 'Indications & Usage'}
+                    </span>
+                    <ChevronDown 
+                      className={`w-5 h-5 transition-transform duration-300 text-slate-400 group-hover:text-slate-600 ${
+                        isExpanded ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-out overflow-hidden ${
+                      isExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="pt-4 pb-1">
+                        <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                          {activeProduct.usageIndications.map((ind, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9] shrink-0 mt-2" />
+                              <span>{ind}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {activeProduct.contraindications && activeProduct.contraindications.length > 0 && (() => {
+              const isExpanded = !!expandedSections['dermPrecautions'];
+              return (
+                <div className="py-4 border-b border-slate-100/60 animate-fade-in">
+                  <button
+                    onClick={() => setExpandedSections(prev => ({ ...prev, dermPrecautions: !prev.dermPrecautions }))}
+                    className="w-full flex items-center justify-between transition-colors text-left focus:outline-none cursor-pointer group"
+                  >
+                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-amber-600 hover:text-amber-700">
+                      {isEs ? 'Advertencias y Contraindicaciones' : 'Warnings & Contraindications'}
+                    </span>
+                    <ChevronDown 
+                      className={`w-5 h-5 transition-transform duration-300 text-amber-600 group-hover:text-amber-700 ${
+                        isExpanded ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-out overflow-hidden ${
+                      isExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="pt-4 pb-1">
+                        <div className="pl-4 border-l-2 border-amber-500/60 bg-amber-500/[0.02] py-1 rounded-r-xl">
+                          <ul className="space-y-3 text-sm sm:text-[15px] text-slate-600 font-medium leading-relaxed">
+                            {activeProduct.contraindications.map((contra, idx) => (
+                              <li key={idx} className="flex items-start gap-2.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80 shrink-0 mt-2" />
+                                <span>{contra}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         )}
 

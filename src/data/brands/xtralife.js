@@ -168,6 +168,83 @@ export default {
   },
   "products": [
     {
+      "id": "xtralife-milk-thistle",
+      "brand": "xtralife",
+      "isNew": true,
+      "category": "cardiovascular",
+      "categoryLabel": {
+        "es": "Bienestar Cardiovascular y General",
+        "en": "Cardiovascular & General Wellness"
+      },
+      "name": "Milk Thistle (Cardo Mariano)",
+      "descriptor": "Liver Detox & Hepatic Support / Soporte Hepático y Detox",
+      "certBadge": "MADE IN USA • CERTIFICACIÓN GMP",
+      "presentation": {
+        "es": "60 cápsulas",
+        "en": "60 capsules"
+      },
+      "dosage": {
+        "es": "1 a 2 cápsulas diarias",
+        "en": "1 to 2 capsules daily"
+      },
+      "shortDescription": {
+        "es": "Fórmula hepatoprotectora de alta concentración. Basada en el extracto estandarizado de Silybum marianum, actúa como un escudo protector para las células hepáticas, optimizando los procesos de desintoxicación y regeneración tisular frente al estrés oxidativo.",
+        "en": "High-concentration hepatoprotective formula. Based on standardized Silybum marianum extract, it acts as a protective shield for liver cells, optimizing detoxification processes and tissue regeneration against oxidative stress."
+      },
+      "catalogBenefits": {
+        "es": [
+          "Potente hepatoprotector de alta eficacia.",
+          "Promueve el crecimiento y regeneración de nuevas células hepáticas.",
+          "Posee un alto poder antioxidante frente a radicales libres.",
+          "Disminuye los niveles de colesterol y transaminasas altas."
+        ],
+        "en": [
+          "Highly effective hepatoprotective agent.",
+          "Promotes the growth and regeneration of new liver cells.",
+          "High antioxidant power against free radicals.",
+          "Decreases cholesterol levels and high transaminase levels."
+        ]
+      },
+      "extendedBenefits": {
+        "es": [
+          "Protección y Regeneración Hepática: Estimula la síntesis de proteínas en el hígado, favoreciendo la reparación de tejidos dañados por agentes externos o estrés metabólico.",
+          "Optimización del Metabolismo Lipídico: Contribuye a la normalización de los niveles de lípidos en sangre, siendo un soporte clave en condiciones de esteatosis (hígado graso).",
+          "Defensa Antioxidante Celular: La silimarina neutraliza especies reactivas de oxígeno, protegiendo al hepatocito frente a la toxicidad por metales pesados y agentes químicos.",
+          "Estabilización de Enzimas: Ayuda a reducir marcadores de daño hepático, como las transaminasas, favoreciendo un entorno metabólico equilibrado."
+        ],
+        "en": [
+          "Hepatic Protection and Regeneration: Stimulates protein synthesis in the liver, favoring the repair of tissues damaged by external agents or metabolic stress.",
+          "Lipid Metabolism Optimization: Contributes to the normalization of blood lipid levels, acting as a key support in conditions of steatosis (fatty liver).",
+          "Cellular Antioxidant Defense: Silymarin neutralizes reactive oxygen species, protecting hepatocytes from toxicity caused by heavy metals and chemical agents.",
+          "Enzyme Stabilization: Helps reduce markers of liver damage, such as transaminases, favoring a balanced metabolic environment."
+        ]
+      },
+      "ingredients": {
+        "es": "Extracto concentrado de semilla de Cardo Mariano (Silybum marianum). Formulación libre de gluten, lactosa y conservantes artificiales.",
+        "en": "Concentrated Milk Thistle seed extract (Silybum marianum). Formulation free of gluten, lactose, and artificial preservatives."
+      },
+      "usage": {
+        "es": "Vía de administración oral. Ingerir de 1 a 2 cápsulas diarias, preferentemente después de la ingesta de alimentos para asegurar la absorción óptima de sus componentes activos.",
+        "en": "Oral administration. Take 1 to 2 capsules daily, preferably after consuming food to ensure optimal absorption of its active components."
+      },
+      "precautions": {
+        "es": "Uso para adultos. Contraindicado en personas con alergia conocida a plantas de la familia Asteraceae. No recomendado en mujeres embarazadas o en periodo de lactancia. Pacientes con patologías hepáticas crónicas deben consultar a su médico antes de usar.",
+        "en": "For adult use. Contraindicated in individuals with known allergies to plants of the Asteraceae family. Not recommended for pregnant or lactating women. Patients with chronic liver pathologies must consult their physician before use."
+      },
+      "sectionsConfig": {
+        "extendedBenefits": { "theme": "accent", "collapsible": true, "defaultExpanded": false },
+        "ingredients": { "theme": "normal", "collapsible": true, "defaultExpanded": false },
+        "usage": { "theme": "normal", "collapsible": true, "defaultExpanded": false },
+        "precautions": { "theme": "warning", "collapsible": true, "defaultExpanded": false }
+      },
+      "assets": {
+        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/milk-thistle/xtralife-milk-thistle-portada.webp",
+        "gallery": [
+          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/milk-thistle/xtralife-milk-thistle-1.webp" }
+        ]
+      }
+    },
+    {
       "id": "xtralife-super-flex",
       "brand": "xtralife",
       "isNew": true,

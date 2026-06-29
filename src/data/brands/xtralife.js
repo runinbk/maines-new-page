@@ -168,6 +168,99 @@ export default {
   },
   "products": [
     {
+      "id": "xtralife-super-flex",
+      "brand": "xtralife",
+      "isNew": true,
+      "category": "bones",
+      "categoryLabel": {
+        "es": "Salud Ósea y Articular",
+        "en": "Bone & Joint Health"
+      },
+      "name": "Super Flex",
+      "descriptor": "Joint Recovery & Mobility / Recuperación y Movilidad Articular",
+      "certBadge": "MADE IN USA • CERTIFICACIÓN GMP",
+      "presentation": {
+        "es": "100 cápsulas",
+        "en": "100 capsules"
+      },
+      "dosage": {
+        "es": "3 cápsulas diarias",
+        "en": "3 capsules daily"
+      },
+      "shortDescription": {
+        "es": "Complejo avanzado para la salud articular. Formulado con Glucosamina y Condroitina de alta pureza, diseñado para optimizar la flexibilidad, proteger el cartílago y restaurar la integridad funcional de articulaciones y ligamentos bajo impacto.",
+        "en": "Advanced joint health complex. Formulated with high-purity Glucosamine and Chondroitin, designed to optimize flexibility, protect cartilage, and restore the functional integrity of joints and ligaments under impact."
+      },
+      "catalogBenefits": {
+        "es": [
+          "Ayuda a proteger el cartílago y las articulaciones.",
+          "Contribuye a la flexibilidad y movilidad articular.",
+          "Apoya la recuperación de ligamentos y articulaciones.",
+          "Efecto antiinflamatorio y analgésico."
+        ],
+        "en": [
+          "Helps protect cartilage and joints.",
+          "Contributes to flexibility and joint mobility.",
+          "Supports ligament and joint recovery.",
+          "Anti-inflammatory and analgesic effect."
+        ]
+      },
+      "extendedBenefits": {
+        "es": [
+          "Protección del Tejido Condral: Favorece la síntesis de cartílago nuevo, siendo altamente eficaz en la recuperación de estructuras dañadas por traumatismos deportivos o desgaste crónico.",
+          "Optimización Sinovial: Mejora la viscosidad y consistencia del líquido sinovial, lo cual reduce la fricción entre superficies articulares durante el movimiento.",
+          "Modulación Inflamatoria: Sus componentes actúan en la disminución del dolor articular asociado a procesos degenerativos (artrosis, artritis), mejorando el confort clínico.",
+          "Soporte Estructural Integrado: Fortalece los tendones y ligamentos, proporcionando mayor estabilidad ante la carga física constante."
+        ],
+        "en": [
+          "Chondral Tissue Protection: Favors the synthesis of new cartilage, being highly effective in the recovery of structures damaged by sports trauma or chronic wear.",
+          "Synovial Optimization: Improves the viscosity and consistency of synovial fluid, reducing friction between joint surfaces during movement.",
+          "Inflammatory Modulation: Its components act to decrease joint pain associated with degenerative processes (osteoarthritis, arthritis), improving clinical comfort.",
+          "Integrated Structural Support: Strengthens tendons and ligaments, providing greater stability under constant physical load."
+        ]
+      },
+      "ingredients": {
+        "es": "Complejo optimizado de Glucosamina y Condroitina de alta biodisponibilidad. Fórmula libre de gluten, lactosa y alérgenos artificiales.",
+        "en": "Optimized complex of high-bioavailability Glucosamine and Chondroitin. Gluten-free, lactose-free, and free of artificial allergens."
+      },
+      "usage": {
+        "es": "Vía de administración oral. Ingerir 3 cápsulas diarias después de las comidas principales. Para resultados óptimos en procesos degenerativos, se sugiere un uso continuo bajo supervisión profesional.",
+        "en": "Oral administration. Take 3 capsules daily after main meals. For optimal results in degenerative processes, continuous use is suggested under professional supervision."
+      },
+      "precautions": {
+        "es": "No apto para personas con diagnóstico o sospecha de hipertiroidismo. No recomendado durante el embarazo o lactancia. Consultar a un especialista si se presentan reacciones alérgicas. No superar la dosis sugerida.",
+        "en": "Not suitable for individuals with a diagnosis or suspicion of hyperthyroidism. Not recommended during pregnancy or lactation. Consult a specialist if allergic reactions occur. Do not exceed the suggested dose."
+      },
+      "sectionsConfig": {
+        "extendedBenefits": {
+          "theme": "accent",
+          "collapsible": true,
+          "defaultExpanded": false
+        },
+        "ingredients": {
+          "theme": "normal",
+          "collapsible": true,
+          "defaultExpanded": false
+        },
+        "usage": {
+          "theme": "normal",
+          "collapsible": true,
+          "defaultExpanded": false
+        },
+        "precautions": {
+          "theme": "warning",
+          "collapsible": true,
+          "defaultExpanded": false
+        }
+      },
+      "assets": {
+        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/super-flex/xtralife-super-flex-portada.webp",
+        "gallery": [
+          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/super-flex/xtralife-super-flex-1.webp" }
+        ]
+      }
+    },
+    {
       "id": "xtralife-inositol",
       "brand": "xtralife",
       "isNew": true,

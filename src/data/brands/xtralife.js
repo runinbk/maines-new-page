@@ -176,7 +176,7 @@ export default {
         "es": "Bienestar Cardiovascular y General",
         "en": "Cardiovascular & General Wellness"
       },
-      "name": "Milk Thistle (Cardo Mariano)",
+      "name": "Milk Thistle",
       "descriptor": "Liver Detox & Hepatic Support / Soporte Hepático y Detox",
       "certBadge": "MADE IN USA • CERTIFICACIÓN GMP",
       "presentation": {
@@ -487,6 +487,83 @@ export default {
           {
             "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/ashwagandha/xtralife-ashwagandha-1.webp"
           }
+        ]
+      }
+    },
+    {
+      "id": "xtralife-cranberry",
+      "brand": "xtralife",
+      "isNew": true,
+      "category": "specific",
+      "categoryLabel": {
+        "es": "Salud Específica y Control",
+        "en": "Specific Health & Control"
+      },
+      "name": "Cranberry",
+      "descriptor": "Urinary Tract Support / Soporte del Tracto Urinario",
+      "certBadge": "MADE IN USA • CERTIFICACIÓN GMP",
+      "presentation": {
+        "es": "60 cápsulas",
+        "en": "60 capsules"
+      },
+      "dosage": {
+        "es": "1 cápsula diaria",
+        "en": "1 capsule daily"
+      },
+      "shortDescription": {
+        "es": "Complejo fitonutricional avanzado de Cranberry. Formulado para el mantenimiento de un sistema urinario saludable mediante la modulación del pH urinario, ofreciendo una potente acción antioxidante y protectora frente a agentes externos.",
+        "en": "Advanced Cranberry phytonutritional complex. Formulated for maintaining a healthy urinary system through urinary pH modulation, offering a powerful antioxidant and protective action against external agents."
+      },
+      "catalogBenefits": {
+        "es": [
+          "Acidifica la orina, bajando su pH para disminuir la proliferación bacteriana.",
+          "Fortalece las defensas inmunitarias con Vitamina C.",
+          "Equilibra la flora intestinal.",
+          "Acción antioxidante que retrasa el envejecimiento celular."
+        ],
+        "en": [
+          "Acidifies urine, lowering its pH to decrease bacterial proliferation.",
+          "Reinforces immune defenses with Vitamin C.",
+          "Balances intestinal flora.",
+          "Antioxidant action that delays cellular aging."
+        ]
+      },
+      "extendedBenefits": {
+        "es": [
+          "Salud del Tracto Urinario: Sus flavonoides actúan reduciendo la adhesión de patógenos en las paredes del tracto urinario, previniendo infecciones recurrentes.",
+          "Soporte Inmunológico: La alta concentración de vitamina C actúa como coadyuvante en la respuesta inmunitaria del organismo ante infecciones.",
+          "Protección Cardiovascular: Los flavonoides del Cranberry contribuyen a mejorar la salud arterial, reduciendo potencialmente el riesgo de procesos arterioscleróticos.",
+          "Defensa Contra Radicales Libres: Potente capacidad antioxidante que protege las estructuras celulares frente al daño oxidativo sistémico."
+        ],
+        "en": [
+          "Urinary Tract Health: Its flavonoids act by reducing pathogen adhesion to urinary tract walls, preventing recurrent infections.",
+          "Immune Support: High concentration of Vitamin C acts as an adjuvant in the body's immune response to infections.",
+          "Cardiovascular Protection: Cranberry flavonoids contribute to improved arterial health, potentially reducing the risk of arteriosclerotic processes.",
+          "Free Radical Defense: Potent antioxidant capacity protecting cellular structures against systemic oxidative damage."
+        ]
+      },
+      "ingredients": {
+        "es": "Extracto estandarizado de Cranberry (Arándano Rojo) rico en proantocianidinas y Vitamina C. Formulación libre de gluten, lactosa y conservantes artificiales.",
+        "en": "Standardized Cranberry extract rich in proanthocyanidins and Vitamin C. Formulation free of gluten, lactose, and artificial preservatives."
+      },
+      "usage": {
+        "es": "Vía de administración oral. Ingerir 1 cápsula diaria. Para una eficacia óptima en la salud urinaria, se recomienda acompañar el consumo con una hidratación adecuada a lo largo del día.",
+        "en": "Oral administration. Take 1 capsule daily. For optimal efficacy in urinary health, it is recommended to accompany consumption with adequate hydration throughout the day."
+      },
+      "precautions": {
+        "es": "Uso para adultos. Pacientes con antecedentes de cálculos renales (oxalato de calcio) o bajo tratamiento con anticoagulantes deben consultar a su médico antes de su consumo. No sustituye una dieta equilibrada.",
+        "en": "For adult use. Patients with a history of kidney stones (calcium oxalate) or on anticoagulant treatment should consult their physician before use. Does not substitute a balanced diet."
+      },
+      "sectionsConfig": {
+        "extendedBenefits": { "theme": "accent", "collapsible": true, "defaultExpanded": false },
+        "ingredients": { "theme": "normal", "collapsible": true, "defaultExpanded": false },
+        "usage": { "theme": "normal", "collapsible": true, "defaultExpanded": false },
+        "precautions": { "theme": "warning", "collapsible": true, "defaultExpanded": false }
+      },
+      "assets": {
+        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cranberry/xtralife-cranberry-portada.webp",
+        "gallery": [
+          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cranberry/xtralife-cranberry-1.webp" }
         ]
       }
     },

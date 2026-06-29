@@ -417,7 +417,7 @@ export const ProductDetail = ({
                   {activeProduct.displayName}
                 </h3>
                 {activeProduct.isNew && (
-                  <span className="bg-[#0ea5e9] text-white text-xs font-bold px-2 py-1 uppercase rounded-sm tracking-widest ml-3 shadow-xs">
+                  <span className={`${brand.accentBg} text-white text-xs font-bold px-2 py-1 uppercase rounded-sm tracking-widest ml-3 shadow-xs`}>
                     {isEs ? 'Nuevo' : 'New'}
                   </span>
                 )}

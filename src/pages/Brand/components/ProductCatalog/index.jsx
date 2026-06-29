@@ -361,7 +361,7 @@ export const ProductCatalog = ({ brand, language, selectedProductId, onSelectPro
                             {prod.displayName}
                           </h4>
                           {prod.isNew && (
-                            <span className="bg-[#0ea5e9] text-white text-[8px] font-extrabold px-1.5 py-0.5 uppercase rounded-xs tracking-wider shrink-0">
+                            <span className={`${brand.accentBg} text-white text-[8px] font-extrabold px-1.5 py-0.5 uppercase rounded-xs tracking-wider shrink-0`}>
                               {isEs ? 'Nuevo' : 'New'}
                             </span>
                           )}

@@ -168,6 +168,66 @@ export default {
   },
   "products": [
     {
+      "id": "xtralife-ashwagandha",
+      "brand": "xtralife",
+      "category": "energy",
+      "categoryLabel": {
+        "es": "Energía, Vitalidad y Rendimiento",
+        "en": "Energy, Vitality & Performance"
+      },
+      "name": "Ashwagandha",
+      "descriptor": "Adaptogenic Support / Soporte Adaptógeno",
+      "isNew": true,
+      "certBadge": "MADE IN USA • CERTIFICACIÓN GMP",
+      "presentation": {
+        "es": "60 cápsulas",
+        "en": "60 capsules"
+      },
+      "dosage": {
+        "es": "1 cápsula diaria",
+        "en": "1 capsule daily"
+      },
+      "shortDescription": {
+        "es": "Suplemento natural adaptógeno diseñado para mitigar los efectos del estrés físico y mental, favoreciendo la recuperación, el equilibrio emocional y la vitalidad energética sostenida.",
+        "en": "Natural adaptogenic supplement designed to mitigate the effects of physical and mental stress, favoring recovery, emotional balance, and sustained energetic vitality."
+      },
+      "catalogBenefits": {
+        "es": [
+          "Ayuda a reducir el estrés y el cortisol.",
+          "Favorece un mejor descanso y calidad de sueño.",
+          "Mejora la energía y el rendimiento físico."
+        ],
+        "en": [
+          "Helps reduce stress and cortisol.",
+          "Favors better rest and sleep quality.",
+          "Improves energy and physical performance."
+        ]
+      },
+      "precautions": {
+        "es": "Uso para adultos mayores de 14 años. Consultar a un médico si está embarazada o lactando.",
+        "en": "For adults over 14 years old. Consult a physician if pregnant or nursing."
+      },
+      "precauciones": {
+        "es": "Uso para adultos mayores de 14 años. Consultar a un médico si está embarazada o lactando.",
+        "en": "For adults over 14 years old. Consult a physician if pregnant or nursing."
+      },
+      "sectionsConfig": {
+        "precautions": {
+          "theme": "warning",
+          "collapsible": true,
+          "defaultExpanded": false
+        }
+      },
+      "assets": {
+        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/ashwagandha/xtralife-ashwagandha-portada.webp",
+        "gallery": [
+          {
+            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/ashwagandha/xtralife-ashwagandha-1.webp"
+          }
+        ]
+      }
+    },
+    {
       "id": "xtralife-omega-3",
       "brand": "xtralife",
       "category": "cardiovascular",

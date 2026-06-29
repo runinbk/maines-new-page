@@ -62,7 +62,7 @@ export const usePageMeta = (title, description, customOgImage = null) => {
     const defaultTitle = "Maines SRL | Importadora de Insumos Médicos Estéticos";
     
     // 1. Update Document Title
-    let finalTitle = resolvedTitle;
+    let finalTitle;
     if (resolvedTitle) {
       finalTitle = resolvedTitle.endsWith(brandName) 
         ? resolvedTitle 

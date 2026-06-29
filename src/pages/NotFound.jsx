@@ -1,8 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageMeta } from '../hooks/usePageMeta';
-import { ArrowLeft, Home, MessageSquare, AlertCircle } from 'lucide-react';
+import { Home, MessageSquare, AlertCircle } from 'lucide-react';
 
 export const NotFound = () => {
   const { language } = useLanguage();

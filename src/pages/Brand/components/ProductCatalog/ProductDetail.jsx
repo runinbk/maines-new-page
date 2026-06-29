@@ -14,49 +14,55 @@ import ProductSpecs from './ProductSpecs';
 import ProductLightbox from './ProductLightbox';
 
 // Import custom application zone icons
-import zonaRostro from '../../../../../assets/iconos/zonas/zona-rostro.png';
-import zonaCuello from '../../../../../assets/iconos/zonas/zona-cuello.png';
-import zonaEscote from '../../../../../assets/iconos/zonas/zona-escote.png';
-import zonaAbdomen from '../../../../../assets/iconos/zonas/zona-abdomen.png';
-import zonaGluteos from '../../../../../assets/iconos/zonas/zona-gluteos.png';
-import zonaPiernas from '../../../../../assets/iconos/zonas/zona-piernas.png';
-import zonaBrazos from '../../../../../assets/iconos/zonas/zona-brazos.png';
-import zonaManos from '../../../../../assets/iconos/zonas/zona-manos.png';
-import zonaCintura from '../../../../../assets/iconos/zonas/zona-cintura.png';
-import zonaFlancos from '../../../../../assets/iconos/zonas/zona-flancos.png';
-import zonaPapada from '../../../../../assets/iconos/zonas/zona-papada.png';
-import zonaCuerpo from '../../../../../assets/iconos/zonas/zona-cuerpo.png';
+import icon1 from '../../../../../assets/iconos/zonas/1.png';
+import icon2 from '../../../../../assets/iconos/zonas/2.png';
+import icon3 from '../../../../../assets/iconos/zonas/3.png';
+import icon4 from '../../../../../assets/iconos/zonas/4.png';
+import icon5 from '../../../../../assets/iconos/zonas/5.png';
+import icon6 from '../../../../../assets/iconos/zonas/6.png';
+import icon7 from '../../../../../assets/iconos/zonas/7.png';
+import icon8 from '../../../../../assets/iconos/zonas/8.png';
+import icon9 from '../../../../../assets/iconos/zonas/9.png';
+import icon10 from '../../../../../assets/iconos/zonas/10.png';
+import icon11 from '../../../../../assets/iconos/zonas/11.png';
+import icon12 from '../../../../../assets/iconos/zonas/12.png';
+import icon13 from '../../../../../assets/iconos/zonas/13.png';
+import icon14 from '../../../../../assets/iconos/zonas/14.png';
 
 const zoneIcons = {
-  "Rostro": zonaRostro,
-  "Face": zonaRostro,
-  "Cuello": zonaCuello,
-  "Neck": zonaCuello,
-  "Escote": zonaEscote,
-  "Cleavage": zonaEscote,
-  "Abdomen": zonaAbdomen,
-  "Glúteos": zonaGluteos,
-  "Glutes": zonaGluteos,
-  "Buttocks": zonaGluteos,
-  "Piernas": zonaPiernas,
-  "Legs": zonaPiernas,
-  "Brazos": zonaBrazos,
-  "Arms": zonaBrazos,
-  "Manos": zonaManos,
-  "Hands": zonaManos,
-  "Cintura": zonaCintura,
-  "Waist": zonaCintura,
-  "Flancos": zonaFlancos,
-  "Flanks": zonaFlancos,
-  "Papada": zonaPapada,
-  "Double Chin": zonaPapada,
-  "Cuerpo": zonaCuerpo,
-  "Body": zonaCuerpo
+  1: icon1, "1": icon1,
+  2: icon2, "2": icon2,
+  3: icon3, "3": icon3,
+  4: icon4, "4": icon4,
+  5: icon5, "5": icon5,
+  6: icon6, "6": icon6,
+  7: icon7, "7": icon7,
+  8: icon8, "8": icon8,
+  9: icon9, "9": icon9,
+  10: icon10, "10": icon10,
+  11: icon11, "11": icon11,
+  12: icon12, "12": icon12,
+  13: icon13, "13": icon13,
+  14: icon14, "14": icon14
 };
 
-const getZoneIcon = (zoneName) => {
-  if (!zoneName) return null;
-  return zoneIcons[zoneName] || zoneIcons[zoneName.trim()] || null;
+const brandProductZoneIcons = {
+  "derm-whitening": [1, 2, 3, 4, 5],
+  "derm-firm": [2, 13, 5],
+  "derm-plasmavit": [6, 1, 2, 3, 5, 4],
+  "derm-sonic": [7, 8, 9, 10, 11, 12],
+  "derm-alcachofa": [2, 13, 5],
+  "derm-centella": [7, 5, 4, 10],
+  "derm-fosfatidilcolina": [7, 10],
+  "derm-lcarnitina": [5, 7, 10],
+  "derm-silicio": [7, 5, 4, 10, 6, 1],
+  "derm-vitaminac": [7, 5, 4, 10, 1],
+  "derm-polidocanol": [2]
+};
+
+const getZoneIcon = (zoneNameOrId) => {
+  if (!zoneNameOrId) return null;
+  return zoneIcons[zoneNameOrId] || null;
 };
 
 const resolveBrandColor = (accentBg) => {
@@ -434,29 +440,22 @@ export const ProductDetail = ({
                       <h3 className="text-xs sm:text-sm font-extrabold tracking-widest text-[#0ea5e9] uppercase">
                         {isEs ? 'Zonas de Aplicación' : 'Application Zones'}
                       </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {activeProduct.applicationZones.map((zone, idx) => {
-                          const icon = getZoneIcon(zone);
-                          return (
-                            <span 
-                              key={idx} 
-                              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold border transition-colors duration-200 cursor-default shadow-xs"
-                              style={{
-                                backgroundColor: 'rgba(14, 165, 233, 0.08)',
-                                borderColor: 'rgba(14, 165, 233, 0.25)',
-                                color: '#0ea5e9'
-                              }}
+                      <div className="flex flex-wrap gap-3">
+                        {(brandProductZoneIcons[activeProduct.id] || []).map((iconId) => {
+                          const icon = getZoneIcon(iconId);
+                          return icon ? (
+                            <div 
+                              key={iconId} 
+                              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border border-slate-200 bg-slate-50 hover:scale-105 hover:border-[#0ea5e9]/45 hover:shadow-md transition-all duration-300 flex items-center justify-center p-1.5 cursor-default shadow-xs"
+                              title={`${isEs ? 'Zona' : 'Zone'} ${iconId}`}
                             >
-                              {icon && (
-                                <img 
-                                  src={icon} 
-                                  alt="" 
-                                  className="w-5 h-5 object-contain shrink-0 filter brightness-100" 
-                                />
-                              )}
-                              <span>{zone}</span>
-                            </span>
-                          );
+                              <img 
+                                src={icon} 
+                                alt="" 
+                                className="w-full h-full object-contain shrink-0 filter brightness-100" 
+                              />
+                            </div>
+                          ) : null;
                         })}
                       </div>
                     </div>
@@ -568,30 +567,49 @@ export const ProductDetail = ({
                       <span className="text-[10px] font-extrabold tracking-widest text-[#0D1F3B]/40 uppercase block">
                         {isEs ? 'Zonas de Aplicación' : 'Application Zones'}
                       </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {activeProduct.applicationZones.map((zone, idx) => {
-                          const icon = getZoneIcon(zone);
-                          return (
-                            <span 
-                              key={idx} 
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold border transition-colors duration-200 cursor-default shadow-xs"
-                              style={{
-                                backgroundColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.08)`,
-                                borderColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.25)`,
-                                color: brandId === 'jetema' ? '#4C5A9D' : '#0ea5e9'
-                              }}
-                            >
-                              {icon && (
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {brandId === 'dermclar' ? (
+                          (brandProductZoneIcons[activeProduct.id] || []).map((iconId) => {
+                            const icon = getZoneIcon(iconId);
+                            return icon ? (
+                              <div 
+                                key={iconId} 
+                                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-slate-200 bg-slate-50 flex items-center justify-center p-1 cursor-default shadow-xs"
+                                title={`${isEs ? 'Zona' : 'Zone'} ${iconId}`}
+                              >
                                 <img 
                                   src={icon} 
                                   alt="" 
-                                  className="w-3.5 h-3.5 object-contain shrink-0 filter brightness-100" 
+                                  className="w-full h-full object-contain shrink-0 filter brightness-100" 
                                 />
-                              )}
-                              <span>{zone}</span>
-                            </span>
-                          );
-                        })}
+                              </div>
+                            ) : null;
+                          })
+                        ) : (
+                          activeProduct.applicationZones.map((zone, idx) => {
+                            const icon = getZoneIcon(zone);
+                            return (
+                              <span 
+                                key={idx} 
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold border transition-colors duration-200 cursor-default shadow-xs"
+                                style={{
+                                  backgroundColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.08)`,
+                                  borderColor: `rgba(${brandId === 'jetema' ? '76, 90, 157' : '14, 165, 233'}, 0.25)`,
+                                  color: brandId === 'jetema' ? '#4C5A9D' : '#0ea5e9'
+                                }}
+                              >
+                                {icon && (
+                                  <img 
+                                    src={icon} 
+                                    alt="" 
+                                    className="w-3.5 h-3.5 object-contain shrink-0 filter brightness-100" 
+                                  />
+                                )}
+                                <span>{zone}</span>
+                              </span>
+                            );
+                          })
+                        )}
                       </div>
                     </div>
                   )}

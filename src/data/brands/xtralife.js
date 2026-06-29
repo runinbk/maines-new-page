@@ -168,6 +168,99 @@ export default {
   },
   "products": [
     {
+      "id": "xtralife-inositol",
+      "brand": "xtralife",
+      "isNew": true,
+      "category": "specific",
+      "categoryLabel": {
+        "es": "Salud Específica y Control",
+        "en": "Specific Health & Control"
+      },
+      "name": "Inositol",
+      "descriptor": "Hormonal & Metabolic Balance / Equilibrio Hormonal y Metabólico",
+      "certBadge": "MADE IN USA • CERTIFICACIÓN GMP",
+      "presentation": {
+        "es": "60 cápsulas",
+        "en": "60 capsules"
+      },
+      "dosage": {
+        "es": "2 cápsulas diarias",
+        "en": "2 capsules daily"
+      },
+      "shortDescription": {
+        "es": "Fórmula avanzada de Myo-Inositol y D-Chiro Inositol. Compuesto bioactivo esencial para la señalización celular, diseñado para mejorar la sensibilidad a la insulina, regular el ciclo ovárico y favorecer el equilibrio emocional y metabólico.",
+        "en": "Advanced Myo-Inositol and D-Chiro Inositol formula. Essential bioactive compound for cellular signaling, designed to improve insulin sensitivity, regulate ovarian cycles, and promote emotional and metabolic balance."
+      },
+      "catalogBenefits": {
+        "es": [
+          "Ayuda a la regulación hormonal y del ciclo femenino.",
+          "Mejora la sensibilidad a la insulina.",
+          "Apoya el bienestar metabólico y control de peso.",
+          "Brinda apoyo al sistema nervioso frente al estrés y la ansiedad."
+        ],
+        "en": [
+          "Helps regulate hormonal cycles and female health.",
+          "Improves insulin sensitivity.",
+          "Supports metabolic well-being and weight management.",
+          "Provides support to the nervous system against stress and anxiety."
+        ]
+      },
+      "extendedBenefits": {
+        "es": [
+          "Regulación del Ciclo Ovárico: Su matriz de Myo y D-Chiro Inositol favorece la función ovárica y la maduración folicular, siendo un coadyuvante clave en casos de SOP.",
+          "Optimización Metabólica: Potencia la señalización de la insulina, ayudando a normalizar los niveles de glucosa y colaborando en el control del peso corporal.",
+          "Equilibrio Endocrino: Actúa en la modulación de andrógenos, ayudando a mitigar síntomas de desbalance hormonal como el crecimiento de vello no deseado.",
+          "Neuroprotección y Calma: Facilita la comunicación entre neurotransmisores, promoviendo una respuesta adecuada ante el estrés y la fatiga emocional."
+        ],
+        "en": [
+          "Ovarian Cycle Regulation: Its Myo and D-Chiro Inositol matrix supports ovarian function and follicular maturation, acting as a key adjuvant in PCOS cases.",
+          "Metabolic Optimization: Enhances insulin signaling, helping to normalize glucose levels and assisting in body weight management.",
+          "Endocrine Balance: Modulates androgen production, helping to mitigate symptoms of hormonal imbalance such as unwanted hair growth.",
+          "Neuroprotection and Calm: Facilitates neurotransmitter communication, promoting an appropriate response to stress and emotional fatigue."
+        ]
+      },
+      "ingredients": {
+        "es": "Matriz balanceada de Myo-Inositol y D-Chiro Inositol. Formulación de alta pureza, libre de gluten, soya, lactosa y saborizantes artificiales.",
+        "en": "Balanced matrix of Myo-Inositol and D-Chiro Inositol. High-purity formulation, free of gluten, soy, lactose, and artificial flavors."
+      },
+      "usage": {
+        "es": "Vía de administración oral. Ingerir 2 cápsulas diarias. Se recomienda fraccionar la dosis (una por la mañana y otra por la noche) junto con las comidas para mantener niveles constantes de absorción.",
+        "en": "Oral administration. Take 2 capsules daily. It is recommended to split the dose (one in the morning and one at night) with meals to maintain consistent absorption levels."
+      },
+      "precautions": {
+        "es": "Uso para adultos y adolescentes desde los 14 años. En caso de embarazo, lactancia o condiciones médicas preexistentes, realizar una consulta médica profesional. No exceder la dosis diaria sugerida.",
+        "en": "For adults and adolescents 14 years and older. In case of pregnancy, lactation, or pre-existing medical conditions, perform a professional medical consultation. Do not exceed the suggested daily dose."
+      },
+      "sectionsConfig": {
+        "extendedBenefits": {
+          "theme": "accent",
+          "collapsible": true,
+          "defaultExpanded": false
+        },
+        "ingredients": {
+          "theme": "normal",
+          "collapsible": true,
+          "defaultExpanded": false
+        },
+        "usage": {
+          "theme": "normal",
+          "collapsible": true,
+          "defaultExpanded": false
+        },
+        "precautions": {
+          "theme": "warning",
+          "collapsible": true,
+          "defaultExpanded": false
+        }
+      },
+      "assets": {
+        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/inositol/xtralife-inositol-portada.webp",
+        "gallery": [
+          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/inositol/xtralife-inositol-1.webp" }
+        ]
+      }
+    },
+    {
       "id": "xtralife-ashwagandha",
       "brand": "xtralife",
       "category": "energy",

@@ -17,8 +17,8 @@ export const CereformLayout = ({ brand, language: propLanguage, onBackToHome }) 
 
   // Hero background image carousel state
   const bgImages = [
-    '/public/assets/cereform/cereform-hero-1.webp',
-    '/public/assets/cereform/cereform-hero-2.webp'
+    '/assets/cereform/cereform-hero-1.webp',
+    '/assets/cereform/cereform-hero-2.webp'
   ];
   const [bgIndex, setBgIndex] = useState(0);
 

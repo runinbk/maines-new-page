@@ -1,8 +1,8 @@
 export default {
   "id": "cereform",
   "name": "Cereform",
-  "logo": "/public/assets/cereform/logo-cereform.svg",
-  "logoEuromi": "/public/assets/cereform/LOGO-EUROMI.png",
+  "logo": "/assets/cereform/logo-cereform.svg",
+  "logoEuromi": "/assets/cereform/LOGO-EUROMI.png",
   "colors": {
     "primary": "#3e97b6",
     "primaryDark": "#1c85a9",
@@ -17,8 +17,8 @@ export default {
     "es": "Implantes mamarios de forma redonda, disponibles en 2 superficies y 5 perfiles con gel cohesivo de silicona para una consistencia natural y máxima seguridad.",
     "en": "Round shape breast implants, available in 2 surfaces and 5 profiles with cohesive silicone gel for a natural consistency and maximum safety."
   },
-  "bgImage": "/public/assets/cereform/forma-lateral.jpg",
-  "heroBg": "/public/assets/cereform/cereform_hero_bg.png",
+  "bgImage": "/assets/cereform/forma-lateral.jpg",
+  "heroBg": "/assets/cereform/cereform_hero_bg.png",
   "accentColor": "text-[#3e97b6]",
   "accentBg": "bg-[#3e97b6]",
   "accentHover": "hover:bg-[#1c85a9]",
@@ -88,7 +88,7 @@ export default {
         ]
       }
     },
-    "image": "/public/assets/cereform/composicion.png",
+    "image": "/assets/cereform/composicion.png",
     "leakageAlert": {
       "es": "El método de llenado del implante mamario Cereform® elimina el riesgo de fugas de silicona. Durante su fabricación no se realizan perforaciones que puedan dañar la cubierta del implante.",
       "en": "Cereform® breast implant – filling method eliminates the risk of silicone leakage. No perforations that could impair the shell of the breast implant are made during manufacture."
@@ -116,8 +116,8 @@ export default {
       "es": "5 perfiles diferentes",
       "en": "5 different profiles"
     },
-    "gifImage": "/public/assets/cereform/5-perfiles-diferentes.gif",
-    "femaleImage": "/public/assets/cereform/forma-lateral.jpg"
+    "gifImage": "/assets/cereform/5-perfiles-diferentes.gif",
+    "femaleImage": "/assets/cereform/forma-lateral.jpg"
   },
 
   "surface": {
@@ -129,7 +129,7 @@ export default {
       "es": "El implante mamario Cereform® está disponible en 2 superficies:",
       "en": "Cereform® breast implant is available in 2 surfaces:"
     },
-    "image": "/public/assets/cereform/superficie.png",
+    "image": "/assets/cereform/superficie.png",
     "smooth": {
       "title": {
         "es": "Superficie lisa",
@@ -187,7 +187,7 @@ export default {
       "es": "Los implantes mamarios Cereform® tienen una vida útil estimada de 10 años.",
       "en": "Cereform® breast implants have an estimated lifespan of 10 years."
     },
-    "image": "/public/assets/cereform/esperanza-de-vida.jpg",
+    "image": "/assets/cereform/esperanza-de-vida.jpg",
     "disclaimer": {
       "es": "El implante mamario es un dispositivo médico de clase III y está destinado únicamente a profesionales de la salud. Esta información se toma de la ficha técnica de los implantes mamarios.",
       "en": "The breast implant is a class III medical device and is dedicated for healthcare professionals only. This information is taken from the breast implants technical file."
@@ -207,6 +207,6 @@ export default {
       "es": "Consulte con nuestros asesores certificados",
       "en": "Consult with our certified advisors"
     },
-    "image": "/public/assets/cereform/cta.png"
+    "image": "/assets/cereform/cta.png"
   }
 };

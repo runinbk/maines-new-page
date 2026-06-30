@@ -40,6 +40,10 @@ export const translations = {
       xtralife: {
         tagline: "Nutrición Natural",
         desc: "Suplementos y vitaminas de formulación norteamericana para el bienestar integral."
+      },
+      cereform: {
+        tagline: "Implantes Mamarios de Alta Gama - Respaldo Científico de Euromi Biosciences",
+        desc: "Implantes mamarios de forma redonda, disponibles en 2 superficies y 5 perfiles con gel cohesivo de silicona para una consistencia natural y máxima seguridad."
       }
     },
     about: {
@@ -87,7 +91,7 @@ export const translations = {
       stat2Text: "RESOLUCIÓN NATIVA"
     },
     ctaSection: {
-      brandBacking: "La excelencia operativa de Maines S.R.L. se consolida mediante la representación exclusiva de marcas globales que atienden necesidades complementarias de salud y estética avanzada: Dermclar, Jetema / e.p.t.q., y Xtralife Natural Products.",
+      brandBacking: "La excelencia operativa de Maines S.R.L. se consolida mediante la representación exclusiva de marcas globales que atienden necesidades complementarias de salud y estética avanzada: Dermclar, Jetema / e.p.t.q., Xtralife Natural Products y Cereform.",
       ctaTitle: "Conecte con la Innovación Médica Global",
       ctaSub: "Distribuimos soluciones avanzadas de salud y estética en toda Bolivia. Solicite asesoramiento especializado para su clínica, centro médico o farmacia.",
       btnPrimary: "Iniciar Consulta Profesional",
@@ -162,6 +166,10 @@ export const translations = {
       xtralife: {
         tagline: "Natural Nutrition",
         desc: "North American formulated supplements and vitamins for overall well-being."
+      },
+      cereform: {
+        tagline: "Premium Breast Implants - Scientific Backing of Euromi Biosciences",
+        desc: "Round shape breast implants, available in 2 surfaces and 5 profiles with cohesive silicone gel for a natural consistency and maximum safety."
       }
     },
     about: {
@@ -209,7 +217,7 @@ export const translations = {
       stat2Text: "NATIVE RESOLUTION"
     },
     ctaSection: {
-      brandBacking: "The operational excellence of Maines S.R.L. is consolidated through the exclusive representation of global brands that meet complementary health and advanced aesthetic needs: Dermclar, Jetema / e.p.t.q., and Xtralife Natural Products.",
+      brandBacking: "The operational excellence of Maines S.R.L. is consolidated through the exclusive representation of global brands that meet complementary health and advanced aesthetic needs: Dermclar, Jetema / e.p.t.q., Xtralife Natural Products, and Cereform.",
       ctaTitle: "Connect with Global Medical Innovation",
       ctaSub: "We distribute advanced health and aesthetic solutions throughout Bolivia. Request specialized advice for your clinic, medical center, or pharmacy.",
       btnPrimary: "Start Professional Consultation",

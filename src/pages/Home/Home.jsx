@@ -24,8 +24,8 @@ const Home = () => {
     "logo": "https://www.mainessrl.com/assets/logo-maines.svg",
     "image": "https://www.mainessrl.com/assets/marcas/card-jetema.webp",
     "description": isEs 
-      ? "Elevamos el estándar de la medicina estética y salud en Bolivia. Importación y distribución exclusiva de marcas globales líderes (Jetema, Dermclar, Xtralife)."
-      : "We raise the standard of aesthetic medicine and health in Bolivia. Exclusive import and distribution of leading global brands (Jetema, Dermclar, Xtralife).",
+      ? "Elevamos el estándar de la medicina estética y salud en Bolivia. Importación y distribución exclusiva de marcas globales líderes (Jetema, Dermclar, Xtralife, Cereform)."
+      : "We raise the standard of aesthetic medicine and health in Bolivia. Exclusive import and distribution of leading global brands (Jetema, Dermclar, Xtralife, Cereform).",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Equipetrol, Calle 9 Este",

@@ -118,6 +118,14 @@ const Footer = () => {
                   Xtralife
                 </Link>
               </li>
+              <li>
+                <Link 
+                  to="/cereform" 
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  Cereform
+                </Link>
+              </li>
             </ul>
           </div>
 

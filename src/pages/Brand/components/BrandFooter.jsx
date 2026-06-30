@@ -175,10 +175,6 @@ const BrandFooter = ({ brand, language }) => {
                 >
                   {isEs ? 'Página Principal' : 'Main Portal'}
                 </Link>
-                <a href="https://maines-srl.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 flex items-center gap-1">
-                  <span>Maines S.R.L.</span>
-                  <Globe className="w-3 h-3 text-white/50" />
-                </a>
               </div>
             </div>
 

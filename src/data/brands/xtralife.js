@@ -155,15 +155,15 @@ export default {
       "url": "https://facebook.com/xtralifeboliviaoficial"
     },
     "videos": [
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/1.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/2.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/3.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/4.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/5.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/6.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/7.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/8.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/xtralife/9.webm"
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/1.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/2.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/3.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/4.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/5.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/6.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/7.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/8.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/9.webm"
     ]
   },
   "products": [

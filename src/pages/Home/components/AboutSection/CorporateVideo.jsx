@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import nosotrosWebp from '../../../../../assets/maines/nosotros.webp';
 
 /**
  * 16:9 Premium Video player for Corporate presentation
@@ -21,7 +22,7 @@ export const CorporateVideo = () => {
     >
       <video
         ref={videoRef}
-        src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.mp4"
+        src="https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/maines-page/nostros.mp4"
         preload={preloadMode}
         controls={isPlaying}
         playsInline
@@ -34,7 +35,7 @@ export const CorporateVideo = () => {
       {/* Static WebP Cover Image (hidden when playing) */}
       {!isPlaying && (
         <img 
-          src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp"
+          src={nosotrosWebp}
           alt="Maines Corporativo"
           className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"

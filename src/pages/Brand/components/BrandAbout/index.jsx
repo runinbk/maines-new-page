@@ -4,6 +4,7 @@ import { useLanguage } from '../../../../context/LanguageContext';
 import ImageWithSkeleton from '../../../../components/ui/ImageWithSkeleton';
 import { InstagramIcon, FacebookIcon, TikTokIcon } from '../../../../components/ui/Icons';
 import { VideoCarousel } from './VideoCarousel';
+import nosotrosWebp from '../../../../../assets/maines/nosotros.webp';
 
 const getHexColor = (tailwindClass, defaultColor = '#4C5A9D') => {
   if (!tailwindClass) return defaultColor;
@@ -37,8 +38,8 @@ const BrandAbout = ({ brand, onBackToHome }) => {
   const cardVideoRef = useRef(null);
   const inlineVideoRef = useRef(null);
 
-  const mainImage = 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.webp';
-  const mainVideo = 'https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/info-maines.mp4';
+  const mainImage = nosotrosWebp;
+  const mainVideo = 'https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/maines-page/nostros.mp4';
 
   useEffect(() => {
     if (cardVideoRef.current) {

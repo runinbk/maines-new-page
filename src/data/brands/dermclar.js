@@ -127,17 +127,18 @@ export default {
       "url": "https://www.facebook.com/dermclarbolivia"
     },
     "videos": [
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/1.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/2.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/3.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/4.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/6.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/7.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/8.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/9.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/10.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/11.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/dermclar/12.webm"
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/1.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/2.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/3.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/4.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/5.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/6.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/7.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/8.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/9.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/10.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/11.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/12.webm"
     ]
   },
   "products": [

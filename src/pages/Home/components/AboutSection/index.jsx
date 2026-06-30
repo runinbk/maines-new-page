@@ -6,6 +6,11 @@ import {
 import { ProgressBarItem } from './ProgressBarItem';
 import { CorporateVideo } from './CorporateVideo';
 
+import pilares1 from '../../../../../assets/maines/pilares-1.webp';
+import pilares2 from '../../../../../assets/maines/pilares2.webp';
+import pilares3 from '../../../../../assets/maines/pilares-3.webp';
+import pilares4 from '../../../../../assets/maines/pilares-4.webp';
+
 /**
  * AboutSection - Decomposed orchestrator component for company details, metrics & values
  */
@@ -172,7 +177,7 @@ const AboutSection = () => {
               className="md:col-span-7 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50 reveal-on-scroll reveal-hidden"
             >
               <img 
-                src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar1.webp" 
+                src={pilares1} 
                 alt={t('about.pillar1Title')} 
                 width="740"
                 height="400"
@@ -201,7 +206,7 @@ const AboutSection = () => {
               className="md:col-span-5 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50 reveal-on-scroll reveal-hidden"
             >
               <img 
-                src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar2.webp" 
+                src={pilares2} 
                 alt={t('about.pillar2Title')} 
                 width="520"
                 height="400"
@@ -230,7 +235,7 @@ const AboutSection = () => {
               className="md:col-span-5 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50 reveal-on-scroll reveal-hidden"
             >
               <img 
-                src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar3.webp" 
+                src={pilares3} 
                 alt={t('about.pillar3Title')} 
                 width="520"
                 height="400"
@@ -259,7 +264,7 @@ const AboutSection = () => {
               className="md:col-span-7 relative group rounded-[32px] overflow-hidden border border-slate-200/50 shadow-md hover:shadow-xl transition-all duration-500 h-[300px] sm:h-[360px] md:h-[400px] bg-slate-50/50 reveal-on-scroll reveal-hidden"
             >
               <img 
-                src="https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/maines/pilar4.webp" 
+                src={pilares4} 
                 alt={t('about.pillar4Title')} 
                 width="740"
                 height="400"

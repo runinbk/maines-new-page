@@ -144,16 +144,16 @@ export default {
       "url": "https://www.facebook.com/jetemaboliviaoficial"
     },
     "videos": [
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/1.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/2.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/3.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/4.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/5.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/6.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/7.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/8.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/9.webm",
-      "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/videos/jetema/10.webm"
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/1.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/2.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/3.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/4.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/5.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/6.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/7.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/8.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/9.webm",
+      "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/10.webm"
     ]
   },
   "products": [

@@ -238,9 +238,9 @@ export default {
         "precautions": { "theme": "warning", "collapsible": true, "defaultExpanded": false }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/milk-thistle/xtralife-milk-thistle-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/milk-thistle/milk-thistle-portada.webp",
         "gallery": [
-          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/milk-thistle/xtralife-milk-thistle-1.webp" }
+          { "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/milk-thistle/milk-thistle-1.webp" }
         ]
       }
     },
@@ -331,9 +331,9 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/super-flex/xtralife-super-flex-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/super-flex/super-flex-portada.webp",
         "gallery": [
-          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/super-flex/xtralife-super-flex-1.webp" }
+          { "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/super-flex/super-flex-1.webp" }
         ]
       }
     },
@@ -424,9 +424,9 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/inositol/xtralife-inositol-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/inositol/inositol-portada.webp",
         "gallery": [
-          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/inositol/xtralife-inositol-1.webp" }
+          { "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/inositol/inositol-1.webp" }
         ]
       }
     },
@@ -482,10 +482,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/ashwagandha/xtralife-ashwagandha-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/ashwagandha/ashwagandha-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/ashwagandha/xtralife-ashwagandha-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/ashwagandha/ashwagandha-1.webp"
           }
         ]
       }
@@ -561,9 +561,9 @@ export default {
         "precautions": { "theme": "warning", "collapsible": true, "defaultExpanded": false }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cranberry/xtralife-cranberry-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/cranberry/cranberry-portada.webp",
         "gallery": [
-          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cranberry/xtralife-cranberry-1.webp" }
+          { "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/cranberry/cranberry-1.webp" }
         ]
       }
     },
@@ -638,9 +638,9 @@ export default {
         "precautions": { "theme": "warning", "collapsible": true, "defaultExpanded": false }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/apple-cider/xtralife-apple-cider-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/apple-cider/apple-cider-portada.webp",
         "gallery": [
-          { "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/apple-cider/xtralife-apple-cider-1.webp" }
+          { "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/apple-cider/apple-cider-1.webp" }
         ]
       }
     },
@@ -732,10 +732,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega3/xtralife-omega3-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/omega3/omega3-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega3/xtralife-omega3-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/omega3/omega3-1.webp"
           }
         ]
       }
@@ -830,10 +830,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega369/xtralife-omega369-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/omega369/omega369-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/omega369/xtralife-omega369-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/omega369/omega369-1.webp"
           }
         ]
       }
@@ -927,10 +927,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/perlas-ajo/xtralife-perlas-ajo-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/perlas-ajo/perlas-ajo-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/perlas-ajo/xtralife-perlas-ajo-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/perlas-ajo/perlas-ajo-1.webp"
           }
         ]
       }
@@ -1025,10 +1025,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/hgh-releasing/xtralife-hgh-releasing-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/hgh-releasing/hgh-releasing-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/hgh-releasing/xtralife-hgh-releasing-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/hgh-releasing/hgh-releasing-1.webp"
           }
         ]
       }
@@ -1119,10 +1119,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/xtra-vigor-male/xtralife-xtra-vigor-male-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/xtra-vigor-male/xtra-vigor-male-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/xtra-vigor-male/xtralife-xtra-vigor-male-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/xtra-vigor-male/xtra-vigor-male-1.webp"
           }
         ]
       }
@@ -1213,10 +1213,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/xtra-vigor-female/xtralife-xtra-vigor-female-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/xtra-vigor-female/xtra-vigor-female-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/xtra-vigor-female/xtralife-xtra-vigor-female-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/xtra-vigor-female/xtra-vigor-female-1.webp"
           }
         ]
       }
@@ -1307,10 +1307,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/shilajit/xtralife-shilajit-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/shilajit/shilajit-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/shilajit/xtralife-shilajit-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/shilajit/shilajit-1.webp"
           }
         ]
       }
@@ -1401,10 +1401,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/nad-red-wine/xtralife-nad-red-wine-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/nad-red-wine/nad-red-wine-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/nad-red-wine/xtralife-nad-red-wine-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/nad-red-wine/nad-red-wine-1.webp"
           }
         ]
       }
@@ -1495,10 +1495,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/l-arginina/xtralife-l-arginina-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/l-arginina/l-arginina-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/l-arginina/xtralife-l-arginina-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/l-arginina/l-arginina-1.webp"
           }
         ]
       }
@@ -1589,10 +1589,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-c-1000/xtralife-vitamina-c-1000-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/vitamina-c-1000/vitamina-c-1000-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-c-1000/xtralife-vitamina-c-1000-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/vitamina-c-1000/vitamina-c-1000-1.webp"
           }
         ]
       }
@@ -1687,10 +1687,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-d3/xtralife-vitamina-d3-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/vitamina-d3/vitamina-d3-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-d3/xtralife-vitamina-d3-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/vitamina-d3/vitamina-d3-1.webp"
           }
         ]
       }
@@ -1777,10 +1777,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-a/xtralife-vitamina-a-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/vitamina-a/vitamina-a-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-a/xtralife-vitamina-a-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/vitamina-a/vitamina-a-1.webp"
           }
         ]
       }
@@ -1871,10 +1871,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/zinc-50/xtralife-zinc-50-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/zinc-50/zinc-50-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/zinc-50/xtralife-zinc-50-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/zinc-50/zinc-50-1.webp"
           }
         ]
       }
@@ -1961,10 +1961,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/echinacea/xtralife-echinacea-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/echinacea/echinacea-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/echinacea/xtralife-echinacea-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/echinacea/echinacea-1.webp"
           }
         ]
       }
@@ -2055,10 +2055,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/balanced-b/xtralife-balanced-b-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/balanced-b/balanced-b-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/balanced-b/xtralife-balanced-b-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/balanced-b/balanced-b-1.webp"
           }
         ]
       }
@@ -2145,10 +2145,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/colostrum-3-factor/xtralife-colostrum-3-factor-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/colostrum-3-factor/colostrum-3-factor-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/colostrum-3-factor/xtralife-colostrum-3-factor-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/colostrum-3-factor/colostrum-3-factor-1.webp"
           }
         ]
       }
@@ -2235,10 +2235,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/k2-d3-calcio/xtralife-k2-d3-calcio-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/k2-d3-calcio/k2-d3-calcio-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/k2-d3-calcio/xtralife-k2-d3-calcio-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/k2-d3-calcio/k2-d3-calcio-1.webp"
           }
         ]
       }
@@ -2325,10 +2325,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cal-mag-zinc/xtralife-cal-mag-zinc-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/cal-mag-zinc/cal-mag-zinc-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cal-mag-zinc/xtralife-cal-mag-zinc-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/cal-mag-zinc/cal-mag-zinc-1.webp"
           }
         ]
       }
@@ -2415,10 +2415,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cartilago-tiburon/xtralife-cartilago-tiburon-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/cartilago-tiburon/cartilago-tiburon-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cartilago-tiburon/xtralife-cartilago-tiburon-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/cartilago-tiburon/cartilago-tiburon-1.webp"
           }
         ]
       }
@@ -2505,10 +2505,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/5-htp-melatonina/xtralife-5-htp-melatonina-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/5-htp-melatonina/5-htp-melatonina-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/5-htp-melatonina/xtralife-5-htp-melatonina-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/5-htp-melatonina/5-htp-melatonina-1.webp"
           }
         ]
       }
@@ -2599,10 +2599,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/melatonina-10/xtralife-melatonina-10-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/melatonina-10/melatonina-10-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/melatonina-10/xtralife-melatonina-10-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/melatonina-10/melatonina-10-1.webp"
           }
         ]
       }
@@ -2697,10 +2697,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/citrato-magnesio/xtralife-citrato-magnesio-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/citrato-magnesio/citrato-magnesio-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/citrato-magnesio/xtralife-citrato-magnesio-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/citrato-magnesio/citrato-magnesio-1.webp"
           }
         ]
       }
@@ -2791,10 +2791,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/resveratrol/xtralife-resveratrol-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/resveratrol/resveratrol-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/resveratrol/xtralife-resveratrol-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/resveratrol/resveratrol-1.webp"
           }
         ]
       }
@@ -2885,10 +2885,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/ginkgo-biloba/xtralife-ginkgo-biloba-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/ginkgo-biloba/ginkgo-biloba-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/ginkgo-biloba/xtralife-ginkgo-biloba-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/ginkgo-biloba/ginkgo-biloba-1.webp"
           }
         ]
       }
@@ -2975,10 +2975,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cerebrin/xtralife-cerebrin-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/cerebrin/cerebrin-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/cerebrin/xtralife-cerebrin-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/cerebrin/cerebrin-1.webp"
           }
         ]
       }
@@ -3069,10 +3069,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/glicinato-magnesio/xtralife-glicinato-magnesio-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/glicinato-magnesio/glicinato-magnesio-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/glicinato-magnesio/xtralife-glicinato-magnesio-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/glicinato-magnesio/glicinato-magnesio-1.webp"
           }
         ]
       }
@@ -3163,10 +3163,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/prostatin/xtralife-prostatin-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/prostatin/prostatin-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/prostatin/xtralife-prostatin-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/prostatin/prostatin-1.webp"
           }
         ]
       }
@@ -3257,10 +3257,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/citrato-potasio/xtralife-citrato-potasio-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/citrato-potasio/citrato-potasio-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/citrato-potasio/xtralife-citrato-potasio-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/citrato-potasio/citrato-potasio-1.webp"
           }
         ]
       }
@@ -3349,10 +3349,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/isoflavonas-soya/xtralife-isoflavonas-soya-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/isoflavonas-soya/isoflavonas-soya-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/isoflavonas-soya/xtralife-isoflavonas-soya-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/isoflavonas-soya/isoflavonas-soya-1.webp"
           }
         ]
       }
@@ -3441,10 +3441,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/aceite-primula/xtralife-aceite-primula-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/aceite-primula/aceite-primula-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/aceite-primula/xtralife-aceite-primula-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/aceite-primula/aceite-primula-1.webp"
           }
         ]
       }
@@ -3533,10 +3533,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/colageno-plus/xtralife-colageno-plus-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/colageno-plus/colageno-plus-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/colageno-plus/xtralife-colageno-plus-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/colageno-plus/colageno-plus-1.webp"
           }
         ]
       }
@@ -3625,10 +3625,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-e/xtralife-vitamina-e-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/vitamina-e/vitamina-e-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/vitamina-e/xtralife-vitamina-e-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/vitamina-e/vitamina-e-1.webp"
           }
         ]
       }
@@ -3719,10 +3719,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/biotina-10000/xtralife-biotina-10000-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/biotina-10000/biotina-10000-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/biotina-10000/xtralife-biotina-10000-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/biotina-10000/biotina-10000-1.webp"
           }
         ]
       }
@@ -3815,10 +3815,10 @@ export default {
         }
       },
       "assets": {
-        "coverImage": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/locion-aloe/xtralife-locion-aloe-portada.webp",
+        "coverImage": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/locion-aloe/locion-aloe-portada.webp",
         "gallery": [
           {
-            "image": "https://ggkwhnuqwktfoynxkgsi.supabase.co/storage/v1/object/public/brand-assets/logos-marcas/xtralife/locion-aloe/xtralife-locion-aloe-1.webp"
+            "image": "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/catalogo/locion-aloe/locion-aloe-1.webp"
           }
         ]
       }

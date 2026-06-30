@@ -282,14 +282,14 @@
 
 /* Base values in global root namespace */
 :root {
-  /* Mobile and tablet layout (vertical stack of 3 rows) */
-  --bubble-size: clamp(160px, min(75vw, 22vh), 260px);
+  /* Mobile and tablet layout (vertical stack of 4 rows) */
+  --bubble-size: clamp(140px, min(75vw, 16vh), 220px);
 }
 
 @media (min-width: 1024px) {
   :root {
-    /* Desktop layout (horizontal grid of 3 columns) */
-    /* Capped at 510px to fit standard max-width columns */
-    --bubble-size: clamp(250px, min(29vw, 68vh), 510px);
+    /* Desktop layout (horizontal grid of 4 columns) */
+    /* Capped to fit 4 columns gracefully */
+    --bubble-size: clamp(200px, min(22vw, 68vh), 380px);
   }
 }

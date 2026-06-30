@@ -42,8 +42,8 @@ export const translations = {
         desc: "Suplementos y vitaminas de formulación norteamericana para el bienestar integral."
       },
       cereform: {
-        tagline: "Implantes Mamarios de Alta Gama - Respaldo Científico de Euromi Biosciences",
-        desc: "Implantes mamarios de forma redonda, disponibles en 2 superficies y 5 perfiles con gel cohesivo de silicona para una consistencia natural y máxima seguridad."
+        tagline: "Implantes Mamarios",
+        desc: "Consistencia natural y seguridad de vanguardia."
       }
     },
     about: {
@@ -168,8 +168,8 @@ export const translations = {
         desc: "North American formulated supplements and vitamins for overall well-being."
       },
       cereform: {
-        tagline: "Premium Breast Implants - Scientific Backing of Euromi Biosciences",
-        desc: "Round shape breast implants, available in 2 surfaces and 5 profiles with cohesive silicone gel for a natural consistency and maximum safety."
+        tagline: "Breast Implants",
+        desc: "Natural consistency and vanguard safety."
       }
     },
     about: {

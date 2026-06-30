@@ -1,292 +1,271 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 
-// Import local cover images (matching the brand pages' headers)
-import jetemaCover from '../../../../assets/jetema/hero.webp';
-import dermclarCover from '../../../../assets/marcas/dermclar/dermclar-hero.jpeg';
-import xtralifeCover from '../../../../assets/marcas/xtralife/xtralife-hero.jpeg';
-import cereformCover from '../../../../assets/marcas/cereform/cereform-hero-1.webp';
+const BrandCard = ({ brand, index }) => {
+  const hoverRotateClass = index === 0 
+    ? 'hover:-rotate-[1.5deg]' 
+    : index === 3 
+      ? 'hover:rotate-[1.5deg]' 
+      : index === 1
+        ? 'hover:rotate-[0.8deg]'
+        : 'hover:-rotate-[0.8deg]';
 
-// Configuration Flag: Set to true when ready to show videos on hover.
-// Currently set to false as requested by the user.
-const PLAY_VIDEOS = false;
+  const blobShapeClass = index === 0 
+    ? 'liquid-glass-blob-1' 
+    : index === 1 
+      ? 'liquid-glass-blob-2' 
+      : index === 2
+        ? 'liquid-glass-blob-3'
+        : 'liquid-glass-blob-1'; // Reuse blob 1 shape for visual balance
 
-const cn = (...classes) => classes.filter(Boolean).join(' ');
-
-const BrandCard = ({ brand, isHovered, onHoverChange, playVideos }) => {
-  const videoRef = useRef(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
-  useEffect(() => {
-    if (!playVideos) return;
-    if (isHovered && videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {});
-    } else if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  }, [isHovered, playVideos]);
+  const bubbleShapeClass = index === 0
+    ? 'rounded-[45%_55%_60%_40%_/_50%_45%_55%_50%]'
+    : index === 1
+      ? 'rounded-[55%_45%_40%_60%_/_40%_55%_45%_60%]'
+      : index === 2
+        ? 'rounded-[50%_50%_55%_45%_/_45%_50%_50%_55%]'
+        : 'rounded-[45%_55%_60%_40%_/_50%_45%_55%_50%]';
 
   return (
     <div
-      className={cn(
-        "group relative overflow-hidden rounded-[2rem] border border-slate-200/50 bg-white transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.3,1)] select-none",
-        "h-full w-full", // Let the flex container size determine card size
-        isHovered 
-          ? "flex-[2.5] shadow-2xl shadow-slate-900/10 border-slate-300/40" 
-          : "flex-[0.8] lg:opacity-90 hover:opacity-100"
-      )}
-      onMouseEnter={() => onHoverChange(true)}
-      onMouseLeave={() => onHoverChange(false)}
+      className={`flex flex-col items-center justify-center relative select-none transition-all duration-600 cubic-bezier(0.16, 1, 0.3, 1) group-hover/portal:opacity-40 hover:!opacity-100 hover:scale-[1.04] ${hoverRotateClass} group/card`}
     >
-      {/* Background Image Container */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={brand.thumbnail}
-          alt={brand.displayName}
-          className={cn(
-            "w-full h-full object-cover transition-all duration-[1000ms] ease-out",
-            isHovered 
-              ? "scale-105 saturate-[1.1] brightness-[0.85]" 
-              : "scale-100 lg:grayscale lg:brightness-75"
-          )}
-        />
-      </div>
-
-      {/* Video Loop Element (Prepped but conditionally rendered/visible) */}
-      {playVideos && brand.video && (
+      {/* Blob & Aura Container */}
+      <Link 
+        to={`/${brand.key}`}
+        className="relative liquid-glass-size flex items-center justify-center cursor-pointer"
+      >
         <div 
-          className={cn(
-            "absolute inset-0 z-5 transition-opacity duration-700 pointer-events-none",
-            (isHovered && isVideoLoaded) ? "opacity-100" : "opacity-0"
-          )}
+          className={`absolute w-[80%] h-[80%] rounded-full bg-gradient-to-tr ${brand.auraClass} filter blur-[40px] opacity-20 transition-all duration-700 ease-out group-hover/card:scale-110 group-hover/card:translate-x-1.5 group-hover/card:-translate-y-1.5 group-hover/card:opacity-60`}
+        />
+
+        <div 
+          className={`absolute inset-0 border backdrop-blur-[8px] transition-all duration-600 ease-out ${blobShapeClass} liquid-glass-shadow ${brand.borderColor}`}
+          style={{
+            background: brand.glassBg,
+            '--shadow-rgb': brand.rgb
+          }}
+        />
+
+        <div 
+          className="relative z-10 flex flex-col items-center justify-center text-center w-full h-full liquid-glass-content transition-transform duration-500 group-hover/card:scale-[1.02] group-hover/card:-translate-y-1"
         >
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover"
-            loop
-            muted
-            playsInline
-            preload="auto"
-            onLoadedData={() => setIsVideoLoaded(true)}
+          <div className="w-full flex items-center justify-center liquid-glass-logo">
+            <img 
+              src={brand.logo} 
+              alt={`${brand.displayName} Logo`} 
+              width="220"
+              height="70"
+              loading="lazy"
+              className="max-w-[75%] lg:max-w-[65%] max-h-full object-contain filter drop-shadow-sm select-none opacity-85 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-500" 
+            />
+          </div>
+
+          <h3 className="font-extrabold text-slate-800 font-display tracking-tight transition-colors duration-300 group-hover/card:text-slate-900 liquid-glass-title">
+            {brand.displayName}
+          </h3>
+
+          <span className={`font-extrabold uppercase transition-colors duration-300 ${brand.textColorClass} liquid-glass-tagline`}>
+            {brand.tagline}
+          </span>
+
+          <p className="text-slate-500 font-medium transition-colors duration-300 group-hover/card:text-slate-600 liquid-glass-desc hidden lg:block">
+            {brand.description}
+          </p>
+        </div>
+
+        {index === 0 && (
+          <div 
+            className={`absolute border border-white/50 pointer-events-none animate-bobbing-1 liquid-glass-secondary-bubble ${bubbleShapeClass}`}
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%)',
+              boxShadow: 'inset 0 6px 10px rgba(255,255,255,0.65), inset 0 -3px 6px rgba(255,255,255,0.35), 0 10px 20px rgba(26,54,93,0.03)',
+              left: 'calc(var(--bubble-size) * -0.06)',
+              top: '25%',
+            }}
           >
-            <source src={brand.video} type="video/mp4" />
-            <source src={brand.video} type="video/webm" />
-          </video>
-        </div>
-      )}
-
-      {/* Dark overlay for better text contrast */}
-      <div 
-        className={cn(
-          "absolute inset-0 z-10 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent transition-opacity duration-500",
-          isHovered ? "opacity-90" : "opacity-40"
-        )}
-      />
-
-      {/* Logo in the center when NOT hovered */}
-      <div 
-        className={cn(
-          "absolute inset-0 z-20 flex items-center justify-center pointer-events-none transition-all duration-700",
-          isHovered ? "opacity-0 scale-75 -translate-y-8" : "opacity-100 scale-100"
-        )}
-      >
-        <div className={cn(
-          "w-[190px] h-[75px] sm:w-[220px] sm:h-[90px] lg:w-[240px] lg:h-[100px] rounded-2xl border shadow-sm transition-all duration-300 flex items-center justify-center p-3",
-          brand.logoContainerClass
-        )}>
-          <img 
-            src={brand.logo} 
-            alt={`${brand.displayName} Logo`}
-            className="max-w-[90%] max-h-[90%] object-contain filter drop-shadow-sm select-none opacity-90 transition-all duration-300"
-          />
-        </div>
-      </div>
-
-      {/* Glassmorphic Brand Details Card (Slides up on Hover) */}
-      <div
-        className={cn(
-          "absolute inset-x-0 bottom-0 z-30 p-4 sm:p-6 lg:p-8 flex flex-col items-start justify-end",
-          "transition-all duration-700 ease-[cubic-bezier(0.25,1,0.3,1)]",
-          isHovered 
-            ? "translate-y-0 opacity-100" 
-            : "translate-y-4 lg:translate-y-16 opacity-0 lg:opacity-0 pointer-events-none"
-        )}
-      >
-        {/* Glassmorphic box */}
-        <div className={cn(
-          "w-full backdrop-blur-xl bg-slate-950/45 rounded-2xl p-5 sm:p-6 border border-white/10",
-          "shadow-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
-        )}>
-          <div className="space-y-2 text-left flex-1 min-w-0">
-            <div className="flex items-center gap-3">
-              {/* Brand Logo inside glass box */}
-              <div className="bg-white/95 rounded-lg px-2.5 py-1.5 h-[36px] flex items-center justify-center shrink-0">
-                <img 
-                  src={brand.logo} 
-                  alt={brand.displayName} 
-                  className="max-h-full max-w-[95px] object-contain"
-                />
-              </div>
-              <h3 className="text-white font-display text-xl sm:text-2xl font-bold tracking-tight uppercase">
-                {brand.displayName}
-              </h3>
-            </div>
-            
-            <p className="text-accent-light font-bold text-xs sm:text-sm tracking-wider uppercase">
-              {brand.tagline}
-            </p>
-            <p className="text-slate-200/90 font-medium text-sm sm:text-base leading-relaxed max-w-2xl line-clamp-2">
-              {brand.description}
-            </p>
+            <div className="absolute rounded-[50%] bg-gradient-to-b from-white/70 to-transparent -rotate-[15deg] blur-[0.5px]" style={{ top: '6%', left: '12%', width: '50%', height: '20%' }} />
           </div>
-
-          <div className="shrink-0 flex items-center">
-            <Link
-              to={brand.href}
-              className={cn(
-                "inline-flex items-center gap-2 rounded-xl text-white font-bold text-base tracking-wide px-6 py-3.5 shadow-md",
-                "transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]",
-                brand.buttonBg
-              )}
-            >
-              <span>{brand.exploreText}</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile-only collapsed view content (Title & tagline always visible) */}
-      <div 
-        className={cn(
-          "absolute inset-x-0 bottom-0 z-20 p-4 flex flex-col justify-end pointer-events-none lg:hidden transition-opacity duration-500",
-          isHovered ? "opacity-0" : "opacity-100"
         )}
-      >
-        <div className="flex items-center justify-between">
-          <div>
-            <h4 className="text-white font-display font-extrabold text-base tracking-wide uppercase">
-              {brand.displayName}
-            </h4>
-            <p className="text-white/70 font-sans text-xs uppercase font-semibold">
-              {brand.tagline}
-            </p>
+
+        {index === 1 && (
+          <div 
+            className={`absolute border border-white/50 pointer-events-none animate-bobbing-2 liquid-glass-secondary-bubble ${bubbleShapeClass}`}
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%)',
+              boxShadow: 'inset 0 5px 8px rgba(255,255,255,0.65), inset 0 -2px 4px rgba(255,255,255,0.35), 0 8px 16px rgba(26,54,93,0.03)',
+              right: 'calc(var(--bubble-size) * -0.04)',
+              top: '33%',
+            }}
+          >
+            <div className="absolute rounded-[50%] bg-gradient-to-b from-white/70 to-transparent -rotate-[15deg] blur-[0.5px]" style={{ top: '6%', left: '12%', width: '50%', height: '20%' }} />
           </div>
-          <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white">
-            <ArrowRight className="w-4 h-4" />
+        )}
+
+        {index === 2 && (
+          <div 
+            className={`absolute border border-white/50 pointer-events-none animate-bobbing-3 liquid-glass-secondary-bubble ${bubbleShapeClass}`}
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%)',
+              boxShadow: 'inset 0 6px 10px rgba(255,255,255,0.65), inset 0 -3px 6px rgba(255,255,255,0.35), 0 10px 20px rgba(26,54,93,0.03)',
+              right: 'calc(var(--bubble-size) * -0.06)',
+              bottom: '25%',
+            }}
+          >
+            <div className="absolute rounded-[50%] bg-gradient-to-b from-white/70 to-transparent -rotate-[15deg] blur-[0.5px]" style={{ top: '6%', left: '12%', width: '50%', height: '20%' }} />
           </div>
-        </div>
-      </div>
+        )}
+
+        {index === 3 && (
+          <div 
+            className={`absolute border border-white/50 pointer-events-none animate-bobbing-1 liquid-glass-secondary-bubble ${bubbleShapeClass}`}
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%)',
+              boxShadow: 'inset 0 6px 10px rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%)',
+              left: 'calc(var(--bubble-size) * -0.04)',
+              bottom: '30%',
+            }}
+          >
+            <div className="absolute rounded-[50%] bg-gradient-to-b from-white/70 to-transparent -rotate-[15deg] blur-[0.5px]" style={{ top: '6%', left: '12%', width: '50%', height: '20%' }} />
+          </div>
+        )}
+      </Link>
     </div>
   );
 };
 
 const BrandPortal = () => {
   const { t } = useLanguage();
-  const [hoveredId, setHoveredId] = useState(null);
 
-  const brands = useMemo(() => [
-    {
-      id: "dermclar",
-      displayName: "Dermclar",
-      tagline: t('brands.dermclar.tagline'),
-      description: t('brands.dermclar.desc'),
-      logo: "/assets/dermclar-logo.png",
-      thumbnail: dermclarCover,
-      video: "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/dermclar-subpage/videos/1.webm",
-      href: "/dermclar",
-      buttonBg: "bg-cyan-500 hover:bg-cyan-600 shadow-cyan-500/20",
-      logoContainerClass: "bg-white/40 border-white/25 backdrop-blur-md shadow-slate-900/5",
-      exploreText: t('brands.visit') || "Visitar Marca",
-    },
+  const defaultBrands = useMemo(() => [
     {
       id: "jetema",
+      key: "jetema",
+      name: "Jetema",
       displayName: "Jetema",
       tagline: t('brands.jetema.tagline'),
       description: t('brands.jetema.desc'),
       logo: "/assets/JETEMA-logo.png",
-      thumbnail: jetemaCover,
-      video: "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/jetema-subpage/videos/1.webm",
       href: "/jetema",
-      buttonBg: "bg-blue-500 hover:bg-blue-600 shadow-blue-500/20",
-      logoContainerClass: "bg-white/40 border-white/25 backdrop-blur-md shadow-slate-900/5",
-      exploreText: t('brands.visit') || "Visitar Marca",
+      textColorClass: "text-blue-500 group-hover/card:text-blue-600",
+      rgb: "59, 130, 246",
+      glassBg: "linear-gradient(135deg, rgba(239, 246, 255, 0.35) 0%, rgba(219, 234, 254, 0.12) 50%, rgba(191, 219, 254, 0.28) 100%)",
+      borderColor: "border-t-white/80 border-l-blue-200/50 border-r-blue-300/35 border-b-blue-400/25",
+      auraClass: "from-blue-400/25 via-indigo-400/15 to-transparent",
     },
     {
       id: "xtralife",
+      key: "xtralife",
+      name: "Xtralife Natural Products",
       displayName: "Xtralife",
       tagline: t('brands.xtralife.tagline'),
       description: t('brands.xtralife.desc'),
       logo: "/assets/xtralife-logo.png",
-      thumbnail: xtralifeCover,
-      video: "https://ncbtybpuiefkiuiaqgoe.supabase.co/storage/v1/object/public/MainesSRL/xtralife-subpage/videos/1.webm",
       href: "/xtralife",
-      buttonBg: "bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20",
-      logoContainerClass: "bg-white/40 border-white/25 backdrop-blur-md shadow-slate-900/5",
-      exploreText: t('brands.visit') || "Visitar Marca",
+      textColorClass: "text-emerald-500 group-hover/card:text-emerald-600",
+      rgb: "16, 185, 129",
+      glassBg: "linear-gradient(135deg, rgba(236, 253, 245, 0.35) 0%, rgba(209, 250, 229, 0.12) 50%, rgba(167, 243, 208, 0.28) 100%)",
+      borderColor: "border-t-white/80 border-l-emerald-200/50 border-r-emerald-300/35 border-b-emerald-400/25",
+      auraClass: "from-emerald-400/25 via-teal-400/15 to-transparent",
+    },
+    {
+      id: "dermclar",
+      key: "dermclar",
+      name: "Dermclar",
+      displayName: "Dermclar",
+      tagline: t('brands.dermclar.tagline'),
+      description: t('brands.dermclar.desc'),
+      logo: "/assets/dermclar-logo.png",
+      href: "/dermclar",
+      textColorClass: "text-cyan-500 group-hover/card:text-cyan-600",
+      rgb: "6, 182, 212",
+      glassBg: "linear-gradient(135deg, rgba(236, 254, 255, 0.35) 0%, rgba(207, 250, 254, 0.12) 50%, rgba(165, 243, 252, 0.28) 100%)",
+      borderColor: "border-t-white/80 border-l-cyan-200/50 border-r-cyan-300/35 border-b-cyan-400/25",
+      auraClass: "from-cyan-400/25 via-teal-400/15 to-transparent",
     },
     {
       id: "cereform",
+      key: "cereform",
+      name: "Cereform",
       displayName: "Cereform",
       tagline: t('brands.cereform.tagline'),
       description: t('brands.cereform.desc'),
       logo: "/assets/cereform/logo-cereform.svg",
-      thumbnail: cereformCover,
-      video: "", 
       href: "/cereform",
-      buttonBg: "bg-[#3e97b6] hover:bg-[#1c85a9] shadow-[#3e97b6]/20",
-      logoContainerClass: "bg-white/40 border-white/25 backdrop-blur-md shadow-slate-900/5", // Identical container styles
-      exploreText: t('brands.visit') || "Visitar Marca",
+      textColorClass: "text-[#3e97b6] group-hover/card:text-[#1c85a9]",
+      rgb: "62, 151, 182",
+      glassBg: "linear-gradient(135deg, rgba(222, 237, 242, 0.35) 0%, rgba(190, 215, 222, 0.12) 50%, rgba(140, 185, 198, 0.28) 100%)",
+      borderColor: "border-t-white/80 border-l-[#3e97b6]/50 border-r-[#3e97b6]/35 border-b-[#3e97b6]/25",
+      auraClass: "from-[#3e97b6]/25 via-cyan-400/15 to-transparent",
     }
   ], [t]);
+
+  const [shuffledKeys] = useState(() => {
+    const keys = ["jetema", "xtralife", "dermclar", "cereform"];
+    for (let i = keys.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [keys[i], keys[j]] = [keys[j], keys[i]];
+    }
+    return keys;
+  });
+
+  const orderedBrands = useMemo(() => 
+    shuffledKeys.map(key => defaultBrands.find(b => b.key === key)),
+    [shuffledKeys, defaultBrands]
+  );
 
   return (
     <section 
       id="ecosystem" 
-      className="w-full bg-slate-50 relative overflow-hidden py-20 lg:py-28 select-none"
+      className="h-[100dvh] min-h-[100dvh] w-full bg-slate-50 relative overflow-hidden flex flex-col justify-between select-none py-4"
     >
-      {/* Background soft ambient lights */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-100/30 filter blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full bg-cyan-100/20 filter blur-[140px]" />
+        <div className="absolute inset-0 bg-[#f8fafc]" />
+        
+        <div className="absolute inset-0 opacity-[0.45] bg-[radial-gradient(circle_at_20%_20%,#ffffff_0%,transparent_50%),radial-gradient(circle_at_80%_80%,#e2e8f0_0%,transparent_60%),radial-gradient(circle_at_50%_10%,#f1f5f9_0%,transparent_50%)]" />
+        
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-slate-100/30 filter blur-[90px] animate-pulse-slow" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] rounded-full bg-slate-100/40 filter blur-[110px] animate-pulse-slow" style={{ animationDelay: '3s' }} />
+
+        <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] rounded-full bg-blue-100/30 filter blur-[105px] animate-pulse-slow" />
+        <div className="absolute bottom-1/4 right-1/4 w-[550px] h-[550px] rounded-full bg-emerald-100/20 filter blur-[120px] animate-pulse-slow" style={{ animationDelay: '3s' }} />
+        
+        <div 
+          className="absolute inset-0 opacity-[0.01] bg-[linear-gradient(to_right,#0ea5e9_1px,transparent_1px),linear-gradient(to_bottom,#0ea5e9_1px,transparent_1px)] bg-[size:4rem_4rem]" 
+        />
+        
+        <div className="absolute inset-0 opacity-[0.025] text-slate-400">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+            <path d="M-100,200 Q200,300 500,150 T1100,250 T1700,100" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="5 5" className="animate-pulse" style={{ animationDuration: '8s' }} />
+            <path d="M-50,400 Q300,200 700,500 T1500,300" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
+        </div>
       </div>
 
-      <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-12 lg:gap-16">
-        {/* Section Header */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/60 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-slate-500 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true" />
-            <span>{t('brands.portalBadge')}</span>
-          </span>
-          
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 font-display tracking-tight leading-tight">
-            {t('brands.title')}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent ml-2">
-              {t('brands.titleAccent')}
-            </span>
-          </h2>
-          
-          <p className="text-slate-500 font-medium text-base sm:text-lg">
-            {t('brands.subtitle')}
-          </p>
-        </div>
+      <div className="relative z-10 h-[8vh] flex items-center justify-center px-6">
+        <h2 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/40 backdrop-blur-md font-bold uppercase tracking-widest text-slate-600 shadow-sm liquid-glass-badge">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true" />
+          <span>{t('brands.portalBadge')}</span>
+        </h2>
+      </div>
 
-        {/* Brand Gallery Accordion */}
-        <div className="w-full flex flex-col lg:flex-row gap-4 items-stretch h-[720px] lg:h-[700px] transition-all duration-700 ease-out">
-          {brands.map((brand) => (
+      <div className="relative z-10 h-[80vh] w-full flex items-center justify-center">
+        <div className="w-full max-w-[1700px] h-full px-4 sm:px-6 lg:px-8 grid grid-cols-1 grid-rows-4 lg:grid-cols-4 lg:grid-rows-1 gap-4 lg:gap-8 items-stretch group/portal">
+          {orderedBrands.map((brand, i) => (
             <BrandCard 
               key={brand.id} 
               brand={brand} 
-              isHovered={hoveredId === brand.id}
-              onHoverChange={(hovered) => setHoveredId(hovered ? brand.id : null)}
-              playVideos={PLAY_VIDEOS}
+              index={i} 
             />
           ))}
         </div>
+      </div>
+
+      <div className="relative z-10 h-[8vh] flex items-center justify-center px-6">
+        <p className="text-slate-400 font-semibold max-w-xl bg-white/30 backdrop-blur-sm rounded-full border border-slate-200/50 shadow-sm liquid-glass-footer-text text-center">
+          {t('brands.subtitle')}
+        </p>
       </div>
     </section>
   );
